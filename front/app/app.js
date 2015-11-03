@@ -6,7 +6,21 @@ angular.module('myApp', [
   'myApp.view1',
   'myApp.view2',
   'myApp.version'
-]).
-config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/view1'});
-}]);
+])
+  .config(['$routeProvider', function($routeProvider) {
+    $routeProvider.otherwise({redirectTo: '/view1'});
+  }])
+  .constant("navbarActiveClass", "active")
+  .controller("navListCtrl", function ($scope, navbarActiveClass) {
+    var selectedNav = null;
+
+    $scope.navList = ["view1", "view2"];
+
+    $scope.selectNav = function(newNav) {
+      selectedNav = newNav;
+    };
+
+    $scope.getNavClass = function (nav) {
+      return selectedNav === nav ? navbarActiveClass : "";
+    };
+  });
