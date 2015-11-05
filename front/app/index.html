@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>My AngularJS App</title>
+  <title>YEAH DB</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../bower_components/html5-boilerplate/dist/css/normalize.css">
@@ -41,8 +41,11 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#/sign-in">SIGN IN</a></li>
-        <li><a href="#/sign-up">SIGN UP</a></li>
+          <li ng-repeat="item in signList" ng-click="selectNav(item)" ng-class="getNavClass(item)">
+              <a href="{{ item.url }}">{{ item.name }}</a>
+          </li>
+        <!-- <li><a href="#/sign-in">SIGN IN</a></li> -->
+        <!-- <li><a href="#/sign-up">SIGN UP</a></li> -->
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
