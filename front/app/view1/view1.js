@@ -9,6 +9,23 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', [function() {
+.controller('View1Ctrl', function($scope) {
+    var i;
+    $scope.taskApplyList = [{
+        taskName: "task-1"
+    }, {
+        taskName: "dfdfdf"
+    }];
+    for(i = 0; i < 10; i++) {
+        $scope.taskApplyList.push({
+            taskName: "task " + i
 
-}]);
+        });
+    }
+
+    console.log("task apply list " + $scope.taskApplyList);
+    for(i = 0; i < 10; i++) {
+        console.log($scope.taskApplyList[i]);
+    }
+
+});

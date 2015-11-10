@@ -1,1 +1,23 @@
-<p>This is the partial for view 1.</p>
+<!-- 제출자 시작 -->
+<h1>제출자, submitter</h1>
+
+<div class="panel panel-default">
+    <div class="panel-heading">참가신청 가능한 태스크 목록</div>
+    <div class="panel-body" ng-controller="View1Ctrl">
+        <ol>
+            <li ng-repeat="item in taskApplyList">
+                {{ item.taskName }}
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Panel title</h3>
+    </div>
+    <div class="panel-body">
+        Panel content
+    </div>
+</div>
+<!-- 제출자 끝 -->
