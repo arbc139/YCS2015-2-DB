@@ -1,0 +1,26 @@
+<h1>Sign up</h1>
+
+<!--
+t.string :user_id
+t.string :password_digest
+t.string :name
+t.string :sex
+t.string :address
+t.string :birth
+t.string :phone_number
+t.string :value_score
+t.string :role  # 'admin', 'submitter', 'valuer'
+-->
+    <%= form_for(@user) do |f| %>
+      <%= f.text_field :str_id, :placeholder => "User ID" %>
+      <%= f.password_field :password, :placeholder => "Password" %>
+      <%= f.text_field :name, :placeholder => "Name" %>
+      <%= f.text_field :sex, :placeholder => "Sex" %>
+      <%= f.text_field :address, :placeholder => "Address" %>
+      <%= f.text_field :birth, :placeholder => "Birth" %>
+      <%= f.text_field :phone_number, :placeholder => "Phone Number" %>
+      <%= f.text_field :value_score, :placeholder => "Value Score" %>
+      <%= f.text_field :role, :placeholder => "Role" %>
+      <%= f.submit "Create an account" %>
+      <!-- f.submit ==> send to user's create action with these parameter(RESTFUL API) -->
+    <% end %>

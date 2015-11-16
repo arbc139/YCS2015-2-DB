@@ -1,0 +1,9 @@
+<h1>Log in</h1>
+<!-- 
+login_path??
+when submit clicked, routing to <post 'login'> -->
+<%= form_for(:session, url: login_path) do |f| %> 
+  <%= f.text_field :str_id, :placeholder => "User ID" %> 
+  <%= f.password_field :password, :placeholder => "Password" %> 
+  <%= f.submit "Log in"%>
+<% end %>

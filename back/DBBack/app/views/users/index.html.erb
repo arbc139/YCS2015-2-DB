@@ -1,0 +1,18 @@
+Hello, world! <br>
+<br>
+
+<% if current_user %> 
+<ul>
+  <li><%= current_user.role if current_user.role %></li>
+  <li><%= current_user.str_id %></li>
+  <li><%= link_to "Log out", logout_path, method: "delete" %></li> 
+  <% if current_user.submitter? %>
+  <li><%= link_to "Submit Main Page", 'submitter' %></li>
+  <% end %>
+</ul> 
+<% else %> 
+<ul>
+  <li><%= link_to "Login", 'login' %></a></li> 
+  <li><%= link_to "Signup", 'signup' %></a></li> 
+</ul> 
+<% end %>
