@@ -2,7 +2,7 @@
 
 angular.module('myApp.sign', ['ngRoute'])
 // .factory("Secure", function($resource) {
-//     return $resource("/api/record/:id:password", { id: "@id" },
+//     return $resource("/api/record/:id", { id: "@id" },
 //     {
 //         'show':    { method: 'GET', isArray: false },
 //         'update':  { method: 'PUT' },
@@ -52,6 +52,7 @@ angular.module('myApp.sign', ['ngRoute'])
     $scope.signIn = function(id, password) {
         if (id === 'admin' && password === 'admin') {
             SessionService.setcurrentSessionType(SESSION_TYPE.ADMIN);
+
         } else if (id === 'valuer' && password === 'v') {
             SessionService.setcurrentSessionType(SESSION_TYPE.VALUER);
         } else if (id === 'submitter' && password === 'w') {
