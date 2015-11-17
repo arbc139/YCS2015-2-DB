@@ -9,7 +9,7 @@
 # t.string :role  # 'admin', 'submitter', 'valuer'
 
 json.users @users do |user|
-  json.user_id user.str_id
+  json.str_id user.str_id
   json.password user.password_digest
   json.name user.name
 
