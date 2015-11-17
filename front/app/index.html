@@ -42,7 +42,7 @@
       <ul class="nav navbar-nav">
         <li ng-repeat="item in navList" ng-click="selectNav(item)" ng-class="getNavClass(item)">
             <!-- <a href="{{ item.url }}">{{ item.name }}</a> -->
-            <a ng-click="">{{ item.name }}</a>
+            <a ng-click="clickNav(item.name)">{{ item.name }}</a>
         </li>
         <!-- <li class="active"><a href="#/view1">view 1</a></li> -->
         <!-- <li><a href="#/view2">view 2</a></li> -->
@@ -73,7 +73,7 @@
   <script src="../bower_components/angular/angular.js"></script>
   <script src="../bower_components/angular-route/angular-route.js"></script>
   <script src="app.js"></script>
-  <script src="myPage/myPage.js"></script>
+  <script src="myPage/submitterPage.js"></script>
   <script src="view2/view2.js"></script>
   <script src="sign/sign.js"></script>
   <script src="components/version/version.js"></script>

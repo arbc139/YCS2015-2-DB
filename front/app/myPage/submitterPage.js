@@ -1,15 +1,15 @@
 'use strict';
 
-angular.module('myApp.myPage', ['ngRoute'])
+angular.module('myApp.submitterPage', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/myPage', {
-    templateUrl: 'myPage/view1.html',
-    controller: 'myPageCtrl'
+  $routeProvider.when('/submitterPage', {
+    templateUrl: 'myPage/submitterPage.html',
+    controller: 'submitterPageCtrl'
   });
 }])
 
-.controller('myPageCtrl', function($scope) {
+.controller('submitterPageCtrl', function($scope) {
     var i;
     $scope.taskApplyList = [{
         taskName: "task-1"

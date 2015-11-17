@@ -16,17 +16,17 @@ angular.module('myApp.sign', ['ngRoute'])
         type: SESSION_TYPE.WRONG
     };
 
-    var getcurrentSessionType = function () {
+    var getCurrentSessionType = function () {
         return currentSession.type;
     };
 
-    var setcurrentSessionType = function(ss) {
+    var setCurrentSessionType = function(ss) {
         currentSession.type = ss;
     };
 
     return {
-            getcurrentSessionType: getcurrentSessionType,
-            setcurrentSessionType: setcurrentSessionType
+            getCurrentSessionType: getCurrentSessionType,
+            setCurrentSessionType: setCurrentSessionType
     };
 })
 .constant("SESSION_TYPE", {
@@ -47,18 +47,18 @@ angular.module('myApp.sign', ['ngRoute'])
         'password': ''
     };
 
-    console.log(SessionService.getcurrentSessionType());
+    console.log(SessionService.getCurrentSessionType());
 
     $scope.signIn = function(id, password) {
         if (id === 'admin' && password === 'admin') {
-            SessionService.setcurrentSessionType(SESSION_TYPE.ADMIN);
+            SessionService.setCurrentSessionType(SESSION_TYPE.ADMIN);
 
         } else if (id === 'valuer' && password === 'v') {
-            SessionService.setcurrentSessionType(SESSION_TYPE.VALUER);
-        } else if (id === 'submitter' && password === 'w') {
-            SessionService.setcurrentSessionType(SESSION_TYPE.SUBMITTER);
+            SessionService.setCurrentSessionType(SESSION_TYPE.VALUER);
+        } else if (id === 'submitter' && password === 's') {
+            SessionService.setCurrentSessionType(SESSION_TYPE.SUBMITTER);
         } else {
-            SessionService.setcurrentSessionType(SESSION_TYPE.WRONG);
+            SessionService.setCurrentSessionType(SESSION_TYPE.WRONG);
         }
         /*
         $http
@@ -75,7 +75,7 @@ angular.module('myApp.sign', ['ngRoute'])
             console.log(data);
         });
         */
-        console.log(SessionService.getcurrentSessionType());
+        console.log(SessionService.getCurrentSessionType());
     };
 })
 .config(['$routeProvider', function($routeProvider) {
