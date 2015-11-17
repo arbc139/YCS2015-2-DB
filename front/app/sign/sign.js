@@ -10,20 +10,23 @@ angular.module('myApp.sign', ['ngRoute'])
 //     }
 //     );
 // })
-.factory("olafSession", function() {
-    var currentSession = "wrong";
-
-    var getCurrentSession = function () {
-        return currentSession;
+.factory("SessionService", function(SESSION_TYPE) {
+    var currentSession = {
+        id: '',
+        type: SESSION_TYPE.WRONG
     };
 
-    var setCurrentSession = function(ss) {
-        currentSession = ss;
+    var getcurrentSessionType = function () {
+        return currentSession.type;
+    };
+
+    var setcurrentSessionType = function(ss) {
+        currentSession.type = ss;
     };
 
     return {
-            getCurrentSession: getCurrentSession,
-            setCurrentSession: setCurrentSession
+            getcurrentSessionType: getcurrentSessionType,
+            setcurrentSessionType: setcurrentSessionType
     };
 })
 .constant("SESSION_TYPE", {
@@ -38,28 +41,34 @@ angular.module('myApp.sign', ['ngRoute'])
         controller: 'signInCtrl'
     });
 }])
-.controller('signInCtrl', function($scope, $http, SESSION_TYPE) {
+.controller('signInCtrl', function($scope, $http, SESSION_TYPE, SessionService) {
     $scope.signInUserModel = {
         'id': '',
         'password': ''
     };
 
+    console.log(SessionService.getcurrentSessionType());
+
     $scope.signIn = function(id, password) {
+        if (id === 'admin' && password === 'admin') {
+            SessionService.setcurrentSessionType(SESSION_TYPE.ADMIN);
+        }
+        /*
         $http
         .post("http://ror.olaf.kr/login") // todo ask url to dy
         .success(function (data) {
-            // $scope.signInUserModel.id = "success";
-            // $scope.signInUserModel.password = "success!!";
             console.log(data);
 
         })
         .error(function (data) {
-            $scope.signInUserModel.id = "error";
-            $scope.signInUserModel.password = "error!!";
+            // $scope.signInUserModel.id = "error";
+            // $scope.signInUserModel.password = "error!!";
 
             console.log('??');
             console.log(data);
         });
+        */
+        console.log(SessionService.getcurrentSessionType());
     };
 })
 .config(['$routeProvider', function($routeProvider) {
