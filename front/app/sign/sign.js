@@ -17,12 +17,16 @@ angular.module('myApp.sign', ['ngRoute'])
             $http
             .post("http://127.0.0.1:3000/login") // todo ask url to dy
             .success(function (data) {
-                id = 'sc!';
-                password = 'sc!';
+                $scope.signInUserModel.id = "success";
+                $scope.signInUserModel.password = "success!!";
+
             })
             .error(function (data) {
-                id = 'something went wrong!';
-                password = 'sibal!';
+                $scope.signInUserModel.id = "error";
+                $scope.signInUserModel.password = "error!!";
+
+                console.log('??');
+                console.log(data);
             });
         };
     })
