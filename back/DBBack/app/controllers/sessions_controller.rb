@@ -7,6 +7,8 @@ class SessionsController < ApplicationController
   
   def create
     # need to communicate with AngularJS (receive json)
+    logger.debug "Yeah sex"
+
     @user = User.find_by_str_id(params[:session][:str_id])
     if @user && @user.authenticate(params[:session][:password])
       # session[:current_user] is created, initialized to @user.id
@@ -18,6 +20,7 @@ class SessionsController < ApplicationController
     end
   end
   
+
   def destroy
     # FIXIT :- user_id to change
     session[:user_id] = nil
