@@ -9,7 +9,11 @@ angular.module('myApp', [
     'myApp.version'
 ])
 .config(['$routeProvider', function($routeProvider) {
-    $routeProvider.otherwise({redirectTo: '/view1'});
+    // $routeProvider.otherwise({redirectTo: '/view1'});
+    $routeProvider.when('/', {
+      templateUrl: 'sign/please-sign-in.html'
+    //   controller: 'View1Ctrl'
+    });
 }])
 // .config(['$locationProvider', function($location) {
 //   $location.html5Mode(true); //now there won't be a hashbang within URLs for browers that support HTML5 history
