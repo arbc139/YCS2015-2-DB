@@ -15,7 +15,7 @@ angular.module('myApp.sign', ['ngRoute'])
 
         $scope.signIn = function(id, password) {
             $http
-            .post("http://localhost/login") // todo ask url to dy
+            .post("http://localhost:3000/login") // todo ask url to dy
             .success(function (data) {
                 $scope.signInUserModel.id = "success";
                 $scope.signInUserModel.password = "success!!";
