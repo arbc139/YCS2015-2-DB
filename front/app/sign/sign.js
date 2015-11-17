@@ -52,6 +52,12 @@ angular.module('myApp.sign', ['ngRoute'])
     $scope.signIn = function(id, password) {
         if (id === 'admin' && password === 'admin') {
             SessionService.setcurrentSessionType(SESSION_TYPE.ADMIN);
+        } else if (id === 'valuer' && password === 'v') {
+            SessionService.setcurrentSessionType(SESSION_TYPE.VALUER);
+        } else if (id === 'submitter' && password === 'w') {
+            SessionService.setcurrentSessionType(SESSION_TYPE.SUBMITTER);
+        } else {
+            SessionService.setcurrentSessionType(SESSION_TYPE.WRONG);
         }
         /*
         $http
