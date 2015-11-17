@@ -10,13 +10,35 @@ angular.module('myApp.sign', ['ngRoute'])
 //     }
 //     );
 // })
+.factory("olafSession", function() {
+    var currentSession = "wrong";
+
+    var getCurrentSession = function () {
+        return currentSession;
+    };
+
+    var setCurrentSession = function(ss) {
+        currentSession = ss;
+    };
+
+    return {
+            getCurrentSession: getCurrentSession,
+            setCurrentSession: setCurrentSession
+    };
+})
+.constant("SESSION_TYPE", {
+    ADMIN: 'session_type_admin',
+    VALUER: 'session_type_valuer',
+    SUBMITTER: 'session_type_submitter',
+    WRONG: 'session_type_wrong'
+})
 .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/sign-in', {
         templateUrl: 'sign/sign-in.html',
         controller: 'signInCtrl'
     });
 }])
-.controller('signInCtrl', function($scope, $http) {
+.controller('signInCtrl', function($scope, $http, SESSION_TYPE) {
     $scope.signInUserModel = {
         'id': '',
         'password': ''
