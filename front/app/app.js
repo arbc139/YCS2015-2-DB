@@ -11,11 +11,18 @@ angular.module('myApp', [
 .config(['$routeProvider', function($routeProvider) {
     $routeProvider.otherwise({redirectTo: '/view1'});
 }])
+// .config(['$locationProvider', function($location) {
+//   $location.html5Mode(true); //now there won't be a hashbang within URLs for browers that support HTML5 history
+// }])
 .constant("navbarActiveClass", "active")
 .controller("navListCtrl", function ($scope, navbarActiveClass) {
     var selectedNav = null;
 
-    $scope.navList = ["view1", "view2"];
+    $scope.navList = [{
+        name: "My Page"
+    }, {
+        name: "Temp View (View2)"
+    }];
     $scope.signList = [{
         name: "SIGN IN",
         url : "#/sign-in"
