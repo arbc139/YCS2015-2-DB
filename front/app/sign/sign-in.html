@@ -3,18 +3,24 @@
         <h3 class="panel-title">Sign-in</h3>
     </div>
     <div class="panel-body">
-        <form role="">
+        <form role="" ng-controller="signInCtrl">
             <div class="input-group">
                 <span class="input-group-addon" id="id">ID</span>
-                <input type="text" class="form-control" placeholder="id" aria-describedby="id" />
+                <input type="text" class="form-control" placeholder="id"
+                aria-describedby="id" ng-model="signInUserModel.id"/>
             </div><br>
             <div class="input-group">
                 <span class="input-group-addon" id="pw">PW</span>
-                <input type="password" class="form-control" placeholder="password" aria-describedby="pw" />
+                <input type="password" class="form-control" placeholder="password"
+                aria-describedby="pw" ng-model="signInUserModel.password"/>
             </div><br>
             <!-- <span class="input-group-btn"> -->
-                <button class="btn btn-primary btn-lg btn-block btn-shadow" type="submit">Sign in</button>
+                <button class="btn btn-primary btn-lg btn-block btn-shadow" type="submit"
+                ng-click="signIn(signInUserModel.id, signInUserModel.password)">
+                Sign in</button>
             <!-- </span> -->
+            id: {{ signInUserModel.id }}<br>pw: {{ signInUserModel.password }}
+
         </form>
     </div>
 </div>
