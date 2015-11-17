@@ -16,6 +16,10 @@
 # t.string :value_score
 # t.string :role  # 'admin', 'submitter', 'valuer'
 
+admin = User.create(
+  str_id: 'admin', password: 'admin', name: 'admin', sex: 'M', address: 'Seoul', birth: '09/20', phone_number: '010', valuer: 'admin'
+  )
+
 dy = User.create(
   str_id: 'arbc139', password: '777444', name: 'dy', sex: 'M', address: 'Seoul', birth: '09/20', phone_number: '010', value_score: '100', role: 'valuer'
   )
