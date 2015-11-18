@@ -7,8 +7,7 @@ class SessionsController < ApplicationController
   
   def create
     # need to communicate with AngularJS (receive json)
-    logger.debug "Yeah sex"
-
+    logger.info "Yeah POST come on!"
     @user = User.find_by_str_id(params[:session][:str_id])
     if @user && @user.authenticate(params[:session][:password])
       # session[:current_user] is created, initialized to @user.id

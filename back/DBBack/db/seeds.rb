@@ -17,9 +17,20 @@
 # t.string :role  # 'admin', 'submitter', 'valuer'
 
 admin = User.create(
-  str_id: 'admin', password: 'admin', name: 'admin', sex: 'M', address: 'Seoul', birth: '09/20', phone_number: '010', valuer: 'admin'
+  str_id: 'admin', password: 'admin', name: 'admin', sex: 'M', address: 'Seoul', birth: '09/20', phone_number: '010', role: 'admin'
   )
 
-dy = User.create(
-  str_id: 'arbc139', password: '777444', name: 'dy', sex: 'M', address: 'Seoul', birth: '09/20', phone_number: '010', value_score: '100', role: 'valuer'
+arbc139 = User.create(
+  str_id: 'arbc139', password: '777444', name: 'dy', sex: 'M', address: 'Seoul', birth: '09/20', phone_number: '010', value_score: '100', 
+  role: 'valuer'
+  )
+
+kem2182 = User.create(
+  str_id: 'kem2182', password: '777444', name: 'dy', sex: 'M', address: 'Seoul', birth: '09/20', phone_number: '010', value_score: '100', 
+  role: 'submitter'
+  )
+
+ip139 = User.create(
+  str_id: 'ip139', password: '777444', name: 'dy', sex: 'M', address: 'Seoul', birth: '09/20', phone_number: '010', value_score: '100', 
+  role: 'submitter'
   )
