@@ -8,6 +8,7 @@
 # t.string :value_score
 # t.string :role  # 'admin', 'submitter', 'valuer'
 
+# this is useless
 json.users @users do |user|
   json.str_id user.str_id
   json.password user.password_digest
