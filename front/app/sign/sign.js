@@ -102,7 +102,19 @@ angular.module('myApp.sign', ['ngRoute'])
                 'Content-type': 'application/json'
             }
         };
-        $http.post('http://ror.olaf.kr/api/login', $scope.signInUserModel, config);
+        $http
+        .post('http://ror.olaf.kr/api/login', $scope.signInUserModel, config)
+        .success(function (data) {
+            console.log(data);
+
+        })
+        .error(function (data) {
+            // $scope.signInUserModel.id = "error";
+            // $scope.signInUserModel.password = "error!!";
+
+            console.log('??');
+            console.log(data);
+        });
 
         // $http(req).then(function (data) {
         //     console.log(data);
