@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
 
     respond_to do |format|
       @user = User.find_by_str_id(params[:str_id])
+      logger.info @user
       if @user && @user.authenticate(params[:password])
         # session[:current_user] is created, initialized to @user.id
         # :current_user is just 'key'
