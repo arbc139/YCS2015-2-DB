@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
         """
         #render :json => @user
         #format.html { redirect_to '/api/users', notice: 'Session was successfully created.' }
-        format.json { render json: @user.as_json(only: [:id, :role]) }
+        format.json { render json: @user.as_json(only: [:id, :str_id, :role]) }
       else
         #format.html { redirect_to '/api/users', notice: 'Session was failed.' }
         error = Hash.new
