@@ -71,6 +71,7 @@ angular.module('myApp', [
         else if (name === $scope.navList[1].name) {
             // View 2
             console.log("view 2");
+            $location.path('view2');
         }
     }
 });
