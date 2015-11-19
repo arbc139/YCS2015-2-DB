@@ -11,7 +11,7 @@ t.string :phone_number
 t.string :value_score
 t.string :role  # 'admin', 'submitter', 'valuer'
 -->
-    <%= form_for(@user) do |f| %>
+    <%= form_for @user, url: api_login_path do |f| %>
       <%= f.text_field :str_id, :placeholder => "User ID" %>
       <%= f.password_field :password, :placeholder => "Password" %>
       <%= f.text_field :name, :placeholder => "Name" %>
