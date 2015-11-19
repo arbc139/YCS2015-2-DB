@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SubmitterControllerTest < ActionController::TestCase
+class RUserSubmitTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

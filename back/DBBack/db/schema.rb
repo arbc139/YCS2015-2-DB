@@ -11,9 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151118084851) do
+ActiveRecord::Schema.define(version: 20151118085316) do
+
+  create_table "r_user_submits", force: :cascade do |t|
+    t.integer  "task_id"
+    t.integer  "raw_data_type_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "r_user_submits", ["raw_data_type_id"], name: "index_r_user_submits_on_raw_data_type_id"
+  add_index "r_user_submits", ["task_id"], name: "index_r_user_submits_on_task_id"
 
   create_table "raw_data_types", force: :cascade do |t|
+    t.text     "schema"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

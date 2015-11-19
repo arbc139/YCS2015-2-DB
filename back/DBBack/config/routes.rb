@@ -1,19 +1,20 @@
 Rails.application.routes.draw do
   root 'users#index'
 
-  ### LOGIN, LOGOUT (USER)
-  get '/signup'  => 'users#new'
+  #################################### LOGIN, LOGOUT (USER) ####################################
+  get '/api/signup'  => 'users#new'
+  # each user page
+  get '/api/users' => 'users#index'
+  post '/api/users' => 'users#create'
+  get '/api/users/:id' => 'users#show'
   # get 'users' => 'users#index'
   # post 'users' => 'users#create'
-  resources :users, only: [:index, :create]
+  # get 'users/:id' => 'users#show'
 
-  ### sessions
-  get '/login' => 'sessions#new'
-  post '/login' => 'sessions#create'
-  delete '/logout' => 'sessions#destroy'
-
-  ### submitter page
-  get '/submitter' => 'submitter#index'
+  #################################### SESSIONS ####################################
+  get '/api/login' => 'sessions#new'
+  post '/api/login' => 'sessions#create'
+  delete '/api/logout' => 'sessions#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
