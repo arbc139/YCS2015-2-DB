@@ -56,22 +56,22 @@ angular.module('myApp.sign', ['ngRoute'])
         // http://stackoverflow.com/questions/11252780/whats-the-correct-way-to-communicate-between-controllers-in-angularjs
         // Using $rootScope.$broadcast and $scope.$on for a PubSub communication.
 
-        /*
+        // /*
 
-        if (id === 'admin' && password === 'admin') {
-            SessionService.setCurrentSessionType(SESSION_TYPE.ADMIN);
-            $location.path('admin-page');
-        } else if (id === 'valuer' && password === 'v') {
-            SessionService.setCurrentSessionType(SESSION_TYPE.VALUER);
-            $location.path('valuer-page');
-        } else if (id === 'submitter' && password === 's') {
-            SessionService.setCurrentSessionType(SESSION_TYPE.SUBMITTER);
-            $location.path('submitter-page');
-        } else {
-            SessionService.setCurrentSessionType(SESSION_TYPE.WRONG);
-            alert('wrong id or pw\ntry again!');
-        }
-        */
+        // if (id === 'admin' && password === 'admin') {
+        //     SessionService.setCurrentSessionType(SESSION_TYPE.ADMIN);
+        //     $location.path('admin-page');
+        // } else if (id === 'valuer' && password === 'v') {
+        //     SessionService.setCurrentSessionType(SESSION_TYPE.VALUER);
+        //     $location.path('valuer-page');
+        // } else if (id === 'submitter' && password === 's') {
+        //     SessionService.setCurrentSessionType(SESSION_TYPE.SUBMITTER);
+        //     $location.path('submitter-page');
+        // } else {
+        //     SessionService.setCurrentSessionType(SESSION_TYPE.WRONG);
+        //     alert('wrong id or pw\ntry again!');
+        // }
+        // */
         /*
         $http
         .post("http://ror.olaf.kr/login") // todo ask url to dy
@@ -103,17 +103,30 @@ angular.module('myApp.sign', ['ngRoute'])
             }
         };
         $http
-        .post('http://ror.olaf.kr/api/login', $scope.signInUserModel, config)
+        .post('http://db.olaf.kr/api/login', $scope.signInUserModel, config)
         .success(function (data) {
-            console.log(data);
-
+            console.log('success ' + data);
+            if (data.role === 'admin') {
+                SessionService.setCurrentSessionType(SESSION_TYPE.ADMIN);
+                $location.path('admin-page');
+            } else if (data.role === 'valuer') {
+                SessionService.setCurrentSessionType(SESSION_TYPE.VALUER);
+                $location.path('valuer-page');
+            } else if (data.role === 'submitter') {
+                SessionService.setCurrentSessionType(SESSION_TYPE.SUBMITTER);
+                $location.path('submitter-page');
+            } else if (data.role === 'wrong') {
+                SessionService.setCurrentSessionType(SESSION_TYPE.WRONG);
+                alert('wrong id or pw\ntry again!');
+            } else {
+                alert('sibal??? ? ?sdfljasdlfjasdf');
+            }
         })
         .error(function (data) {
             // $scope.signInUserModel.id = "error";
             // $scope.signInUserModel.password = "error!!";
-
-            console.log('??');
-            console.log(data);
+            console.log('fail ' + data);
+            alert("server error!\nsee the debugging console");
         });
 
         // $http(req).then(function (data) {
