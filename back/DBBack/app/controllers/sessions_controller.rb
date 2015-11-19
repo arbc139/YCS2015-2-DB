@@ -12,7 +12,6 @@ class SessionsController < ApplicationController
     respond_to do |format|
       @user = User.find_by_str_id(params[:str_id])
       logger.info @user
-
       if @user && @user.authenticate(params[:password])
         # session[:current_user] is created, initialized to @user.id
         # :current_user is just 'key'
@@ -30,9 +29,9 @@ class SessionsController < ApplicationController
         """
         #render :json => @user
         #format.html { redirect_to '/api/users', notice: 'Session was successfully created.' }
-        format.json { render json: @user.as_json(only: [:role]) }
+        format.json { render json: @user.as_json(only: [:id, :role]) }
       else
-        format.html { redirect_to '/api/users', notice: 'Session was successfully created.' }
+        #format.html { redirect_to '/api/users', notice: 'Session was failed.' }
         error = Hash.new
         error["error"] = "wrong"
         format.json { render json: error }
