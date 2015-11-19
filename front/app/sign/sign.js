@@ -43,7 +43,7 @@ angular.module('myApp.sign', ['ngRoute'])
 }])
 .controller('signInCtrl', function($scope, $http, $location, SESSION_TYPE, SessionService) {
     $scope.signInUserModel = {
-        'id': '',
+        'str_id': '',
         'password': ''
     };
 
@@ -56,7 +56,7 @@ angular.module('myApp.sign', ['ngRoute'])
         // http://stackoverflow.com/questions/11252780/whats-the-correct-way-to-communicate-between-controllers-in-angularjs
         // Using $rootScope.$broadcast and $scope.$on for a PubSub communication.
 
-        // /*
+        /*
 
         if (id === 'admin' && password === 'admin') {
             SessionService.setCurrentSessionType(SESSION_TYPE.ADMIN);
@@ -71,8 +71,8 @@ angular.module('myApp.sign', ['ngRoute'])
             SessionService.setCurrentSessionType(SESSION_TYPE.WRONG);
             alert('wrong id or pw\ntry again!');
         }
-        // */
-        /*
+        */
+        // /*
 
         $http
         .post("http://ror.olaf.kr/login") // todo ask url to dy
@@ -87,8 +87,8 @@ angular.module('myApp.sign', ['ngRoute'])
             console.log('??');
             console.log(data);
         });
-        */
-        console.log(SessionService.getCurrentSessionType());
+        // */
+        // console.log(SessionService.getCurrentSessionType());
     };
 })
 .config(['$routeProvider', function($routeProvider) {

@@ -7,7 +7,7 @@
             <div class="input-group">
                 <span class="input-group-addon" id="id">ID</span>
                 <input type="text" class="form-control" placeholder="id"
-                aria-describedby="id" ng-model="signInUserModel.id"/>
+                aria-describedby="id" ng-model="signInUserModel.str_id"/>
             </div><br>
             <div class="input-group">
                 <span class="input-group-addon" id="pw">PW</span>
@@ -16,10 +16,10 @@
             </div><br>
             <!-- <span class="input-group-btn"> -->
                 <button class="btn btn-primary btn-lg btn-block btn-shadow" type="submit"
-                ng-click="signIn(signInUserModel.id, signInUserModel.password)">
+                ng-click="signIn(signInUserModel.str_id, signInUserModel.password)">
                 Sign in</button>
             <!-- </span> -->
-            <h3>id: {{ signInUserModel.id }}<br>pw: {{ signInUserModel.password }}</h3>
+            <h3>id: {{ signInUserModel.str_id }}<br>pw: {{ signInUserModel.password }}</h3>
 
         </form>
     </div>
