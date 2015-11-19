@@ -14,8 +14,4 @@ class User < ActiveRecord::Base
   def submitter?
     self.role == 'submitter'
   end
-
-  def errors
-    logger.info 'User is not founded, error occured!'
-  end
 end
