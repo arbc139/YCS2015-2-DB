@@ -6,16 +6,19 @@ Rails.application.routes.draw do
   # each user page
   get '/api/users' => 'users#index'
   post '/api/users' => 'users#create'
-  get '/api/users/:id' => 'users#show'
   # resources
   # get 'users' => 'users#index'
   # post 'users' => 'users#create'
   # get 'users/:id' => 'users#show'
-
+  
   #################################### SESSIONS ####################################
   get '/api/login' => 'sessions#new'
   post '/api/login' => 'sessions#create'
   delete '/api/logout' => 'sessions#destroy'
+
+
+  #################################### SUBMITTER ####################################
+  get '/api/submitter' => 'submitter#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
