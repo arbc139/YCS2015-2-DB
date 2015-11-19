@@ -50,7 +50,7 @@ angular.module('myApp.sign', ['ngRoute'])
     console.log(SessionService.getCurrentSessionType());
 
     $scope.signIn = function(id, password) {
-        console.log('signList: '+$scope.signList);
+        //  console.log('signList: '+$scope.signList);
         // 다른 컨트롤러의 스코프에 접근할 수 없구나.
         // 컨트롤러끼리의 통신을 어떻게 하지
         // http://stackoverflow.com/questions/11252780/whats-the-correct-way-to-communicate-between-controllers-in-angularjs
