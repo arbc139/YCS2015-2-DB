@@ -57,13 +57,15 @@ angular.module('myApp', [
             console.log(sessionType);
 
             if (sessionType === SESSION_TYPE.SUBMITTER) {
-                $location.path('submitterPage');
+                $location.path('submitter-page');
             } else if (sessionType === SESSION_TYPE.VALUER) {
-
+                $location.path('valuer-page');
             } else if (sessionType === SESSION_TYPE.ADMIN) {
-
+                $location.path('admin-page');
             } else if (sessionType === SESSION_TYPE.WRONG) {
-
+                alert('you are not logged in!');
+                $location.path('sign-in');
+                setTimeout
             }
         }
 

@@ -1,7 +1,7 @@
 angular.module('myApp.valuerPage', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/valuerPage', {
+  $routeProvider.when('/valuer-page', {
     templateUrl: 'myPage/valuerPage.html',
     controller: 'valuerPageCtrl'
   });

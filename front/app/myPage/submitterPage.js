@@ -3,7 +3,7 @@
 angular.module('myApp.submitterPage', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/submitterPage', {
+  $routeProvider.when('/submitter-page', {
     templateUrl: 'myPage/submitterPage.html',
     controller: 'submitterPageCtrl'
   });

@@ -60,13 +60,13 @@ angular.module('myApp.sign', ['ngRoute'])
 
         if (id === 'admin' && password === 'admin') {
             SessionService.setCurrentSessionType(SESSION_TYPE.ADMIN);
-            $location.path('adminPage');
+            $location.path('admin-page');
         } else if (id === 'valuer' && password === 'v') {
             SessionService.setCurrentSessionType(SESSION_TYPE.VALUER);
-            $location.path('valuerPage');
+            $location.path('valuer-page');
         } else if (id === 'submitter' && password === 's') {
             SessionService.setCurrentSessionType(SESSION_TYPE.SUBMITTER);
-            $location.path('submitterPage');
+            $location.path('submitter-page');
         } else {
             SessionService.setCurrentSessionType(SESSION_TYPE.WRONG);
             alert('wrong id or pw\ntry again!');
