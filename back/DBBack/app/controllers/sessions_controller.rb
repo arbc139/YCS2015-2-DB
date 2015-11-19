@@ -8,8 +8,7 @@ class SessionsController < ApplicationController
   
   def create
     # need to communicate with AngularJS (receive json)
-    logger.info "Yeah POST come on!"
-    logger.info params
+    logger.info "Yeah Session POST come on!"
 
     respond_to do |format|
       @user = User.find_by_str_id(params[:str_id])
