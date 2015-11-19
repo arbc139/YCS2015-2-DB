@@ -4,6 +4,8 @@
 angular.module('myApp', [
     'ngRoute',
     'myApp.submitterPage',
+    'myApp.valuerPage',
+    'myApp.adminPage',
     'myApp.view2',
     'myApp.sign',
     'myApp.version'
