@@ -1,8 +1,10 @@
 class SessionsController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :create
+  """
   def new
     
   end
+  """
   
   def create
     # need to communicate with AngularJS (receive json)
@@ -39,18 +41,11 @@ class SessionsController < ApplicationController
     end
   end
   
+  """
   def destroy
     # FIXIT :- user_id to change
     session[:user_id] = nil
     redirect_to '/'
   end
-
-  private
-  def session_params
-    params.require(:session).permit(:str_id, :password)    # information = request.raw_post
-    # data_parsed = JSON.parse(information)
-    #information = request.raw_post
-    #data_parsed = JSON.parse(information)
-    #params.require(:user).permit(data_parsed)
-  end
+  """
 end
