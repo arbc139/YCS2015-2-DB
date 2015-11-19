@@ -18,9 +18,13 @@ Rails.application.routes.draw do
   post '/api/login' => 'sessions#create'
   delete '/api/logout' => 'sessions#destroy'
 
+  #################################### ADMIN ####################################
+  post '/api/admin/task' => 'tasks#create'
+
 
   #################################### SUBMITTER ####################################
   get '/api/submitter' => 'submitter#index'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

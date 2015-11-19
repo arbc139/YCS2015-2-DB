@@ -78,16 +78,15 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         #session[:user_id] = @user.id
-        logger.info '>>>>>>>>>>>>>>>>'
-        logger.info session[:user_id]
-        format.html { redirect_to '/users', notice: 'User was successfully created.' }
-        format.json { render :json => @user }
+
+        format.html { redirect_to '/api/users', notice: 'User was successfully created.' }
+        format.json { render json: @user.as_json(only: [:id, :str_id, :role]) }
       else
         #redirect_to '/signup' # => 'users#new'
         format.html { render action: 'new' }
-        error = Hash.new
-        error["error"] = "wrong"
-        format.json { render json: error }
+        result = Hash.new
+        result["error"] = "wrong"
+        format.json { render json: result }
       end
     end
   end
