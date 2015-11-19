@@ -64,8 +64,7 @@ angular.module('myApp', [
                 $location.path('admin-page');
             } else if (sessionType === SESSION_TYPE.WRONG) {
                 alert('you are not logged in!');
-                $location.path('sign-in');
-                setTimeout
+                setTimeout("$location.path('sign-in');", 2000);
             }
         }
 

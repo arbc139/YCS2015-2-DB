@@ -9,7 +9,14 @@ angular.module('myApp.submitterPage', ['ngRoute'])
   });
 }])
 
-.controller('submitterPageCtrl', function($scope) {
+.controller('submitterPageCtrl', function($scope, $location,
+    SessionService, SESSION_TYPE) {
+
+    if (SessionService.getCurrentSessionType() !== SESSION_TYPE.SUBMITTER) {
+        alert("you are not submitter, plaese sign in");
+        $location.path('sign-in');
+    }
+
     var i;
     $scope.taskApplyList = [{
         taskName: "task-1"

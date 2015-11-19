@@ -7,6 +7,10 @@ angular.module('myApp.adminPage', ['ngRoute'])
   });
 }])
 
-.controller('adminPageCtrl', [function() {
-
-}]);
+.controller('adminPageCtrl', function($location, SessionService, SESSION_TYPE) {
+    if (SessionService.getCurrentSessionType() !== SESSION_TYPE.ADMIN) {
+        alert("you are not admin, plaese sign in");
+        $location.path('sign-in');
+        // setTimeout("$('html').injector().get('$location').path('sign-in');$('html').scope().$apply();", 100);
+    }
+});

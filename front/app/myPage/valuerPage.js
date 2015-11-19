@@ -7,6 +7,9 @@ angular.module('myApp.valuerPage', ['ngRoute'])
   });
 }])
 
-.controller('valuerPageCtrl', [function() {
-
-}]);
+.controller('valuerPageCtrl', function($location, SessionService, SESSION_TYPE) {
+    if (SessionService.getCurrentSessionType() !== SESSION_TYPE.VALUER) {
+        alert("you are not valuer, plaese sign in");
+        $location.path('sign-in');
+    }
+});
