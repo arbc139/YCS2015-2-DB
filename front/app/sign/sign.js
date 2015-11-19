@@ -88,25 +88,32 @@ angular.module('myApp.sign', ['ngRoute'])
         });
         */
 
-        var req = {
-            method: 'POST',
-            url: 'http://localhost:3000/api/lgoin',
+        // var req = {
+        //     method: 'POST',
+        //     url: 'http://ror.olaf.kr/api/login',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        // };
+
+        var config = {
             headers: {
-                'Content-Type': 'application/json'
-            },
-            data: { "str_id": id, "password": password }
+                'Accept': 'application/json',
+                'Content-type': 'application/json'
+            }
         };
+        $http.post('http://ror.olaf.kr/api/login', $scope.signInUserModel, config);
 
-        $http(req).then(function (data) {
-            console.log(data);
-
-        }, function (data) {
-            // $scope.signInUserModel.id = "error";
-            // $scope.signInUserModel.password = "error!!";
-
-            console.log('??');
-            console.log(data);
-        });
+        // $http(req).then(function (data) {
+        //     console.log(data);
+        //
+        // }, function (data) {
+        //     // $scope.signInUserModel.id = "error";
+        //     // $scope.signInUserModel.password = "error!!";
+        //
+        //     console.log('??');
+        //     console.log(data);
+        // });
         // */
         // console.log(SessionService.getCurrentSessionType());
     };
