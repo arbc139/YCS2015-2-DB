@@ -72,8 +72,7 @@ angular.module('myApp.sign', ['ngRoute'])
             alert('wrong id or pw\ntry again!');
         }
         */
-        // /*
-
+        /*
         $http
         .post("http://ror.olaf.kr/login") // todo ask url to dy
         .success(function (data) {
@@ -81,6 +80,27 @@ angular.module('myApp.sign', ['ngRoute'])
 
         })
         .error(function (data) {
+            // $scope.signInUserModel.id = "error";
+            // $scope.signInUserModel.password = "error!!";
+
+            console.log('??');
+            console.log(data);
+        });
+        */
+
+        var req = {
+            method: 'POST',
+            url: 'http://localhost:3000/api/lgoin',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: { "str_id": id, "password": password }
+        };
+
+        $http(req).then(function (data) {
+            console.log(data);
+
+        }, function (data) {
             // $scope.signInUserModel.id = "error";
             // $scope.signInUserModel.password = "error!!";
 
