@@ -12,7 +12,8 @@ angular.module('myApp.sign', ['ngRoute'])
 // })
 .factory("SessionService", function(SESSION_TYPE) {
     var currentSession = {
-        id: '',
+        id: -1,
+        str_id: '',
         type: SESSION_TYPE.WRONG
     };
 
@@ -24,9 +25,29 @@ angular.module('myApp.sign', ['ngRoute'])
         currentSession.type = ss;
     };
 
+    var getStrId = function () {
+        return currentSession.str_id;
+    };
+
+    var setStrId = function (si) {
+        currentSession.str_id = si;
+    };
+
+    var getId = function () {
+        return currentSession.id;
+    };
+
+    var setId = function(i) {
+        currentSession.id = i;
+    };
+
     return {
             getCurrentSessionType: getCurrentSessionType,
-            setCurrentSessionType: setCurrentSessionType
+            setCurrentSessionType: setCurrentSessionType,
+            getStrId: getStrId,
+            setStrId: setStrId,
+            getId: getId,
+            setId, setId
     };
 })
 .constant("SESSION_TYPE", {
@@ -106,14 +127,24 @@ angular.module('myApp.sign', ['ngRoute'])
         .post('http://db.olaf.kr/api/login', $scope.signInUserModel, config)
         .success(function (data) {
             console.log('success ' + data);
+            var updateSession = function (si, i) {
+                SessionService.setStrId(si);
+                SessionService.setId(i);
+            };
             if (data.role === 'admin') {
                 SessionService.setCurrentSessionType(SESSION_TYPE.ADMIN);
+                updateSession(data.std_id, data.id);
+
                 $location.path('admin-page');
             } else if (data.role === 'valuer') {
                 SessionService.setCurrentSessionType(SESSION_TYPE.VALUER);
+                updateSession(data.std_id, data.id);
+
                 $location.path('valuer-page');
             } else if (data.role === 'submitter') {
                 SessionService.setCurrentSessionType(SESSION_TYPE.SUBMITTER);
+                updateSession(data.std_id, data.id);
+
                 $location.path('submitter-page');
             } else if (data.role === 'wrong') {
                 SessionService.setCurrentSessionType(SESSION_TYPE.WRONG);
