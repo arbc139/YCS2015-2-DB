@@ -41,7 +41,7 @@ angular.module('myApp.sign', ['ngRoute'])
         controller: 'signInCtrl'
     });
 }])
-.controller('signInCtrl', function($scope, $http, SESSION_TYPE, SessionService) {
+.controller('signInCtrl', function($scope, $http, $location, SESSION_TYPE, SessionService) {
     $scope.signInUserModel = {
         'id': '',
         'password': ''
@@ -50,6 +50,14 @@ angular.module('myApp.sign', ['ngRoute'])
     console.log(SessionService.getCurrentSessionType());
 
     $scope.signIn = function(id, password) {
+        console.log('signList: '+$scope.signList);
+        // 다른 컨트롤러의 스코프에 접근할 수 없구나.
+        // 컨트롤러끼리의 통신을 어떻게 하지
+        // http://stackoverflow.com/questions/11252780/whats-the-correct-way-to-communicate-between-controllers-in-angularjs
+        // Using $rootScope.$broadcast and $scope.$on for a PubSub communication.
+
+        // /*
+
         if (id === 'admin' && password === 'admin') {
             SessionService.setCurrentSessionType(SESSION_TYPE.ADMIN);
 
@@ -57,10 +65,13 @@ angular.module('myApp.sign', ['ngRoute'])
             SessionService.setCurrentSessionType(SESSION_TYPE.VALUER);
         } else if (id === 'submitter' && password === 's') {
             SessionService.setCurrentSessionType(SESSION_TYPE.SUBMITTER);
+            $location.path('submitterPage');
         } else {
             SessionService.setCurrentSessionType(SESSION_TYPE.WRONG);
         }
+        // */
         /*
+
         $http
         .post("http://ror.olaf.kr/login") // todo ask url to dy
         .success(function (data) {

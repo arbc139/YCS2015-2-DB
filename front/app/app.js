@@ -55,7 +55,7 @@ angular.module('myApp', [
             console.log(sessionType);
 
             if (sessionType === SESSION_TYPE.SUBMITTER) {
-                $location.path('submitterPage')
+                $location.path('submitterPage');
             } else if (sessionType === SESSION_TYPE.VALUER) {
 
             } else if (sessionType === SESSION_TYPE.ADMIN) {
