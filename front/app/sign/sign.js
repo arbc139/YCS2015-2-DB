@@ -68,6 +68,9 @@ angular.module('myApp.sign', ['ngRoute'])
         'password': ''
     };
 
+    $scope.SessionService = SessionService;
+    $scope.SESSION_TYPE = SESSION_TYPE;
+
     console.log(SessionService.getCurrentSessionType());
 
     $scope.signIn = function(id, password) {
@@ -126,24 +129,28 @@ angular.module('myApp.sign', ['ngRoute'])
         $http
         .post('http://db.olaf.kr/api/login', $scope.signInUserModel, config)
         .success(function (data) {
-            console.log('success ' + data);
+            console.log('success ');
+            console.log(data);
+
             var updateSession = function (si, i) {
+                console.log("updateSession: " + si + " , " + i);
                 SessionService.setStrId(si);
                 SessionService.setId(i);
             };
+
             if (data.role === 'admin') {
                 SessionService.setCurrentSessionType(SESSION_TYPE.ADMIN);
-                updateSession(data.std_id, data.id);
+                updateSession(data.str_id, data.id);
 
                 $location.path('admin-page');
             } else if (data.role === 'valuer') {
                 SessionService.setCurrentSessionType(SESSION_TYPE.VALUER);
-                updateSession(data.std_id, data.id);
+                updateSession(data.str_id, data.id);
 
                 $location.path('valuer-page');
             } else if (data.role === 'submitter') {
                 SessionService.setCurrentSessionType(SESSION_TYPE.SUBMITTER);
-                updateSession(data.std_id, data.id);
+                updateSession(data.str_id, data.id);
 
                 $location.path('submitter-page');
             } else if (data.role === 'wrong') {
@@ -172,7 +179,9 @@ angular.module('myApp.sign', ['ngRoute'])
         // });
         // */
         // console.log(SessionService.getCurrentSessionType());
-    };
+
+    }; // end of $scope.signIn();
+
 })
 .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/sign-up', {
