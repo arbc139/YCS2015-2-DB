@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   root 'users#index'
 
   #################################### LOGIN, LOGOUT (USER) ####################################
+  get '/api' => 'users#index'
+
   get '/api/signup'  => 'users#new'
   # each user page
   get '/api/users' => 'users#index'
