@@ -10,15 +10,17 @@ class SessionsController < ApplicationController
     logger.info "Yeah POST come on!"
 
     respond_to do |format|
+      logger.info "format???"
+      logger.info format
       @user = User.find_by_str_id(params[:str_id])
       if @user && @user.authenticate(params[:password])
         # session[:current_user] is created, initialized to @user.id
         # :current_user is just 'key'
         session[:user_id] = @user.id
-        format.html { redirect_to '/', notice: 'Session was successfully created.' }
+        format.html { redirect_to '/api/users', notice: 'Session was successfully created.' }
         format.json { render :json => @user }
       else
-        format.html { redirect_to '/users', notice: 'Session was created.' }
+        format.html { redirect_to '/api/users', notice: 'Session was created.' }
         format.json { render :json => @user }
       end
     end
