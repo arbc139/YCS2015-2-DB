@@ -1,20 +1,13 @@
 'use strict';
 
 angular.module('myApp.sign', ['ngRoute'])
-// .factory("Secure", function($resource) {
-//     return $resource("/api/record/:id", { id: "@id" },
-//     {
-//         'show':    { method: 'GET', isArray: false },
-//         'update':  { method: 'PUT' },
-//         'destroy': { method: 'DELETE' }
-//     }
-//     );
-// })
 .factory("SessionService", function(SESSION_TYPE) {
     var currentSession = {
         id: -1,
         str_id: '',
-        type: SESSION_TYPE.WRONG
+        // type: SESSION_TYPE.WRONG
+        type: SESSION_TYPE.ADMIN
+
     };
 
     var getCurrentSessionType = function () {
@@ -80,46 +73,6 @@ angular.module('myApp.sign', ['ngRoute'])
         // http://stackoverflow.com/questions/11252780/whats-the-correct-way-to-communicate-between-controllers-in-angularjs
         // Using $rootScope.$broadcast and $scope.$on for a PubSub communication.
 
-        // /*
-
-        // if (id === 'admin' && password === 'admin') {
-        //     SessionService.setCurrentSessionType(SESSION_TYPE.ADMIN);
-        //     $location.path('admin-page');
-        // } else if (id === 'valuer' && password === 'v') {
-        //     SessionService.setCurrentSessionType(SESSION_TYPE.VALUER);
-        //     $location.path('valuer-page');
-        // } else if (id === 'submitter' && password === 's') {
-        //     SessionService.setCurrentSessionType(SESSION_TYPE.SUBMITTER);
-        //     $location.path('submitter-page');
-        // } else {
-        //     SessionService.setCurrentSessionType(SESSION_TYPE.WRONG);
-        //     alert('wrong id or pw\ntry again!');
-        // }
-        // */
-        /*
-        $http
-        .post("http://ror.olaf.kr/login") // todo ask url to dy
-        .success(function (data) {
-            console.log(data);
-
-        })
-        .error(function (data) {
-            // $scope.signInUserModel.id = "error";
-            // $scope.signInUserModel.password = "error!!";
-
-            console.log('??');
-            console.log(data);
-        });
-        */
-
-        // var req = {
-        //     method: 'POST',
-        //     url: 'http://ror.olaf.kr/api/login',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        // };
-
         var config = {
             headers: {
                 'Accept': 'application/json',
@@ -161,24 +114,9 @@ angular.module('myApp.sign', ['ngRoute'])
             }
         })
         .error(function (data) {
-            // $scope.signInUserModel.id = "error";
-            // $scope.signInUserModel.password = "error!!";
             console.log('fail ' + data);
             alert("server error!\nsee the debugging console");
         });
-
-        // $http(req).then(function (data) {
-        //     console.log(data);
-        //
-        // }, function (data) {
-        //     // $scope.signInUserModel.id = "error";
-        //     // $scope.signInUserModel.password = "error!!";
-        //
-        //     console.log('??');
-        //     console.log(data);
-        // });
-        // */
-        // console.log(SessionService.getCurrentSessionType());
 
     }; // end of $scope.signIn();
 
