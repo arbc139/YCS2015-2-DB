@@ -1,5 +1,5 @@
 {
-  "name": "td2",
+  "name": "dbfrontapp",
   "private": true,
   "devDependencies": {
     "autoprefixer-core": "^5.2.1",
@@ -37,8 +37,5 @@
   },
   "scripts": {
     "test": "grunt test"
-  },
-  "dependencies": {
-    "grunt-contrib-imagemin": "^1.0.0"
   }
 }

@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name td2App
+ * @name dbfrontappApp
  * @description
- * # td2App
+ * # dbfrontappApp
  *
  * Main module of the application.
  */
 angular
-  .module('td2App', [
+  .module('dbfrontappApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',

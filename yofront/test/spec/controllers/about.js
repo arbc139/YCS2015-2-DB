@@ -3,7 +3,7 @@
 describe('Controller: AboutCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('td2App'));
+  beforeEach(module('dbfrontappApp'));
 
   var AboutCtrl,
     scope;

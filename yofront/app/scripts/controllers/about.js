@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name td2App.controller:AboutCtrl
+ * @name dbfrontappApp.controller:AboutCtrl
  * @description
  * # AboutCtrl
- * Controller of the td2App
+ * Controller of the dbfrontappApp
  */
-angular.module('td2App')
+angular.module('dbfrontappApp')
   .controller('AboutCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
