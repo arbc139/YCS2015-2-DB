@@ -6,7 +6,11 @@
  ng-mouseleave="tempClass1 = 'panel-default'">
     <div class="panel-heading">태스크 목록</div>
     <div class="panel-body">
-        panel body
+        <ol>
+            <li ng-repeat="item in taskList">
+                {{ item }}
+            </li>
+        </ol>
     </div>
 </div>
 
