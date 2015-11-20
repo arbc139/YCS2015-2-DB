@@ -182,6 +182,10 @@ angular.module('myApp.sign', ['ngRoute'])
 
     }; // end of $scope.signIn();
 
+    $scope.logOut = function() {
+        SessionService.setCurrentSessionType(SESSION_TYPE.WRONG);
+    }
+
 })
 .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/sign-up', {
