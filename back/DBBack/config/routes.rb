@@ -19,7 +19,8 @@ Rails.application.routes.draw do
   delete '/api/logout' => 'sessions#destroy'
 
   #################################### ADMIN ####################################
-  post '/api/admin/task' => 'tasks#create'
+  get '/api/admin/tasks' => 'tasks#index'
+  post '/api/admin/tasks' => 'tasks#create'
 
 
   #################################### SUBMITTER ####################################
