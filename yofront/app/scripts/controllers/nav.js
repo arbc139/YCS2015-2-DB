@@ -90,7 +90,7 @@ angular.module('dbfrontappApp')
       $location.path('admin-page');
     } else if (sessionType === SESSION_TYPE.WRONG) {
       alert('you are not logged in!');
-      setTimeout("$location.path('sign-in');", 2000);
+      $location.path('sign-in');
     }
   })
   .controller('MyInfoRedirectCtrl', function($location, SessionService, SESSION_TYPE) {
@@ -104,6 +104,6 @@ angular.module('dbfrontappApp')
       $location.path('admin-info');
     } else if (sessionType === SESSION_TYPE.WRONG) {
       alert('you are not logged in!');
-      setTimeout("$location.path('sign-in');", 2000);
+      $location.path('sign-in');
     }
   });
