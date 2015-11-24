@@ -14,7 +14,7 @@ angular.module('dbfrontappApp')
     SUBMITTER: 'session_type_submitter',
     WRONG: 'session_type_wrong'
 })
-.factory('SessionService', function (SESSION_TYPE) {
+.factory('SessionService', function ($location, SESSION_TYPE) {
   // Service logic
   // ...
 
@@ -45,6 +45,12 @@ angular.module('dbfrontappApp')
     },
     setId: function(i) {
         currentSession.id = i;
+    },
+    checkSessionType: function(targetSessionType) {
+      if (currentSession.type !== targetSessionType) {
+          alert("you don't have authorization, plaese sign in");
+          $location.path('sign-in');
+      }
     }
   };
 });

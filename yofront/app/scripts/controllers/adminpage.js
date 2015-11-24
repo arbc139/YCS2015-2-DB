@@ -16,10 +16,7 @@ angular.module('dbfrontappApp')
     ];
 
     // check admin!
-    if (SessionService.getCurrentSessionType() !== SESSION_TYPE.ADMIN) {
-        alert("you are not admin, plaese sign in");
-        $location.path('sign-in');
-        // setTimeout("$('html').injector().get('$location').path('sign-in');$('html').scope().$apply();", 100);
-    }
+    SessionService.checkSessionType(SESSION_TYPE.ADMIN);
+    
 
   });

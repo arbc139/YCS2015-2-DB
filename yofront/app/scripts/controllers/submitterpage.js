@@ -15,8 +15,6 @@ angular.module('dbfrontappApp')
       'Karma'
     ];
 
-    if (SessionService.getCurrentSessionType() !== SESSION_TYPE.SUBMITTER) {
-        alert("you are not submitter, plaese sign in");
-        $location.path('sign-in');
-    }
+    // check submitter!
+    SessionService.checkSessionType(SESSION_TYPE.SUBMITTER);
   });

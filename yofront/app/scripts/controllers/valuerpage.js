@@ -15,8 +15,6 @@ angular.module('dbfrontappApp')
       'Karma'
     ];
 
-    if (SessionService.getCurrentSessionType() !== SESSION_TYPE.VALUER) {
-        alert("you are not valuer, plaese sign in");
-        $location.path('sign-in');
-    }
+    // check vauler!
+    SessionService.checkSessionType(SESSION_TYPE.VAULER);
   });
