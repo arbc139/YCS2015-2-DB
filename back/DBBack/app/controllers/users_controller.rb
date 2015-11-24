@@ -6,22 +6,16 @@ class UsersController < ApplicationController
   def index
     @users = User.all
 
-    if current_user
-      logger.info 'current user exist'
-    else
-      logger.info 'current user not exist'
-    end
-
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render :json => @users }
+      format.json { render :json => @users.as_json(
+        only: [:id, :str_id, :name, :sex, :address, :birth, :phone_number, :value_score, :role]
+        ) }
     end
   end
 
   # GET /users/1
   def show
-
-
     """
     @user = User.find(params[:id])
 
@@ -78,16 +72,15 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         #session[:user_id] = @user.id
-        logger.info '>>>>>>>>>>>>>>>>'
-        logger.info session[:user_id]
-        format.html { redirect_to '/users', notice: 'User was successfully created.' }
-        format.json { render :json => @user }
+
+        format.html { redirect_to '/api/users', notice: 'User was successfully created.' }
+        format.json { render json: @user.as_json(only: [:id, :str_id, :role]) }
       else
         #redirect_to '/signup' # => 'users#new'
         format.html { render action: 'new' }
-        error = Hash.new
-        error["error"] = "wrong"
-        format.json { render json: error }
+        result = Hash.new
+        result["error"] = "wrong"
+        format.json { render json: result }
       end
     end
   end

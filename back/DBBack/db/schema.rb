@@ -11,19 +11,58 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151118085316) do
+ActiveRecord::Schema.define(version: 20151121124524) do
 
-  create_table "r_user_submits", force: :cascade do |t|
+  create_table "parse_column_null_ratios", force: :cascade do |t|
+    t.integer  "parsing_file_id"
+    t.text     "column_name"
+    t.float    "null_ratio"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "parse_column_null_ratios", ["parsing_file_id"], name: "index_parse_column_null_ratios_on_parsing_file_id"
+
+  create_table "parsing_data_sequence_files", force: :cascade do |t|
+    t.binary   "data_blob"
+    t.text     "task_name"
+    t.integer  "period"
+    t.integer  "inning"
+    t.integer  "all_tuple_num"
+    t.integer  "duplicated_tuple_num"
+    t.integer  "evaluate_user_id"
+    t.boolean  "is_valued"
+    t.integer  "data_quality_score"
+    t.boolean  "is_passed"
+    t.integer  "submit_user_id"
+    t.integer  "task_id"
+    t.integer  "raw_data_type_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "r_task_raw_data", force: :cascade do |t|
     t.integer  "task_id"
     t.integer  "raw_data_type_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
 
-  add_index "r_user_submits", ["raw_data_type_id"], name: "index_r_user_submits_on_raw_data_type_id"
+  add_index "r_task_raw_data", ["raw_data_type_id"], name: "index_r_task_raw_data_on_raw_data_type_id"
+  add_index "r_task_raw_data", ["task_id"], name: "index_r_task_raw_data_on_task_id"
+
+  create_table "r_user_submits", force: :cascade do |t|
+    t.integer  "task_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_index "r_user_submits", ["task_id"], name: "index_r_user_submits_on_task_id"
+  add_index "r_user_submits", ["user_id"], name: "index_r_user_submits_on_user_id"
 
   create_table "raw_data_types", force: :cascade do |t|
+    t.string   "name"
     t.text     "schema"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
