@@ -69,6 +69,11 @@ angular
         templateUrl: 'views/signup.html',
         controller: 'SignupCtrl'
       })
+      // admin page
+      .when('/admin/new-page', {
+        templateUrl: 'views/newtask.html',
+        controller: 'NewtaskCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
