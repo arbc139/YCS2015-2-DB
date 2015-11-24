@@ -14,4 +14,6 @@ angular.module('dbfrontappApp')
       'AngularJS',
       'Karma'
     ];
+    // check vauler!
+    SessionService.checkSessionType(SESSION_TYPE.VAULER);
   });

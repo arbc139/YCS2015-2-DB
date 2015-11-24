@@ -14,4 +14,6 @@ angular.module('dbfrontappApp')
       'AngularJS',
       'Karma'
     ];
+    // check admin!
+    SessionService.checkSessionType(SESSION_TYPE.ADMIN);
   });

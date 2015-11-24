@@ -9,13 +9,29 @@
     <a class="btn btn-primary" href="#/admin/new-page">새 태스크 생성</a>
     <br><br>
 
-    태 스 크 목 록
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Desc.</th>
+        <th>Min U.P.</th>
+        <th>TDT Name</th>
+        <th>TDT Schema</th>
+        <th>---</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in taskList">
+        <td>{{ item.name }}</td>
+        <td>{{ item.description }}</td>
+        <td>{{ item.minup }}</td>
 
-    <ol>
-      <li ng-repeat="item in taskList">
-        {{ item }}
-      </li>
-    </ol>
+        <td>{{ item.tdtname }}</td>
+        <td>{{ item.tdtschema }}</td>
+        <td><a>stat {{ item.id }}</a>&nbsp;<a>manage {{ item.id }}</a></td>
+      </tr>
+    </tbody>
+    </table>
   </div>
 </div>
 
@@ -40,13 +56,41 @@
           </div><!-- /btn-group -->
           <input type="text" class="form-control" placeholder="Search for...">
           <span class="input-group-btn">
-            <button class="btn btn-default" type="button">Go!</button>
+            <button class="btn btn-primary" type="button">Search</button>
           </span>
         </div><!-- /input-group -->
       </div><!-- /.col-lg-6 -->
     </div><!-- /.row -->
     <br>
     전 체 유 저 목 록
+    <table class="table">
+      <thead>
+      <tr>
+        <th>UserID</th>
+        <th>Name</th>
+        <th>Sex</th>
+        <th>Adrress</th>
+        <th>BDate</th>
+        <th>Role</th>
+        <th>Score</th>
+        <th>---</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in userList">
+        <!-- UserID	Name	Sex	Adrress	BDate	Role	Score -->
+        <td>{{ item.str_id }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.sex }}</td>
+
+        <td>{{ item.address }}</td>
+        <td>{{ item.bdate }}</td>
+        <td>{{ item.role }}</td>
+        <td>{{ item.score }}</td>
+        <td><a>detail {{ item.id }}</a></td>
+      </tr>
+    </tbody>
+    </table>
   </div>
 </div>
 <!-- 관리자 끝 -->

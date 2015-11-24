@@ -18,7 +18,57 @@ angular.module('dbfrontappApp')
     // check admin!
     SessionService.checkSessionType(SESSION_TYPE.ADMIN);
 
-    $scope.taskList = ["dfdf","dfdddd"];
+    $scope.taskList = [{
+      id: 1,
+      name: 'name1',
+      description: 'description1',
+      minup: 'minup1',
+      tdtname: 'td1',
+      tdtschema: 'tds1',
+    },{
+      id: 1,
+      name: 'name1',
+      description: 'description1',
+      minup: 'minup1',
+      tdtname: 'td1',
+      tdtschema: 'tds1',
+    },{
+      id: 1,
+      name: 'name1',
+      description: 'description1',
+      minup: 'minup1',
+      tdtname: 'td1',
+      tdtschema: 'tds1',
+    }];
+
+    $scope.userList = [{
+      id: 1,
+      str_id: 'id',
+      name: 'name',
+      sex: 'f',
+      address: 'adrs',
+      bdate: '5/6',
+      role: 'valuer',
+      score: 9.4
+    },{
+      id: 1,
+      str_id: 'id',
+      name: 'name',
+      sex: 'f',
+      address: 'adrs',
+      bdate: '5/6',
+      role: 'valuer',
+      score: 9.4
+    },{
+      id: 1,
+      str_id: 'id',
+      name: 'name',
+      sex: 'f',
+      address: 'adrs',
+      bdate: '5/6',
+      role: 'valuer',
+      score: 9.4
+    }];
 
 
   });

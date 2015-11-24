@@ -14,4 +14,6 @@ angular.module('dbfrontappApp')
       'AngularJS',
       'Karma'
     ];
+    // check submitter!
+    SessionService.checkSessionType(SESSION_TYPE.SUBMITTER);
   });
