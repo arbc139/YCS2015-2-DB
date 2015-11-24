@@ -5,23 +5,17 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
-    
-    if current_user
-      logger.info 'current user exist'
-    else
-      logger.info 'current user not exist'
-    end
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render :json => @users }
+      format.json { render :json => @users.as_json(
+        only: [:id, :str_id, :name, :sex, :address, :birth, :phone_number, :value_score, :role]
+        ) }
     end
   end
 
   # GET /users/1
   def show
-
-
     """
     @user = User.find(params[:id])
 

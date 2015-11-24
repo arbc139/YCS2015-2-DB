@@ -4,16 +4,22 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
+      """
       result = Hash.new
       @tasks.each do |task|
         result[task] = task.raw_data_types
       end
-      format.json { render json: result }
+      """
+
+      format.json { render json: @tasks.as_json(
+        only: [:id, :name, :description, :minimum_upload_period, :task_data_table_schema]
+        ) }
     end
   end
   
   # curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"task":{"name":"TASK_NAME_test","description":"TASK_DESCRIPTION_test","minimum_upload_period":"TASK_MIN_test","task_data_table_schema":”TASK_DTS_test"}, "raw_data_types": [{"id":"1","schema":"RAW_DATA_TYPE1_schema"},{"id":"2","schema":"RAW_DATA_TYPE2_schema"}]}' http://localhost:3000/api/admin/task
   def create
+    # FIXIT :- need to change :raw_data_type
     logger.info "Yeah Task POST come on!"
     @task = Task.new(task_params) # put task informations
     raw_data_type_list = params[:raw_data_types] # put raw_data_type informations
