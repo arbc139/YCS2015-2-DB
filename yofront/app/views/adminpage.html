@@ -24,10 +24,10 @@
       <tr ng-repeat="item in taskList">
         <td>{{ item.name }}</td>
         <td>{{ item.description }}</td>
-        <td>{{ item.minup }}</td>
+        <td>{{ item.minimum_upload_period }}</td>
 
-        <td>{{ item.tdtname }}</td>
-        <td>{{ item.tdtschema }}</td>
+        <td>{{ item.task_data_table_name }}</td>
+        <td>{{ item.task_data_table_schema }}</td>
         <td><a>stat {{ item.id }}</a>&nbsp;<a>manage {{ item.id }}</a></td>
       </tr>
     </tbody>

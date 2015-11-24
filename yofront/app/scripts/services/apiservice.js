@@ -8,16 +8,17 @@
  * Factory in the dbfrontappApp.
  */
 angular.module('dbfrontappApp')
-  .factory('ApiService', function () {
+  .factory('ApiService', function ($http) {
     // Service logic
     // ...
 
-    var meaningOfLife = 42;
+
 
     // Public API here
     return {
-      someMethod: function () {
-        return meaningOfLife;
+      getTaskList: function (onS, onE) {
+        $http.get('http://db.olaf.kr/api/admin/tasks.json')
+        .then(onS, onE);
       }
     };
   });
