@@ -14,7 +14,7 @@ angular.module('dbfrontappApp')
     SUBMITTER: 'session_type_submitter',
     WRONG: 'session_type_wrong'
 })
-.factory('SessionService', function () {
+.factory('SessionService', function (SESSION_TYPE) {
   // Service logic
   // ...
 

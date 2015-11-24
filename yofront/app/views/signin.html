@@ -1,1 +1,44 @@
-<p>This is the signin view.</p>
+<!--  BEGIN session wrong -->
+<div class="panel panel-primary" style="margin-left: 20%; margin-right: 20%"
+ ng-show="SessionService.getCurrentSessionType() === SESSION_TYPE.WRONG">
+<div class="panel-heading">
+    <h3 class="panel-title">Sign-in</h3>
+</div>
+<div class="panel-body">
+    <form role="">
+        <div class="input-group">
+            <span class="input-group-addon" id="id">ID</span>
+            <input type="text" class="form-control" placeholder="id"
+            aria-describedby="id" ng-model="signInUserModel.str_id" autofocus/>
+        </div><br>
+        <div class="input-group">
+            <span class="input-group-addon" id="pw">PW</span>
+            <input type="password" class="form-control" placeholder="password"
+            aria-describedby="pw" ng-model="signInUserModel.password"/>
+        </div><br>
+        <!-- <span class="input-group-btn"> -->
+        <button class="btn btn-primary btn-lg btn-block btn-shadow" type="submit"
+        ng-click="signIn(signInUserModel.str_id, signInUserModel.password)">
+        Sign in</button>
+        <!-- </span> -->
+        <h3>id: {{ signInUserModel.str_id }}<br>pw: {{ signInUserModel.password }}</h3>
+
+    </form>
+</div>
+</div>
+<!-- END  sign in (session wrong) -->
+
+<!-- BEGIN session !wrong -->
+<div class="panel panel-primary" style="margin-left: 20%; margin-right: 20%"
+ ng-hide="SessionService.getCurrentSessionType() === SESSION_TYPE.WRONG">
+<div class="panel-heading">
+    <h3 class="panel-title">Already logged in!</h3>
+</div>
+<div class="panel-body">
+    <h1>log out?!</h1><br>
+    <button class="btn btn-primary btn-lg btn-block btn-shadow"
+    ng-click="logOut()">
+    Good bye, {{ SessionService.getStrId() }}!</button>
+</div>
+</div>
+<!-- END session !wrong -->

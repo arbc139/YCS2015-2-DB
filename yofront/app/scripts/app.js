@@ -33,6 +33,22 @@ angular
           templateUrl: 'views/adminpage.html',
           controller: 'AdminpageCtrl',
       })
+      .when('/my-page-redirect', {
+        templateUrl: 'views/mypageredirect.html',
+        controller: 'MyPageRedirectCtrl'
+      })
+      .when('/my-info-redirect', {
+        templateUrl: 'views/myinforedirect.html',
+        controller: 'MyInfoRedirectCtrl'
+      })
+      .when('/sign-in', {
+        templateUrl: 'views/signin.html',
+        controller: 'SigninCtrl'
+      })
+      .when('/sign-up', {
+        templateUrl: 'views/signup.html',
+        controller: 'SignupCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
