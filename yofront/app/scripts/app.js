@@ -45,6 +45,18 @@ angular
         templateUrl: 'views/mypageredirect.html',
         controller: 'MyPageRedirectCtrl'
       })
+      .when('/admin-info', {
+        templateUrl: 'views/admininfo.html',
+        controller: 'AdmininfoCtrl'
+      })
+      .when('/valuer-info', {
+        templateUrl: 'views/valuerinfo.html',
+        controller: 'ValuerinfoCtrl'
+      })
+      .when('/submitter-info', {
+        templateUrl: 'views/submitterinfo.html',
+        controller: 'SubmitterinfoCtrl'
+      })
       .when('/my-info-redirect', {
         templateUrl: 'views/myinforedirect.html',
         controller: 'MyInfoRedirectCtrl'
