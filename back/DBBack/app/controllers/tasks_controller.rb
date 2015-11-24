@@ -2,12 +2,6 @@ class TasksController < ApplicationController
   def index
     @tasks = Task.all
 
-    if current_user
-      logger.info 'current user exist'
-    else
-      logger.info 'current user not exist'
-    end
-
     respond_to do |format|
       format.html # index.html.erb
       result = Hash.new

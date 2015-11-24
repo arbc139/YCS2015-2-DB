@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   #################################### LOGIN, LOGOUT (USER) ####################################
   get '/api' => 'users#index'
-
+  
   get '/api/signup'  => 'users#new'
   # each user page
   get '/api/users' => 'users#index'
@@ -14,9 +14,8 @@ Rails.application.routes.draw do
   # get 'users/:id' => 'users#show'
   
   #################################### SESSIONS ####################################
+  # login button clicked --> GET '/api/login'
   get '/api/login' => 'sessions#new'
-  post '/api/login' => 'sessions#create'
-  delete '/api/logout' => 'sessions#destroy'
 
   #################################### ADMIN ####################################
   get '/api/admin/tasks' => 'tasks#index'
