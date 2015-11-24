@@ -79,9 +79,31 @@ angular.module('dbfrontappApp')
       }
     }
   })
-  .controller('MyPageRedirectCtrl', function($location) {
+  .controller('MyPageRedirectCtrl', function($location, SessionService, SESSION_TYPE) {
+    var sessionType = SessionService.getCurrentSessionType();
 
+    if (sessionType === SESSION_TYPE.SUBMITTER) {
+      $location.path('submitter-page');
+    } else if (sessionType === SESSION_TYPE.VALUER) {
+      $location.path('valuer-page');
+    } else if (sessionType === SESSION_TYPE.ADMIN) {
+      $location.path('admin-page');
+    } else if (sessionType === SESSION_TYPE.WRONG) {
+      alert('you are not logged in!');
+      setTimeout("$location.path('sign-in');", 2000);
+    }
   })
-  .controller('MyInfoRedirectCtrl', function($location) {
+  .controller('MyInfoRedirectCtrl', function($location, SessionService, SESSION_TYPE) {
+    var sessionType = SessionService.getCurrentSessionType();
 
+    if (sessionType === SESSION_TYPE.SUBMITTER) {
+      $location.path('submitter-info');
+    } else if (sessionType === SESSION_TYPE.VALUER) {
+      $location.path('valuer-info');
+    } else if (sessionType === SESSION_TYPE.ADMIN) {
+      $location.path('admin-info');
+    } else if (sessionType === SESSION_TYPE.WRONG) {
+      alert('you are not logged in!');
+      setTimeout("$location.path('sign-in');", 2000);
+    }
   });

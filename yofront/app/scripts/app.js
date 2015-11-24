@@ -33,6 +33,14 @@ angular
           templateUrl: 'views/adminpage.html',
           controller: 'AdminpageCtrl',
       })
+      .when('/submitter-page', {
+        templateUrl: 'views/submitterpage.html',
+        controller: 'SubmitterpageCtrl'
+      })
+      .when('/valuer-page', {
+        templateUrl: 'views/valuerpage.html',
+        controller: 'ValuerpageCtrl'
+      })
       .when('/my-page-redirect', {
         templateUrl: 'views/mypageredirect.html',
         controller: 'MyPageRedirectCtrl'
