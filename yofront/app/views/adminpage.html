@@ -1,1 +1,52 @@
-<p>This is the AdminPage view.</p>
+<!-- 관리자 시작 -->
+<h1>Admin Page</h1>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>태스크 목록</h4>
+  </div>
+  <div class="panel-body">
+    <a class="btn btn-primary" href="#/">새 태스크 생성</a>
+    <br><br>
+
+    태 스 크 목 록
+
+    <ol>
+      <li ng-repeat="item in taskList">
+        {{ item }}
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>유저 목록</h4>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="input-group">
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">아이디 <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <!-- ngclick 조져줘야할듯 -->
+              <li><a>아이디</a></li>
+              <li><a>역할</a></li>
+              <li><a>나이대</a></li>
+              <li><a>참여중인 태스크 이름</a></li>
+
+            </ul>
+          </div><!-- /btn-group -->
+          <input type="text" class="form-control" placeholder="Search for...">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">Go!</button>
+          </span>
+        </div><!-- /input-group -->
+      </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+    <br>
+    전 체 유 저 목 록
+  </div>
+</div>
+<!-- 관리자 끝 -->
