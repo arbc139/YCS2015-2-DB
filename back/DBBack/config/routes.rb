@@ -1,13 +1,20 @@
 Rails.application.routes.draw do
   root 'users#index'
 
-  #################################### LOGIN, LOGOUT, SIGN UP (USER) ####################################
-  get '/api/signup'  => 'users#new'
-  # each user page
+  #################################### LOGIN, SIGN UP (USER) ####################################
+  # 전체 user를 뿌려주는 액션
   get '/api/users' => 'users#index'
-  post '/api/users' => 'users#create'
-  # 로그인 클릭했을 때 Session 생성
-  get '/api/login' => 'sessions#new'
+  # user 등록창
+  get '/api/signup' => 'users#new'
+
+  ## Login 창에서 Login 버튼을 눌렀을 때
+  # str_id, password를 받아서 특정 User를 찾아주는 액션
+  get '/api/login' => 'sessions#userFind'
+
+  ## Sign Up 창에서 Sign Up 버튼을 눌렀을 때
+  # 유저 정보들을 받아서 유저를 디비에 추가시켜주는 액션
+  post '/api/users' => 'sessions#userCreate'
+
 
   # resources
   # get 'users' => 'users#index'
@@ -15,16 +22,21 @@ Rails.application.routes.draw do
   # get 'users/:id' => 'users#show'
 
   #################################### ADMIN ####################################
+  ## Admin 페이지에서 전체 리스트 가져오는 액션
   # 전체 테스크 목록 가져오기 액션
-  get '/api/admin/tasks' => 'tasks#index'
+  get '/api/admin/tasks' => 'admin#taskIndex'
   # 전체 유저 목록 가져오기 액션
-  get '/api/admin/users' => 'users#index'
+  get '/api/admin/users' => 'admin#userIndex'
+  # 전체 원본 데이터 타입 가져오기 액션
+  get '/api/admin/raw_data_types' => 'admin#rdtIndex'
+  
+  ## Admin 페이지에서 특정 정보 가져오는 액션
   # 특정 유저 정보 가져오기 액션
-  get '/api/admin/users/:id' => 'users#show'
+  get '/api/admin/users/:id' => 'admin#userShow'
 
-
+  ## Admin 페이지에서 정보를 디비에 추가하는 액션
   # 테스크 추가 액션
-  post '/api/admin/tasks' => 'tasks#create'
+  post '/api/admin/tasks' => 'admin#taskCreate'
 
 
   #################################### SUBMITTER ####################################
