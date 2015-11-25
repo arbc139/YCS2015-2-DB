@@ -7,13 +7,6 @@ class AdminController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      """
-      result = Hash.new
-      @tasks.each do |task|
-        result[task] = task.raw_data_types
-      end
-      """
-
       format.json { render json: @tasks.as_json(
         only: [:id, :name, :description, :minimum_upload_period, :task_data_table_name, :task_data_table_schema]
         ) }
@@ -127,10 +120,62 @@ class AdminController < ApplicationController
     end
   end
 
+
+  ######################################### TOOL METHOD #########################################
   private
   def task_params
     params.require(:task).permit(:name, :description, :minimum_upload_period, :task_data_table_name, :task_data_table_schema)
     # :name, :description, :minimum_upload_period, :task_data_table_schema
+  end
+
+
+  # 동적 테이블 생성 튜토리얼 스크립트들
+  def create_tdt(tdt)
+    ## tdt[:name] 이름을 가진 테이블 동적 생성
+    unless ActiveRecord::Base.connection.table_exists?(tdt[:name])
+      logger.info 'gogo?'
+      ActiveRecord::Base.connection.create_table tdt[:name] do |t|
+        # :id is created automatically
+        tdt[:col].each do |col|
+          logger.info 'column created??'
+          t.column col[:name], col[:type]
+        end
+      end
+
+    else
+      ActiveRecord::Base.connection.exec_query('DROP TABLE TEST')
+      logger.info ActiveRecord::Base.connection.tables
+      
+      #logger.info 'nono?'
+      #ActiveRecord::Base.connection.exec_query('INSERT INTO TEST(test_column1, test_column2, test_column3) VALUES ("hi", "hello", 3030)')
+      #result = ActiveRecord::Base.connection.exec_query('SELECT * FROM TEST')
+      #logger.info result.to_hash
+    end
+  end
+
+  # 동적 테이블 생성할때 기본 FORM
+  def tdt
+    tdt = Hash.new
+    # :name 태그는 테스크 데이터 테이블 이름을 의미함.
+    tdt[:name] = 'TEST'
+    
+    # :col 태그는 테스크 데이터 테이블의 컬럼의 리스트를 의미함.
+    col_list = []
+
+    col_list << {
+      type: 'string',
+      name: 'test_column1'
+    } << {
+      type: 'string',
+      name: 'test_column2'
+    } << {
+      type: 'integer',
+      name: 'test_column3'
+    }
+
+    tdt[:col] = col_list
+
+    tdt
   end
 
 end

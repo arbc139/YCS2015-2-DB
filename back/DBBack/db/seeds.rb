@@ -52,10 +52,10 @@ t.belongs_to :task, index: true # FK to task
 t.belongs_to :user, index: true # FK to user
 """
 
-submitter.tasks << [t1, t2, t3]
-t1.users << [submitter]
-t2.users << [submitter]
-t3.users << [submitter]
+submitter.tasks << t1 << t2 << t3
+t1.users << submitter
+t2.users << submitter
+t3.users << submitter
 
 #################################### RAW_DATA_TYPE ####################################
 # RAW_DATA_TYPE columns
