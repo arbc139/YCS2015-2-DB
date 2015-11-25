@@ -33,6 +33,47 @@ angular
           templateUrl: 'views/adminpage.html',
           controller: 'AdminpageCtrl',
       })
+      .when('/submitter-page', {
+        templateUrl: 'views/submitterpage.html',
+        controller: 'SubmitterpageCtrl'
+      })
+      .when('/valuer-page', {
+        templateUrl: 'views/valuerpage.html',
+        controller: 'ValuerpageCtrl'
+      })
+      .when('/my-page-redirect', {
+        templateUrl: 'views/mypageredirect.html',
+        controller: 'MyPageRedirectCtrl'
+      })
+      .when('/admin-info', {
+        templateUrl: 'views/admininfo.html',
+        controller: 'AdmininfoCtrl'
+      })
+      .when('/valuer-info', {
+        templateUrl: 'views/valuerinfo.html',
+        controller: 'ValuerinfoCtrl'
+      })
+      .when('/submitter-info', {
+        templateUrl: 'views/submitterinfo.html',
+        controller: 'SubmitterinfoCtrl'
+      })
+      .when('/my-info-redirect', {
+        templateUrl: 'views/myinforedirect.html',
+        controller: 'MyInfoRedirectCtrl'
+      })
+      .when('/sign-in', {
+        templateUrl: 'views/signin.html',
+        controller: 'SigninCtrl'
+      })
+      .when('/sign-up', {
+        templateUrl: 'views/signup.html',
+        controller: 'SignupCtrl'
+      })
+      // admin page
+      .when('/admin/new-page', {
+        templateUrl: 'views/newtask.html',
+        controller: 'NewtaskCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

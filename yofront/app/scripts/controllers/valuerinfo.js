@@ -2,19 +2,18 @@
 
 /**
  * @ngdoc function
- * @name dbfrontappApp.controller:ValuerpageCtrl
+ * @name dbfrontappApp.controller:ValuerinfoCtrl
  * @description
- * # ValuerpageCtrl
+ * # ValuerinfoCtrl
  * Controller of the dbfrontappApp
  */
 angular.module('dbfrontappApp')
-  .controller('ValuerpageCtrl', function ($location, SessionService, SESSION_TYPE) {
+  .controller('ValuerinfoCtrl', function (SessionService, SESSION_TYPE) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-
     // check vauler!
     SessionService.checkSessionType(SESSION_TYPE.VALUER);
   });

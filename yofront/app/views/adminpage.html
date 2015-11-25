@@ -1,1 +1,98 @@
-<p>This is the AdminPage view.</p>
+<!-- 관리자 시작 -->
+<h1>Admin Page</h1>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>태스크 목록</h4>
+  </div>
+  <div class="panel-body">
+    <a class="btn btn-primary" href="#/admin/new-page">새 태스크 생성</a>
+    <br><br>
+
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Desc.</th>
+        <th>Min U.P.</th>
+        <th>TDT Name</th>
+        <th>TDT Schema</th>
+        <th>---</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in taskList">
+        <td>{{ item.name }}</td>
+        <td>{{ item.description }}</td>
+        <td>{{ item.minimum_upload_period }}</td>
+
+        <td>{{ item.task_data_table_name }}</td>
+        <td>{{ item.task_data_table_schema }}</td>
+        <td><a href="{{ item.id }}">stat</a>&nbsp;<a href="{{ item.id }}">manage</a></td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>유저 목록</h4>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="input-group">
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> {{ selectedSearch }} <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <!-- ngclick 조져줘야할듯 -->
+              <li ng-repeat="item in searchCategories" ng-click="selectSearch(item)"><a>{{ item }}</a></ld>
+
+              <!-- <li><a>아이디</a></li> -->
+              <!-- <li><a>역할</a></li> -->
+              <!-- <li><a>나이대</a></li> -->
+              <!-- <li><a>참여중인 태스크 이름</a></li> -->
+
+            </ul>
+          </div><!-- /btn-group -->
+          <input type="text" class="form-control" placeholder="Search for..." ng-model="query">
+          <span class="input-group-btn">
+            <button class="btn btn-primary" type="button" ng-click="search(query)">Search</button>
+          </span>
+        </div><!-- /input-group -->
+      </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+    <br>
+    <!-- 전 체 유 저 목 록 -->
+    <table class="table">
+      <thead>
+      <tr>
+        <th>UserID</th>
+        <th>Name</th>
+        <th>Sex</th>
+        <th>Adrress</th>
+        <th>BDate</th>
+        <th>Role</th>
+        <th>Score</th>
+        <th>---</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in userList">
+        <!-- UserID	Name	Sex	Adrress	BDate	Role	Score -->
+        <td>{{ item.str_id }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.sex }}</td>
+
+        <td>{{ item.address }}</td>
+        <td>{{ item.birth }}</td>
+        <td>{{ item.role }}</td>
+        <td>{{ item.score }}</td>
+        <td><a href="{{ item.id }}">detail </a></td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+</div>
+<!-- 관리자 끝 -->
