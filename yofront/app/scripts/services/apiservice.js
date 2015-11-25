@@ -24,6 +24,15 @@ angular.module('dbfrontappApp')
       getUserList: function(onS, onE) {
         $http.get('http://db.olaf.kr/api/admin/users.json')
         .then(onS, onE);
+      },
+      login: function(id, pw, onS, onE) {
+        $http.get('http://db.olaf.kr/api/login.json', {
+          params: {
+            str_id: id,
+            password: pw
+          }
+        })
+        .then(onS, onE);
       }
     };
   });

@@ -16,5 +16,5 @@ angular.module('dbfrontappApp')
     ];
 
     // check vauler!
-    SessionService.checkSessionType(SESSION_TYPE.VAULER);
+    SessionService.checkSessionType(SESSION_TYPE.VALUER);
   });
