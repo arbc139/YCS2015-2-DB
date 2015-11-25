@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 20151121124524) do
 
   create_table "parsing_data_sequence_files", force: :cascade do |t|
     t.binary   "data_blob"
-    t.text     "task_name"
     t.integer  "period"
     t.integer  "inning"
     t.integer  "all_tuple_num"
@@ -84,7 +83,7 @@ ActiveRecord::Schema.define(version: 20151121124524) do
     t.string   "name"
     t.string   "sex"
     t.string   "address"
-    t.string   "birth"
+    t.date     "birth"
     t.string   "phone_number"
     t.string   "value_score"
     t.string   "role"

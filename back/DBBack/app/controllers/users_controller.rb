@@ -5,11 +5,12 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @users.as_json(
-        only: [:id, :str_id, :name, :sex, :address, :birth, :phone_number, :value_score, :role]
+        only: [:id, :str_id, :name, :sex, :address, :birth, :phone_number, :value_score, :role],
+        methods: :age
         ) }
     end
   end
@@ -24,49 +25,46 @@ class UsersController < ApplicationController
       format.json { render :json => @user }
     end
     """
-    """
+
     @user = User.find(params[:id])
 
-    respond_to do |format|
-      if user.admin?
-        format.html { render :text => }
-        # { redirect_to '/users', notice: 'Go to admin version.' }
-        format.json { render :json => @user }
-      elsif user.submitter?
-        format.html { redirect_to '/users', notice: 'Go to submitter version.' }
-        format.json { render :json => @user }
-      else user.valuer?
-        format.html { redirect_to '/users', notice: 'Go to valuer version.' }
-        format.json { render :json => @user }
-    end
-    """
-    @user = User.find(params[:id])
-    logger.info params
-    logger.info @user.submitter?
+    respond_to do |format| 
 
+      if @user.submitter?
+        logger.info 'I am Submitter~'
+        submitter_and_tasks = Hash.new
+        submitter_and_tasks[:user] = @user.as_json(only: [:id, :str_id, :role])
+        @tasks = @user.tasks
+        tasklist = []
+        @tasks.each do |task|
+          tasklist << task.as_json(only: [:id, :name])
+        end
+        submitter_and_tasks[:tasks] = tasklist.as_json
+        logger.info tasklist.as_json
+        logger.info submitter_and_tasks
 
-    if @user.submitter?
-      logger.info "I'm Submitter~"
-      @tasks = @user.tasks  # Submitter's Task
-      logger.info @tasks
-      logger.info @tasks.as_json
-      user_and_tasks = Hash.new
-      user_and_tasks[:user] = @user.as_json(only: [:id, :str_id, :role])
-      user_and_tasks[:tasks] = @tasks.as_json(only: [:id, :name])
-      logger.info user_and_tasks
-      format.json { render :json => user_and_tasks }
-    end
+        format.html
+        format.json { render :json => submitter_and_tasks }
 
-    redirect_to do |format|
+      elsif @user.valuer?
+        logger.info 'I am Valuer~'
+        valuer_and_files = Hash.new
+        valuer_and_files[:user] = @user.as_json(only: [:id, :str_id, :role])
+        @files = @user.evaluate_pds_files
+        filelist = []
+        @files.each do |file|
+          filelist << file.as_json(only: [:id, :task_name, :period, :inning, :all_tuple_num, :duplicated_tuple_num])
+        end
+        valuer_and_files[:files] = filelist.as_json
 
-
-      if @user.valuer?
-        logger.info "I'm Valuer~"
+        format.html
+        format.json { render :json => valuer_and_files }
 
       else  # Error case
-        logger.info "I'm Error~"
+        logger.info 'I am Error~'
         format.json { render :json => error_hash("User Error") }
       end
+
     end
   end
 

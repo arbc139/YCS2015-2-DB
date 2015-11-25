@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :name
       t.string :sex
       t.string :address
-      t.string :birth
+      t.date :birth
       t.string :phone_number
       t.string :value_score # only use in submitter
       t.string :role  # 'admin', 'submitter', 'valuer'
