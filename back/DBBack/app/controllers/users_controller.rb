@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
-    
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @users.as_json(
@@ -46,6 +46,7 @@ class UsersController < ApplicationController
         format.html
         format.json { render :json => submitter_and_tasks }
 
+      # FIXIT: - valuer is not implemented, yet.
       elsif @user.valuer?
         logger.info 'I am Valuer~'
         valuer_and_files = Hash.new

@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :r_user_submits
   has_many :tasks, through: :r_user_submits
 
-  # my method
+  # user custom methods
   def admin?
     self.role == 'admin'
   end
@@ -22,7 +22,6 @@ class User < ActiveRecord::Base
   end
 
   def age
-    logger.info 'gogo?'
     birthday = self.birth
     now = Time.now.utc.to_date
     now.year - birthday.year - (birthday.to_date.change(:year => now.year) > now ? 1 : 0)
