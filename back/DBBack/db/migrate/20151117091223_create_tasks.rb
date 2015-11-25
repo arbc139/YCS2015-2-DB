@@ -4,6 +4,7 @@ class CreateTasks < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.text :minimum_upload_period
+      t.text :task_data_table_name
       t.text :task_data_table_schema
 
       t.timestamps null: false

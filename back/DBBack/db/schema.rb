@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20151121124524) do
     t.string   "name"
     t.text     "description"
     t.text     "minimum_upload_period"
+    t.text     "task_data_table_name"
     t.text     "task_data_table_schema"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false

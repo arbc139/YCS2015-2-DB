@@ -15,9 +15,7 @@ class SessionsController < ApplicationController
         format.json { render json: @user.as_json(only: [:id, :str_id, :role]) }
       else
         #format.html { redirect_to '/api/users', notice: 'Session was failed.' }
-        error = Hash.new
-        error["error"] = "wrong"
-        format.json { render json: error }
+        format.json { render json: error_hash("Session Error") }
       end
     end
   end
