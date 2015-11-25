@@ -12,7 +12,7 @@ class TasksController < ApplicationController
       """
 
       format.json { render json: @tasks.as_json(
-        only: [:id, :name, :description, :minimum_upload_period, :task_data_table_schema]
+        only: [:id, :name, :description, :minimum_upload_period, :task_data_table_name, :task_data_table_schema]
         ) }
     end
   end
@@ -47,7 +47,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:name, :description, :minimum_upload_period, :task_data_table_schema)
+    params.require(:task).permit(:name, :description, :minimum_upload_period, :task_data_table_name, :task_data_table_schema)
     # :name, :description, :minimum_upload_period, :task_data_table_schema
   end
 end
