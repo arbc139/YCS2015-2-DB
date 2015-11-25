@@ -19,6 +19,11 @@ angular.module('dbfrontappApp')
       getTaskList: function (onS, onE) {
         $http.get('http://db.olaf.kr/api/admin/tasks.json')
         .then(onS, onE);
+      },
+
+      getUserList: function(onS, onE) {
+        $http.get('http://db.olaf.kr/api/admin/users.json')
+        .then(onS, onE);
       }
     };
   });

@@ -18,67 +18,20 @@ angular.module('dbfrontappApp')
   // check admin!
   SessionService.checkSessionType(SESSION_TYPE.ADMIN);
 
-  $scope.taskList = [];
   ApiService.getTaskList(function(res) {
-    console.log(res);
     $scope.taskList = res.data;
-    console.log(res.data);
-  }, function(data) {
+  }, function(res) {
     console.log('getTaskList error');
-    console.log(data);
+    console.log(res.data);
   });
-  console.log($scope.taskList);
-  // [{
-  //   id: 1,
-  //   name: 'name1',
-  //   description: 'description1',
-  //   minup: 'minup1',
-  //   tdtname: 'td1',
-  //   tdtschema: 'tds1',
-  // },{
-  //   id: 1,
-  //   name: 'name1',
-  //   description: 'description1',
-  //   minup: 'minup1',
-  //   tdtname: 'td1',
-  //   tdtschema: 'tds1',
-  // },{
-  //   id: 1,
-  //   name: 'name1',
-  //   description: 'description1',
-  //   minup: 'minup1',
-  //   tdtname: 'td1',
-  //   tdtschema: 'tds1',
-  // }];
 
-  $scope.userList = [{
-    id: 1,
-    str_id: 'id',
-    name: 'name',
-    sex: 'f',
-    address: 'adrs',
-    bdate: '5/6',
-    role: 'valuer',
-    score: 9.4
-  },{
-    id: 1,
-    str_id: 'id',
-    name: 'name',
-    sex: 'f',
-    address: 'adrs',
-    bdate: '5/6',
-    role: 'valuer',
-    score: 9.4
-  },{
-    id: 1,
-    str_id: 'id',
-    name: 'name',
-    sex: 'f',
-    address: 'adrs',
-    bdate: '5/6',
-    role: 'valuer',
-    score: 9.4
-  }];
+  ApiService.getUserList(function(res) {
+    $scope.userList = res.data;
+  }, function(res) {
+    console.log('getUserList error');
+    console.log(res.data);
+  });
+
 
 
 });

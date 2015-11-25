@@ -8,7 +8,7 @@
  * Controller of the dbfrontappApp
  */
 angular.module('dbfrontappApp')
-  .controller('SubmitterinfoCtrl', function () {
+  .controller('SubmitterinfoCtrl', function (SessionService, SESSION_TYPE) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
