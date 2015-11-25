@@ -34,4 +34,14 @@ angular.module('dbfrontappApp')
 
 
 
+})
+.controller('AdminPageSearchCtrl', function($scope) {
+  $scope.searchCategories = ["id", "role", "age", "task name"];
+  $scope.selectedSearch = $scope.searchCategories[0];
+
+  $scope.selectSearch = function(s) {
+    $scope.selectedSearch = s;
+  };
+
+
 });
