@@ -8,7 +8,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :address
       t.string :birth
       t.string :phone_number
-      t.string :value_score
+      t.string :value_score # only use in submitter
       t.string :role  # 'admin', 'submitter', 'valuer'
 
       t.timestamps null: false

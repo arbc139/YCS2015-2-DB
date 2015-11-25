@@ -38,9 +38,9 @@ t.text :task_data_table_schema
 """
 
 # TASK seeds
-t1 = Task.create(name: "TASK1_name", description: "TASK1_descript", minimum_upload_period: "TASK1_period", task_data_table_schema: "TASK1_schema")
-t2 = Task.create(name: "TASK2_name", description: "TASK2_descript", minimum_upload_period: "TASK2_period", task_data_table_schema: "TASK2_schema")
-t3 = Task.create(name: "TASK3_name", description: "TASK3_descript", minimum_upload_period: "TASK3_period", task_data_table_schema: "TASK3_schema")
+t1 = Task.create(name: "TASK1_name", description: "TASK1_descript", minimum_upload_period: "TASK1_period", task_data_table_name: "TASK1_schema_name", task_data_table_schema: "TASK1_schema")
+t2 = Task.create(name: "TASK2_name", description: "TASK2_descript", minimum_upload_period: "TASK2_period", task_data_table_name: "TASK2_schema_name", task_data_table_schema: "TASK2_schema")
+t3 = Task.create(name: "TASK3_name", description: "TASK3_descript", minimum_upload_period: "TASK3_period", task_data_table_name: "TASK3_schema_name", task_data_table_schema: "TASK3_schema")
 
 
 #################################### RAW_DATA_TYPE ####################################

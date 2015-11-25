@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   get '/api/admin/tasks' => 'tasks#index'
   # 전체 유저 목록 가져오기 액션
   get '/api/admin/users' => 'users#index'
+  # 특정 유저 정보 가져오기 액션
+  get '/api/admin/users/:id' => 'users#show'
+
 
   # 테스크 추가 액션
   post '/api/admin/tasks' => 'tasks#create'

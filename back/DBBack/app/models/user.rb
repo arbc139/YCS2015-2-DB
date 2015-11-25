@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
   has_many :evaluate_pds_files
   has_many :submit_pds_files
     
-  has_many :r_user_submit
-  has_many :tasks, through: :r_user_submit
+  has_many :r_user_submits
+  has_many :tasks, through: :r_user_submits
 
   # my method
   def admin?

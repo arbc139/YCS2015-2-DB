@@ -40,6 +40,34 @@ class UsersController < ApplicationController
         format.json { render :json => @user }
     end
     """
+    @user = User.find(params[:id])
+    logger.info params
+    logger.info @user.submitter?
+
+
+    if @user.submitter?
+      logger.info "I'm Submitter~"
+      @tasks = @user.tasks  # Submitter's Task
+      logger.info @tasks
+      logger.info @tasks.as_json
+      user_and_tasks = Hash.new
+      user_and_tasks[:user] = @user.as_json(only: [:id, :str_id, :role])
+      user_and_tasks[:tasks] = @tasks.as_json(only: [:id, :name])
+      logger.info user_and_tasks
+      format.json { render :json => user_and_tasks }
+    end
+
+    redirect_to do |format|
+
+
+      if @user.valuer?
+        logger.info "I'm Valuer~"
+
+      else  # Error case
+        logger.info "I'm Error~"
+        format.json { render :json => error_hash("User Error") }
+      end
+    end
   end
 
   # GET /users/new

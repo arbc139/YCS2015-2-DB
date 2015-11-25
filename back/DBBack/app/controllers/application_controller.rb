@@ -17,4 +17,10 @@ class ApplicationController < ActionController::Base
   def require_submitter
     redirect_to '/' unless current_user.submitter?
   end
+
+  def error_hash(errorMessage)
+    error = Hash.new
+    error["error"] = errorMessage
+    error
+  end
 end
