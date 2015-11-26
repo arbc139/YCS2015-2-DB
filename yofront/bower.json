@@ -10,7 +10,7 @@
     "angular-route": "^1.4.0",
     "angular-sanitize": "^1.4.0",
     "angular-touch": "^1.4.0",
-    "alertify.js": "~0.3.11"
+    "alertify.js": "alertifyjs#~1.0.5"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"

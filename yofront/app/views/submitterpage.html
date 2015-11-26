@@ -1,1 +1,37 @@
-<p>This is the SubmitterPage view.</p>
+<h1>Submitter</h1>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>참가 신청 가능한 태스크 목록</h4>
+  </div>
+  <div class="panel-body">
+    <!-- <a class="btn btn-primary" href="#/admin/new-task">새 태스크 생성</a>
+    <br><br> -->
+
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Desc.</th>
+        <th>Min U.P.</th>
+        <th>TDT Name</th>
+        <th>TDT Schema</th>
+        <th>---</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in taskList">
+        <td>{{ item.t_name }}</td>
+        <td>{{ item.description }}</td>
+        <td>{{ item.minimum_upload_period }}</td>
+
+        <td>{{ item.task_data_table_name }}</td>
+        <td>{{ item.task_data_table_schema }}</td>
+        <td>
+          <a ng-click="applyTask(item.id)">apply</a>
+        </td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+</div>
