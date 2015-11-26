@@ -91,6 +91,22 @@ class AdminController < ApplicationController
     end
   end
 
+  def taskManageShow
+    @task = Task.find(params[:task_id])
+    @users = @task.users
+    @raw_data_types = @task.raw_data_types
+
+    respond_to do |format|
+
+      task_hash = Hash.new
+      task_hash[:users] = @users.as_json(only: [:id, :str_id, :name, :sex, :address, :birth, :role, :value_score])
+      task_hash[:rdts] = @raw_data_types.as_json(only: [:id, :name])
+      
+      format.html
+      format.json { render :json => task_hash }
+    end
+  end
+
   ######################################### CREATE ACTION #########################################
   # curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"task":{"name":"TASK_NAME_test","description":"TASK_DESCRIPTION_test","minimum_upload_period":"TASK_MIN_test","task_data_table_schema":”TASK_DTS_test"}, "raw_data_types": [{"id":"1","schema":"RAW_DATA_TYPE1_schema"},{"id":"2","schema":"RAW_DATA_TYPE2_schema"}]}' http://localhost:3000/api/admin/task
   def taskCreate
