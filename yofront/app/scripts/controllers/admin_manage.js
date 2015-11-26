@@ -8,10 +8,12 @@
  * Controller of the dbfrontappApp
  */
 angular.module('dbfrontappApp')
-  .controller('AdminManageCtrl', function () {
+  .controller('AdminManageCtrl', function ($scope, $location) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+
+    $scope.tableId = $location.search().table_id;
   });
