@@ -33,7 +33,7 @@ angular.module('dbfrontappApp')
     console.log(res.data);
   });
 
-  $scope.searchCategories = ["id", "role", "age", "task name"];
+  $scope.searchCategories = ["id", "role", "age", "sex", "task name"];
   $scope.selectedSearch = $scope.searchCategories[0];
 
   $scope.selectSearch = function(s) {
@@ -91,6 +91,21 @@ angular.module('dbfrontappApp')
       $scope.userList = tempArray;
 
     } else if ($scope.selectedSearch === $scope.searchCategories[3]) {
+      // case 'sex'
+
+      var tempArray = [];
+
+      for (var i in $scope.originalUserList) {
+        var user = $scope.originalUserList[i];
+
+        if (user.sex === query) {
+          tempArray.push(user);
+        }
+      }
+
+      $scope.userList = tempArray;
+
+    } else if ($scope.selectedSearch === $scope.searchCategories[4]) {
       // case 'task name'
 
       var tempArray = [];
