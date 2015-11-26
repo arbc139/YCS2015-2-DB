@@ -8,10 +8,11 @@
  * Controller of the dbfrontappApp
  */
 angular.module('dbfrontappApp')
-  .controller('AdminUserDetailCtrl', function () {
+  .controller('AdminUserDetailCtrl', function ($scope, $location, ApiService) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+    $scope.userId = $location.search().uid;
   });

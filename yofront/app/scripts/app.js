@@ -41,6 +41,10 @@ angular
         templateUrl: 'views/admin_manage.html',
         controller: 'AdminManageCtrl'
       })
+      .when('/admin-page/user-detail', {
+        templateUrl: 'views/admin_user_detail.html',
+        controller: 'AdminUserDetailCtrl'
+      })
       .when('/submitter-page', {
         templateUrl: 'views/submitterpage.html',
         controller: 'SubmitterpageCtrl'
