@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20151121124524) do
   add_index "parse_column_null_ratios", ["parsing_file_id"], name: "index_parse_column_null_ratios_on_parsing_file_id"
 
   create_table "parsing_data_sequence_files", force: :cascade do |t|
-    t.binary   "data_blob"
+    t.text     "data_blob"
     t.integer  "period"
     t.integer  "inning"
     t.integer  "all_tuple_num"
@@ -61,14 +61,14 @@ ActiveRecord::Schema.define(version: 20151121124524) do
   add_index "r_user_submits", ["user_id"], name: "index_r_user_submits_on_user_id"
 
   create_table "raw_data_types", force: :cascade do |t|
-    t.string   "name"
+    t.string   "raw_name"
     t.text     "schema"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.string   "name"
+    t.string   "t_name"
     t.text     "description"
     t.text     "minimum_upload_period"
     t.text     "task_data_table_name"
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20151121124524) do
   create_table "users", force: :cascade do |t|
     t.string   "str_id"
     t.string   "password_digest"
-    t.string   "name"
+    t.string   "u_name"
     t.string   "sex"
     t.string   "address"
     t.date     "birth"

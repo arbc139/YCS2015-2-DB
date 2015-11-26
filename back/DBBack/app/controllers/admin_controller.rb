@@ -8,8 +8,7 @@ class AdminController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tasks.as_json(
-        only: [:id, :description, :minimum_upload_period, :task_data_table_name, :task_data_table_schema],
-        methods: :t_name
+        only: [:id, :t_name, :description, :minimum_upload_period, :task_data_table_name, :task_data_table_schema]
         ) }
     end
   end
@@ -20,10 +19,11 @@ class AdminController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @users.as_json(
-        only: [:id, :str_id, :name, :sex, :address, :birth, :phone_number, :value_score, :role],
-        methods: [:u_name, :age, :participate_tasks]
+        only: [:id, :str_id, :u_name, :sex, :address, :birth, :phone_number, :value_score, :role],
+        methods: [:age, :participate_tasks]
         ) }
     end
+
   end
 
   def rdtIndex
@@ -32,8 +32,7 @@ class AdminController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @raw_data_types.as_json(
-        only: [:id, :schema],
-        methods: :raw_name
+        only: [:id, :raw_name, :schema]
         ) }
     end
   end
@@ -61,7 +60,7 @@ class AdminController < ApplicationController
         @tasks = @user.tasks
         tasklist = []
         @tasks.each do |task|
-          tasklist << task.as_json(only: [:id], methods: :t_name)
+          tasklist << task.as_json(only: [:id, :t_name])
         end
         submitter_and_tasks[:tasks] = tasklist.as_json
         logger.info tasklist.as_json
@@ -101,8 +100,8 @@ class AdminController < ApplicationController
     respond_to do |format|
 
       task_hash = Hash.new
-      task_hash[:submitters] = @users.as_json(only: [:id, :str_id, :sex, :address, :birth, :role, :value_score], methods: :u_name)
-      task_hash[:rdts] = @raw_data_types.as_json(only: [:id], methods: :raw_name)
+      task_hash[:submitters] = @users.as_json(only: [:id, :u_name, :str_id, :sex, :address, :birth, :role, :value_score])
+      task_hash[:rdts] = @raw_data_types.as_json(only: [:id, :raw_name])
 
       format.html
       format.json { render :json => task_hash }
@@ -127,7 +126,7 @@ class AdminController < ApplicationController
         #session[:user_id] = @user.id
 
         format.html { redirect_to '/api/users', notice: 'User was successfully created.' }
-        format.json { render json: @task.as_json(only: [:id, :name]) }
+        format.json { render json: @task.as_json(only: [:id, :t_name]) }
       else
         #redirect_to '/signup' # => 'users#new'
         format.html { render action: 'new' }
@@ -142,7 +141,7 @@ class AdminController < ApplicationController
   ######################################### TOOL METHOD #########################################
   private
   def task_params
-    params.require(:task).permit(:name, :description, :minimum_upload_period, :task_data_table_name, :task_data_table_schema)
+    params.require(:task).permit(:t_name, :description, :minimum_upload_period, :task_data_table_name, :task_data_table_schema)
     # :name, :description, :minimum_upload_period, :task_data_table_schema
   end
 

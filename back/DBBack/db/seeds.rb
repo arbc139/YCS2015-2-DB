@@ -16,17 +16,17 @@ t.string :role  # 'admin', 'submitter', 'valuer'
 
 # USER seeds
 admin = User.create(
-  str_id: 'admin', password: 'admin', name: 'admin', sex: 'M', address: 'Seoul', birth: Date.parse('1993/09/20'), phone_number: '010',
+  str_id: 'admin', password: 'admin', u_name: 'admin', sex: 'M', address: 'Seoul', birth: Date.parse('1993/09/20'), phone_number: '010',
   role: 'admin'
   )
 
 submitter = User.create(
-  str_id: 'submitter', password: 's', name: 'dy', sex: 'M', address: 'Seoul', birth: Date.parse('1997/09/20'), phone_number: '010', value_score: '100', 
+  str_id: 'submitter', password: 's', u_name: 'dy', sex: 'M', address: 'Seoul', birth: Date.parse('1997/09/20'), phone_number: '010', value_score: '100', 
   role: 'submitter'
   )
 
 valuer = User.create(
-  str_id: 'valuer', password: 'v', name: 'dy', sex: 'M', address: 'Seoul', birth: Date.parse('2001/09/20'), phone_number: '010', value_score: '100', 
+  str_id: 'valuer', password: 'v', u_name: 'dy', sex: 'M', address: 'Seoul', birth: Date.parse('2001/09/20'), phone_number: '010', value_score: '100', 
   role: 'valuer'
   )
 
@@ -40,9 +40,9 @@ t.text :task_data_table_schema
 """
 
 # TASK seeds
-t1 = Task.create(name: "TASK1_name", description: "TASK1_descript", minimum_upload_period: "TASK1_period", task_data_table_name: "TASK1_schema_name", task_data_table_schema: "TASK1_schema")
-t2 = Task.create(name: "TASK2_name", description: "TASK2_descript", minimum_upload_period: "TASK2_period", task_data_table_name: "TASK2_schema_name", task_data_table_schema: "TASK2_schema")
-t3 = Task.create(name: "TASK3_name", description: "TASK3_descript", minimum_upload_period: "TASK3_period", task_data_table_name: "TASK3_schema_name", task_data_table_schema: "TASK3_schema")
+t1 = Task.create(t_name: "TASK1_name", description: "TASK1_descript", minimum_upload_period: "TASK1_period", task_data_table_name: "TASK1_schema_name", task_data_table_schema: "TASK1_schema")
+t2 = Task.create(t_name: "TASK2_name", description: "TASK2_descript", minimum_upload_period: "TASK2_period", task_data_table_name: "TASK2_schema_name", task_data_table_schema: "TASK2_schema")
+t3 = Task.create(t_name: "TASK3_name", description: "TASK3_descript", minimum_upload_period: "TASK3_period", task_data_table_name: "TASK3_schema_name", task_data_table_schema: "TASK3_schema")
 
 
 #################################### R_USER_SUBMIT(SUBMITTER) ####################################
@@ -64,10 +64,10 @@ t.text :schema
 """
 
 # RAW_DATA_TYPE seed
-rdt1 = RawDataType.create(name: "RAW_DATA_TYPE1_name",schema: "RAW_DATA_TYPE1_schema")
-rdt2 = RawDataType.create(name: "RAW_DATA_TYPE2_name", schema: "RAW_DATA_TYPE2_schema")
-rdt3 = RawDataType.create(name: "RAW_DATA_TYPE3_name", schema: "RAW_DATA_TYPE3_schema")
-rdt4 = RawDataType.create(name: "RAW_DATA_TYPE4_name", schema: "RAW_DATA_TYPE4_schema")
+rdt1 = RawDataType.create(raw_name: "RAW_DATA_TYPE1_name",schema: "RAW_DATA_TYPE1_schema")
+rdt2 = RawDataType.create(raw_name: "RAW_DATA_TYPE2_name", schema: "RAW_DATA_TYPE2_schema")
+rdt3 = RawDataType.create(raw_name: "RAW_DATA_TYPE3_name", schema: "RAW_DATA_TYPE3_schema")
+rdt4 = RawDataType.create(raw_name: "RAW_DATA_TYPE4_name", schema: "RAW_DATA_TYPE4_schema")
 
 
 # R_TASK_RAW_DATA columns
