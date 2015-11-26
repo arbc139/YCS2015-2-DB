@@ -15,5 +15,5 @@ angular.module('dbfrontappApp')
       'Karma'
     ];
 
-    $scope.tableId = $location.search().table_id;
+    $scope.tableId = $location.search().tid;
   });
