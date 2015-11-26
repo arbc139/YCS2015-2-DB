@@ -65,7 +65,7 @@
         <td>{{ item.task_data_table_schema }}</td>
 
         <td>
-          <a ng-click="submit(item.id)">submit</a>&nbsp;/&nbsp;<a ng-click="info(item.id)">info</a>
+          <a href="#/submitter-page/submit?tid={{item.id}}">submit</a>&nbsp;/&nbsp;<a href="#/submitter-page/info?tid={{item.id}}">info</a>
         </td>
       </tr>
     </tbody>
