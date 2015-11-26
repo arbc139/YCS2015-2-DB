@@ -48,11 +48,11 @@ angular.module('dbfrontappApp')
   });
 
   $scope.submit = function(tableId) {
-
+    console.log("submit" + tableId);
   };
 
   $scope.info = function(tableId) {
-
+    console.log("info" + tableId);
   };
 
   // end submittable task
