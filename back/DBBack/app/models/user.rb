@@ -30,4 +30,8 @@ class User < ActiveRecord::Base
   def participate_tasks
     self.tasks.as_json(only: [:id, :name])
   end
+
+  def u_name
+    self.name
+  end
 end

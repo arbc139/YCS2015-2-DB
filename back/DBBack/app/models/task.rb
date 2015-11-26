@@ -6,4 +6,8 @@ class Task < ActiveRecord::Base
     
     has_many :r_user_submits
     has_many :users, through: :r_user_submits
+
+    def t_name
+      self.name
+    end
 end

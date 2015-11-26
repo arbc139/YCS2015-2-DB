@@ -8,7 +8,8 @@ class AdminController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tasks.as_json(
-        only: [:id, :name, :description, :minimum_upload_period, :task_data_table_name, :task_data_table_schema]
+        only: [:id, :description, :minimum_upload_period, :task_data_table_name, :task_data_table_schema],
+        methods: :t_name
         ) }
     end
   end
@@ -20,7 +21,7 @@ class AdminController < ApplicationController
       format.html # index.html.erb
       format.json { render :json => @users.as_json(
         only: [:id, :str_id, :name, :sex, :address, :birth, :phone_number, :value_score, :role],
-        methods: [:age, :participate_tasks]
+        methods: [:u_name, :age, :participate_tasks]
         ) }
     end
   end
@@ -31,7 +32,8 @@ class AdminController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @raw_data_types.as_json(
-        only: [:id, :name, :schema]
+        only: [:id, :schema],
+        methods: :raw_name
         ) }
     end
   end
@@ -59,7 +61,7 @@ class AdminController < ApplicationController
         @tasks = @user.tasks
         tasklist = []
         @tasks.each do |task|
-          tasklist << task.as_json(only: [:id, :name])
+          tasklist << task.as_json(only: [:id], methods: :t_name)
         end
         submitter_and_tasks[:tasks] = tasklist.as_json
         logger.info tasklist.as_json
@@ -99,8 +101,8 @@ class AdminController < ApplicationController
     respond_to do |format|
 
       task_hash = Hash.new
-      task_hash[:submitters] = @users.as_json(only: [:id, :str_id, :name, :sex, :address, :birth, :role, :value_score])
-      task_hash[:rdts] = @raw_data_types.as_json(only: [:id, :name])
+      task_hash[:submitters] = @users.as_json(only: [:id, :str_id, :sex, :address, :birth, :role, :value_score], methods: :u_name)
+      task_hash[:rdts] = @raw_data_types.as_json(only: [:id], methods: :raw_name)
 
       format.html
       format.json { render :json => task_hash }

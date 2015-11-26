@@ -1,7 +1,7 @@
 class CreateParsingDataSequenceFiles < ActiveRecord::Migration
   def change
     create_table :parsing_data_sequence_files do |t|
-      t.binary :data_blob
+      t.text :data_blob
       #t.text :task_name
       t.integer :period
       t.integer :inning
