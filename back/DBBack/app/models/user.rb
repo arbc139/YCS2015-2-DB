@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   end
 
   def participate_tasks
-    self.tasks.as_json(only: [:id, :name])
+    self.tasks.as_json(only: [:id], methods: :t_name)
   end
 
   def u_name
