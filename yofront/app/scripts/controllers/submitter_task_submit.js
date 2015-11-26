@@ -2,16 +2,18 @@
 
 /**
  * @ngdoc function
- * @name dbfrontappApp.controller:SubmitterInfoCtrl
+ * @name dbfrontappApp.controller:SubmiiterSubmitCtrl
  * @description
- * # SubmitterInfoCtrl
+ * # SubmiiterSubmitCtrl
  * Controller of the dbfrontappApp
  */
 angular.module('dbfrontappApp')
-  .controller('SubmitterInfoCtrl', function () {
+  .controller('SubmitterTaskSubmitCtrl', function ($scope, $location) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+
+    $scope.tableId = $location.search().tid;
   });

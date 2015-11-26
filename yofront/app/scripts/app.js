@@ -50,12 +50,12 @@ angular
         controller: 'SubmitterpageCtrl'
       })
       .when('/submitter-page/submit', {
-        templateUrl: 'views/submitter_submit.html',
-        controller: 'SubmitterSubmitCtrl'
+        templateUrl: 'views/submitter_task_submit.html',
+        controller: 'SubmitterTaskSubmitCtrl'
       })
       .when('/submitter-page/info', {
-        templateUrl: 'views/submitter_info.html',
-        controller: 'SubmitterInfoCtrl'
+        templateUrl: 'views/submitter_task_info.html',
+        controller: 'SubmitterTaskInfoCtrl'
       })
       .when('/valuer-page', {
         templateUrl: 'views/valuerpage.html',

@@ -1,23 +1,23 @@
 'use strict';
 
-describe('Controller: SubmitterInfoCtrl', function () {
+describe('Controller: SubmitterTaskSubmitCtrl', function () {
 
   // load the controller's module
   beforeEach(module('dbfrontappApp'));
 
-  var SubmitterInfoCtrl,
+  var SubmiiterSubmitCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    SubmitterInfoCtrl = $controller('SubmitterInfoCtrl', {
+    SubmiiterSubmitCtrl = $controller('SubmitterTaskSubmitCtrl', {
       $scope: scope
       // place here mocked dependencies
     });
   }));
 
   it('should attach a list of awesomeThings to the scope', function () {
-    expect(SubmitterInfoCtrl.awesomeThings.length).toBe(3);
+    expect(SubmiiterSubmitCtrl.awesomeThings.length).toBe(3);
   });
 });
