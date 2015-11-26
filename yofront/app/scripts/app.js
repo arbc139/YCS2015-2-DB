@@ -78,7 +78,7 @@ angular
         controller: 'SignupCtrl'
       })
       // admin page
-      .when('/admin/new-page', {
+      .when('/admin/new-task', {
         templateUrl: 'views/newtask.html',
         controller: 'NewtaskCtrl'
       })

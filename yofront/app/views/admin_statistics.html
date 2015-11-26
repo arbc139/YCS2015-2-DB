@@ -1,3 +1,65 @@
-<p>This is the admin_statistics view.</p>
+<h1>Admin Statistics</h1>
 
-<h1>Get parameter, table id : {{ tableId }}</h1>
+<h2>Get parameter, table id : {{ tableId }}</h2>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>이 태스크에 참여 신청한 제출자 유저 목록</h4>
+  </div>
+  <div class="panel-body">
+    <!-- 전 체 유 저 목 록 -->
+    <table class="table">
+      <thead>
+      <tr>
+        <th>UserID</th>
+        <th>Name</th>
+        <th>Sex</th>
+        <th>Adrress</th>
+        <th>BDate</th>
+        <th>Role</th>
+        <th>Score</th>
+        <th>---</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in userList">
+        <td>{{ item.str_id }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.sex }}</td>
+
+        <td>{{ item.address }}</td>
+        <td>{{ item.birth }}</td>
+        <td>{{ item.role }}</td>
+        <td>{{ item.score }}</td>
+        <td><a href="{{ item.id }}">Accept</a>&nbsp;/&nbsp;<a href="{{ item.id }}">Reject</a></td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>원본 데이터 타입 목록</h4>
+  </div>
+
+  <div class="panel-body">
+    <!-- 전 체 유 저 목 록 -->
+    <a class="btn btn-primary" href="#/admin/new-page">원본 데이터 타입 추가</a><br><br>
+    <table class="table">
+      <thead>
+
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in rdtList">
+        <td>{{ item.id }}</td>
+        <td>{{ item.name }}</td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+</div>
