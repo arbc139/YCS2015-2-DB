@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   get '/api/admin/users' => 'admin#userIndex'
   # 전체 원본 데이터 타입 가져오기 액션
   get '/api/admin/raw_data_types' => 'admin#rdtIndex'
+  # 전체 Parsing Data File 가져오기 액션
+  get '/api/admin/pdsfs' => 'admin#pdsfIndex'
   
   ## Admin 페이지에서 특정 정보 가져오는 액션
   # 특정 유저 정보 가져오기 액션

@@ -1,7 +1,7 @@
 class CreateParseColumnNullRatios < ActiveRecord::Migration
   def change
     create_table :parse_column_null_ratios do |t|
-      t.belongs_to :parsing_file, index: true
+      t.references :parsing_file
       t.text :column_name
       t.float :null_ratio
 

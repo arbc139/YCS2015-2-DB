@@ -21,19 +21,17 @@ ActiveRecord::Schema.define(version: 20151121124524) do
     t.datetime "updated_at",      null: false
   end
 
-  add_index "parse_column_null_ratios", ["parsing_file_id"], name: "index_parse_column_null_ratios_on_parsing_file_id"
-
   create_table "parsing_data_sequence_files", force: :cascade do |t|
     t.text     "data_blob"
     t.integer  "period"
     t.integer  "inning"
     t.integer  "all_tuple_num"
     t.integer  "duplicated_tuple_num"
-    t.integer  "evaluate_user_id"
+    t.integer  "valuer_id"
     t.boolean  "is_valued"
     t.integer  "data_quality_score"
     t.boolean  "is_passed"
-    t.integer  "submit_user_id"
+    t.integer  "submitter_id"
     t.integer  "task_id"
     t.integer  "raw_data_type_id"
     t.datetime "created_at",           null: false

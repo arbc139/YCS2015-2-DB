@@ -45,7 +45,7 @@ t2 = Task.create(t_name: "TASK2_name", description: "TASK2_descript", minimum_up
 t3 = Task.create(t_name: "TASK3_name", description: "TASK3_descript", minimum_upload_period: "TASK3_period", task_data_table_name: "TASK3_schema_name", task_data_table_schema: "TASK3_schema")
 
 
-#################################### R_USER_SUBMIT(SUBMITTER) ####################################
+#################################### R_USER_SUBMIT(SUBMITTER, TASK) ####################################
 # R_USER_SUBMIT columns
 """
 t.belongs_to :task, index: true # FK to task
@@ -67,6 +67,7 @@ rdt3 = RawDataType.create(raw_name: "RAW_DATA_TYPE3_name", schema: "RAW_DATA_TYP
 rdt4 = RawDataType.create(raw_name: "RAW_DATA_TYPE4_name", schema: "RAW_DATA_TYPE4_schema")
 
 
+#################################### R_TASK_RAW_DATA(TASK, RAW_DATA_TYPE) ####################################
 # R_TASK_RAW_DATA columns
 """
 t.belongs_to :task, index: true # FK to task
@@ -81,7 +82,7 @@ t3.raw_data_types << [rdt3, rdt4]
 #################################### PARSING_DATA_SEQUENCE_FILE ####################################
 # PARSING_DATA_SEQUENCE_FILE columns
 """
-t.binary :data_blob
+t.text :data_blob
 t.text :task_name
 t.integer :period
 t.integer :inning
@@ -98,39 +99,86 @@ t.references :task
 t.references :raw_data_type
 """
 
-"""
+
 pdsf1 = ParsingDataSequenceFile.create(
-  #data_blob: ---
-  #task_name: ---
+  data_blob: 'pdsf1 file',
   period: 10,
   inning: 10,
   all_tuple_num: 10,
   duplicated_tuple_num: 10,
   is_valued: true,
   data_quality_score: 10,
-  is_passed: true
+  is_passed: true,
+  valuer_id: valuer.id,
+  submitter_id: submitter.id,
+  task_id: t1.id,
+  raw_data_type_id: rdt1.id
   )
 
 pdsf2 = ParsingDataSequenceFile.create(
-  #data_blob: ---
-  #task_name: ---
+  data_blob: 'pdsf2 file',
   period: 20,
   inning: 20,
   all_tuple_num: 20,
   duplicated_tuple_num: 20,
   is_valued: true,
   data_quality_score: 20,
-  is_passed: false
+  is_passed: false,
+  valuer_id: valuer.id,
+  submitter_id: submitter.id,
+  task_id: t1.id,
+  raw_data_type_id: rdt2.id
   )
 
 
-  evaluate_user: valuer.id,
-  submit_user: submitter.id,
-  task: t1.id,
-  raw_data_type: rdt1.id
+#################################### PARSE_COLUMN_NULL_RATIO(linked with PDSF) ####################################
+# Column null ratios
+"""
+t.references :parsing_file
+t.text :column_name
+t.float :null_ratio
+"""
+
+ParseColumnNullRatio.create(
+  column_name: 'wow1',
+  null_ratio: 3.6,
+  parsing_file_id: pdsf1.id
+  )
+ParseColumnNullRatio.create(
+  column_name: 'wow2',
+  null_ratio: 3.8,
+  parsing_file_id: pdsf1.id
+  )
+ParseColumnNullRatio.create(
+  column_name: 'wow3',
+  null_ratio: 4.6,
+  parsing_file_id: pdsf1.id
+  )
+ParseColumnNullRatio.create(
+  column_name: 'wow4',
+  null_ratio: 5.6,
+  parsing_file_id: pdsf1.id
+  )
+
+ParseColumnNullRatio.create(
+  column_name: 'lol1',
+  null_ratio: 3.6,
+  parsing_file_id: pdsf2.id
+  )
+ParseColumnNullRatio.create(
+  column_name: 'lol2',
+  null_ratio: 3.3,
+  parsing_file_id: pdsf2.id
+  )
+ParseColumnNullRatio.create(
+  column_name: 'lol3',
+  null_ratio: 10.6,
+  parsing_file_id: pdsf2.id
+  )
 
 
 # PDSF references
+"""
 pdsf1.evaluate_user = valuer
 pdsf1.submit_user = submitter
 pdsf1.task = t1
@@ -140,8 +188,9 @@ pdsf2.evaluate_user = valuer
 pdsf2.submit_user = submitter
 pdsf2.task = t1
 pdsf2.raw_data_type = rdt2
+"""
 
-
+"""
 # relationship PDSF with task
 t1.pds_files << pdsf1 << pdsf2
 

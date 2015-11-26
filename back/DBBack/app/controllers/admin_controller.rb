@@ -37,6 +37,18 @@ class AdminController < ApplicationController
     end
   end
 
+  def pdsfIndex
+    @pdsfs = ParsingDataSequenceFile.all
+
+    respond_to do |format|
+      format.html
+      format.json {render :json => @pdsfs.as_json(
+        except: [:valuer_id, :submitter_id, :task_id, :raw_data_type_id],
+        methods: [:valuer!, :submitter!, :null_ratios!]
+        ) }
+    end
+  end
+
   ######################################### SHOW ACTION #########################################
   # GET /users/1
   def userShow
