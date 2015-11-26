@@ -33,6 +33,9 @@ angular.module('dbfrontappApp')
     console.log(res.data);
   });
 
+
+  // Search start
+
   $scope.searchCategories = ["id", "role", "age", "sex", "task name"];
   $scope.selectedSearch = $scope.searchCategories[0];
 
@@ -123,5 +126,7 @@ angular.module('dbfrontappApp')
       alert('sibal?');
     }
   }
+
+  // search end
 
 });
