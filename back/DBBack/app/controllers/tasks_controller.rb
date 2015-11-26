@@ -32,7 +32,6 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.save
         #session[:user_id] = @user.id
-
         format.html { redirect_to '/api/users', notice: 'User was successfully created.' }
         format.json { render json: @task.as_json(only: [:id, :name]) }
       else

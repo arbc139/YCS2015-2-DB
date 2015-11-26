@@ -7,6 +7,14 @@ class Task < ActiveRecord::Base
   has_many :r_user_submits
   has_many :users, through: :r_user_submits
 
+  def no_of_submitted_files
+    self.pds_files.size
+  end
+
+  def no_of_passed_files
+    # get from TDT
+    0
+  end
   
   # 동적 테이블 생성 튜토리얼 스크립트들
   def create_tdt(tdt)

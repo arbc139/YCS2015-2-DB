@@ -89,7 +89,7 @@ class AdminController < ApplicationController
         @files = @user.evaluate_pds_files
         filelist = []
         @files.each do |file|
-          filelist << file.as_json(only: [:id, :task_name, :period, :inning, :all_tuple_num, :duplicated_tuple_num])
+          filelist << file.as_json(only: [:id, :data_blob, :period, :inning, :all_tuple_num, :duplicated_tuple_num, :is_valued, :is_passed])
         end
         valuer_and_files[:files] = filelist.as_json
 
@@ -107,7 +107,6 @@ class AdminController < ApplicationController
   def taskManageShow
     @task = Task.find(params[:task_id])
     @users = @task.users
-    @raw_data_types = @task.raw_data_types
 
     respond_to do |format|
 
@@ -115,6 +114,23 @@ class AdminController < ApplicationController
       task_hash[:submitters] = @users.as_json(only: [:id, :u_name, :str_id, :sex, :address, :birth, :role, :value_score])
       task_hash[:rdts] = @raw_data_types.as_json(only: [:id, :raw_name])
 
+      format.html
+      format.json { render :json => task_hash }
+    end
+  end
+
+  def taskStatShow
+    @task = Task.find(params[:task_id])
+    @users = @task.users
+    @raw_data_types = @task.raw_data_types
+
+    respond_to do |format|
+
+      task_hash = Hash.new
+      task_hash[:no_of_submitted_files] = @task.no_of_submitted_files
+      task_hash[:no_of_passed_files] = @task.no_of_passed_files
+      task_hash[:submitters] = @users.as_json(only: [:id, :u_name, :str_id, :sex, :address, :birth, :role, :value_score])
+      
       format.html
       format.json { render :json => task_hash }
     end
