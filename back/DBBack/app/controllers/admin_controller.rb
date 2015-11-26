@@ -20,7 +20,7 @@ class AdminController < ApplicationController
       format.html # index.html.erb
       format.json { render :json => @users.as_json(
         only: [:id, :str_id, :name, :sex, :address, :birth, :phone_number, :value_score, :role],
-        methods: :age
+        methods: [:age, :participate_tasks]
         ) }
     end
   end
