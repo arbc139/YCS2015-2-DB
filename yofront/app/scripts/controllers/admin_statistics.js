@@ -25,6 +25,9 @@ angular.module('dbfrontappApp')
     //   console.log(res.data);
     // });
 
+    $scope.submitted_file_count = 100;
+    $scope.passed_file_count = 99;
+
     $scope.userList = [
       {
         id:1,
@@ -52,5 +55,7 @@ angular.module('dbfrontappApp')
         name: 'lg'
       }
     ];
+
+    
 
   });

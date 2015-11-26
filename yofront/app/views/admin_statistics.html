@@ -4,8 +4,21 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h4>이 태스크에 참여 신청한 제출자 유저 목록</h4>
+    <h4>이 태스크 통계 정보</h4>
   </div>
+  <div class="panel-body">
+    <!-- 전 체 유 저 목 록 -->
+
+    <p>전체 제출된 파일수: {{ submitted_file_count }}</p>
+    <p>PASS된 파일 수 : {{ passed_file_count }}</p>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>이 태스크에 참여중인 제출자 유저 목록</h4>
+  </div>
+
   <div class="panel-body">
     <!-- 전 체 유 저 목 록 -->
     <table class="table">
@@ -31,33 +44,7 @@
         <td>{{ item.birth }}</td>
         <td>{{ item.role }}</td>
         <td>{{ item.score }}</td>
-        <td><a href="{{ item.id }}">Accept</a>&nbsp;/&nbsp;<a href="{{ item.id }}">Reject</a></td>
-      </tr>
-    </tbody>
-    </table>
-  </div>
-</div>
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h4>원본 데이터 타입 목록</h4>
-  </div>
-
-  <div class="panel-body">
-    <!-- 전 체 유 저 목 록 -->
-    <a class="btn btn-primary" href="#/admin/new-page">원본 데이터 타입 추가</a><br><br>
-    <table class="table">
-      <thead>
-
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="item in rdtList">
-        <td>{{ item.id }}</td>
-        <td>{{ item.name }}</td>
+        <td><a href="{{ item.id }}">Detail</a></td>
       </tr>
     </tbody>
     </table>
