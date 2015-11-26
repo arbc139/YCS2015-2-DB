@@ -28,7 +28,7 @@ angular.module('dbfrontappApp')
   });
 
   $scope.apply = function(tableId) {
-    alertify.confirm('waerjapweoirjapwoeirjapwoerijapwoe rjapwoeirj apwoeirj aopwer jawpeorj waoperijweoapjreowijriewjrowjrow jpaweorij wapoerijapwoeirj apoweirj pawoeirj apwoeirj apwoerij apweori jawpeori japweorij apweorij wpeo ijawpoerij awpoerij awpoerij oeirjweorjweojriewjr ojawperj awpeor jewioar jwaoierj apwei rjewaor jawpeoijr pawoerj poaewijr aoweirj apowirjawoer jpeor jaweporij apoewrij oej ioaewrj ajr opewjr oaej roaewjr aweirjpawrjpoeawijr paoeiwjr opaweijr',
+    alertify.confirm('개미를 죽입시다. (개미는 나의 원수) 우리가 2년 동안 달팽이를 키웠는데 어떤 불개미 새끼가 달팽이를 죽였습니다. 개미를 죽입시다. 달팽이는 아주 착했습니다. 달팽이는 아직 안 죽었는데, 싸가지 없는 불개미가 물었습니다. 조심하십시오. 씨발, 개새끼, 싸가지 없는 놈',
     function(){
       alertify.success('Ok');
     },
