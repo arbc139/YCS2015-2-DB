@@ -49,6 +49,14 @@ angular
         templateUrl: 'views/submitterpage.html',
         controller: 'SubmitterpageCtrl'
       })
+      .when('/submitter-page/submit', {
+        templateUrl: 'views/submitter_submit.html',
+        controller: 'SubmitterSubmitCtrl'
+      })
+      .when('/submitter-page/info', {
+        templateUrl: 'views/submitter_info.html',
+        controller: 'SubmitterInfoCtrl'
+      })
       .when('/valuer-page', {
         templateUrl: 'views/valuerpage.html',
         controller: 'ValuerpageCtrl'
