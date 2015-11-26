@@ -81,12 +81,17 @@ angular.module('dbfrontappApp')
     } else if ($scope.selectedSearch === $scope.searchCategories[2]) {
       //case 'age'
 
+
       var tempArray = [];
 
       for (var i in $scope.originalUserList) {
         var user = $scope.originalUserList[i];
 
-        if (user.age === query) {
+        console.log(user.age);
+        console.log(query);
+
+        if (user.age === parseInt(query)) {
+          console.log('push');
           tempArray.push(user);
         }
       }
@@ -115,8 +120,13 @@ angular.module('dbfrontappApp')
 
       for (var i in $scope.originalUserList) {
         var user = $scope.originalUserList[i];
-        if (user.str_id  === query) {
-          tempArray.push(user);
+        for (var j in user.participate_tasks) {
+          var task = user.participate_tasks[j];
+          // console.log("task_name");
+          // console.log(task_name);
+          if (task.name == query) {
+            tempArray.push(user);
+          }
         }
       }
 
