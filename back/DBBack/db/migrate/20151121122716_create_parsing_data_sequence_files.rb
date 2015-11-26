@@ -12,7 +12,7 @@ class CreateParsingDataSequenceFiles < ActiveRecord::Migration
       t.boolean :is_valued
       t.integer :data_quality_score
       t.boolean :is_passed
-
+      
       t.references :submit_user
       t.references :task
       t.references :raw_data_type

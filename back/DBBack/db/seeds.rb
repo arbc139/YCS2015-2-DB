@@ -52,10 +52,7 @@ t.belongs_to :task, index: true # FK to task
 t.belongs_to :user, index: true # FK to user
 """
 
-submitter.tasks << t1 << t2 << t3
-t1.users << submitter
-t2.users << submitter
-t3.users << submitter
+submitter.tasks << [t1, t2, t3]
 
 #################################### RAW_DATA_TYPE ####################################
 # RAW_DATA_TYPE columns
@@ -146,15 +143,15 @@ pdsf2.raw_data_type = rdt2
 
 
 # relationship PDSF with task
-t1.pds_files << [pdsf1, pdsf2]
+t1.pds_files << pdsf1 << pdsf2
 
 # relationship PDSF with submitter
-submitter.submit_pds_files << [pdsf1, pdsf2]
+submitter.submit_pds_files << pdsf1 << pdsf2
 
 # relationship PDSF with valuer
-valuer.evaluate_pds_files << [pdsf1, pdsf2]
+valuer.evaluate_pds_files << pdsf1 << pdsf2
 
 # relationship PDSF with raw_data_type
-rdt1.pds_files << [pdsf1]
-rdt2.pds_files << [pdsf2]
+rdt1.pds_files << pdsf1
+rdt2.pds_files << pdsf2
 """
