@@ -124,7 +124,7 @@ angular.module('dbfrontappApp')
           var task = user.participate_tasks[j];
           // console.log("task_name");
           // console.log(task_name);
-          if (task.name == query) {
+          if (task.t_name == query) {
             tempArray.push(user);
           }
         }
