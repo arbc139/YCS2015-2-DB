@@ -22,7 +22,7 @@
     </thead>
     <tbody>
       <tr ng-repeat="item in taskList">
-        <td>{{ item.name }}</td>
+        <td>{{ item.t_name }}</td>
         <td>{{ item.description }}</td>
         <td>{{ item.minimum_upload_period }}</td>
 
@@ -84,13 +84,13 @@
       <tr ng-repeat="item in userList">
         <!-- UserID	Name	Sex	Adrress	BDate	Role	Score -->
         <td>{{ item.str_id }}</td>
-        <td>{{ item.name }}</td>
+        <td>{{ item.u_name }}</td>
         <td>{{ item.sex }}</td>
 
         <td>{{ item.address }}</td>
         <td>{{ item.birth }}</td>
         <td>{{ item.role }}</td>
-        <td>{{ item.score }}</td>
+        <td>{{ item.value_score }}</td>
         <td><a href="#/admin-page/user-detail?uid={{item.id}}">detail </a></td>
       </tr>
     </tbody>
