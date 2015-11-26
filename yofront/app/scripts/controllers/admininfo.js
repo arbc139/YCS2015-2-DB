@@ -16,4 +16,6 @@ angular.module('dbfrontappApp')
     ];
     // check admin!
     SessionService.checkSessionType(SESSION_TYPE.ADMIN);
+
+    
   });

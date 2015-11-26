@@ -1,1 +1,19 @@
-<p>This is the admininfo view.</p>
+<h1>Admin Info</h1>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>비밀번호 변경</h4>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="new password" ng-model="query">
+          <span class="input-group-btn">
+            <button class="btn btn-primary" type="button" ng-click="search(query)">Change!</button>
+          </span>
+        </div><!-- /input-group -->
+      </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+  </div>
+</div>
