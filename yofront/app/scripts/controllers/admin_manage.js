@@ -8,7 +8,7 @@
  * Controller of the dbfrontappApp
  */
 angular.module('dbfrontappApp')
-  .controller('AdminManageCtrl', function ($scope, $location) {
+  .controller('AdminManageCtrl', function ($scope, $location, ApiService) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -16,4 +16,32 @@ angular.module('dbfrontappApp')
     ];
 
     $scope.tableId = $location.search().tid;
+
+    $scope.userList = [
+      {
+        id:1,
+        str_id: 'dfdf',
+        name: 'n',
+        sex: 'f',
+        address: 'ad',
+        birth: '56',
+        role: 'rr',
+        score: 1
+      }
+    ];
+
+    $scope.rdtList = [
+      {
+        id: 1,
+        name: 'lg'
+      },
+      {
+        id: 1,
+        name: 'lg'
+      },
+      {
+        id: 1,
+        name: 'lg'
+      }
+    ];
   });
