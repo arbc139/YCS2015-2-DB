@@ -14,6 +14,8 @@ angular.module('dbfrontappApp')
       'AngularJS',
       'Karma'
     ];
+    // check admin!
+    SessionService.checkSessionType(SESSION_TYPE.ADMIN);
 
     $scope.tableId = $location.search().tid;
 
