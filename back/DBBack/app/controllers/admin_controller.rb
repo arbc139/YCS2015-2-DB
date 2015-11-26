@@ -99,9 +99,9 @@ class AdminController < ApplicationController
     respond_to do |format|
 
       task_hash = Hash.new
-      task_hash[:users] = @users.as_json(only: [:id, :str_id, :name, :sex, :address, :birth, :role, :value_score])
+      task_hash[:submitters] = @users.as_json(only: [:id, :str_id, :name, :sex, :address, :birth, :role, :value_score])
       task_hash[:rdts] = @raw_data_types.as_json(only: [:id, :name])
-      
+
       format.html
       format.json { render :json => task_hash }
     end
