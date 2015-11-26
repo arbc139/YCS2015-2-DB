@@ -28,7 +28,11 @@
 
         <td>{{ item.task_data_table_name }}</td>
         <td>{{ item.task_data_table_schema }}</td>
-        <td><a href="{{ item.id }}">stat</a>&nbsp;<a href="{{ item.id }}">manage</a></td>
+        <td>
+          <a href="#/admin-page/statistics?table_id={{item.id}}">stat</a>
+          &nbsp;
+          <a href="{{ item.id }}">manage</a>
+        </td>
       </tr>
     </tbody>
     </table>

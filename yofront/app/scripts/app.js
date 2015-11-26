@@ -33,6 +33,14 @@ angular
           templateUrl: 'views/adminpage.html',
           controller: 'AdminpageCtrl',
       })
+      .when('/admin-page/statistics', {
+        templateUrl: 'views/admin_statistics.html',
+        controller: 'AdminStatisticsCtrl'
+      })
+      .when('/admin-page/manage', {
+        templateUrl: 'views/admin_manage.html',
+        controller: 'AdminManageCtrl'
+      })
       .when('/submitter-page', {
         templateUrl: 'views/submitterpage.html',
         controller: 'SubmitterpageCtrl'
