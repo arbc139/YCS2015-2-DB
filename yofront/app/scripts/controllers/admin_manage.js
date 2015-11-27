@@ -17,33 +17,41 @@ angular.module('dbfrontappApp')
     // check admin!
     SessionService.checkSessionType(SESSION_TYPE.ADMIN);
 
-    $scope.tableId = $location.search().tid;
+    this.tableId = $location.search().tid;
 
-    $scope.userList = [
-      {
-        id:1,
-        str_id: 'dfdf',
-        name: 'n',
-        sex: 'f',
-        address: 'ad',
-        birth: '56',
-        role: 'rr',
-        score: 1
-      }
-    ];
+    ApiService.getAdminManageJSON(this.tableId,
+    function(res) {
+      $scope.userList = res.data.submitters;
+      $scope.rdtList = res.data.rdts;
+    }, function(res) {
+      console.log('getAdminManageJSON error');
+    });
 
-    $scope.rdtList = [
-      {
-        id: 1,
-        name: 'lg'
-      },
-      {
-        id: 1,
-        name: 'lg'
-      },
-      {
-        id: 1,
-        name: 'lg'
-      }
-    ];
+    // $scope.userList = [
+    //   {
+    //     id:1,
+    //     str_id: 'dfdf',
+    //     name: 'n',
+    //     sex: 'f',
+    //     address: 'ad',
+    //     birth: '56',
+    //     role: 'rr',
+    //     score: 1
+    //   }
+    // ];
+    //
+    // $scope.rdtList = [
+    //   {
+    //     id: 1,
+    //     name: 'lg'
+    //   },
+    //   {
+    //     id: 1,
+    //     name: 'lg'
+    //   },
+    //   {
+    //     id: 1,
+    //     name: 'lg'
+    //   }
+    // ];
   });

@@ -53,7 +53,7 @@ angular.module('dbfrontappApp')
           // column의 리스트?
       },
       getUserInfo: function(userId, onS, onE) {
-        $http.get('http://db.olaf.kr/api/admin/users/', {
+        $http.get('http://db.olaf.kr/api/admin/users.json/', {
           params: {
             id: userId
           }
@@ -72,6 +72,13 @@ angular.module('dbfrontappApp')
         // {"id":1,"raw_name":"RAW_DATA_TYPE1_name","schema":"RAW_DATA_TYPE1_schema"}
         $http.get('http://db.olaf.kr/api/admin/raw_data_types.json')
         .then(onS, onE);
+      },
+      getAdminManageJSON: function(taskId, onS, onE) {
+        $http.get('http://db.olaf.kr/api/admin/tasks/manage.json', {
+          params: {
+            task_id: taskId
+          }
+        }).then(onS, onE);
       }
     };
   });
