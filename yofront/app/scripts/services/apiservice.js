@@ -61,7 +61,7 @@ angular.module('dbfrontappApp')
         .then(onS, onE);
       },
       getTaskInfo: function(taskId, onS, onE) {
-        $http.get('http://db.olaf.kr/api/admin/tasks/stat', {
+        $http.get('http://db.olaf.kr/api/admin/tasks/stat.json', {
           params: {
             task_id: taskId
           }

@@ -8,7 +8,7 @@
  * Controller of the dbfrontappApp
  */
 angular.module('dbfrontappApp')
-  .controller('AdminStatisticsCtrl', function ($scope, $location, ApiService) {
+  .controller('AdminStatisticsCtrl', function ($scope, $location, SessionService, SESSION_TYPE, ApiService) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -17,7 +17,7 @@ angular.module('dbfrontappApp')
     // check admin!
     SessionService.checkSessionType(SESSION_TYPE.ADMIN);
 
-    $scope.tableId = $location.search().tid; // todo delete
+    this.tableId = $location.search().tid; // todo delete
 
     // ApiService.getUserList(function(res) {
     //   $scope.userList = res.data;
@@ -27,21 +27,15 @@ angular.module('dbfrontappApp')
     //   console.log(res.data);
     // });
 
-    $scope.submitted_file_count = 100;
-    $scope.passed_file_count = 99;
+    ApiService.getTaskInfo(this.tableId,
+    function(res) {
+      $scope.submitted_file_count = res.data.no_of_submitted_files;
+      $scope.passed_file_count = res.data.no_of_passed_files;
+      $scope.userList = res.data.submitters;
 
-    $scope.userList = [
-      {
-        id:1,
-        str_id: 'dfdf',
-        name: 'n',
-        sex: 'f',
-        address: 'ad',
-        birth: '56',
-        role: 'rr',
-        score: 1
-      }
-    ];
+    }, function(res){
+      console.log('getTaskInfo error');
+    });
 
     $scope.rdtList = [
       {

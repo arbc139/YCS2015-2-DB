@@ -8,7 +8,7 @@
  * Controller of the dbfrontappApp
  */
 angular.module('dbfrontappApp')
-  .controller('AdminManageCtrl', function ($scope, $location, ApiService) {
+  .controller('AdminManageCtrl', function ($scope, $location, ApiService, SessionService, SESSION_TYPE) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
