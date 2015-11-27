@@ -43,9 +43,8 @@ angular.module('dbfrontappApp')
           };
 
           $http
-          .post('http://db.olaf.kr/api/login', params, config) // todo rename url
+          .post('http://db.olaf.kr/api/admin/tasks', params, config)
           .then(onS, onE);
-          dfsdfsdf see todo
           // .success(function (data) {
           //   console.log('success ');
           //   console.log(data);
