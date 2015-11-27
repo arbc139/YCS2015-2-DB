@@ -67,6 +67,11 @@ angular.module('dbfrontappApp')
           }
         })
         .then(onS, onE);
+      },
+      getRawDataTypes: function(onS, onE) {
+        // {"id":1,"raw_name":"RAW_DATA_TYPE1_name","schema":"RAW_DATA_TYPE1_schema"}
+        $http.get('http://db.olaf.kr/api/admin/raw_data_types.json')
+        .then(onS, onE);
       }
     };
   });
