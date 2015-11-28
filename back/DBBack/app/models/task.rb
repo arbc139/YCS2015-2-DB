@@ -33,6 +33,10 @@ class Task < ActiveRecord::Base
 
     accepted_submitters
   end
+
+  def raw_data_types!
+    self.raw_data_types.as_json(only: [:id, :raw_name])
+  end
   
   # 동적 테이블 생성 튜토리얼 스크립트들
   def create_tdt(tdt)

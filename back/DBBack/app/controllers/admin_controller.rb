@@ -8,8 +8,9 @@ class AdminController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tasks.as_json(
-        only: [:id, :t_name, :description, :minimum_upload_period, :task_data_table_name, :task_data_table_schema]
-        ) }
+        only: [:id, :t_name, :description, :minimum_upload_period, :task_data_table_name, :task_data_table_schema]#,
+        #methods: [:raw_data_types!]
+        )}
     end
   end
 
@@ -50,7 +51,6 @@ class AdminController < ApplicationController
   end
 
   ######################################### SHOW ACTION #########################################
-  # GET /users/1
   def userShow
     @user = User.find(params[:id])
 

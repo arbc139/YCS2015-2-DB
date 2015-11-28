@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/api/users' => 'users#index'
   # user 등록창
   get '/api/signup' => 'users#new'
+  ###########
 
   ## 앵제) Login 창에서 Login 버튼을 눌렀을 때
   # str_id, password를 받아서 특정 User를 찾아주는 액션
@@ -35,9 +36,9 @@ Rails.application.routes.draw do
   ## Admin 페이지에서 특정 정보 가져오는 액션
   # 특정 유저 정보 가져오기 액션
   get '/api/admin/users/:id' => 'admin#userShow'
-  # 특정 테스크의 유저정보, 원본데이터정보 가져오기 액션 (?task_id=1)
+  # 특정 테스크의 유저정보, 원본데이터정보 가져오기 액션 #(?task_id=1)
   get '/api/admin/tasks/manage' => 'admin#taskManageShow'
-  # 특정 테스크의 통계 정보 가져오기 액션 (?task_id=1)
+  # 특정 테스크의 통계 정보 가져오기 액션 #(?task_id=1)
   get '/api/admin/tasks/stat' => 'admin#taskStatShow'
 
   ## Admin 페이지에서 정보를 디비에 추가하는 액션
