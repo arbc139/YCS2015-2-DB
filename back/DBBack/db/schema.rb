@@ -51,8 +51,9 @@ ActiveRecord::Schema.define(version: 20151121124524) do
   create_table "r_user_submits", force: :cascade do |t|
     t.integer  "task_id"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "is_accepted", default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "r_user_submits", ["task_id"], name: "index_r_user_submits_on_task_id"

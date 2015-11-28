@@ -21,12 +21,18 @@ admin = User.create(
   )
 
 submitter = User.create(
-  str_id: 'submitter', password: 's', u_name: 'dy', sex: 'M', address: 'Seoul', birth: Date.parse('1997/09/20'), phone_number: '010', value_score: '100', 
+  str_id: 'submitter', password: 's', u_name: 'dy', sex: 'M', address: 'Seoul', birth: Date.parse('1997/09/20'), phone_number: '010', value_score: '100',
   role: 'submitter'
   )
 
+submitter2 = User.create(
+  str_id: 'submitter2', password: 's', u_name: 'dyd', sex: 'M', address: 'Seoul', birth: Date.parse('1997/09/20'), phone_number: '010', value_score: '100',
+  role: 'submitter'
+  )
+
+
 valuer = User.create(
-  str_id: 'valuer', password: 'v', u_name: 'dy', sex: 'M', address: 'Seoul', birth: Date.parse('2001/09/20'), phone_number: '010', value_score: '100', 
+  str_id: 'valuer', password: 'v', u_name: 'dy', sex: 'M', address: 'Seoul', birth: Date.parse('2001/09/20'), phone_number: '010', 
   role: 'valuer'
   )
 
@@ -52,7 +58,8 @@ t.belongs_to :task, index: true # FK to task
 t.belongs_to :user, index: true # FK to user
 """
 
-submitter.tasks << [t1, t2, t3]
+submitter.tasks << t1 << t2 << t3
+submitter2.tasks << t1 << t2 << t3
 
 #################################### RAW_DATA_TYPE ####################################
 # RAW_DATA_TYPE columns
@@ -75,9 +82,9 @@ t.belongs_to :raw_data_type, index: true  #FK to raw_data_type
 """
 
 # relationship PK FK seeds
-t1.raw_data_types << [rdt1, rdt2, rdt3]
-t2.raw_data_types << [rdt2, rdt3]
-t3.raw_data_types << [rdt3, rdt4]
+t1.raw_data_types << rdt1 << rdt2 << rdt3
+t2.raw_data_types << rdt2 << rdt3
+t3.raw_data_types << rdt3 << rdt4
 
 #################################### PARSING_DATA_SEQUENCE_FILE ####################################
 # PARSING_DATA_SEQUENCE_FILE columns

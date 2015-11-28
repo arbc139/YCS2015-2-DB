@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   # 전체 유저 목록 가져오기 액션
   get '/api/admin/users' => 'admin#userIndex'
   # 전체 원본 데이터 타입 가져오기 액션
-  get '/api/admin/raw_data_types' => 'admin#rdtIndex'
+  get '/api/admin/rdts' => 'admin#rdtIndex'
   # 전체 Parsing Data File 가져오기 액션
   get '/api/admin/pdsfs' => 'admin#pdsfIndex'
   
@@ -43,6 +43,13 @@ Rails.application.routes.draw do
   ## Admin 페이지에서 정보를 디비에 추가하는 액션
   # 테스크 추가 액션
   post '/api/admin/tasks' => 'admin#taskCreate'
+  # 원본 데이터 타입 추가 액션
+  post '/api/admin/rdts' => 'admin#rdtCreate'
+
+  ## Admin 페이지의 특정 테스크 관리 페이지에서 제출자의 테스크 참가를 수락/거절하는 액션
+  # parameter
+  # "task_id": 1, "user_id": 1, "accept": true
+  post '/api/admin/tasks/manage' => 'admin#participateUpdate'
 
 
   #################################### SUBMITTER ####################################

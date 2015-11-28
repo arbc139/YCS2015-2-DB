@@ -15,6 +15,24 @@ class Task < ActiveRecord::Base
     # get from TDT
     0
   end
+
+  def unaccepted_submitters
+    unaccepted_submitters = []
+    for submitter in self.users
+      unaccepted_submitters << submitter unless submitter.is_accepted?(self)
+    end
+
+    unaccepted_submitters
+  end
+
+  def accepted_submitters
+    accepted_submitters = []
+    for submitter in self.users
+      accepted_submitters << submitter if submitter.is_accepted?(self)
+    end
+
+    accepted_submitters
+  end
   
   # 동적 테이블 생성 튜토리얼 스크립트들
   def create_tdt(tdt)

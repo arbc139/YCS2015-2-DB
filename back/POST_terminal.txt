@@ -1,0 +1,22 @@
+################################################## SESSION ##################################################
+### userCreate Action
+# submitter case
+curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d ' {"submitter":{"str_id":"test_str_id","password":"test_password","u_name":"test_name","sex":"test_sex","address":"test_address", "birth":"2000-09-20", "phone_number":"010", "value_score":"test_value_score", "role":"submitter"}}' http://localhost:3000/api/users
+# valuer case
+curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d ' {"valuer":{"str_id":"test_str_id","password":"test_password","u_name":"test_name","sex":"test_sex","address":"test_address", "birth":"2000-09-20", "phone_number":"010", "role":"valuer"}}' http://localhost:3000/api/users
+
+
+################################################## ADMIN ##################################################
+### taskCreate Action
+curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"task":{"name":"TASK_NAME_test","description":"TASK_DESCRIPTION_test","minimum_upload_period":"TASK_MIN_test","task_data_table_schema":”TASK_DTS_test"}, "raw_data_types": [{"id":"1","schema":"RAW_DATA_TYPE1_schema"},{"id":"2","schema":"RAW_DATA_TYPE2_schema"}]}' http://localhost:3000/api/admin/tasks
+
+### rdtCreate Action
+curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"raw_data_type": {"raw_name": "RAW_NAME_test", "schema": "SCHEMA_test"}}' http://localhost:3000/api/admin/rdts
+
+
+### participateUpdate Action
+# true case
+curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"task_id":2, "user_id":2, "accept":true}' http://localhost:3000/api/admin/tasks/manage
+# false case
+curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"task_id":3, "user_id":2, "accept":false}' http://localhost:3000/api/admin/tasks/manage
+

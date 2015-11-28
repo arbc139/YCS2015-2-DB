@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_filter :verify_authenticity_token, :only => :create
+  skip_before_filter :verify_authenticity_token#, :only => :userCreate
   
   ######################################### FIND ACTION #########################################
   def userFind
@@ -28,30 +28,20 @@ class SessionsController < ApplicationController
     logger.info "Yeah User POST come on!"
     @user = User.new(user_params)
     
-    respond_to do |format|
-      if @user.save
-        #session[:user_id] = @user.id
-
-        #format.html { redirect_to '/api/users', notice: 'User was successfully created.' }
-        format.json { render json: @user.as_json(only: [:id, :str_id, :role]) }
-      else
-        #redirect_to '/signup' # => 'users#new'
-        #format.html { redirect_to '/api/users' }
-        result = Hash.new
-        result["error"] = "wrong"
-        format.json { render json: result }
-      end
+    if @user.save
+      render json: @user.as_json(only: [:id, :str_id, :role])
+    else
+      render json: {'SESSION) user create' => 'create fail'}
     end
   end
 
   private
   def user_params
-    params.require(:user).permit(:str_id, :password, :name, :sex, :address, :birth, :phone_number, :value_score, :role)
-    # information = request.raw_post
-    # data_parsed = JSON.parse(information)
-    #information = request.raw_post
-    #data_parsed = JSON.parse(information)
-    #params.require(:user).permit(data_parsed)
+    if !params[:submitter].blank?
+      params.require(:submitter).permit(:str_id, :password, :u_name, :sex, :address, :birth, :phone_number, :value_score, :role)
+    elsif !params[:valuer].blank?
+      params.require(:valuer).permit(:str_id, :password, :u_name, :sex, :address, :birth, :phone_number, :role)
+    end
   end
 
 end

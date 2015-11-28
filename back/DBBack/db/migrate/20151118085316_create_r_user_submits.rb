@@ -3,6 +3,8 @@ class CreateRUserSubmits < ActiveRecord::Migration
     create_table :r_user_submits do |t|
       t.belongs_to :task, index: true # FK to task
       t.belongs_to :user, index: true # FK to user
+
+      t.boolean :is_accepted, default: false
       
       t.timestamps null: false
     end

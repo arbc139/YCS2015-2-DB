@@ -52,15 +52,6 @@ class AdminController < ApplicationController
   ######################################### SHOW ACTION #########################################
   # GET /users/1
   def userShow
-    """
-    @user = User.find(params[:id])
-
-    respond_to do |format|
-      format.html
-      format.json { render :json => @user }
-    end
-    """
-
     @user = User.find(params[:id])
 
     respond_to do |format| 
@@ -106,7 +97,7 @@ class AdminController < ApplicationController
 
   def taskManageShow
     @task = Task.find(params[:task_id])
-    @users = @task.users
+    @users = @task.unaccepted_submitters
 
     respond_to do |format|
 
@@ -137,10 +128,9 @@ class AdminController < ApplicationController
   end
 
   ######################################### CREATE ACTION #########################################
-  # curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"task":{"name":"TASK_NAME_test","description":"TASK_DESCRIPTION_test","minimum_upload_period":"TASK_MIN_test","task_data_table_schema":”TASK_DTS_test"}, "raw_data_types": [{"id":"1","schema":"RAW_DATA_TYPE1_schema"},{"id":"2","schema":"RAW_DATA_TYPE2_schema"}]}' http://localhost:3000/api/admin/task
   def taskCreate
     # FIXIT :- need to change :raw_data_type
-    logger.info "Yeah Task POST come on!"
+    logger.info 'Yeah Task POST come on!'
     @task = Task.new(task_params) # put task informations
     raw_data_type_list = params[:raw_data_types] # put raw_data_type informations
     raw_data_type_list.each do |raw_data_type|
@@ -149,18 +139,54 @@ class AdminController < ApplicationController
 
     logger.info "Save completed?"
 
-    respond_to do |format|
-      if @task.save
-        #session[:user_id] = @user.id
+    if @task.save
+      render json: @task.as_json(only: [:id, :t_name])
+    else
+      render json: {'ADMIN) task create' => 'create fail'}
+    end
+  end
 
-        format.html { redirect_to '/api/users', notice: 'User was successfully created.' }
-        format.json { render json: @task.as_json(only: [:id, :t_name]) }
+
+  def rdtCreate
+    logger.info 'Yeah Raw Data Type POST come on!'
+    @rdt = RawDataType.new(rdt_params) # put rdt informations
+
+    if @rdt.save
+      render json: @rdt.as_json
+    else
+      render json: {'ADMIN) rdt create' => 'create fail'}
+    end
+  end
+
+  ######################################### UPDATE ACTION #########################################
+  def participateUpdate
+    @user = User.find(params[:user_id])
+    @task = Task.find(params[:task_id])
+
+    logger.info 'Update go?'
+    # if participate accepted
+    if params[:accept]
+      if RUserSubmit.find_by(user: @user, task: @task).update_attributes(:is_accepted => true)
+        log_message = 'submitter access allowed, update success'
+        logger.info log_message
+        render json: {'ADMIN) participate update' => log_message}
       else
-        #redirect_to '/signup' # => 'users#new'
-        format.html { render action: 'new' }
-        result = Hash.new
-        result["error"] = "wrong"
-        format.json { render json: result }
+        log_message = 'submitter access allowed, but update failed'
+        logger.info log_message
+        render json: {'ADMIN) participate update' => log_message}
+      end
+
+    # if participate denied
+    else
+      # disconnect relationship between @user, @task
+      if RUserSubmit.where(user: @user, task: @task).any? && @task.users.delete(@user)
+        log_message = 'submitter access denied, delete success'
+        logger.info log_message
+        render json: {'participate update' => log_message}
+      else
+        log_message = 'submitter access denied, but delete failed'
+        logger.info log_message
+        render json: {'participate update' => log_message}
       end
     end
   end
@@ -171,6 +197,11 @@ class AdminController < ApplicationController
   def task_params
     params.require(:task).permit(:t_name, :description, :minimum_upload_period, :task_data_table_name, :task_data_table_schema)
     # :name, :description, :minimum_upload_period, :task_data_table_schema
+  end
+
+  def rdt_params
+    params.require(:raw_data_type).permit(:raw_name, :schema)
+    # :raw_name, :schema
   end
 
 end

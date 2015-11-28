@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
   def submitter?
     self.role == 'submitter'
   end
+  
+  def is_accepted?(task)
+    self.role == 'submitter' && RUserSubmit.find_by(user: self, task: task).is_accepted
+  end
 
   def age
     birthday = self.birth
