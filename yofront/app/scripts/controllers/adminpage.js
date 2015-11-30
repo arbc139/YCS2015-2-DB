@@ -48,13 +48,16 @@ angular.module('dbfrontappApp')
       $scope.userList = $scope.originalUserList;
       return;
     }
+
+    var tempArray = [];
+    var i;
+    var user;
+
     if ($scope.selectedSearch === $scope.searchCategories[0]) {
       // case 'id'
 
-      var tempArray = [];
-
-      for (var i in $scope.originalUserList) {
-        var user = $scope.originalUserList[i];
+      for (i in $scope.originalUserList) {
+        user = $scope.originalUserList[i];
 
         if (user.str_id === query) {
           tempArray.push(user);
@@ -66,10 +69,8 @@ angular.module('dbfrontappApp')
     } else if ($scope.selectedSearch === $scope.searchCategories[1]) {
       // case 'role'
 
-      var tempArray = [];
-
-      for (var i in $scope.originalUserList) {
-        var user = $scope.originalUserList[i];
+      for (i in $scope.originalUserList) {
+        user = $scope.originalUserList[i];
 
         if (user.role === query) {
           tempArray.push(user);
@@ -81,11 +82,8 @@ angular.module('dbfrontappApp')
     } else if ($scope.selectedSearch === $scope.searchCategories[2]) {
       //case 'age'
 
-
-      var tempArray = [];
-
-      for (var i in $scope.originalUserList) {
-        var user = $scope.originalUserList[i];
+      for (i in $scope.originalUserList) {
+        user = $scope.originalUserList[i];
 
         console.log(user.age);
         console.log(query);
@@ -101,10 +99,8 @@ angular.module('dbfrontappApp')
     } else if ($scope.selectedSearch === $scope.searchCategories[3]) {
       // case 'sex'
 
-      var tempArray = [];
-
-      for (var i in $scope.originalUserList) {
-        var user = $scope.originalUserList[i];
+      for (i in $scope.originalUserList) {
+        user = $scope.originalUserList[i];
 
         if (user.sex === query) {
           tempArray.push(user);
@@ -116,15 +112,13 @@ angular.module('dbfrontappApp')
     } else if ($scope.selectedSearch === $scope.searchCategories[4]) {
       // case 'task name'
 
-      var tempArray = [];
-
-      for (var i in $scope.originalUserList) {
-        var user = $scope.originalUserList[i];
+      for (i in $scope.originalUserList) {
+        user = $scope.originalUserList[i];
         for (var j in user.participate_tasks) {
           var task = user.participate_tasks[j];
           // console.log("task_name");
           // console.log(task_name);
-          if (task.t_name == query) {
+          if (task.t_name === query) {
             tempArray.push(user);
           }
         }
@@ -133,9 +127,9 @@ angular.module('dbfrontappApp')
       $scope.userList = tempArray;
 
     } else {
-      alert('sibal?');
+      window.alert('sibal?');
     }
-  }
+  };
 
   // search end
 
