@@ -23,7 +23,10 @@ angular.module('dbfrontappApp')
 
 
       var isValidForm = function() {
-        return isValidPassword() && isValidSex() && isValidRole();
+         return isValidPassword()
+         && isValidSex()
+         && isValidRole()
+         && isValidBirth();
       };
 
       var isValidPassword = function() {
@@ -36,6 +39,11 @@ angular.module('dbfrontappApp')
         var sex = $scope.suUser.sex.toUpperCase();
         return sex === 'M' || sex === 'F';
       };
+
+      var isValidBirth = function() {
+        var birth = $scope.suUser.birth.match(/^(\d{4})\-(\d{1,2})\-(\d{1,2})$/);
+        return birth !== null;
+      }
 
       var isValidRole = function() {
         var role = $scope.suUser.role.toLowerCase();
@@ -53,6 +61,9 @@ angular.module('dbfrontappApp')
         }
         if (!isValidSex()) {
           resultStr += 'SEX checking fail<br>';
+        }
+        if (!isValidBirth()) {
+          resultStr += 'BIRTH checking fail<br>';
         }
         if (!isValidRole()) {
           resultStr += 'ROLE checking fail<br>';

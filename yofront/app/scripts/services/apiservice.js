@@ -79,6 +79,11 @@ angular.module('dbfrontappApp')
             task_id: taskId
           }
         }).then(onS, onE);
+      },
+
+      // signUp
+      postSignUp: function(id, password, uName, sex, address, birth, phone, role) {
+
       }
     };
   });
