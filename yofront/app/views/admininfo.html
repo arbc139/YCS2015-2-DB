@@ -7,12 +7,15 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-lg-6">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="new password" ng-model="query">
-          <span class="input-group-btn">
-            <button class="btn btn-primary" type="button" ng-click="search(query)">Change!</button>
-          </span>
-        </div><!-- /input-group -->
+        <form>
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="new password" ng-model="query">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="submit" ng-click="search(query)">Change!</button>
+              </span>
+            </input>
+          </div><!-- /input-group -->
+        </form>
       </div><!-- /.col-lg-6 -->
     </div><!-- /.row -->
   </div>
