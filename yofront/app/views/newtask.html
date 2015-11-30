@@ -1,11 +1,11 @@
 <h1>Admin new task</h1>
 
-<div class="panel panel-default" style="margin-left: 20%; margin-right: 20%">
+<div class="panel panel-default" >
   <div class="panel-heading">
     <h4>File Upload</h4>
   </div>
   <div class="panel-body">
-    <div class="form">
+    <div class="form" style="margin-left: 20%; margin-right: 20%">
       <div class="input-group">
           <span class="input-group-addon" id="t-name">NAME</span>
           <input type="text" class="form-control" placeholder="task name" aria-describedby="id" ng-model="nt.t_name"/>
@@ -24,15 +24,13 @@
       <div class="input-group">
           <span class="input-group-addon" id="tdsc">TDSC</span>
           <input type="text" class="form-control" placeholder="task data table schema" aria-describedby="tdsc" ng-model="nt.task_data_table_schema"/>
-      </div><br>
-
-      <div class="checkbox-inline" >
-        <label><input type="checkbox" value="sss">Option 1</label>
-      </div>
-      <div class="checkbox-inline" >
-        <label><input type="checkbox" value="sss">Option 1</label>
       </div>
 
+      <h4>원본 데이터 타입 선택 (복수선택 가능)</h4>
+
+      <div class="checkbox" ng-repeat="item in rdtList">
+        <label><input type="checkbox" value="">{{ item.raw_name }}</label>
+      </div>
 
       <button id="btn-submit" class="btn btn-primary btn-lg btn-block" ng-click="submit()" type="submit">Submit</button>
     </div>

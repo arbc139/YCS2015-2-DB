@@ -8,7 +8,7 @@
  * Controller of the dbfrontappApp
  */
 angular.module('dbfrontappApp')
-  .controller('NewtaskCtrl', function (SessionService, SESSION_TYPE) {
+  .controller('NewtaskCtrl', function ($scope, ApiService, SessionService, SESSION_TYPE) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -16,4 +16,12 @@ angular.module('dbfrontappApp')
     ];
     // check admin!
     SessionService.checkSessionType(SESSION_TYPE.ADMIN);
+
+    ApiService.getRawDataTypes(function(res) {
+      $scope.rdtList = res.data;
+      console.log(res.data);
+    }, function(res) {
+      console.log();
+    });
+
   });
