@@ -18,19 +18,22 @@ angular.module('dbfrontappApp')
       }
     };
 
+    var SERVER_URL = 'http://db.olaf.kr/api';
+    // var SERVER_URL = 'http://localhost:3000/api';
+
     // Public API here
     return {
       getTaskList: function (onS, onE) {
-        $http.get('http://db.olaf.kr/api/admin/tasks.json')
+        $http.get(SERVER_URL + '/admin/tasks.json')
         .then(onS, onE);
       },
 
       getUserList: function(onS, onE) {
-        $http.get('http://db.olaf.kr/api/admin/users.json')
+        $http.get(SERVER_URL + '/admin/users.json')
         .then(onS, onE);
       },
       login: function(id, pw, onS, onE) {
-        $http.get('http://db.olaf.kr/api/login.json', {
+        $http.get(SERVER_URL + '/login.json', {
           params: {
             str_id: id,
             password: pw
@@ -42,7 +45,7 @@ angular.module('dbfrontappApp')
 
 
           $http
-          .post('http://db.olaf.kr/api/admin/tasks', params, config)
+          .post(SERVER_URL + '/admin/tasks', params, config)
           .then(onS, onE);
 
           // post '/api/admin/tasks’로 포스트 보내주면되고 argument는
@@ -52,7 +55,7 @@ angular.module('dbfrontappApp')
           // column의 리스트?
       },
       getUserInfo: function(userId, onS, onE) {
-        $http.get('http://db.olaf.kr/api/admin/users.json/', {
+        $http.get(SERVER_URL + '/admin/users.json/', {
           params: {
             id: userId
           }
@@ -60,7 +63,7 @@ angular.module('dbfrontappApp')
         .then(onS, onE);
       },
       getTaskInfo: function(taskId, onS, onE) {
-        $http.get('http://db.olaf.kr/api/admin/tasks/stat.json', {
+        $http.get(SERVER_URL + '/admin/tasks/stat.json', {
           params: {
             task_id: taskId
           }
@@ -69,11 +72,11 @@ angular.module('dbfrontappApp')
       },
       getRawDataTypes: function(onS, onE) {
         // {"id":1,"raw_name":"RAW_DATA_TYPE1_name","schema":"RAW_DATA_TYPE1_schema"}
-        $http.get('http://db.olaf.kr/api/admin/raw_data_types.json')
+        $http.get(SERVER_URL + '/admin/raw_data_types.json')
         .then(onS, onE);
       },
       getAdminManageJSON: function(taskId, onS, onE) {
-        $http.get('http://db.olaf.kr/api/admin/tasks/manage.json', {
+        $http.get(SERVER_URL + '/admin/tasks/manage.json', {
           params: {
             task_id: taskId
           }
@@ -112,7 +115,7 @@ angular.module('dbfrontappApp')
           };
         }
 
-        $http.post('http://db.olaf.kr/api/users', params, config)
+        $http.post(SERVER_URL + '/users', params, config)
         .then(onS, onE);
       },
 
@@ -121,9 +124,7 @@ angular.module('dbfrontappApp')
         var params = {
           csv: csvStr
         };
-        $http.post(
-          'http://localhost:3000/api/test/csv',
-          // 'http://db.olaf.kr/api/test/csv',
+        $http.post(SERVER_URL + '/test/csv',
           params, config)
         .then(onS, onE);
       }
