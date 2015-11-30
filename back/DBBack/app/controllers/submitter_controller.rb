@@ -49,6 +49,18 @@ class SubmitterController < ApplicationController
     end
   end
 
+  ######################################### SHOW ACTION #########################################
+  def taskInfoShow
+    method_message = 'SUBMITTER) task info show'
+    
+    @submitter = User.find(params[:user_id])
+    @task = Task.find(params[:task_id])
+
+    # submitter가 Task에 제출한 파일 수
+    # submitter가 제출한 파일들 중, pass한 파일 수
+
+  end
+  
   ######################################### UPDATE ACTION #########################################
   def taskApplyUpdate
     method_message = 'SUBMITTER) task apply update'
@@ -92,12 +104,12 @@ class SubmitterController < ApplicationController
     @rdt = RawDataType.find(params[:rdt_id])
     @period = period
     @inning = inning
-    
+
     # parse_result = parsing_file(params[:csv], rdt_schema, tdt_schema) # 영훈이의 파싱 함수 호출
     # return [:all_tuple_num], [:duplicated_tuple_num], [:col_null_ratios], [:parsed_file]
-    
+
     @pdsf = ParsingDataSequenceFile.new(pdsf_params(parse_result, @period, @inning, @submitter_id, @task.id, @rdt.id))
-    
+
     parse_result[:col_null_ratios].each do |col, null_ratio|
       ParseColumnNullRatio.create(
         column_name: col,

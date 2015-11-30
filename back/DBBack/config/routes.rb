@@ -70,6 +70,8 @@ Rails.application.routes.draw do
   get '/api/submitter/tasks/apply' => 'submitter#taskApplyIndex'
   # submitter가 참가하고 있는 테스크 목록 가져오기 액션
   get '/api/submitter/tasks/participate' => 'submitter#taskParticipateIndex'
+  # submitter가 참가하고 있는 테스크의 info 보기 (task_id, user_id)
+  get '/api/submitter/tasks/info' => 'submitter#taskInfoShow'
 
   ## Submitter 페이지에서 테스크 참가신청 했을 때
   post '/api/submitter/tasks/apply' => 'submitter#taskApplyUpdate'

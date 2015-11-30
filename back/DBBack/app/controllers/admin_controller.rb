@@ -177,7 +177,7 @@ class AdminController < ApplicationController
 
     @user = User.find(params[:user_id])
     @task = Task.find(params[:task_id])
-
+    
     logger.info 'Yeah Participation Update POST come on!'
     # if participate accepted
     if params[:accept]

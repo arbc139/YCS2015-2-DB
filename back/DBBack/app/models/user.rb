@@ -35,6 +35,15 @@ class User < ActiveRecord::Base
     self.tasks.as_json(only: [:id, :t_name])
   end
 
+  def no_of_submitted_files
+    self.submit_pds_files.size
+  end
+
+  def no_of_passed_files
+    # get from TDT (need to implement Task Data Table)
+    0
+  end
+
   def youShallNotPass(method_message)
     if self.admin?
       {method_message => 'user is admin!'}
