@@ -82,15 +82,15 @@ angular.module('dbfrontappApp')
           $scope.suUser.id,
           $scope.suUser.password,
           $scope.suUser.name,
-          $scope.suUser.sex,
+          $scope.suUser.sex.toUpperCase(),
           $scope.suUser.address,
           $scope.suUser.birth,
           $scope.suUser.phone,
-          $scope.suUser.role,
+          $scope.suUser.role.toLowerCase(),
           function(res) {
             console.log('post signUp.js onS');
             console.log(res);
-            alertify.success('Success');
+            alertify.success('Success<br>Please sign in');
             SessionService.setCurrentSessionType(SESSION_TYPE.WRONG);
             $location.path('/sign-in');
           }, function(res) {
