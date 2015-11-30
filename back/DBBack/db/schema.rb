@@ -28,14 +28,14 @@ ActiveRecord::Schema.define(version: 20151121124524) do
     t.integer  "all_tuple_num"
     t.integer  "duplicated_tuple_num"
     t.integer  "valuer_id"
-    t.boolean  "is_valued"
-    t.integer  "data_quality_score"
-    t.boolean  "is_passed"
+    t.boolean  "is_valued",            default: false
+    t.integer  "data_quality_score",   default: 0
+    t.boolean  "is_passed",            default: false
     t.integer  "submitter_id"
     t.integer  "task_id"
     t.integer  "raw_data_type_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   create_table "r_task_raw_data", force: :cascade do |t|

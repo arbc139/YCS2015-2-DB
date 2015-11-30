@@ -56,8 +56,8 @@ class Task < ActiveRecord::Base
       logger.info ActiveRecord::Base.connection.tables
       
       #logger.info 'nono?'
-      #ActiveRecord::Base.connection.exec_query('INSERT INTO TEST(test_column1, test_column2, test_column3) VALUES ("hi", "hello", 3030)')
-      #result = ActiveRecord::Base.connection.exec_query('SELECT * FROM TEST')
+      # ActiveRecord::Base.connection.exec_query('INSERT INTO TEST(test_column1, test_column2, test_column3) VALUES ("hi", "hello", 3030)')
+      # result = ActiveRecord::Base.connection.exec_query('SELECT * FROM TEST')
       #logger.info result.to_hash
     end
   end

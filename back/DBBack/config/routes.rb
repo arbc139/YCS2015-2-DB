@@ -74,6 +74,10 @@ Rails.application.routes.draw do
   ## Submitter 페이지에서 테스크 참가신청 했을 때
   post '/api/submitter/tasks/apply' => 'submitter#taskApplyUpdate'
 
+  ## Submitter 페이지에서 정보를 디비에 추가하는 액션
+  # submitter가 해당 테스크에 원본 데이터 파일을 업로드 했을 때
+  post '/api/submitter/tasks/submit' => 'submitter#taskSubmitCreate'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

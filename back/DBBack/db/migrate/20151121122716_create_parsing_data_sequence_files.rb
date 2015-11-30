@@ -8,9 +8,9 @@ class CreateParsingDataSequenceFiles < ActiveRecord::Migration
       t.integer :duplicated_tuple_num
       
       t.references :valuer
-      t.boolean :is_valued
-      t.integer :data_quality_score
-      t.boolean :is_passed
+      t.boolean :is_valued, default: false
+      t.integer :data_quality_score, default: 0
+      t.boolean :is_passed, default: false
       
       t.references :submitter
       t.references :task

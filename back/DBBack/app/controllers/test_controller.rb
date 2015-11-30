@@ -20,27 +20,14 @@ class TestController < ApplicationController
       inning: 10,
       all_tuple_num: 10,
       duplicated_tuple_num: 10,
-      is_valued: true,
+      is_valued: false,
       data_quality_score: 10,
-      is_passed: true,
+      is_passed: false,
+      
       valuer_id: 4,
       submitter_id: 2,
       task_id: 1,
       raw_data_type_id: 1
     }
   end
-
-  """
-  def rdtCreate
-    method_message = 'ADMIN) raw data type create'
-    logger.info 'Yeah Raw Data Type POST come on!'
-    @rdt = RawDataType.new(rdt_params) # put rdt informations
-
-    if @rdt.save
-      render json: @rdt.as_json
-    else
-      render json: {method_message => 'create fail'}
-    end
-  end
-  """
 end

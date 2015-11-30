@@ -39,6 +39,7 @@ class SubmitterController < ApplicationController
       if @submitter.submitter?
         format.json { render json: @participate_tasks.as_json(
           only: [:id, :t_name, :description, :minimum_upload_period, :task_data_table_name, :task_data_table_schema]
+          methods: [:raw_data_types!]
           ) }
 
       # 만약 submitter가 아니면 에러 
@@ -73,5 +74,51 @@ class SubmitterController < ApplicationController
     end
   end
 
-  ######################################### UPDATE ACTION #########################################
+  ######################################### CREATE ACTION #########################################
+  def taskSubmitCreate
+    method_message = 'SUBMITTER) task submit create'
+    
+    ### post params 목록
+    # csv (csv파일 string 버전)
+    # user_id (submitter의 id)
+    # task_id (task의 id)
+    # rdt_id (raw_data_type id)
+    # period (회차)
+    # inning (기간)
+
+    @csv = params[:csv]
+    @submitter_id = params[:user_id]
+    @task = Task.find(params[:task_id])
+    @rdt = RawDataType.find(params[:rdt_id])
+    @period = period
+    @inning = inning
+    
+    # parse_result = parsing_file(params[:csv], rdt_schema, tdt_schema) # 영훈이의 파싱 함수 호출
+    # return [:all_tuple_num], [:duplicated_tuple_num], [:col_null_ratios], [:parsed_file]
+    
+    @pdsf = ParsingDataSequenceFile.new(pdsf_params(parse_result, @period, @inning, @submitter_id, @task.id, @rdt.id))
+    
+    parse_result[:col_null_ratios].each do |col, null_ratio|
+      ParseColumnNullRatio.create(
+        column_name: col,
+        null_ratio: null_ratio,
+        parsing_file_id: @pdsf.id
+      )
+    end
+  end
+
+  private
+  def pdsf_params(parse_result, period, inning, submitter_id, task_id, rdt_id)
+    {
+      data_blob: parse_result[:parsed_file],
+      period: period,
+      inning: inning,
+      all_tuple_num: parse_result[:all_tuple_num],
+      duplicated_tuple_num: parse_result[:duplicated_tuple_num],
+      
+      submitter_id: submitter_id,
+      task_id: task_id,
+      raw_data_type_id: rdt_id
+    }
+  end
 end
