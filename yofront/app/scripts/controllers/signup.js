@@ -8,11 +8,12 @@
  * Controller of the dbfrontappApp
  */
 angular.module('dbfrontappApp')
-  .controller('SignupCtrl', function ($scope) {
+  .controller('SignupCtrl', function ($scope, ApiService) {
     $scope.suUser = {
       id: '',
       password: '',
       password2: undefined,
+      name: '',
       sex: '',
       address: '',
       birth: '',
@@ -54,6 +55,22 @@ angular.module('dbfrontappApp')
 
       if (isValidForm()) {
         // post Api service
+        // postSignUp: function(id, password, uName, sex, address, birth, phone, role, onS, onE)
+        ApiService.postSignUp(
+          $scope.suUser.id,
+          $scope.suUser.password,
+          $scope.suUser.name,
+          $scope.suUser.sex,
+          $scope.suUser.address,
+          $scope.suUser.birth,
+          $scope.suUser.phone,
+          $scope.suUser.role,
+          function(res) {
+            console.log('post signUp.js onS');
+          }, function(res) {
+            console.log('post signUpjs onE');
+        });
+        
       } else {
         var resultStr = '';
         if (!isValidPassword()) {

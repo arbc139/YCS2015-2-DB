@@ -11,8 +11,12 @@ angular.module('dbfrontappApp')
   .factory('ApiService', function ($http) {
     // Service logic
     // ...
-
-
+    var config = {
+      headers: {
+        'Accept': 'application/json',
+        'Content-type': 'application/json'
+      }
+    };
 
     // Public API here
     return {
@@ -35,12 +39,7 @@ angular.module('dbfrontappApp')
         .then(onS, onE);
       },
       newTask: function(params, onS, onE) {
-          var config = {
-            headers: {
-              'Accept': 'application/json',
-              'Content-type': 'application/json'
-            }
-          };
+
 
           $http
           .post('http://db.olaf.kr/api/admin/tasks', params, config)
@@ -82,8 +81,38 @@ angular.module('dbfrontappApp')
       },
 
       // signUp
-      postSignUp: function(id, password, uName, sex, address, birth, phone, role) {
+      postSignUp: function(id, password, uName, sex, address, birth, phone, role, onS, onE) {
+        if (role === 'submitter') {
+          var params = {
+              submitter: {
+                str_id: id,
+                password: password,
+                u_name: uName,
+                sex: sex,
+                address: address,
+                birth: birth,
+                phone_number: phone,
+                value_score: 0,
+                role: role
+              }
+          };
+        } else if (role === 'valuer') {
+          var params = {
+              valuer: {
+                str_id: id,
+                password: password,
+                u_name: uName,
+                sex: sex,
+                address: address,
+                birth: birth,
+                phone_number: phone,
+                role: role
+              }
+          };
+        }
 
+        $http.post('http://db.olaf.kr/api/users', params, config)
+        .then(onS, onE);
       }
     };
   });
