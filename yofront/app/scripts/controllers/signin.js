@@ -39,7 +39,7 @@ angular.module('dbfrontappApp')
 
         if (resRole === 'wrong') {
           SessionService.setCurrentSessionType(SESSION_TYPE.WRONG);
-          alert('wrong id or pw\ntry again!');
+          window.alert('wrong id or pw\ntry again!');
           return;
         }
 
@@ -53,7 +53,7 @@ angular.module('dbfrontappApp')
           SessionService.setCurrentSessionType(SESSION_TYPE.SUBMITTER);
 
         }  else {
-          alert('sibal??? ? ?sdfljasdlfjasdf');
+          window.alert('sibal??? ? ?sdfljasdlfjasdf');
         }
 
         $location.path('my-page-redirect');
