@@ -1,1 +1,16 @@
 <h1>Submitter Task Submit {{ tableId }}</h1>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>File Upload</h4>
+  </div>
+  <div class="panel-body">
+    <input class="btn btn-default" type="file" id="file" name="file"/>
+    <br>
+    <button id="btn-upload" class="btn btn-default btn-lg btn-block" ng-click="upload()">Upload</button>
+    <br>
+    <button id="btn-submit" class="btn btn-primary btn-lg btn-block" ng-click="submit()" disabled>Submit</button>
+
+    {{ data }}
+  </div>
+</div>
