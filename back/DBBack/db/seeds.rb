@@ -49,7 +49,11 @@ t.text :task_data_table_schema
 t1 = Task.create(t_name: "TASK1_name", description: "TASK1_descript", minimum_upload_period: "TASK1_period", task_data_table_name: "TASK1_schema_name", task_data_table_schema: "TASK1_schema")
 t2 = Task.create(t_name: "TASK2_name", description: "TASK2_descript", minimum_upload_period: "TASK2_period", task_data_table_name: "TASK2_schema_name", task_data_table_schema: "TASK2_schema")
 t3 = Task.create(t_name: "TASK3_name", description: "TASK3_descript", minimum_upload_period: "TASK3_period", task_data_table_name: "TASK3_schema_name", task_data_table_schema: "TASK3_schema")
-
+t4 = Task.create(t_name: "TASK4_name", description: "TASK4_descript", minimum_upload_period: "TASK4_period", task_data_table_name: "TASK4_schema_name", task_data_table_schema: "TASK4_schema")
+t5 = Task.create(t_name: "TASK5_name", description: "TASK5_descript", minimum_upload_period: "TASK5_period", task_data_table_name: "TASK5_schema_name", task_data_table_schema: "TASK5_schema")
+t6 = Task.create(t_name: "TASK6_name", description: "TASK6_descript", minimum_upload_period: "TASK6_period", task_data_table_name: "TASK6_schema_name", task_data_table_schema: "TASK6_schema")
+t7 = Task.create(t_name: "TASK7_name", description: "TASK7_descript", minimum_upload_period: "TASK7_period", task_data_table_name: "TASK7_schema_name", task_data_table_schema: "TASK7_schema")
+t8 = Task.create(t_name: "TASK8_name", description: "TASK8_descript", minimum_upload_period: "TASK8_period", task_data_table_name: "TASK8_schema_name", task_data_table_schema: "TASK8_schema")
 
 #################################### R_USER_SUBMIT(SUBMITTER, TASK) ####################################
 # R_USER_SUBMIT columns
@@ -59,7 +63,7 @@ t.belongs_to :user, index: true # FK to user
 """
 
 submitter.tasks << t1 << t2 << t3
-submitter2.tasks << t1 << t2 << t3
+submitter2.tasks << t1 << t2
 
 #################################### RAW_DATA_TYPE ####################################
 # RAW_DATA_TYPE columns

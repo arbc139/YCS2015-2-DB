@@ -56,6 +56,14 @@ Rails.application.routes.draw do
   #################################### SUBMITTER ####################################
   get '/api/submitter' => 'submitter#index'
 
+  ## Submitter 페이지에서 테스크 목록을 가져오는 액션
+  # submitter가 참가 신청 가능한 테스크 목록 가져오기 액션
+  get '/api/submitter/tasks/apply' => 'submitter#taskApplyIndex'
+  # submitter가 참가하고 있는 테스크 목록 가져오기 액션
+  get '/api/submitter/tasks/participate' => 'submitter#taskParticipateIndex'
+
+  ## Submitter 페이지에서 테스크 참가신청 했을 때
+  post '/api/submitter/tasks/apply' => 'submitter#taskApplyUpdate'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -160,20 +160,22 @@ class AdminController < ApplicationController
 
   ######################################### UPDATE ACTION #########################################
   def participateUpdate
+    method_message = 'ADMIN) participate update'
+
     @user = User.find(params[:user_id])
     @task = Task.find(params[:task_id])
 
-    logger.info 'Update go?'
+    logger.info 'Yeah Participation Update POST come on!'
     # if participate accepted
     if params[:accept]
       if RUserSubmit.find_by(user: @user, task: @task).update_attributes(:is_accepted => true)
         log_message = 'submitter access allowed, update success'
         logger.info log_message
-        render json: {'ADMIN) participate update' => log_message}
+        render json: {method_message => log_message}
       else
         log_message = 'submitter access allowed, but update failed'
         logger.info log_message
-        render json: {'ADMIN) participate update' => log_message}
+        render json: {method_message => log_message}
       end
 
     # if participate denied
@@ -182,11 +184,11 @@ class AdminController < ApplicationController
       if RUserSubmit.where(user: @user, task: @task).any? && @task.users.delete(@user)
         log_message = 'submitter access denied, delete success'
         logger.info log_message
-        render json: {'participate update' => log_message}
+        render json: {method_message => log_message}
       else
         log_message = 'submitter access denied, but delete failed'
         logger.info log_message
-        render json: {'participate update' => log_message}
+        render json: {method_message => log_message}
       end
     end
   end

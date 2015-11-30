@@ -12,7 +12,7 @@ class Task < ActiveRecord::Base
   end
 
   def no_of_passed_files
-    # get from TDT
+    # get from TDT (need to implement Task Data Table)
     0
   end
 
