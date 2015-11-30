@@ -2,7 +2,7 @@
 
 <div class="panel panel-default" >
   <div class="panel-heading">
-    <h4>File Upload</h4>
+    <h4>Create new task</h4>
   </div>
   <div class="panel-body">
     <div class="form" style="margin-left: 20%; margin-right: 20%">
@@ -26,10 +26,10 @@
           <input type="text" class="form-control" placeholder="task data table schema" aria-describedby="tdsc" ng-model="nt.task_data_table_schema"/>
       </div>
 
-      <h4>원본 데이터 타입 선택 (복수선택 가능)</h4>
+      <h4><br>원본 데이터 타입 선택 (복수선택 가능)</h4>
 
       <div class="checkbox" ng-repeat="item in rdtList">
-        <label><input type="checkbox" value="">{{ item.raw_name }}</label>
+        <label><input type="checkbox" value="true" ng-model="item.checked">{{ item.raw_name }}</label>
       </div>
 
       <button id="btn-submit" class="btn btn-primary btn-lg btn-block" ng-click="submit()" type="submit">Submit</button>

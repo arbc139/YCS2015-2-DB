@@ -41,8 +41,16 @@ angular.module('dbfrontappApp')
         })
         .then(onS, onE);
       },
-      newTask: function(params, onS, onE) {
-
+      postNewTask: function(name, desc, mup, tdts, rdts, onS, onE) {
+        var params = {
+          task: {
+            t_name: name,
+            description: desc,
+            minimum_upload_period: mup,
+            task_data_table_schema: tdts,
+          },
+          raw_data_types: rdts
+        };
 
           $http
           .post(SERVER_URL + '/admin/tasks', params, config)
