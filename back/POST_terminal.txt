@@ -20,3 +20,9 @@ curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POS
 # false case
 curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"task_id":3, "user_id":2, "accept":false}' http://localhost:3000/api/admin/tasks/manage
 
+### adminInfoUpdate Action
+curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"user_id":1, "password":"admintest"}' http://localhost:3000/api/admin/info
+
+################################################## SUBMITTER ##################################################
+### taskApply Action
+curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"task_id":3, "user_id":3}' http://localhost:3000/api/submitter/tasks/apply
