@@ -22,9 +22,14 @@ angular.module('dbfrontappApp')
     ApiService.getAdminManageJSON(this.tableId,
     function(res) {
       $scope.userList = res.data.submitters;
-      $scope.rdtList = res.data.rdts;
     }, function(res) {
       console.log('getAdminManageJSON error');
+    });
+
+    ApiService.getRawDataTypes(function(res) {
+      $scope.rdtList = res.data;
+    }, function(res) {
+      console.log('getRawDataTypes error');
     });
 
     // $scope.userList = [

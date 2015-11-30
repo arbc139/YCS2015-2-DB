@@ -72,7 +72,7 @@ angular.module('dbfrontappApp')
       },
       getRawDataTypes: function(onS, onE) {
         // {"id":1,"raw_name":"RAW_DATA_TYPE1_name","schema":"RAW_DATA_TYPE1_schema"}
-        $http.get(SERVER_URL + '/admin/raw_data_types.json')
+        $http.get(SERVER_URL + '/admin/rdts.json')
         .then(onS, onE);
       },
       getAdminManageJSON: function(taskId, onS, onE) {

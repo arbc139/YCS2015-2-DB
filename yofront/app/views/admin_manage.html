@@ -52,12 +52,14 @@
       <tr>
         <th>ID</th>
         <th>Name</th>
+        <th>Schema</th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="item in rdtList">
         <td>{{ item.id }}</td>
-        <td>{{ item.name }}</td>
+        <td>{{ item.raw_name }}</td>
+        <td>{{ item.schema }}</td>
       </tr>
     </tbody>
     </table>
