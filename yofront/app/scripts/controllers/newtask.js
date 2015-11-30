@@ -17,6 +17,8 @@ angular.module('dbfrontappApp')
     // check admin!
     SessionService.checkSessionType(SESSION_TYPE.ADMIN);
 
+    $scope.nt = {};
+
     ApiService.getRawDataTypes(function(res) {
       $scope.rdtList = res.data;
       console.log(res.data);
@@ -25,6 +27,8 @@ angular.module('dbfrontappApp')
     });
 
     $scope.submit = function() {
+
+
       var i;
       var selectedRdts = [];
       for(i = 0; i < $scope.rdtList.length; i++) {
@@ -34,6 +38,27 @@ angular.module('dbfrontappApp')
             selectedRdts.push(rdt);
           }
         }
+      }
+
+      if ($scope.nt.t_name === undefined || $scope.nt.t_name === '') {
+        alertify.error('fill the name');
+        return;
+      }
+
+      if ($scope.nt.description === undefined || $scope.nt.description === '') {
+        alertify.error('fill the description');
+        return;
+      }
+
+      if ($scope.nt.minimum_upload_period === undefined || $scope.nt.minimum_upload_period === '') {
+        alertify.error('fill the minimum upload period');
+        return;
+      }
+
+      if ($scope.nt.task_data_table_schema === undefined ||
+      $scope.nt.task_data_table_schema === '') {
+        alertify.error('fill the task data table schema');
+        return;
       }
 
       if (selectedRdts.length === 0) {
