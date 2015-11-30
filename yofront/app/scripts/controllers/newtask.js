@@ -8,7 +8,7 @@
  * Controller of the dbfrontappApp
  */
 angular.module('dbfrontappApp')
-  .controller('NewtaskCtrl', function ($scope, $location, ApiService, SessionService, SESSION_TYPE) {
+  .controller('NewtaskCtrl', function ($scope, $location, $route, ApiService, SessionService, SESSION_TYPE) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -71,7 +71,8 @@ angular.module('dbfrontappApp')
       function(res) {
         console.log(res);
         alertify.success('success');
-        $location.path('/admin-page');
+        // $location.path('/admin-page');
+        $route.reload();
 
       }, function(res) {
         console.log(res);
