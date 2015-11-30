@@ -55,7 +55,7 @@ t3 = Task.create(t_name: "TASK3_name", description: "TASK3_descript", minimum_up
 t4 = Task.create(t_name: "TASK4_name", description: "TASK4_descript", minimum_upload_period: "TASK4_period", task_data_table_name: "TASK4_schema_name", 
   task_data_table_schema: "t4_name, t4_sex, t4_job")
 t5 = Task.create(t_name: "TASK5_name", description: "TASK5_descript", minimum_upload_period: "TASK5_period", task_data_table_name: "TASK5_schema_name", 
-  task_data_table_schema: "t5_name, t5_sex, t5_job"
+  task_data_table_schema: "t5_name, t5_sex, t5_job")
 t6 = Task.create(t_name: "TASK6_name", description: "TASK6_descript", minimum_upload_period: "TASK6_period", task_data_table_name: "TASK6_schema_name", 
   task_data_table_schema: "t6_name, t6_sex, t6_job")
 t7 = Task.create(t_name: "TASK7_name", description: "TASK7_descript", minimum_upload_period: "TASK7_period", task_data_table_name: "TASK7_schema_name", 
