@@ -12,11 +12,6 @@ angular.module('dbfrontappApp')
 .controller('NavCtrl', function (
   $scope, $location,
   NavbarActiveClass) {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
 
     var selectedNav = null;
 
