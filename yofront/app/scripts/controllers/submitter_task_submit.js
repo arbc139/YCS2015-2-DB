@@ -25,7 +25,5 @@ angular.module('dbfrontappApp')
     // r.readAsBinaryString(f);
   }
   $scope.submit = function() {
-    console.log($scope.data);
-    alertify.success($scope.data);
   };
 });
