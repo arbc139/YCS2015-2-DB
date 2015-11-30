@@ -77,6 +77,6 @@ angular.module('dbfrontappApp')
       }, function(res) {
         console.log(res);
         alertify.error('error');
-      })
+      });
     };
   });
