@@ -33,7 +33,7 @@ angular.module('dbfrontappApp')
       $scope.passed_file_count = res.data.no_of_passed_files;
       $scope.userList = res.data.submitters;
 
-    }, function(res){
+    }, function(){
       console.log('getTaskInfo error');
     });
 
