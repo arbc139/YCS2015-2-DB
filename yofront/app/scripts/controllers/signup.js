@@ -9,6 +9,12 @@
  */
 angular.module('dbfrontappApp')
   .controller('SignupCtrl', function ($scope, $location, ApiService, SessionService, SESSION_TYPE) {
+    this.awesomeThings = [
+      'HTML5 Boilerplate',
+      'AngularJS',
+      'Karma'
+    ];
+
     $scope.suUser = {
       id: '',
       password: '',
@@ -24,10 +30,7 @@ angular.module('dbfrontappApp')
 
 
       var isValidForm = function() {
-         return isValidPassword()
-         && isValidSex()
-         && isValidRole()
-         && isValidBirth();
+         return isValidPassword() && isValidSex() && isValidRole() && isValidBirth();
       };
 
       var isValidPassword = function() {
@@ -42,7 +45,7 @@ angular.module('dbfrontappApp')
       var isValidBirth = function() {
         var birth = $scope.suUser.birth.match(/^(\d{4})\-(\d{1,2})\-(\d{1,2})$/);
         return birth !== null;
-      }
+      };
 
       var isValidRole = function() {
         var role = $scope.suUser.role.toLowerCase();
@@ -65,11 +68,13 @@ angular.module('dbfrontappApp')
           $scope.suUser.role,
           function(res) {
             console.log('post signUp.js onS');
+            console.log(res);
             alertify.success('Success');
             SessionService.setCurrentSessionType(SESSION_TYPE.WRONG);
-            $location.path('/sign-in')
+            $location.path('/sign-in');
           }, function(res) {
             console.log('post signUpjs onE');
+            console.log(res);
             alertify.error('Error');
         });
 

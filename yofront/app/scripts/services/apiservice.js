@@ -113,6 +113,18 @@ angular.module('dbfrontappApp')
 
         $http.post('http://db.olaf.kr/api/users', params, config)
         .then(onS, onE);
+      },
+
+      // submitter
+      postTestSubmit: function(csvStr, onS, onE) {
+        var params = {
+          csv: csvStr
+        };
+        $http.post(
+          'http://localhost:3000/api/test/csv',
+          // 'http://db.olaf.kr/api/test/csv',
+          params, config)
+        .then(onS, onE);
       }
     };
   });

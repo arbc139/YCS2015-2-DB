@@ -18,6 +18,12 @@ angular.module('dbfrontappApp')
   // Service logic
   // ...
 
+  this.awesomeThings = [
+    'HTML5 Boilerplate',
+    'AngularJS',
+    'Karma'
+  ];
+
   var currentSession = {
     id: -1,
     str_id: 'olaf_tester',
@@ -50,7 +56,7 @@ angular.module('dbfrontappApp')
     },
     checkSessionType: function(targetSessionType) {
       if (currentSession.type !== targetSessionType) {
-          alert("you don't have authorization, plaese sign in");
+          window.alert('you don\'t have authorization, plaese sign in');
           $location.path('sign-in');
       }
     }

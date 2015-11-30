@@ -9,9 +9,12 @@
 */
 angular.module('dbfrontappApp')
 .constant('NavbarActiveClass', 'active')
-.controller('NavCtrl', function (
-  $scope, $location,
-  NavbarActiveClass) {
+.controller('NavCtrl', function ($scope, $location, NavbarActiveClass, SessionService, SESSION_TYPE) {
+    this.awesomeThings = [
+      'HTML5 Boilerplate',
+      'AngularJS',
+      'Karma'
+    ];
 
     var selectedNav = null;
 
@@ -44,14 +47,14 @@ angular.module('dbfrontappApp')
     };
 
     $scope.getNavClass = function (nav) {
-      return selectedNav === nav ? NavbarActiveClass : "";
+      return selectedNav === nav ? NavbarActiveClass : '';
     };
 
     $scope.clickNav = function(name) {
       // console.log("name: " + name + "\nnavList: " + $scope.navList[0].name);
       if (name === $scope.navList[0].name) {
         // My Page
-        console.log("my page");
+        console.log('my page');
         var sessionType = SessionService.getCurrentSessionType();
         console.log(sessionType);
 
@@ -62,17 +65,17 @@ angular.module('dbfrontappApp')
         } else if (sessionType === SESSION_TYPE.ADMIN) {
           $location.path('admin-page');
         } else if (sessionType === SESSION_TYPE.WRONG) {
-          alert('you are not logged in!');
-          setTimeout("$location.path('sign-in');", 2000);
+          window.alert('you are not logged in!');
+          $location.path('sign-in');
         }
       }
 
       else if (name === $scope.navList[1].name) {
         // View 2
-        console.log("view 2");
+        console.log('view 2');
         $location.path('view2');
       }
-    }
+    };
   })
   .controller('MyPageRedirectCtrl', function($location, SessionService, SESSION_TYPE) {
     var sessionType = SessionService.getCurrentSessionType();
@@ -84,7 +87,7 @@ angular.module('dbfrontappApp')
     } else if (sessionType === SESSION_TYPE.ADMIN) {
       $location.path('admin-page');
     } else if (sessionType === SESSION_TYPE.WRONG) {
-      alert('you are not logged in!');
+      window.alert('you are not logged in!');
       $location.path('sign-in');
     }
   })
@@ -98,7 +101,7 @@ angular.module('dbfrontappApp')
     } else if (sessionType === SESSION_TYPE.ADMIN) {
       $location.path('admin-info');
     } else if (sessionType === SESSION_TYPE.WRONG) {
-      alert('you are not logged in!');
+      window.alert('you are not logged in!');
       $location.path('sign-in');
     }
   });

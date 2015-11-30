@@ -1,5 +1,8 @@
 {
-  "requireCamelCaseOrUpperCaseIdentifiers": true,
+  "requireCamelCaseOrUpperCaseIdentifiers": {
+    "ignoreProperties": true,
+    "strict": true
+  },
   "requireCapitalizedConstructors": true,
   "requireParenthesesAroundIIFE": true,
   "validateQuoteMarks": "'"

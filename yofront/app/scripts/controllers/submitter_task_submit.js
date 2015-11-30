@@ -8,7 +8,12 @@
 * Controller of the dbfrontappApp
 */
 angular.module('dbfrontappApp')
-.controller('SubmitterTaskSubmitCtrl', function ($scope, $location) {
+.controller('SubmitterTaskSubmitCtrl', function ($scope, $location, ApiService) {
+  this.awesomeThings = [
+      'HTML5 Boilerplate',
+      'AngularJS',
+      'Karma'
+    ];
 
   $scope.tableId = $location.search().tid;
 
@@ -25,5 +30,11 @@ angular.module('dbfrontappApp')
     // r.readAsBinaryString(f);
   }
   $scope.submit = function() {
+    ApiService.postTestSubmit($scope.data,
+    function() {
+      console.log('success');
+    }, function() {
+      console.log('error');
+    })
   };
 });
