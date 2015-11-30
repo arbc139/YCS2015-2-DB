@@ -1,1 +1,41 @@
-<p>This is the NewTask view.</p>
+<h1>Admin new task</h1>
+
+<div class="panel panel-default" style="margin-left: 20%; margin-right: 20%">
+  <div class="panel-heading">
+    <h4>File Upload</h4>
+  </div>
+  <div class="panel-body">
+    <div class="form">
+      <div class="input-group">
+          <span class="input-group-addon" id="t-name">NAME</span>
+          <input type="text" class="form-control" placeholder="task name" aria-describedby="id" ng-model="nt.t_name"/>
+      </div><br>
+
+      <div class="input-group">
+          <span class="input-group-addon" id="description">DESC</span>
+          <input type="text" class="form-control" placeholder="description" aria-describedby="description" ng-model="nt.description"/>
+      </div><br>
+
+      <div class="input-group">
+          <span class="input-group-addon" id="mup">M_UP</span>
+          <input type="text" class="form-control" placeholder="mininum upload period" aria-describedby="mup" ng-model="nt.minimum_upload_period"/>
+      </div><br>
+
+      <div class="input-group">
+          <span class="input-group-addon" id="tdsc">TDSC</span>
+          <input type="text" class="form-control" placeholder="task data table schema" aria-describedby="tdsc" ng-model="nt.task_data_table_schema"/>
+      </div><br>
+
+      <div class="checkbox-inline" >
+        <label><input type="checkbox" value="sss">Option 1</label>
+      </div>
+      <div class="checkbox-inline" >
+        <label><input type="checkbox" value="sss">Option 1</label>
+      </div>
+
+
+      <button id="btn-submit" class="btn btn-primary btn-lg btn-block" ng-click="submit()" type="submit">Submit</button>
+    </div>
+
+  </div>
+</div>
