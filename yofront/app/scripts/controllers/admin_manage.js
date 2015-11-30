@@ -32,6 +32,11 @@ angular.module('dbfrontappApp')
       console.log('getRawDataTypes error');
     });
 
+    $scope.decide = function(user, isAccept) {
+      alertify.success('ddd ' + isAccept);
+      
+    };
+
     // $scope.userList = [
     //   {
     //     id:1,

@@ -31,7 +31,7 @@
         <td>{{ item.birth }}</td>
         <td>{{ item.role }}</td>
         <td>{{ item.score }}</td>
-        <td><a href="{{ item.id }}">Accept</a>&nbsp;/&nbsp;<a href="{{ item.id }}">Reject</a></td>
+        <td><a ng-click="decide(item, true)">Accept</a>&nbsp;/&nbsp;<a ng-click="decide(item, false)">Reject</a></td>
       </tr>
     </tbody>
     </table>
