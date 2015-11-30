@@ -8,7 +8,7 @@
  * Controller of the dbfrontappApp
  */
 angular.module('dbfrontappApp')
-  .controller('SignupCtrl', function ($scope, ApiService) {
+  .controller('SignupCtrl', function ($scope, $location, ApiService, SessionService, SESSION_TYPE) {
     $scope.suUser = {
       id: '',
       password: '',
@@ -65,8 +65,12 @@ angular.module('dbfrontappApp')
           $scope.suUser.role,
           function(res) {
             console.log('post signUp.js onS');
+            alertify.success('Success');
+            SessionService.setCurrentSessionType(SESSION_TYPE.WRONG);
+            $location.path('/sign-in')
           }, function(res) {
             console.log('post signUpjs onE');
+            alertify.error('Error');
         });
 
       } else {
