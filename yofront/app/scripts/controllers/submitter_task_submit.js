@@ -25,16 +25,16 @@ angular.module('dbfrontappApp')
       $scope.data = e.target.result;
       $("#btn-submit").prop('disabled', false);
       $scope.$apply();
-    }
+    };
     r.readAsText(f, 'UTF-8');
     // r.readAsBinaryString(f);
-  }
+  };
   $scope.submit = function() {
     ApiService.postTestSubmit($scope.data,
     function() {
       console.log('success');
     }, function() {
       console.log('error');
-    })
+    });
   };
 });

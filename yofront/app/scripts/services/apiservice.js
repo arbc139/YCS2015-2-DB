@@ -82,8 +82,9 @@ angular.module('dbfrontappApp')
 
       // signUp
       postSignUp: function(id, password, uName, sex, address, birth, phone, role, onS, onE) {
+        var params;
         if (role === 'submitter') {
-          var params = {
+          params = {
               submitter: {
                 str_id: id,
                 password: password,
@@ -97,7 +98,7 @@ angular.module('dbfrontappApp')
               }
           };
         } else if (role === 'valuer') {
-          var params = {
+          params = {
               valuer: {
                 str_id: id,
                 password: password,

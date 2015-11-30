@@ -1,7 +1,7 @@
 {
   "requireCamelCaseOrUpperCaseIdentifiers": {
     "ignoreProperties": true,
-    "strict": true
+    "strict": false
   },
   "requireCapitalizedConstructors": true,
   "requireParenthesesAroundIIFE": true,
