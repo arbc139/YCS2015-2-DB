@@ -46,14 +46,22 @@ t.text :task_data_table_schema
 """
 
 # TASK seeds
-t1 = Task.create(t_name: "TASK1_name", description: "TASK1_descript", minimum_upload_period: "TASK1_period", task_data_table_name: "TASK1_schema_name", task_data_table_schema: "TASK1_schema")
-t2 = Task.create(t_name: "TASK2_name", description: "TASK2_descript", minimum_upload_period: "TASK2_period", task_data_table_name: "TASK2_schema_name", task_data_table_schema: "TASK2_schema")
-t3 = Task.create(t_name: "TASK3_name", description: "TASK3_descript", minimum_upload_period: "TASK3_period", task_data_table_name: "TASK3_schema_name", task_data_table_schema: "TASK3_schema")
-t4 = Task.create(t_name: "TASK4_name", description: "TASK4_descript", minimum_upload_period: "TASK4_period", task_data_table_name: "TASK4_schema_name", task_data_table_schema: "TASK4_schema")
-t5 = Task.create(t_name: "TASK5_name", description: "TASK5_descript", minimum_upload_period: "TASK5_period", task_data_table_name: "TASK5_schema_name", task_data_table_schema: "TASK5_schema")
-t6 = Task.create(t_name: "TASK6_name", description: "TASK6_descript", minimum_upload_period: "TASK6_period", task_data_table_name: "TASK6_schema_name", task_data_table_schema: "TASK6_schema")
-t7 = Task.create(t_name: "TASK7_name", description: "TASK7_descript", minimum_upload_period: "TASK7_period", task_data_table_name: "TASK7_schema_name", task_data_table_schema: "TASK7_schema")
-t8 = Task.create(t_name: "TASK8_name", description: "TASK8_descript", minimum_upload_period: "TASK8_period", task_data_table_name: "TASK8_schema_name", task_data_table_schema: "TASK8_schema")
+t1 = Task.create(t_name: "TASK1_name", description: "TASK1_descript", minimum_upload_period: "TASK1_period", task_data_table_name: "TASK1_schema_name", 
+  task_data_table_schema: "t1_name, t1_sex, t1_job")
+t2 = Task.create(t_name: "TASK2_name", description: "TASK2_descript", minimum_upload_period: "TASK2_period", task_data_table_name: "TASK2_schema_name", 
+  task_data_table_schema: "t2_name, t2_sex, t2_job")
+t3 = Task.create(t_name: "TASK3_name", description: "TASK3_descript", minimum_upload_period: "TASK3_period", task_data_table_name: "TASK3_schema_name", 
+  task_data_table_schema: "t3_name, t3_sex, t3_job")
+t4 = Task.create(t_name: "TASK4_name", description: "TASK4_descript", minimum_upload_period: "TASK4_period", task_data_table_name: "TASK4_schema_name", 
+  task_data_table_schema: "t4_name, t4_sex, t4_job")
+t5 = Task.create(t_name: "TASK5_name", description: "TASK5_descript", minimum_upload_period: "TASK5_period", task_data_table_name: "TASK5_schema_name", 
+  task_data_table_schema: "t5_name, t5_sex, t5_job"
+t6 = Task.create(t_name: "TASK6_name", description: "TASK6_descript", minimum_upload_period: "TASK6_period", task_data_table_name: "TASK6_schema_name", 
+  task_data_table_schema: "t6_name, t6_sex, t6_job")
+t7 = Task.create(t_name: "TASK7_name", description: "TASK7_descript", minimum_upload_period: "TASK7_period", task_data_table_name: "TASK7_schema_name", 
+  task_data_table_schema: "t7_name, t7_sex, t7_job")
+t8 = Task.create(t_name: "TASK8_name", description: "TASK8_descript", minimum_upload_period: "TASK8_period", task_data_table_name: "TASK8_schema_name", 
+  task_data_table_schema: "t8_name, t8_sex, t8_job")
 
 #################################### R_USER_SUBMIT(SUBMITTER, TASK) ####################################
 # R_USER_SUBMIT columns
@@ -72,10 +80,14 @@ t.text :schema
 """
 
 # RAW_DATA_TYPE seed
-rdt1 = RawDataType.create(raw_name: "RAW_DATA_TYPE1_name",schema: "RAW_DATA_TYPE1_schema")
-rdt2 = RawDataType.create(raw_name: "RAW_DATA_TYPE2_name", schema: "RAW_DATA_TYPE2_schema")
-rdt3 = RawDataType.create(raw_name: "RAW_DATA_TYPE3_name", schema: "RAW_DATA_TYPE3_schema")
-rdt4 = RawDataType.create(raw_name: "RAW_DATA_TYPE4_name", schema: "RAW_DATA_TYPE4_schema")
+rdt1 = RawDataType.create(raw_name: "RAW_DATA_TYPE1_name", 
+  schema: "rdt1_name, rdt1_sex, rdt1_job")
+rdt2 = RawDataType.create(raw_name: "RAW_DATA_TYPE2_name", 
+  schema: "rdt2_name, rdt2_sex, rdt2_job")
+rdt3 = RawDataType.create(raw_name: "RAW_DATA_TYPE3_name", 
+  schema: "rdt3_name, rdt3_sex, rdt3_job")
+rdt4 = RawDataType.create(raw_name: "RAW_DATA_TYPE4_name", 
+  schema: "rdt4_name, rdt4_sex, rdt4_job")
 
 
 #################################### R_TASK_RAW_DATA(TASK, RAW_DATA_TYPE) ####################################
@@ -114,7 +126,7 @@ t.references :raw_data_type
 pdsf1 = ParsingDataSequenceFile.create(
   data_blob: 'pdsf1 file',
   period: 10,
-  inning: 10,
+  inning: 30,
   all_tuple_num: 10,
   duplicated_tuple_num: 10,
   is_valued: true,
@@ -139,6 +151,66 @@ pdsf2 = ParsingDataSequenceFile.create(
   submitter_id: submitter.id,
   task_id: t1.id,
   raw_data_type_id: rdt2.id
+  )
+
+pdsf3 = ParsingDataSequenceFile.create(
+  data_blob: 'pdsf3 file',
+  period: 100,
+  inning: 110,
+  all_tuple_num: 2020,
+  duplicated_tuple_num: 20,
+  is_valued: false,
+  data_quality_score: 20,
+  is_passed: false,
+  valuer_id: valuer.id,
+  submitter_id: submitter.id,
+  task_id: t1.id,
+  raw_data_type_id: rdt3.id
+  )
+
+pdsf4 = ParsingDataSequenceFile.create(
+  data_blob: 'pdsf4 file',
+  period: 100,
+  inning: 110,
+  all_tuple_num: 2020,
+  duplicated_tuple_num: 20,
+  is_valued: false,
+  data_quality_score: 20,
+  is_passed: false,
+  valuer_id: valuer.id,
+  submitter_id: submitter.id,
+  task_id: t1.id,
+  raw_data_type_id: rdt4.id
+  )
+
+pdsf5 = ParsingDataSequenceFile.create(
+  data_blob: 'pdsf5 file',
+  period: 120,
+  inning: 110,
+  all_tuple_num: 2020,
+  duplicated_tuple_num: 20,
+  is_valued: false,
+  data_quality_score: 20,
+  is_passed: false,
+  valuer_id: valuer.id,
+  submitter_id: submitter.id,
+  task_id: t1.id,
+  raw_data_type_id: rdt1.id
+  )
+
+pdsf6 = ParsingDataSequenceFile.create(
+  data_blob: 'pdsf6 file',
+  period: 100,
+  inning: 110,
+  all_tuple_num: 2020,
+  duplicated_tuple_num: 20,
+  is_valued: false,
+  data_quality_score: 20,
+  is_passed: false,
+  valuer_id: valuer.id,
+  submitter_id: submitter2.id,
+  task_id: t2.id,
+  raw_data_type_id: rdt3.id
   )
 
 

@@ -38,7 +38,7 @@ class SubmitterController < ApplicationController
       format.html
       if @submitter.submitter?
         format.json { render json: @participate_tasks.as_json(
-          only: [:id, :t_name, :description, :minimum_upload_period, :task_data_table_name, :task_data_table_schema]
+          only: [:id, :t_name, :description, :minimum_upload_period, :task_data_table_name, :task_data_table_schema],
           methods: [:raw_data_types!]
           ) }
 
@@ -57,8 +57,32 @@ class SubmitterController < ApplicationController
     @task = Task.find(params[:task_id])
 
     # submitter가 Task에 제출한 파일 수
-    # submitter가 제출한 파일들 중, pass한 파일 수
+    # submitter가 Task에 제출한 파일들 중, pass한 파일 수 (get from TDT)
+    # 원본 데이터 타입 별로 자신이 제출한 파일들의 현황 (파싱시퀀스파일 record 보여주고, pass/non-pass 여부 order by 회차)
+    submitted_pdsfs = @submitter.submit_pds_files.where(task: @task)
+    @all_pdsfs_num = submitted_pdsfs.size
+    # FIXIT: - 영훈이 함수 사용
+    @passed_pdsfs_num = 0
+    pdsfs_by_rdt = submitted_pdsfs.order(:raw_data_type_id).order(:inning).group_by(&:raw_data_type_id)
+    
+    # parsing only needed informations
+    @pdsfs_info = Hash.new
+    pdsfs_by_rdt.each do |rdt, pdsf|
+      @pdsfs_info[rdt] = pdsf.as_json(only: [:id, :period, :inning, :all_tuple_num, :duplicated_tuple_num, :data_quality_score, :is_valued, :is_passed])
+      logger.info rdt
+      logger.info @pdsfs_info[rdt]
+    end
+    
+    result = {
+      no_of_submitted_file: @all_pdsfs_num,
+      no_of_passed_file: @passed_pdsfs_num,
+      pdsfs_by_rdt: pdsfs_by_rdt
+    }
 
+    respond_to do |format|
+      format.html
+      format.json { render json: result.as_json }
+    end
   end
   
   ######################################### UPDATE ACTION #########################################
