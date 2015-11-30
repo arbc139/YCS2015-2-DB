@@ -23,13 +23,13 @@ angular.module('dbfrontappApp')
     function(res) {
       $scope.userList = res.data.submitters;
       console.log(res.data.submitters);
-    }, function(res) {
+    }, function() {
       console.log('getAdminManageJSON error');
     });
 
     ApiService.getRawDataTypes(function(res) {
       $scope.rdtList = res.data;
-    }, function(res) {
+    }, function() {
       console.log('getRawDataTypes error');
     });
 
