@@ -17,11 +17,12 @@ angular.module('dbfrontappApp')
     // check admin!
     SessionService.checkSessionType(SESSION_TYPE.ADMIN);
 
-    this.tableId = $location.search().tid;
+    var tableId = $location.search().tid;
 
-    ApiService.getAdminManageJSON(this.tableId,
+    ApiService.getAdminManageJSON(tableId,
     function(res) {
       $scope.userList = res.data.submitters;
+      console.log(res.data.submitters);
     }, function(res) {
       console.log('getAdminManageJSON error');
     });
@@ -34,7 +35,12 @@ angular.module('dbfrontappApp')
 
     $scope.decide = function(user, isAccept) {
       alertify.success('ddd ' + isAccept);
-      
+      ApiService.postTaskApplyDecision(tableId, user.id, isAccept,
+      function(res) {
+        console.log(res);
+      }, function(res) {
+        console.log(res);
+      });
     };
 
     // $scope.userList = [

@@ -91,7 +91,7 @@ angular.module('dbfrontappApp')
         }).then(onS, onE);
       },
       postTaskApplyDecision: function(tId, uId, isAccepted, onS, onE) {
-        var parmas = {
+        var params = {
           task_id: tId,
           user_id: uId,
           accept: isAccepted
