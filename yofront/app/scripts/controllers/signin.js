@@ -62,7 +62,7 @@ angular.module('dbfrontappApp')
       }, function(res) {
         console.log('signIn error');
         console.log(res.data);
-      })
+      });
     };
     //  function(id, password) {
     //   //  console.log('signList: '+$scope.signList);
@@ -120,5 +120,5 @@ angular.module('dbfrontappApp')
 
     $scope.logOut = function() {
       SessionService.setCurrentSessionType(SESSION_TYPE.WRONG);
-    }
+    };
   });
