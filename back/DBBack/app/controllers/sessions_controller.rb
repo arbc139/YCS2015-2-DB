@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
   
   ######################################### FIND ACTION #########################################
   def userFind
+    method_message = 'SESSION) user find'
     # need to communicate with AngularJS (receive json)
     logger.info "Yeah Session GET come on!"
     
@@ -16,7 +17,7 @@ class SessionsController < ApplicationController
         format.json { render json: @user.as_json(only: [:id, :str_id, :role]) }
       else
         format.html { redirect_to '/api/users', notice: 'Session was failed.' }
-        format.json { render json: error_hash("Session Error") }
+        format.json { render json: {method_message => 'login failed, user is not exist'} }
       end
     end
   end
@@ -25,17 +26,19 @@ class SessionsController < ApplicationController
   ######################################### CREATE ACTION #########################################
   # curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d ' {"user":{"str_id":"test_str_id","password":"test_password","name":"test_name","sex":"test_sex","address":"test_address", "birth":"test_birth", "phone_number":"test_phone_number", "value_score":"test_value_score", "role":"test_role"}}' http://localhost:3000/users
   def userCreate
+    method_message = 'SESSION) user create'
     logger.info "Yeah User POST come on!"
     @user = User.new(user_params)
     
     if @user.save
       render json: @user.as_json(only: [:id, :str_id, :role])
     else
-      render json: {'SESSION) user create' => 'create fail'}
+      render json: {method_message => 'create fail'}
     end
   end
 
   private
+
   def user_params
     if !params[:submitter].blank?
       params.require(:submitter).permit(:str_id, :password, :u_name, :sex, :address, :birth, :phone_number, :value_score, :role)

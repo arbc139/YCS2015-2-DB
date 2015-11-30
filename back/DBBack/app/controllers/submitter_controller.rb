@@ -63,15 +63,15 @@ class SubmitterController < ApplicationController
 
     # user(submitter)가 task에 참여신청을 하지 않았을 때
     elsif RUserSubmit.find_by(user: @submitter, task: @task).blank?
-      log_message = 'submitter join in the task successfully, update permissioned'
       # user(submitter)에 참여하는 task 추가
       @submitter.tasks << @task
-      render json: {method_message => log_message}
+      render json: {method_message => 'submitter join in the task successfully, update permissioned'}
 
     # 이미 user가 task에 참여신청을 했을 때
     else
-      log_message = 'submitter already joined in the task, update denied'
-      render json: {method_message => log_message}
+      render json: {method_message => 'submitter already joined in the task, update denied'}
     end
   end
+
+  ######################################### UPDATE ACTION #########################################
 end

@@ -52,6 +52,8 @@ class AdminController < ApplicationController
 
   ######################################### SHOW ACTION #########################################
   def userShow
+    method_message = 'ADMIN) user Show'
+    
     @user = User.find(params[:id])
 
     respond_to do |format| 
@@ -87,15 +89,21 @@ class AdminController < ApplicationController
         format.html
         format.json { render :json => valuer_and_files }
 
+      elsif @user.admin?
+        format.html
+        format.json { render :json => @user.youShallNotPass(method_message) }
+
       else  # Error case
         logger.info 'I am Error~'
-        format.json { render :json => error_hash("User Error") }
+        format.json { render :json => {method_message => 'user type is not exist'} }
       end
 
     end
   end
 
   def taskManageShow
+    method_message = 'ADMIN) task manage show'
+
     @task = Task.find(params[:task_id])
     @users = @task.unaccepted_submitters
 
@@ -111,6 +119,8 @@ class AdminController < ApplicationController
   end
 
   def taskStatShow
+    method_message = 'ADMIN) task stat show'
+
     @task = Task.find(params[:task_id])
     @users = @task.users
     @raw_data_types = @task.raw_data_types
@@ -129,6 +139,8 @@ class AdminController < ApplicationController
 
   ######################################### CREATE ACTION #########################################
   def taskCreate
+    method_message = 'ADMIN) task create'
+    
     # FIXIT :- need to change :raw_data_type
     logger.info 'Yeah Task POST come on!'
     @task = Task.new(task_params) # put task informations
@@ -142,19 +154,20 @@ class AdminController < ApplicationController
     if @task.save
       render json: @task.as_json(only: [:id, :t_name])
     else
-      render json: {'ADMIN) task create' => 'create fail'}
+      render json: {method_message => 'create fail'}
     end
   end
 
 
   def rdtCreate
+    method_message = 'ADMIN) raw data type create'
     logger.info 'Yeah Raw Data Type POST come on!'
     @rdt = RawDataType.new(rdt_params) # put rdt informations
 
     if @rdt.save
       render json: @rdt.as_json
     else
-      render json: {'ADMIN) rdt create' => 'create fail'}
+      render json: {method_message => 'create fail'}
     end
   end
 
