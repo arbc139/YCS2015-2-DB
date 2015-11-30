@@ -53,8 +53,29 @@ angular.module('dbfrontappApp')
       };
 
 
+      var validate = function() {
+        var pass = true;
 
-      if (isValidForm()) {
+        var isValidString = function(str) {
+          return str !== undefined && str !== '';
+        };
+
+        pass = pass && isValidString($scope.suUser.id);
+        pass = pass && isValidString($scope.suUser.password);
+        pass = pass && isValidString($scope.suUser.password2);
+        pass = pass && isValidString($scope.suUser.name);
+        pass = pass && isValidString($scope.suUser.sex);
+        pass = pass && isValidString($scope.suUser.address);
+        pass = pass && isValidString($scope.suUser.birth);
+        pass = pass && isValidString($scope.suUser.phone);
+        pass = pass && isValidString($scope.suUser.role);
+
+        pass = pass && isValidForm();
+
+        return pass;
+      };
+
+      if (validate()) {
         // post Api service
         // postSignUp: function(id, password, uName, sex, address, birth, phone, role, onS, onE)
         ApiService.postSignUp(
@@ -92,7 +113,12 @@ angular.module('dbfrontappApp')
         if (!isValidRole()) {
           resultStr += 'ROLE checking fail<br>';
         }
-        alertify.error(resultStr);
+
+        if (resultStr === '') {
+          alertify.error('fill in the blanks');
+        } else {
+          alertify.error(resultStr + 'and other BLANK forms');
+        }
       }
     };
   });
