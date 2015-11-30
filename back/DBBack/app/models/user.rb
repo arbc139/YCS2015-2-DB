@@ -34,4 +34,16 @@ class User < ActiveRecord::Base
   def participate_tasks
     self.tasks.as_json(only: [:id, :t_name])
   end
+
+  def youShallNotPass(method_message)
+    if self.admin?
+      {method_message => 'user is admin!'}
+    elsif self.submitter?
+      {method_message => 'user is submitter!'}
+    elsif self.valuer?
+      {method_message => 'user is valuer!'}
+    else
+      {method_message => 'WE FUCKED....'}
+    end
+  end
 end

@@ -47,10 +47,16 @@ Rails.application.routes.draw do
   # 원본 데이터 타입 추가 액션
   post '/api/admin/rdts' => 'admin#rdtCreate'
 
-  ## Admin 페이지의 특정 테스크 관리 페이지에서 제출자의 테스크 참가를 수락/거절하는 액션
+  ## Admin 페이지에서 정보를 디비에 업데이트하는 액션
+  # Admin 페이지의 특정 테스크 관리 페이지에서 제출자의 테스크 참가를 수락/거절하는 액션
   # parameter
   # "task_id": 1, "user_id": 1, "accept": true
   post '/api/admin/tasks/manage' => 'admin#participateUpdate'
+
+  # Admin의 비밀번호를 업데이트하는 액션
+  # parameter
+  # "user_id" : 1, "password" : "something"
+  post '/api/admin/info' => 'admin#adminInfoUpdate'
 
 
   #################################### SUBMITTER ####################################

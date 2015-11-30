@@ -9,15 +9,21 @@ class SubmitterController < ApplicationController
   def taskApplyIndex
     logger.info 'Yeah GET taskApplyIndex come on!'
     method_message = 'SUBMITTER) task apply index'
-
+    
     @submitter = User.find(params[:user_id])
-    @other_tasks = Task.where.not(id: @submitter.tasks.ids).take
+    @other_tasks = Task.where.not(id: @submitter.tasks.ids)
 
     respond_to do |format|
       format.html
-      format.json { render json: @other_tasks.as_json(
-        only: [:id, :t_name, :description, :minimum_upload_period, :task_data_table_name, :task_data_table_schema]
-        ) }
+      if @submitter.submitter?
+        format.json { render json: @other_tasks.as_json(
+          only: [:id, :t_name, :description, :minimum_upload_period, :task_data_table_name, :task_data_table_schema]
+          ) }
+
+      # 만약 submitter가 아니면 에러
+      else
+        format.json { render json: @submitter.youShallNotPass(method_message) }
+      end
     end
   end
 
@@ -30,9 +36,15 @@ class SubmitterController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: @participate_tasks.as_json(
-        only: [:id, :t_name, :description, :minimum_upload_period, :task_data_table_name, :task_data_table_schema]
-        ) }
+      if @submitter.submitter?
+        format.json { render json: @participate_tasks.as_json(
+          only: [:id, :t_name, :description, :minimum_upload_period, :task_data_table_name, :task_data_table_schema]
+          ) }
+
+      # 만약 submitter가 아니면 에러 
+      else
+        format.json { render json: @submitter.youShallNotPass(method_message) }
+      end
     end
   end
 
@@ -44,8 +56,13 @@ class SubmitterController < ApplicationController
     @task = Task.find(params[:task_id])
 
     logger.info 'Yeah Participation Update POST come on!'
+    
+    # user가 submitter가 아닐 때
+    if !@submitter.submitter?
+      render json: @submitter.youShallNotPass(method_message)
+
     # user(submitter)가 task에 참여신청을 하지 않았을 때
-    if RUserSubmit.find_by(user: @submitter, task: @task).blank?
+    elsif RUserSubmit.find_by(user: @submitter, task: @task).blank?
       log_message = 'submitter join in the task successfully, update permissioned'
       # user(submitter)에 참여하는 task 추가
       @submitter.tasks << @task

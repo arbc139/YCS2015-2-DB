@@ -193,6 +193,25 @@ class AdminController < ApplicationController
     end
   end
 
+  def adminInfoUpdate
+    method_message = 'ADMIN) info update'
+    
+    @user = User.find(params[:user_id])
+
+    if @user.admin?
+      if @user.update_attributes(:password => params[:password])
+        log_message = 'password change allowed, info update success'
+        render json: {method_message => log_message}
+      else
+        log_message = 'password change not allowed, info update failed'
+        render json: {method_message => log_message}
+      end
+    else
+      render json: @user.youShallNotPass(method_message)
+    end
+
+  end
+
 
   ######################################### TOOL METHOD #########################################
   private
