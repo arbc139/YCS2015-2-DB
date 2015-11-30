@@ -2,7 +2,7 @@ class TestController < ApplicationController
   skip_before_filter  :verify_authenticity_token
 
   def testCSVCreate
-    @csv_str = params[:csvFile]
+    @csv_str = params[:csv]
 
     @pdsf = ParsingDataSequenceFile.new(test_pdsf_params(@csv_str))
 
