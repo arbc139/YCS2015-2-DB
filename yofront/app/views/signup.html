@@ -7,39 +7,45 @@
         <form role="">
             <div class="input-group">
                 <span class="input-group-addon" id="id">ID</span>
-                <input type="text" class="form-control" placeholder="id" aria-describedby="id" />
+                <input type="text" class="form-control" placeholder="id" aria-describedby="id" ng-model="suUser.id"/>
             </div><br>
             <div class="input-group">
                 <span class="input-group-addon" id="pw">PW</span>
-                <input type="password" class="form-control" placeholder="password" aria-describedby="pw" />
+                <input type="password" class="form-control" placeholder="password" aria-describedby="pw"
+                ng-model="suUser.password"/>
             </div><br>
             <div class="input-group">
                 <span class="input-group-addon" id="pw-check">PW Check</span>
-                <input type="password" class="form-control" placeholder="password check" aria-describedby="pw-check" />
+                <input type="password" class="form-control" placeholder="password check" aria-describedby="pw-check" ng-model="suUser.password2"/>
             </div><br>
             <div class="input-group">
-                <span class="input-group-addon" id="gender">Gender</span>
-                <input type="text" class="form-control" placeholder="M or F" aria-describedby="gender" />
+                <span class="input-group-addon" id="sex">Sex</span>
+                <input type="text" class="form-control" placeholder="M or F" aria-describedby="sex"
+                ng-model="suUser.sex"/>
             </div><br>
             <div class="input-group">
                 <span class="input-group-addon" id="address">Address</span>
-                <input type="text" class="form-control" placeholder="address" aria-describedby="address" />
+                <input type="text" class="form-control" placeholder="address" aria-describedby="address"
+                ng-model="suUser.address"/>
             </div><br>
             <div class="input-group">
                 <span class="input-group-addon" id="birthday">birthday</span>
-                <input type="text" class="form-control" placeholder="yyyy/MM/dd" aria-describedby="birthday" />
+                <input type="text" class="form-control" placeholder="yyyy/MM/dd" aria-describedby="birthday"
+                ng-model="suUser.birth"/>
             </div><br>
             <div class="input-group">
                 <span class="input-group-addon" id="phone">Phone</span>
-                <input type="text" class="form-control" placeholder="Phone number" aria-describedby="phone" />
+                <input type="text" class="form-control" placeholder="Phone number" aria-describedby="phone"
+                ng-model="suUser.phone"/>
             </div><br>
             <div class="input-group">
                 <span class="input-group-addon" id="role">Role</span>
-                <input type="text" class="form-control" placeholder="Submitter or Valuer" aria-describedby="role" />
+                <input type="text" class="form-control" placeholder="Submitter or Valuer" aria-describedby="role"
+                ng-model="suUser.role"/>
             </div><br>
 
 
-            <button class="btn btn-primary btn-lg btn-block btn-shadow" type="submit">Submit</button>
+            <button class="btn btn-primary btn-lg btn-block btn-shadow" type="submit"  ng-click="signUp()"ß>Submit</button>
             <!-- </span> -->
         </form>
     </div>
