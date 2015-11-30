@@ -90,6 +90,16 @@ angular.module('dbfrontappApp')
           }
         }).then(onS, onE);
       },
+      postTaskApplyDecision: function(tId, uId, isAccepted, onS, onE) {
+        var parmas = {
+          task_id: tId,
+          user_id: uId,
+          accept: isAccepted
+        };
+
+        $http.post(SERVER_URL + "/admin/tasks/manage", params, config)
+        .then(onS, onE);
+      },
 
       // signUp
       postSignUp: function(id, password, uName, sex, address, birth, phone, role, onS, onE) {
