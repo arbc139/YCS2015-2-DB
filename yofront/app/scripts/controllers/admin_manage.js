@@ -8,7 +8,7 @@
  * Controller of the dbfrontappApp
  */
 angular.module('dbfrontappApp')
-  .controller('AdminManageCtrl', function ($scope, $location, ApiService, SessionService, SESSION_TYPE) {
+  .controller('AdminManageCtrl', function ($scope, $location, $route, ApiService, SessionService, SESSION_TYPE) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -34,10 +34,11 @@ angular.module('dbfrontappApp')
     });
 
     $scope.decide = function(user, isAccept) {
-      alertify.success('ddd ' + isAccept);
+      // alertify.success('ddd ' + isAccept);
       ApiService.postTaskApplyDecision(tableId, user.id, isAccept,
       function(res) {
         console.log(res);
+        $route.reload();
       }, function(res) {
         console.log(res);
       });
