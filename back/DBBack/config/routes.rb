@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'users#index'
 
   #################################### TEST Place ####################################
-  get '/api/test/csv' => 'test#testCSVCreate'
+  post '/api/test/csv' => 'test#testCSVCreate'
 
   #################################### LOGIN, SIGN UP (USER) ####################################
   ## 옛날 html 시절의 코드들... 무시해도된디~
