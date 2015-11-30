@@ -31,8 +31,6 @@ angular.module('dbfrontappApp')
       };
 
       var isValidPassword = function() {
-        console.log($scope.suUser.password === $scope.suUser.password2);
-
         return $scope.suUser.password === $scope.suUser.password2;
       };
 
@@ -70,7 +68,7 @@ angular.module('dbfrontappApp')
           }, function(res) {
             console.log('post signUpjs onE');
         });
-        
+
       } else {
         var resultStr = '';
         if (!isValidPassword()) {
