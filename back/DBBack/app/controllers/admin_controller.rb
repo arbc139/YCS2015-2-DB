@@ -2,6 +2,12 @@ class AdminController < ApplicationController
   skip_before_filter  :verify_authenticity_token
 
   ######################################### INDEX ACTION #########################################
+  def index
+    hello = 'Hi, I am Admin!'
+    logger.info hello
+    render json: {'hello' => hello}
+  end
+
   def taskIndex
     @tasks = Task.all
 
@@ -177,7 +183,7 @@ class AdminController < ApplicationController
 
     @user = User.find(params[:user_id])
     @task = Task.find(params[:task_id])
-    
+
     logger.info 'Yeah Participation Update POST come on!'
     # if participate accepted
     if params[:accept]

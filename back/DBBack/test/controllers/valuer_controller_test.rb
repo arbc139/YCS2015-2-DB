@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class RawDataTypesControllerTest < ActionController::TestCase
+class ValuerControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end

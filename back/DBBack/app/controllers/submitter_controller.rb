@@ -1,11 +1,14 @@
 class SubmitterController < ApplicationController
-  skip_before_filter  :verify_authenticity_token
+  skip_before_filter :verify_authenticity_token
 
   ######################################### INDEX ACTION #########################################
   def index
-    logger.info 'I am here!'
+    hello = 'Hi, I am Submitter!'
+    logger.info hello
+    render json: {'hello' => hello}
   end
 
+  # 참여 신청 가능한 테스크 목록
   def taskApplyIndex
     logger.info 'Yeah GET taskApplyIndex come on!'
     method_message = 'SUBMITTER) task apply index'
@@ -27,12 +30,22 @@ class SubmitterController < ApplicationController
     end
   end
 
+  # 참여승인된 뒤에 참여하고 있는 테스크 목록
   def taskParticipateIndex
     logger.info 'Yeah GET taskParticipateIndex come on!'
     method_message = 'SUBMITTER) task participate index'
-
+    
     @submitter = User.find(params[:user_id])
-    @participate_tasks = @submitter.tasks
+
+    # test
+    # @submitter.r_user_submits.where(task_id: 1).update_all(is_accepted: true)
+    r_user_submits = @submitter.r_user_submits.where(is_accepted: true)
+    @participate_tasks = []
+    r_user_submits.each do |rus|
+      @participate_tasks << rus.task
+    end
+
+    logger.info @participate_tasks.as_json
 
     respond_to do |format|
       format.html
@@ -72,11 +85,11 @@ class SubmitterController < ApplicationController
       logger.info rdt
       logger.info @pdsfs_info[rdt]
     end
-    
+
     result = {
       no_of_submitted_file: @all_pdsfs_num,
       no_of_passed_file: @passed_pdsfs_num,
-      pdsfs_by_rdt: pdsfs_by_rdt
+      pdsfs_by_rdt: @pdsfs_info
     }
 
     respond_to do |format|

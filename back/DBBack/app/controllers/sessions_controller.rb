@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
   # curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d ' {"user":{"str_id":"test_str_id","password":"test_password","name":"test_name","sex":"test_sex","address":"test_address", "birth":"test_birth", "phone_number":"test_phone_number", "value_score":"test_value_score", "role":"test_role"}}' http://localhost:3000/users
   def userCreate
     method_message = 'SESSION) user create'
-    logger.info "Yeah User POST come on!"
+    logger.info 'Yeah User POST come on!'
     @user = User.new(user_params)
     
     if @user.save
@@ -37,8 +37,24 @@ class SessionsController < ApplicationController
     end
   end
 
-  private
+  ######################################### DESTROY ACTION #########################################
+  def userDestroy
+    method_message = 'SESSION) user destroy'
+    logger.info 'Yeah User DESTROY come on!'
+    @user = User.find(params[:id])
+    
+    if @user.admin?
+      render json: {method_message => 'delete denied, user is admin!'}
+    else
+      if @user.destroy
+        render json: {method_message => 'user delete success'}
+      else
+        render json: {method_message => 'user delete failed'}
+      end
+    end
+  end
 
+  private
   def user_params
     if !params[:submitter].blank?
       params.require(:submitter).permit(:str_id, :password, :u_name, :sex, :address, :birth, :phone_number, :value_score, :role)

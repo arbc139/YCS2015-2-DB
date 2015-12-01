@@ -20,6 +20,10 @@ Rails.application.routes.draw do
   # 유저 정보들을 받아서 유저를 디비에 추가시켜주는 액션
   post '/api/users' => 'sessions#userCreate'
 
+  ## 앵제) 회원 탈퇴 버튼을 눌렀을 때
+  # 유저 id를 받아서 유저를 디비에서 삭제시키는 액션
+  delete '/api/users/:id' => 'sessions#userDestroy'
+  
   # resources
   # get 'users' => 'users#index'
   # post 'users' => 'users#create'
@@ -80,6 +84,14 @@ Rails.application.routes.draw do
   # submitter가 해당 테스크에 원본 데이터 파일을 업로드 했을 때
   post '/api/submitter/tasks/submit' => 'submitter#taskSubmitCreate'
 
+
+  #################################### SUBMITTER ####################################
+  get '/api/valuer' => 'valuer#index'
+  
+
+
+
+  ############################################################################################################
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
