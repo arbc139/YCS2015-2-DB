@@ -10,7 +10,7 @@ class Task < ActiveRecord::Base
   def no_of_submitted_files
     self.pds_files.size
   end
-
+  
   def no_of_passed_files
     # get from TDT (need to implement Task Data Table)
     0

@@ -128,7 +128,7 @@ class AdminController < ApplicationController
     method_message = 'ADMIN) task stat show'
 
     @task = Task.find(params[:task_id])
-    @users = @task.users
+    @users = @task.accepted_submitters
     @raw_data_types = @task.raw_data_types
 
     respond_to do |format|
@@ -180,7 +180,7 @@ class AdminController < ApplicationController
   ######################################### UPDATE ACTION #########################################
   def participateUpdate
     method_message = 'ADMIN) participate update'
-
+    
     @user = User.find(params[:user_id])
     @task = Task.find(params[:task_id])
 

@@ -7,7 +7,7 @@ class SubmitterController < ApplicationController
     logger.info hello
     render json: {'hello' => hello}
   end
-
+  
   # 참여 신청 가능한 테스크 목록
   def taskApplyIndex
     logger.info 'Yeah GET taskApplyIndex come on!'
@@ -37,8 +37,6 @@ class SubmitterController < ApplicationController
     
     @submitter = User.find(params[:user_id])
 
-    # test
-    # @submitter.r_user_submits.where(task_id: 1).update_all(is_accepted: true)
     r_user_submits = @submitter.r_user_submits.where(is_accepted: true)
     @participate_tasks = []
     r_user_submits.each do |rus|
