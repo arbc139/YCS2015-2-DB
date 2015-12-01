@@ -28,9 +28,9 @@ angular.module('dbfrontappApp')
         $scope.result.role = user.role;
 
         if (user.role === 'submitter') {
-
+          $scope.result.taskList = res.data.tasks;
         } else if (user.role === 'valuer') {
-
+          $scope.result.fileList = res.data.files;
         } else if (user.role === 'admin') {
 
         } else {

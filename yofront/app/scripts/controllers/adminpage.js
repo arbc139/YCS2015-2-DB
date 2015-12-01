@@ -27,6 +27,7 @@ angular.module('dbfrontappApp')
 
   ApiService.getUserList(function(res) {
     $scope.userList = res.data;
+    $scope.userList.splice(0, 1);
     $scope.originalUserList = res.data;
   }, function(res) {
     console.log('getUserList error');

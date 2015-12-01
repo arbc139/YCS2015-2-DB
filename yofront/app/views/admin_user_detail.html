@@ -11,17 +11,59 @@
 
     <h3>id: {{ result.id }}</h3>
     <h3>role: {{ result.role }}</h3>
+    <hr>
 
     <!-- submitter partial view -->
     <div ng-show="result.role === 'submitter'">
-      submit
+      <h2>참여 중인 태스크 목록</h2>
+      <table class="table">
+        <thead>
+          <th>ID</th>
+          <th>Task Name</th>
+        </thead>
+        <tbody ng-repeat="item in result.taskList">
+          <td>{{ item.id }}</td>
+          <td>{{ item.t_name }}</td>
+        </tbody>
+      </table>
     </div> <!-- submitter partial view -->
 
 
 
     <!-- valuer partial view -->
     <div ng-hide="result.role === 'submitter'">
-      valer
+      <h2>제출 목록</h2>
+      <table class="table">
+        <thead>
+          <th>id</th>
+          <th>period</th>
+          <th>inning</th>
+          <th>all#</th>
+          <th>duplicated#</th>
+          <th>data</th>
+          <th>passed</th>
+          <th>valued</th>
+        </thead>
+        <tbody ng-repeat="item in result.fileList">
+          <!-- all_tuple_num: 10
+data_blob: "pdsf1 file"
+duplicated_tuple_num: 10
+id: 1
+inning: 30
+is_passed: true
+is_valued: true
+period: 10 -->
+          <td>{{ item.id }}</td>
+          <td>{{ item.period }}</td>
+          <td>{{ item.inning }}</td>
+          <td>{{ item.all_tuple_num }}</td>
+
+          <td>{{ item.duplicated_tuple_num }}</td>
+          <td>{{ item.data_blob }}</td>
+          <td>{{ item.is_passed }}</td>
+          <td>{{ item.is_valued }}</td>
+        </tbody>
+      </table>
     </div> <!-- valuer partial view -->
 
   </div>
