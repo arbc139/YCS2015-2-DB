@@ -29,6 +29,13 @@ angular.module('dbfrontappApp')
     $scope.send = function() {
       if (isAllFilled() && $scope.rdtName !== '') {
         alertify.success('ok');
+
+        ApiService.postNewRawDataType($scope.rdtName, $scope.columnList,
+        function() {
+          alertify.success('success');
+        }, function() {
+          alertify.error('error');
+        });
       } else {
         alertify.error('fill in the blanks');
       }
