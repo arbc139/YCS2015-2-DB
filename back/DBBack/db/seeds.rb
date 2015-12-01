@@ -26,13 +26,27 @@ submitter = User.create(
   )
 
 submitter2 = User.create(
-  str_id: 'submitter2', password: 's', u_name: 'dyd', sex: 'M', address: 'Seoul', birth: Date.parse('1997/09/20'), phone_number: '010', value_score: '100',
+  str_id: 'submitter2', password: 's', u_name: 'dyd', sex: 'M', address: 'Seoul', birth: Date.parse('1922/09/20'), phone_number: '010', value_score: '100',
   role: 'submitter'
   )
 
+submitter3 = User.create(
+  str_id: 'submitter3', password: 's', u_name: 'dyd', sex: 'M', address: 'Seoul', birth: Date.parse('2001/01/01'), phone_number: '010', value_score: '100',
+  role: 'submitter'
+  )
 
 valuer = User.create(
   str_id: 'valuer', password: 'v', u_name: 'dy', sex: 'M', address: 'Seoul', birth: Date.parse('2001/09/20'), phone_number: '010', 
+  role: 'valuer'
+  )
+
+valuer2 = User.create(
+  str_id: 'valuer2', password: 'v', u_name: 'dyd', sex: 'M', address: 'Seoul', birth: Date.parse('1473/09/20'), phone_number: '010', 
+  role: 'valuer'
+  )
+
+valuer3 = User.create(
+  str_id: 'valuer3', password: 'v', u_name: 'dyd', sex: 'M', address: 'Seoul', birth: Date.parse('1273/09/20'), phone_number: '010', 
   role: 'valuer'
   )
 

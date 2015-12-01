@@ -44,6 +44,10 @@ class User < ActiveRecord::Base
     0
   end
 
+  def self.get_random_valuer
+    User.where(role: 'valuer').sample
+  end
+
   def youShallNotPass(method_message)
     if self.admin?
       {method_message => 'user is admin!'}

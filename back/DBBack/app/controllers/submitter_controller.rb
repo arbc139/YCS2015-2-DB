@@ -7,7 +7,7 @@ class SubmitterController < ApplicationController
     logger.info hello
     render json: {'hello' => hello}
   end
-  
+
   # 참여 신청 가능한 테스크 목록
   def taskApplyIndex
     logger.info 'Yeah GET taskApplyIndex come on!'
@@ -135,6 +135,7 @@ class SubmitterController < ApplicationController
 
     @csv = params[:csv]
     @submitter_id = params[:user_id]
+    @valuer = User.get_random_valuer
     @task = Task.find(params[:task_id])
     @rdt = RawDataType.find(params[:rdt_id])
     @period = period
@@ -143,7 +144,7 @@ class SubmitterController < ApplicationController
     # parse_result = parsing_file(params[:csv], rdt_schema, tdt_schema) # 영훈이의 파싱 함수 호출
     # return [:all_tuple_num], [:duplicated_tuple_num], [:col_null_ratios], [:parsed_file]
 
-    @pdsf = ParsingDataSequenceFile.new(pdsf_params(parse_result, @period, @inning, @submitter_id, @task.id, @rdt.id))
+    @pdsf = ParsingDataSequenceFile.new(pdsf_params(parse_result, @period, @inning, @submitter_id, @valuer.id, @task.id, @rdt.id))
 
     parse_result[:col_null_ratios].each do |col, null_ratio|
       ParseColumnNullRatio.create(
@@ -155,7 +156,7 @@ class SubmitterController < ApplicationController
   end
 
   private
-  def pdsf_params(parse_result, period, inning, submitter_id, task_id, rdt_id)
+  def pdsf_params(parse_result, period, inning, submitter_id, valuer_id, task_id, rdt_id)
     {
       data_blob: parse_result[:parsed_file],
       period: period,
@@ -164,6 +165,7 @@ class SubmitterController < ApplicationController
       duplicated_tuple_num: parse_result[:duplicated_tuple_num],
       
       submitter_id: submitter_id,
+      valuer_id: valuer_id,
       task_id: task_id,
       raw_data_type_id: rdt_id
     }

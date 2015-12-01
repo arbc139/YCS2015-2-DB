@@ -4,6 +4,8 @@ class ValuerController < ApplicationController
   def index
     hello = 'Hi, I am Valuer!'
     logger.info hello
+    
+
     render json: {'hello' => hello}
   end
 end
