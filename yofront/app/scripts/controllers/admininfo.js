@@ -21,7 +21,7 @@ angular.module('dbfrontappApp')
 
     $scope.change = function(query) {
         ApiService.postModifyAdminPassword(query,
-      function(res) {
+      function() {
         alertify.success('success');
         $location.path('/my-page-redirect');
       }, function() {
