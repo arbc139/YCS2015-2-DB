@@ -61,21 +61,21 @@ t.text :task_data_table_schema
 
 # TASK seeds
 t1 = Task.create(t_name: "TASK1_name", description: "TASK1_descript", minimum_upload_period: "TASK1_period", task_data_table_name: "TASK1_schema_name", 
-  task_data_table_schema: "t1_name, t1_sex, t1_job")
+  task_data_table_schema: ["tdt1_col1", "tdt1_cols2"])
 t2 = Task.create(t_name: "TASK2_name", description: "TASK2_descript", minimum_upload_period: "TASK2_period", task_data_table_name: "TASK2_schema_name", 
-  task_data_table_schema: "t2_name, t2_sex, t2_job")
+  task_data_table_schema: ["tdt2_col1", "tdt2_cols2"])
 t3 = Task.create(t_name: "TASK3_name", description: "TASK3_descript", minimum_upload_period: "TASK3_period", task_data_table_name: "TASK3_schema_name", 
-  task_data_table_schema: "t3_name, t3_sex, t3_job")
+  task_data_table_schema: ["tdt3_col1", "tdt3_cols2"])
 t4 = Task.create(t_name: "TASK4_name", description: "TASK4_descript", minimum_upload_period: "TASK4_period", task_data_table_name: "TASK4_schema_name", 
-  task_data_table_schema: "t4_name, t4_sex, t4_job")
+  task_data_table_schema: ["tdt4_col1", "tdt4_cols2"])
 t5 = Task.create(t_name: "TASK5_name", description: "TASK5_descript", minimum_upload_period: "TASK5_period", task_data_table_name: "TASK5_schema_name", 
-  task_data_table_schema: "t5_name, t5_sex, t5_job")
+  task_data_table_schema: ["tdt5_col1", "tdt5_cols2"])
 t6 = Task.create(t_name: "TASK6_name", description: "TASK6_descript", minimum_upload_period: "TASK6_period", task_data_table_name: "TASK6_schema_name", 
-  task_data_table_schema: "t6_name, t6_sex, t6_job")
+  task_data_table_schema: ["tdt6_col1", "tdt6_cols2"])
 t7 = Task.create(t_name: "TASK7_name", description: "TASK7_descript", minimum_upload_period: "TASK7_period", task_data_table_name: "TASK7_schema_name", 
-  task_data_table_schema: "t7_name, t7_sex, t7_job")
+  task_data_table_schema: ["tdt7_col1", "tdt7_cols2"])
 t8 = Task.create(t_name: "TASK8_name", description: "TASK8_descript", minimum_upload_period: "TASK8_period", task_data_table_name: "TASK8_schema_name", 
-  task_data_table_schema: "t8_name, t8_sex, t8_job")
+  task_data_table_schema: ["tdt8_col1", "tdt8_cols2"])
 
 #################################### R_USER_SUBMIT(SUBMITTER, TASK) ####################################
 # R_USER_SUBMIT columns
@@ -95,13 +95,13 @@ t.text :schema
 
 # RAW_DATA_TYPE seed
 rdt1 = RawDataType.create(raw_name: "RAW_DATA_TYPE1_name", 
-  schema: "rdt1_name, rdt1_sex, rdt1_job")
+  schema: ["rdt1_name", "rdt1_job"])
 rdt2 = RawDataType.create(raw_name: "RAW_DATA_TYPE2_name", 
-  schema: "rdt2_name, rdt2_sex, rdt2_job")
+  schema: ["rdt2_name", "rdt2_job"])
 rdt3 = RawDataType.create(raw_name: "RAW_DATA_TYPE3_name", 
-  schema: "rdt3_name, rdt3_sex, rdt3_job")
+  schema: ["rdt3_name", "rdt3_job"])
 rdt4 = RawDataType.create(raw_name: "RAW_DATA_TYPE4_name", 
-  schema: "rdt4_name, rdt4_sex, rdt4_job")
+  schema: ["rdt4_name", "rdt4_job"])
 
 
 #################################### R_TASK_RAW_DATA(TASK, RAW_DATA_TYPE) ####################################

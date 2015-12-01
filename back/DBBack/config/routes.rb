@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   ## 앵제) 회원 탈퇴 버튼을 눌렀을 때
   # 유저 id를 받아서 유저를 디비에서 삭제시키는 액션
   delete '/api/users/:id' => 'sessions#userDestroy'
-  
+
   # resources
   # get 'users' => 'users#index'
   # post 'users' => 'users#create'
@@ -87,7 +87,16 @@ Rails.application.routes.draw do
 
   #################################### SUBMITTER ####################################
   get '/api/valuer' => 'valuer#index'
-  
+
+  ## Valuer 페이지에서 정보 가져오기 액션
+  # valuer에게 할당된 아직 평가 안된 pdsf를 가져오기 액션
+  get '/api/valuer/pdsfs/notvalued' => 'valuer#pdsfNotValuedIndex'
+  # valuer가 평가했던 pdsf 가져오기 액션
+  get '/api/valuer/pdsfs/valued' => 'valuer#pdsfValuedIndex'
+
+  ## Valuer 페이지에서 정보 업데이트 액션
+  # valuer가 해당 파일을 평가했을 때
+  post '/api/valuer/pdsfs/notvalued' => 'valuer#pdsfUpdate'
 
 
 

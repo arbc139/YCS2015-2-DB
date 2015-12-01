@@ -7,6 +7,8 @@ class Task < ActiveRecord::Base
   has_many :r_user_submits
   has_many :users, through: :r_user_submits
 
+  serialize :task_data_table_schema, Array
+
   def no_of_submitted_files
     self.pds_files.size
   end

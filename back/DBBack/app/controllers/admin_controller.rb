@@ -155,7 +155,13 @@ class AdminController < ApplicationController
       @task.raw_data_types << RawDataType.find(raw_data_type[:id])
     end
 
-    logger.info "Save completed?"
+    # TDT schema Columns
+    @task.task_data_table_schema = params[:task][:schema_cols]
+
+    # Create Task Data Table
+    # FIXIT:-영훈이 함수 호출
+    logger.info 'Save completed?'
+    logger.info @task.task_data_table_schema
 
     if @task.save
       render json: @task.as_json(only: [:id, :t_name])
@@ -169,6 +175,10 @@ class AdminController < ApplicationController
     method_message = 'ADMIN) raw data type create'
     logger.info 'Yeah Raw Data Type POST come on!'
     @rdt = RawDataType.new(rdt_params) # put rdt informations
+
+    # Schema columns
+    @rdt.schema = params[:raw_data_type][:schema_cols]
+    logger.info @rdt.schema
 
     if @rdt.save
       render json: @rdt.as_json
@@ -235,13 +245,13 @@ class AdminController < ApplicationController
   ######################################### TOOL METHOD #########################################
   private
   def task_params
-    params.require(:task).permit(:t_name, :description, :minimum_upload_period, :task_data_table_name, :task_data_table_schema)
-    # :name, :description, :minimum_upload_period, :task_data_table_schema
+    params.require(:task).permit(:t_name, :description, :minimum_upload_period, :task_data_table_name)
+    # :name, :description, :minimum_upload_period, :task_data_table_name
   end
 
   def rdt_params
-    params.require(:raw_data_type).permit(:raw_name, :schema)
-    # :raw_name, :schema
+    params.require(:raw_data_type).permit(:raw_name)
+    # :raw_name
   end
 
 end
