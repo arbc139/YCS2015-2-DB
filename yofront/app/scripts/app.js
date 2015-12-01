@@ -94,6 +94,11 @@ angular
         templateUrl: 'views/newtask.html',
         controller: 'NewtaskCtrl'
       })
+      .when('/admin-page/new-rdt', {
+        templateUrl: 'views/admin-page/new-rdt.html',
+        controller: 'AdminPageNewRdtCtrl',
+        controllerAs: 'adminPage/newRdt'
+      })
       .otherwise({
         redirectTo: '/'
       });
