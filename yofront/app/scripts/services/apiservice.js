@@ -185,8 +185,6 @@ angular.module('dbfrontappApp')
           }
         };
 
-        console.log('getAppliableTaskList uId: '+uId);
-
         $http.get(SERVER_URL + '/submitter/tasks/apply.json', p)
         .then(onS, onE);
       },
