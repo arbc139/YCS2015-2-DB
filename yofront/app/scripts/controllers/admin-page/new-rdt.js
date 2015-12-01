@@ -16,6 +16,7 @@ angular.module('dbfrontappApp')
     ];
 
     $scope.columnList = [''];
+    $scope.rdtName = '';
 
     $scope.plusplus = function() {
       if (isAllFilled()) {
@@ -26,7 +27,7 @@ angular.module('dbfrontappApp')
     };
 
     $scope.send = function() {
-      if (isAllFilled()) {
+      if (isAllFilled() && $scope.rdtName !== '') {
         alertify.success('ok');
       } else {
         alertify.error('fill in the blanks');

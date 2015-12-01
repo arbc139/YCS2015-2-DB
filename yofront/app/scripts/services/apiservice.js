@@ -105,6 +105,17 @@ angular.module('dbfrontappApp')
         $http.post(SERVER_URL + '/admin/info', params, config)
         .then(onS, onE);
       },
+      postNewRawDataType: function(rdtName, colList, onS, onE) {
+        var params = {
+          raw_data_type: {
+            raw_name: rdtName,
+            schema_cols: colList
+          }
+        };
+
+        $http.post(SERVER_URL + '/admin/rdts', params, config)
+        .then(onS, onE);
+      },
 
       // signUp
       postSignUp: function(id, password, uName, sex, address, birth, phone, role, onS, onE) {
