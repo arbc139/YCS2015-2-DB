@@ -163,12 +163,27 @@ angular.module('dbfrontappApp')
           return;
         }
 
-        var parms = {
+        var params = {
           task_id: taskId,
           user_id: uId
         };
 
         $http.post(SERVER_URL + '/submitter/tasks/apply', params, config)
+        .then(onS, onE);
+      },
+      getAppliableTaskList: function(onS, onE) {
+        var uId = SessionService.getId();
+
+        if (uId === -1) {
+          alertify.error('user id -1 <br>(you should not use test session)');
+          return;
+        }
+
+        var params = {
+          user_id: uId
+        };
+
+        $http.get(SERVER_URL + '/submitter/tasks/apply', params)
         .then(onS, onE);
       }
     };
