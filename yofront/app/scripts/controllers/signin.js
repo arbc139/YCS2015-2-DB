@@ -53,7 +53,8 @@ angular.module('dbfrontappApp')
           SessionService.setCurrentSessionType(SESSION_TYPE.SUBMITTER);
 
         }  else {
-          window.alert('sibal??? ? ?sdfljasdlfjasdf');
+          window.alert('not in the db, try again');
+          return;
         }
 
         $location.path('my-page-redirect');
