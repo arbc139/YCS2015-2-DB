@@ -9,8 +9,20 @@
   <div class="panel-body">
     <!-- 전 체 유 저 목 록 -->
 
-    <p>제출자라면 어쩌구</p>
-    <p>평가자라면 어쩌구</p>
+    <h3>id: {{ result.id }}</h3>
+    <h3>role: {{ result.role }}</h3>
+
+    <!-- submitter partial view -->
+    <div ng-show="result.role === 'submitter'">
+      submit
+    </div> <!-- submitter partial view -->
+
+
+
+    <!-- valuer partial view -->
+    <div ng-hide="result.role === 'submitter'">
+      valer
+    </div> <!-- valuer partial view -->
 
   </div>
 </div>

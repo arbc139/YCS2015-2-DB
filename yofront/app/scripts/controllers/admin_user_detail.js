@@ -18,11 +18,30 @@ angular.module('dbfrontappApp')
     SessionService.checkSessionType(SESSION_TYPE.ADMIN);
 
     var userId = $location.search().uid;
-    
+
+    $scope.result = {};
+
     ApiService.getUserInfo(userId,
     function(res) {
-        $scope.user = res.data;
-        console.log($scope.user);
+        var user = res.data.user;
+        $scope.result.id = user.str_id;
+        $scope.result.role = user.role;
+
+        if (user.role === 'submitter') {
+
+        } else if (user.role === 'valuer') {
+
+        } else if (user.role === 'admin') {
+
+        } else {
+          console.error('what the?');
+          console.log(res.data);
+
+          return;
+        }
+
+        // $scope.result = resultStr;
+        console.log(res.data);
     }, function(res) {
       console.log('error');
       console.log(res);
