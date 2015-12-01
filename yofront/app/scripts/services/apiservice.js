@@ -199,7 +199,7 @@ angular.module('dbfrontappApp')
         };
 
         $http.get(SERVER_URL + '/submitter/tasks/participate', params)
-        then(onS, onE);
+        .then(onS, onE);
       }
     };
   });
