@@ -97,7 +97,16 @@ angular.module('dbfrontappApp')
           accept: isAccepted
         };
 
-        $http.post(SERVER_URL + "/admin/tasks/manage", params, config)
+        $http.post(SERVER_URL + '/admin/tasks/manage', params, config)
+        .then(onS, onE);
+      },
+      postModifyAdminPassword: function(newPassword, onS, onE) {
+        var params = {
+          user_id: 1,
+          password: newPassword
+        };
+
+        $http.post(SERVER_URL + '/admin/info', params, config)
         .then(onS, onE);
       },
 
