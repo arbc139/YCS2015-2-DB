@@ -28,7 +28,8 @@ angular.module('dbfrontappApp')
   // });
 
   ApiService.getAppliableTaskList(function(res) {
-    $scope.submittableTask = res.data;
+    console.log(res);
+    $scope.appliableTaskList = res.data;
   }, function() {
     alertify.error('error');
   });

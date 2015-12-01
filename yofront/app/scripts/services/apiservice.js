@@ -63,11 +63,7 @@ angular.module('dbfrontappApp')
           // column의 리스트?
       },
       getUserInfo: function(userId, onS, onE) {
-        $http.get(SERVER_URL + '/admin/users.json/', {
-          params: {
-            id: userId
-          }
-        })
+        $http.get(SERVER_URL + '/admin/users/' + userId + '.json/')
         .then(onS, onE);
       },
       getTaskInfo: function(taskId, onS, onE) {

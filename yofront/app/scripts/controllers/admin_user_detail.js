@@ -17,8 +17,9 @@ angular.module('dbfrontappApp')
     // check admin!
     SessionService.checkSessionType(SESSION_TYPE.ADMIN);
 
-    this.userId = $location.search().uid;
-    ApiService.getUserInfo(this.userId,
+    var userId = $location.search().uid;
+    
+    ApiService.getUserInfo(userId,
     function(res) {
         $scope.user = res.data;
         console.log($scope.user);
