@@ -24,15 +24,22 @@ angular.module('dbfrontappApp')
     ApiService.getUserInfo(userId,
     function(res) {
         var user = res.data.user;
-        $scope.result.id = user.str_id;
-        $scope.result.role = user.role;
-
+        if (user === undefined) {
+          $scope.result.role = 'admin';
+          user = {};
+          user.role = 'admin';
+        } else {
+          $scope.result.role = user.role;
+        }
         if (user.role === 'submitter') {
+          $scope.result.id = user.str_id;
           $scope.result.taskList = res.data.tasks;
         } else if (user.role === 'valuer') {
+          $scope.result.id = user.str_id;
           $scope.result.fileList = res.data.files;
         } else if (user.role === 'admin') {
-
+          alertify.error('no admin!');
+          $location.path('/my-page-redirect');
         } else {
           console.error('what the?');
           console.log(res.data);
