@@ -179,11 +179,15 @@ angular.module('dbfrontappApp')
           return;
         }
 
-        var params = {
-          user_id: uId
+        var p = {
+          params: {
+            user_id: uId
+          }
         };
 
-        $http.get(SERVER_URL + '/submitter/tasks/apply', params)
+        console.log('getAppliableTaskList uId: '+uId);
+
+        $http.get(SERVER_URL + '/submitter/tasks/apply.json', p)
         .then(onS, onE);
       },
       getSubmittableTaskList: function(onS, onE) {
@@ -194,11 +198,13 @@ angular.module('dbfrontappApp')
           return;
         }
 
-        var params = {
-          user_id: uId
+        var p = {
+          params: {
+            user_id: uId
+          }
         };
 
-        $http.get(SERVER_URL + '/submitter/tasks/participate', params)
+        $http.get(SERVER_URL + '/submitter/tasks/participate.json', p)
         .then(onS, onE);
       },
       getSubmitterTaskInfo: function(taskId, onS, onE) {
@@ -209,12 +215,14 @@ angular.module('dbfrontappApp')
           return;
         }
 
-        var params = {
-          user_id: uId,
-          task_id: taskId
+        var p = {
+          params: {
+            user_id: uId,
+            task_id: taskId
+          }
         };
 
-        $http.get(SERVER_URL + '/submitter/tasks/info', params)
+        $http.get(SERVER_URL + '/submitter/tasks/info.json', p)
         .then(onS, onE);
       }
     };

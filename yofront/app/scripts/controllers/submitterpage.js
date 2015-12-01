@@ -20,18 +20,18 @@ angular.module('dbfrontappApp')
 
 
   // begin appliable task
-  ApiService.getTaskList(function(res) { // todo remove
-    $scope.appliableTaskList = res.data;
-  }, function(res) {
-    console.log('getTaskList error');
-    console.log(res.data);
-  });
-
-  // ApiService.getAppliableTaskList(function(res) {
-  //   $scope.submittableTask = res.data;
-  // }, function() {
-  //   alertify.error('error');
+  // ApiService.getTaskList(function(res) { // todo remove
+  //   $scope.appliableTaskList = res.data;
+  // }, function(res) {
+  //   console.log('getTaskList error');
+  //   console.log(res.data);
   // });
+
+  ApiService.getAppliableTaskList(function(res) {
+    $scope.submittableTask = res.data;
+  }, function() {
+    alertify.error('error');
+  });
 
   $scope.apply = function(tableId) {
     console.log(tableId);
@@ -53,18 +53,18 @@ angular.module('dbfrontappApp')
 
   // begin submittable task
 
-  ApiService.getTaskList(function(res) { // todo remove
-    $scope.submittableTask = res.data;
-  }, function(res) {
-    console.log('getTaskList error');
-    console.log(res.data);
-  });
-
-  // ApiService.getSubmittableTaskList(function(res) {
+  // ApiService.getTaskList(function(res) { // todo remove
   //   $scope.submittableTask = res.data;
-  // }, function() {
-  //   alertify.error('error');
+  // }, function(res) {
+  //   console.log('getTaskList error');
+  //   console.log(res.data);
   // });
+
+  ApiService.getSubmittableTaskList(function(res) {
+    $scope.submittableTask = res.data;
+  }, function() {
+    alertify.error('error');
+  });
 
   $scope.submit = function(tableId) {
     console.log("submit" + tableId);
