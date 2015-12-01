@@ -201,7 +201,7 @@ angular.module('dbfrontappApp')
         $http.get(SERVER_URL + '/submitter/tasks/participate', params)
         .then(onS, onE);
       },
-      getSubmitterTaskInfo: function(taskId) {
+      getSubmitterTaskInfo: function(taskId, onS, onE) {
         var uId = SessionService.getId();
 
         if (uId === -1) {
