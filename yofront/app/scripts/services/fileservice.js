@@ -16,7 +16,7 @@ angular.module('dbfrontappApp')
     // Public API here
     return {
       downloadAsCsv: function(str) {
-        $window.open("data:text/csv;charset=utf-8," + encodeURIComponent(str));
+        window.open("data:text/csv;charset=utf-8," + encodeURIComponent(str));
       }
     };
   });

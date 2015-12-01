@@ -8,7 +8,7 @@
  * Controller of the dbfrontappApp
  */
 angular.module('dbfrontappApp')
-  .controller('AdmininfoCtrl', function ($scope, $location, ApiService, SessionService, SESSION_TYPE) {
+  .controller('AdmininfoCtrl', function ($scope, $location, ApiService, FileService, SessionService, SESSION_TYPE) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -28,5 +28,9 @@ angular.module('dbfrontappApp')
         alertify.error('error');
         console.log('error admin password change');
       });
+    };
+
+    $scope.download = function() {
+      FileService.downloadAsCsv('sd,fjasdfjaslfjawelrjaweorj awlerj aowerj aower jawoer jaweir jawerij ');
     };
   });
