@@ -200,6 +200,22 @@ angular.module('dbfrontappApp')
 
         $http.get(SERVER_URL + '/submitter/tasks/participate', params)
         .then(onS, onE);
+      },
+      getSubmitterTaskInfo: function(taskId) {
+        var uId = SessionService.getId();
+
+        if (uId === -1) {
+          alertify.error('user id -1 <br>(you should not use test session)');
+          return;
+        }
+
+        var params = {
+          user_id: uId,
+          task_id: taskId
+        };
+
+        $http.get(SERVER_URL + '/submitter/tasks/info', params)
+        .then(onS, onE);
       }
     };
   });
