@@ -8,7 +8,7 @@
  * Factory in the dbfrontappApp.
  */
 angular.module('dbfrontappApp')
-  .factory('ApiService', function ($http) {
+  .factory('ApiService', function ($http, SessionService) {
     // Service logic
     // ...
     var config = {
@@ -153,6 +153,22 @@ angular.module('dbfrontappApp')
         };
         $http.post(SERVER_URL + '/test/csv',
           params, config)
+        .then(onS, onE);
+      },
+      postApplyTask: function(taskId, onS, onE) {
+        var uId = SessionService.getId();
+
+        if (uId === -1) {
+          alertify.error('user id -1 <br>(you should not use test session)');
+          return;
+        }
+
+        var parms = {
+          task_id: taskId,
+          user_id: uId
+        };
+
+        $http.post(SERVER_URL + '/submitter/tasks/apply', params, config)
         .then(onS, onE);
       }
     };
