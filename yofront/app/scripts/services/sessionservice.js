@@ -28,9 +28,9 @@ angular.module('dbfrontappApp')
     id: -1,
     str_id: 'olaf_tester',
     // type: SESSION_TYPE.WRONG
-    type: SESSION_TYPE.ADMIN
+    // type: SESSION_TYPE.ADMIN
     // type: SESSION_TYPE.SUBMITTER
-    // type: SESSION_TYPE.VALUER
+    type: SESSION_TYPE.VALUER
 
   };
 

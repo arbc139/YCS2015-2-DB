@@ -229,6 +229,25 @@ angular.module('dbfrontappApp')
 
         $http.get(SERVER_URL + '/submitter/tasks/info.json', p)
         .then(onS, onE);
+      },
+
+      // valuer
+      getNotYetValuedParsingDataSequenceFileList: function(uId, onS, onE) {
+        var uId = SessionService.getId();
+
+        if (uId === -1) {
+          alertify.error('user id -1 <br>(you should not use test session)');
+          return;
+        }
+
+        var p = {
+          params: {
+            user_id: uId
+          }
+        };
+
+        $http.get(SERVER_URL + '/valuer/pdsfs/notvalued.json', p)
+        .then(onS, onE);
       }
     };
   });
