@@ -99,6 +99,11 @@ angular
         controller: 'AdminPageNewRdtCtrl',
         controllerAs: 'adminPage/newRdt'
       })
+      .when('/admin-page/rdt-list', {
+        templateUrl: 'views/admin-page/rdt-list.html',
+        controller: 'AdminPageRdtListCtrl',
+        controllerAs: 'adminPage/rdtList'
+      })
       .otherwise({
         redirectTo: '/'
       });
