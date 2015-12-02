@@ -24,6 +24,8 @@ curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POS
 curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"user_id":1, "password":"admintest"}' http://localhost:3000/api/admin/info
 
 ################################################## SUBMITTER ##################################################
-### taskApply Action
+### taskApplyUpdate Action
 curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"task_id":3, "user_id":3}' http://localhost:3000/api/submitter/tasks/apply
 
+### taskSubmitCreate Action
+curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"csv":"", "task_id":3, "user_id":3, "rdt_id":1, "period":5, "inning":10}' http://localhost:3000/api/submitter/tasks/apply
