@@ -232,7 +232,7 @@ angular.module('dbfrontappApp')
       },
 
       // valuer
-      getNotYetValuedParsingDataSequenceFileList: function(uId, onS, onE) {
+      getNotYetValuedParsingDataSequenceFileList: function(onS, onE) {
         var uId = SessionService.getId();
 
         if (uId === -1) {

@@ -8,7 +8,7 @@
  * Controller of the dbfrontappApp
  */
 angular.module('dbfrontappApp')
-  .controller('ValuerpageCtrl', function ($location, SessionService, SESSION_TYPE) {
+  .controller('ValuerpageCtrl', function ($scope, $location, ApiService, SessionService, SESSION_TYPE) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -17,4 +17,11 @@ angular.module('dbfrontappApp')
 
     // check vauler!
     SessionService.checkSessionType(SESSION_TYPE.VALUER);
+
+    ApiService.getNotYetValuedParsingDataSequenceFileList(function(res) {
+      console.log(res);
+      $scope.pdsfList = res.data;
+    }, function() {
+      alertify.error('error');
+    });
   });

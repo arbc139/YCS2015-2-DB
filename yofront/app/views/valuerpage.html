@@ -6,6 +6,28 @@
   </div>
 
   <div class="panel-body">
-    aslerjlaeskj
+    <table class="table">
+      <thead>
+        <th>id</th>
+        <th>period</th>
+        <th>inning</th>
+        <th>all#</th>
+        <th>duplicated#</th>
+        <th>data</th>
+        <th>passed</th>
+        <th>valued</th>
+      </thead>
+      <tbody ng-repeat="item in pdsfList">
+        <td>{{ item.id }}</td>
+        <td>{{ item.period }}</td>
+        <td>{{ item.inning }}</td>
+        <td>{{ item.all_tuple_num }}</td>
+
+        <td>{{ item.duplicated_tuple_num }}</td>
+        <td>{{ item.data_blob }}</td>
+        <td>{{ item.is_passed }}</td>
+        <td>{{ item.is_valued }}</td>
+      </tbody>
+    </table>
   </div>
 </div>
