@@ -27,12 +27,6 @@ angular.module('dbfrontappApp')
       console.log('getAdminManageJSON error');
     });
 
-    ApiService.getRawDataTypes(function(res) {
-      $scope.rdtList = res.data;
-    }, function() {
-      console.log('getRawDataTypes error');
-    });
-
     $scope.decide = function(user, isAccept) {
       // alertify.success('ddd ' + isAccept);
       ApiService.postTaskApplyDecision(tableId, user.id, isAccept,

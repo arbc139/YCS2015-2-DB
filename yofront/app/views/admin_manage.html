@@ -37,31 +37,3 @@
     </table>
   </div>
 </div>
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h4>원본 데이터 타입 목록</h4>
-  </div>
-
-  <div class="panel-body">
-    <!-- 전 체 유 저 목 록 -->
-    <a class="btn btn-primary" href="#/admin-page/new-rdt">원본 데이터 타입 추가</a><br><br>
-    <table class="table">
-      <thead>
-
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Schema</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="item in rdtList">
-        <td>{{ item.id }}</td>
-        <td>{{ item.raw_name }}</td>
-        <td>{{ item.schema }}</td>
-      </tr>
-    </tbody>
-    </table>
-  </div>
-</div>

@@ -8,7 +8,7 @@
  * Controller of the dbfrontappApp
  */
 angular.module('dbfrontappApp')
-  .controller('AdminPageNewRdtCtrl', function ($scope, ApiService) {
+  .controller('AdminPageNewRdtCtrl', function ($scope, $location, ApiService) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -32,6 +32,7 @@ angular.module('dbfrontappApp')
         ApiService.postNewRawDataType($scope.rdtName, $scope.columnList,
         function() {
           alertify.success('success');
+          $location.path('/admin-page/rdt-list');
         }, function() {
           alertify.error('error');
         });
