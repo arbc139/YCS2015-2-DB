@@ -104,6 +104,11 @@ angular
         controller: 'AdminPageRdtListCtrl',
         controllerAs: 'adminPage/rdtList'
       })
+      .when('/text-viewer', {
+        templateUrl: 'views/text-viewer.html',
+        controller: 'TextViewerCtrl',
+        controllerAs: 'textViewer'
+      })
       .otherwise({
         redirectTo: '/'
       });
