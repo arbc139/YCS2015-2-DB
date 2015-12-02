@@ -8,7 +8,7 @@
  * Controller of the dbfrontappApp
  */
 angular.module('dbfrontappApp')
-  .controller('AdminUserDetailCtrl', function ($scope, $location, SessionService, ApiService, SESSION_TYPE) {
+  .controller('AdminUserDetailCtrl', function ($scope, $location, CacheService, SessionService, ApiService, SESSION_TYPE) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -53,4 +53,9 @@ angular.module('dbfrontappApp')
       console.log('error');
       console.log(res);
     });
+
+    $scope.goToTextViewer = function(i) {
+      CacheService.setCache($scope.result.fileList[i].data_blob);
+      $location.path('/text-viewer');
+    };
   });
