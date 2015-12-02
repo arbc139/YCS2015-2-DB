@@ -8,7 +8,7 @@
  * Controller of the dbfrontappApp
  */
 angular.module('dbfrontappApp')
-  .controller('TextViewerCtrl', function ($scope, CacheService) {
+  .controller('TextViewerCtrl', function ($scope, CacheService, FileService) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -17,5 +17,9 @@ angular.module('dbfrontappApp')
 
     $scope.txt = CacheService.getCache();
     CacheService.clearCache();
+
+    $scope.download = function() {
+      FileService.downloadAsCsv($scope.txt);
+    };
 
   });

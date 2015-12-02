@@ -8,7 +8,7 @@
  * Controller of the dbfrontappApp
  */
 angular.module('dbfrontappApp')
-  .controller('ValuerpageCtrl', function ($scope, $location, ApiService, SessionService, SESSION_TYPE) {
+  .controller('ValuerpageCtrl', function ($scope, $location, ApiService, SessionService, CacheService, SESSION_TYPE) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -24,4 +24,9 @@ angular.module('dbfrontappApp')
     }, function() {
       alertify.error('error');
     });
+
+    $scope.goToTextViewer = function(i) {
+      CacheService.setCache($scope.pdsfList[i].data_blob);
+      $location.path('/text-viewer');
+    };
   });
