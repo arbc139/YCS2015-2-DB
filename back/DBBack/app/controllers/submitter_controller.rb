@@ -132,7 +132,7 @@ class SubmitterController < ApplicationController
     # rdt_id (raw_data_type id)
     # period (회차)
     # inning (기간)
-
+    
     @csv = params[:csv]
     @submitter_id = params[:user_id]
     @valuer = User.get_random_valuer
@@ -141,6 +141,7 @@ class SubmitterController < ApplicationController
     @period = period
     @inning = inning
 
+    parse_result = parsing_file(params[:csv], rdt.schema, task.task_data_table_schema)
     # parse_result = parsing_file(params[:csv], rdt_schema, tdt_schema) # 영훈이의 파싱 함수 호출
     # return [:all_tuple_num], [:duplicated_tuple_num], [:col_null_ratios], [:parsed_file]
 

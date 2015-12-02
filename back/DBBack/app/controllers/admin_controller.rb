@@ -135,6 +135,7 @@ class AdminController < ApplicationController
 
       task_hash = Hash.new
       task_hash[:no_of_submitted_files] = @task.no_of_submitted_files
+      # FIXIT: - 영훈이 함수 호출
       task_hash[:no_of_passed_files] = @task.no_of_passed_files
       task_hash[:submitters] = @users.as_json(only: [:id, :u_name, :str_id, :sex, :address, :birth, :role, :value_score])
       
@@ -147,7 +148,6 @@ class AdminController < ApplicationController
   def taskCreate
     method_message = 'ADMIN) task create'
     
-    # FIXIT :- need to change :raw_data_type
     logger.info 'Yeah Task POST come on!'
     @task = Task.new(task_params) # put task informations
     raw_data_type_list = params[:raw_data_types] # put raw_data_type informations
