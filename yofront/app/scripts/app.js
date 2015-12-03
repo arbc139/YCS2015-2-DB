@@ -104,6 +104,11 @@ angular
         controller: 'TextViewerCtrl',
         controllerAs: 'textViewer'
       })
+      .when('/user-info', {
+        templateUrl: 'views/user-info.html',
+        controller: 'UserInfoCtrl',
+        controllerAs: 'userInfo'
+      })
       .otherwise({
         redirectTo: '/'
       });
