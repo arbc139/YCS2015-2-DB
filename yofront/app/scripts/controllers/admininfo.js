@@ -30,7 +30,4 @@ angular.module('dbfrontappApp')
       });
     };
 
-    $scope.download = function() {
-      FileService.downloadAsCsv('sd,fjasdfjaslfjawelrjaweorj awlerj aowerj aower jawoer jaweir jawerij ');
-    };
   });
