@@ -110,7 +110,7 @@ class ParsingDataSequenceFile < ActiveRecord::Base
     end
     
     for attribute in tdt_schema_col
-      col_null_ratios[attribute] = col_null_ratios[attribute] / tdt_tuples.length
+      col_null_ratios[attribute] /= tdt_tuples.length
     end
     
     returnHash['all_tuple_num'] = tdt_tuples.length
