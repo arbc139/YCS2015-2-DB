@@ -14,8 +14,7 @@ class Task < ActiveRecord::Base
   end
   
   def no_of_passed_files
-    # get from TDT (need to implement Task Data Table)
-    0
+    self.pds_files.where(is_passed: true).size
   end
 
   def unaccepted_submitters

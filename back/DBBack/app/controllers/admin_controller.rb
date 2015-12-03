@@ -109,7 +109,7 @@ class AdminController < ApplicationController
 
   def taskManageShow
     method_message = 'ADMIN) task manage show'
-
+    
     @task = Task.find(params[:task_id])
     @users = @task.unaccepted_submitters
 
@@ -117,7 +117,7 @@ class AdminController < ApplicationController
 
       task_hash = Hash.new
       task_hash[:submitters] = @users.as_json(only: [:id, :u_name, :str_id, :sex, :address, :birth, :role, :value_score])
-      task_hash[:rdts] = @raw_data_types.as_json(only: [:id, :raw_name])
+      task_hash[:rdts] = @task.raw_data_types.as_json(only: [:id, :raw_name])
 
       format.html
       format.json { render :json => task_hash }
@@ -126,19 +126,28 @@ class AdminController < ApplicationController
 
   def taskStatShow
     method_message = 'ADMIN) task stat show'
-
+    
     @task = Task.find(params[:task_id])
     @users = @task.accepted_submitters
     @raw_data_types = @task.raw_data_types
+    @pdsfs = @task.pds_files
+
+    rdt_pdsfs_count_hash = Hash.new
+    @raw_data_types.each do |rdt|
+      rdt_pdsfs_count_hash[rdt.id] = Hash.new
+      target_pdsfs = @pdsfs.where(raw_data_type_id: rdt.id)
+      rdt_pdsfs_count_hash[rdt.id][:no_of_submitted_files] = target_pdsfs.size
+      rdt_pdsfs_count_hash[rdt.id][:no_of_passed_files] = target_pdsfs.where(is_passed: true).size
+    end
 
     respond_to do |format|
 
       task_hash = Hash.new
       task_hash[:no_of_submitted_files] = @task.no_of_submitted_files
-      # FIXIT: - 영훈이 함수 호출
       task_hash[:no_of_passed_files] = @task.no_of_passed_files
       task_hash[:submitters] = @users.as_json(only: [:id, :u_name, :str_id, :sex, :address, :birth, :role, :value_score])
-      
+      task_hash[:rdt_stats] = rdt_pdsfs_count_hash
+
       format.html
       format.json { render :json => task_hash }
     end

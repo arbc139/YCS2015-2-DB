@@ -112,7 +112,7 @@ t.belongs_to :raw_data_type, index: true  #FK to raw_data_type
 """
 
 # relationship PK FK seeds
-t1.raw_data_types << rdt1 << rdt2 << rdt3
+t1.raw_data_types << rdt1 << rdt2 << rdt3 << rdt4
 t2.raw_data_types << rdt2 << rdt3
 t3.raw_data_types << rdt3 << rdt4
 

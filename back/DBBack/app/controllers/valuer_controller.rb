@@ -48,7 +48,7 @@ class ValuerController < ApplicationController
     # pdsf id
     # value_score
     # is_passed
-
+    
     @file = ParsingDataSequenceFile.find(params[:pdsf_id])
     @value_score = params[:value_score]
     @is_passed = params[:is_passed]
