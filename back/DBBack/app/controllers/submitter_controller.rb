@@ -66,7 +66,7 @@ class SubmitterController < ApplicationController
     
     @submitter = User.find(params[:user_id])
     @task = Task.find(params[:task_id])
-
+    
     # submitter가 Task에 제출한 파일 수
     # submitter가 Task에 제출한 파일들 중, pass한 파일 수 (get from TDT)
     # 원본 데이터 타입 별로 자신이 제출한 파일들의 현황 (파싱시퀀스파일 record 보여주고, pass/non-pass 여부 order by 회차)
@@ -83,7 +83,7 @@ class SubmitterController < ApplicationController
       logger.info rdt
       logger.info @pdsfs_info[rdt]
     end
-
+    
     result = {
       no_of_submitted_file: @all_pdsfs_num,
       no_of_passed_file: @passed_pdsfs_num,
