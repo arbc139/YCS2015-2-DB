@@ -10,28 +10,55 @@
     <!-- 전 체 유 저 목 록 -->
     <table class="table">
       <thead>
+        <tr>
+          <th>UserID</th>
+          <th>Name</th>
+          <th>Sex</th>
+          <th>Adrress</th>
+          <th>BDate</th>
+          <th>Role</th>
+          <th>Score</th>
+          <th>---</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in userList">
+          <td>{{ item.str_id }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.sex }}</td>
+
+          <td>{{ item.address }}</td>
+          <td>{{ item.birth }}</td>
+          <td>{{ item.role }}</td>
+          <td>{{ item.score }}</td>
+          <td><a ng-click="decide(item, true)">Accept</a>&nbsp;/&nbsp;<a ng-click="decide(item, false)">Reject</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>원본 데이터 타입 목록</h4>
+  </div>
+
+  <div class="panel-body">
+    <a class="btn btn-primary" href="#/admin-page/new-rdt">원본 데이터 타입 추가</a><br><br>
+    <table class="table">
+      <thead>
+
       <tr>
-        <th>UserID</th>
+        <th>ID</th>
         <th>Name</th>
-        <th>Sex</th>
-        <th>Adrress</th>
-        <th>BDate</th>
-        <th>Role</th>
-        <th>Score</th>
-        <th>---</th>
+        <th>Schema</th>
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="item in userList">
-        <td>{{ item.str_id }}</td>
-        <td>{{ item.name }}</td>
-        <td>{{ item.sex }}</td>
-
-        <td>{{ item.address }}</td>
-        <td>{{ item.birth }}</td>
-        <td>{{ item.role }}</td>
-        <td>{{ item.score }}</td>
-        <td><a ng-click="decide(item, true)">Accept</a>&nbsp;/&nbsp;<a ng-click="decide(item, false)">Reject</a></td>
+      <tr ng-repeat="item in rdtList">
+        <td>{{ item.id }}</td>
+        <td>{{ item.raw_name }}</td>
+        <td>{{ item.schema }}</td>
       </tr>
     </tbody>
     </table>

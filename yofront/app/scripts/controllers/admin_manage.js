@@ -37,6 +37,12 @@ angular.module('dbfrontappApp')
         console.log(res);
       });
     };
+    
+    ApiService.getRawDataTypes(function(res) {
+      $scope.rdtList = res.data;
+    }, function() {
+      console.log('getRawDataTypes error');
+    });
 
     // $scope.userList = [
     //   {
