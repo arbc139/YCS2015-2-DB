@@ -77,6 +77,16 @@ t7 = Task.create(t_name: "TASK7_name", description: "TASK7_descript", minimum_up
 t8 = Task.create(t_name: "TASK8_name", description: "TASK8_descript", minimum_upload_period: "TASK8_period", task_data_table_name: "TASK8_schema_name", 
   task_data_table_schema: ["tdt8_col1", "tdt8_cols2"])
 
+# create TDT
+t1.create_tdt
+t2.create_tdt
+t3.create_tdt
+t4.create_tdt
+t5.create_tdt
+t6.create_tdt
+t7.create_tdt
+t8.create_tdt
+
 #################################### R_USER_SUBMIT(SUBMITTER, TASK) ####################################
 # R_USER_SUBMIT columns
 """
@@ -138,7 +148,8 @@ t.references :raw_data_type
 
 
 pdsf1 = ParsingDataSequenceFile.create(
-  data_blob: 'pdsf1 file',
+  # colname1,colname2,colname3\ntuple1_value1,tuple1_value2,tuple1_value3\ntuple2_value1,tuple2_value2,tuple2_value3\n
+  data_blob: 'tdt1_col1,tdt1_cols2\n110,120\n',
   period: 10,
   inning: 30,
   all_tuple_num: 10,
@@ -153,7 +164,7 @@ pdsf1 = ParsingDataSequenceFile.create(
   )
 
 pdsf2 = ParsingDataSequenceFile.create(
-  data_blob: 'pdsf2 file',
+  data_blob: 'tdt1_col1,tdt1_cols2\n110,120\n',
   period: 20,
   inning: 20,
   all_tuple_num: 20,
@@ -168,7 +179,7 @@ pdsf2 = ParsingDataSequenceFile.create(
   )
 
 pdsf3 = ParsingDataSequenceFile.create(
-  data_blob: 'pdsf3 file',
+  data_blob: 'tdt1_col1,tdt1_cols2\n110,120\n',
   period: 100,
   inning: 110,
   all_tuple_num: 2020,
@@ -183,7 +194,7 @@ pdsf3 = ParsingDataSequenceFile.create(
   )
 
 pdsf4 = ParsingDataSequenceFile.create(
-  data_blob: 'pdsf4 file',
+  data_blob: 'tdt1_col1,tdt1_cols2\n110,120\n',
   period: 100,
   inning: 110,
   all_tuple_num: 2020,
@@ -198,7 +209,7 @@ pdsf4 = ParsingDataSequenceFile.create(
   )
 
 pdsf5 = ParsingDataSequenceFile.create(
-  data_blob: 'pdsf5 file',
+  data_blob: 'tdt1_col1,tdt1_cols2\n110,120\n',
   period: 120,
   inning: 110,
   all_tuple_num: 2020,
@@ -213,7 +224,7 @@ pdsf5 = ParsingDataSequenceFile.create(
   )
 
 pdsf6 = ParsingDataSequenceFile.create(
-  data_blob: 'pdsf6 file',
+  data_blob: 'tdt2_col1,tdt2_cols2\n110,120\n',
   period: 100,
   inning: 110,
   all_tuple_num: 2020,

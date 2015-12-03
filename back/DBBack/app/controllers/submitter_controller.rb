@@ -142,8 +142,6 @@ class SubmitterController < ApplicationController
     @inning = params[:inning]
 
     parse_result = ParsingDataSequenceFile.parsing_file(params[:csv], @rdt.schema, @task.task_data_table_schema)
-    # parse_result = parsing_file(params[:csv], rdt_schema, tdt_schema) # 영훈이의 파싱 함수 호출
-    # return [:all_tuple_num], [:duplicated_tuple_num], [:col_null_ratios], [:parsed_file]
 
     @pdsf = ParsingDataSequenceFile.new(pdsf_params(parse_result, @period, @inning, @submitter_id, @valuer.id, @task.id, @rdt.id))
 

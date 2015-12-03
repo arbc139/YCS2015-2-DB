@@ -14,6 +14,7 @@ class Task < ActiveRecord::Base
   end
   
   def no_of_passed_files
+    # get from TDT (need to implement Task Data Table)
     self.pds_files.where(is_passed: true).size
   end
 
@@ -40,35 +41,84 @@ class Task < ActiveRecord::Base
   end
   
   # 동적 테이블 생성 튜토리얼 스크립트들
-  def self.create_tdt(tdt)
+  def create_tdt#(tdt)
+    tdt = {
+      table_name: self.task_data_table_name,
+      cols: self.task_data_table_schema
+    }
     ## tdt[:name] 이름을 가진 테이블 동적 생성
-    unless ActiveRecord::Base.connection.table_exists?(tdt[:table_name])
+    if !ActiveRecord::Base.connection.table_exists?(tdt[:table_name])
       ActiveRecord::Base.connection.create_table tdt[:table_name] do |t|
         # :id is created automatically
         tdt[:cols].each do |col|
-          logger.info 'column created??'
           t.column col, 'string'
         end
+        t.column 'submitter_name', 'string'
       end
-
-    else
+    elsif tdt[:table_name] != self.t_name
       logger.info 'TDT already created'
+      logger.info ActiveRecord::Base.connection.tables
+
+      logger.info 'automatically, set TDT name to TASK name'
+      self.task_data_table_name = self.t_name
+      self.create_tdt
+    else
+      logger.info 'TDT with task name is already created'
       logger.info ActiveRecord::Base.connection.tables
     end
   end
 
-  # 동적 테이블 생성할때 기본 FORM
-  def self.tdt_form
-    tdt = Hash.new
-    # :name 태그는 테스크 데이터 테이블 이름을 의미함.
-    tdt[:table_name] = 'TEST'
+  def get_all_tdt
+    query = 'SELECT * FROM ' << self.task_data_table_name
+    ActiveRecord::Base.connection.exec_query(query)
+  end
+
+  def drop_tdt
+    tdt_name = self.task_data_table_name
+    query = 'DROP TABLE ' << tdt_name
+    ActiveRecord::Base.connection.exec_query(query)
+  end
+
+  #tdt는 table_name과 column name의 array를 가진다
+  # FIXIT:- submitter name추가하는거 가져와야 됨
+  def save_file_to_tdt(parsed_file, submitter_name)
+    tdt = {
+      table_name: self.task_data_table_name,
+      cols: self.task_data_table_schema
+    }
+    logger.info parsed_file
+    tuples = parsed_file.split("\\n")
+    logger.info tuples
+    tuples.shift
+    logger.info tuples
+    for tuple in tuples
+      query_text = "INSERT INTO #{tdt[:table_name]}\(#{tdt[:cols].join(",")},submitter_name\) VALUES \("
+      tuple = tuple.split(",")
+      for attribute in tuple
+        logger.info attribute
+        if attribute.length==0
+          attribute = "NULL"
+        end
+        query_text <<'\'' << attribute << '\','
+      end 
+      query_text << '\'' << submitter_name << '\''
+      query_text << "\)"
+      ActiveRecord::Base.connection.exec_query(query_text)
+    end
+  end
+
+  def export_CSV
+    tdt_name = self.task_data_table_name
+    query = 'SELECT * FROM '
+    query << tdt_name
     
-    # :col 태그는 테스크 데이터 테이블의 컬럼의 리스트를 의미함.
-    col_list = []
-    col_list << 'test_column1' << 'test_column2' << 'test_column3'
-
-    tdt[:cols] = col_list
-
-    tdt
+    tuples = ActiveRecord::Base.connection.exec_query(query).as_json
+    resultCSV = ""
+    resultCSV << tuples[0].keys.join(",") << "\n"
+    for tuple in tuples
+      resultCSV<<tuple.values.join(",")<<"\n"
+    end 
+    resultCSV = resultCSV.chop
+    resultCSV
   end
 end

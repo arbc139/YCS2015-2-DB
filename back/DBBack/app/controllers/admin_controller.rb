@@ -165,15 +165,17 @@ class AdminController < ApplicationController
     raw_data_type_list.each do |raw_data_type|
       @task.raw_data_types << RawDataType.find(raw_data_type[:id])
     end
-
+    
     # TDT schema Columns
     @task.task_data_table_schema = params[:task][:schema_cols]
-
+    
     # Create Task Data Table
     # FIXIT:-영훈이 함수 호출
+    @task.create_tdt
+
     logger.info 'Save completed?'
     logger.info @task.task_data_table_schema
-
+    
     if @task.save
       render json: @task.as_json(only: [:id, :t_name])
     else

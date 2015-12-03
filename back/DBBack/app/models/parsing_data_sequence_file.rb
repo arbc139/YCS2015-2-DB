@@ -30,6 +30,32 @@ class ParsingDataSequenceFile < ActiveRecord::Base
     self.data_quality_score
   end
 
+  #col_null_ratio는  { col1:value, col2:value2, col3:value3}같은 형
+  def quantity_score
+    all_tuple_num = self.all_tuple_num
+    duplicated_tuple_num = self.duplicated_tuple_num
+    ratios = self.column_null_ratios.pluck(:null_ratio)
+    
+    quantity_score_value = 10
+
+    # null 비율로 정량평가
+    for ratio in ratios
+    puts ratio
+      if ratio >= 0.5 && quantity_score_value > 0
+        quantity_score_value = quantity_score_value - 1
+      end
+    end
+    # 중복튜플 비율로 정량평가
+    if (1.0*duplicated_tuple_num) / (1.0*all_tuple_num) >= 0.3
+    if quantity_score_value >= 3
+      quantity_score_value = quantity_score_value - 3
+    else
+      quantity_score_value = 0
+    end
+    end
+    quantity_score_value
+  end
+
 
   # CSV Parser
   # SCHEMAS (NO TYPES)
@@ -55,17 +81,6 @@ class ParsingDataSequenceFile < ActiveRecord::Base
     csv_file_col = []
     raw_schema_col = raw_data_type_schema
     tdt_schema_col = task_data_table_schema
-
-    """
-    # input에서 raw_schema와 tdt_schema의 column name array를 뽑음
-    for column in raw_data_type_schema.values[1]
-      raw_schema_col << column[:col_name]
-    end
-
-    for column in task_data_table_schema.values[1]
-      tdt_schema_col << column[:col_name]
-    end
-    ​"""
 
     #save csv_file_attribute
     tupleStr = CSV.parse(csv_file_string)
@@ -112,6 +127,8 @@ class ParsingDataSequenceFile < ActiveRecord::Base
     for attribute in tdt_schema_col
       col_null_ratios[attribute] /= tdt_tuples.length
     end
+
+    logger.info parsed_file
     
     returnHash[:all_tuple_num] = tdt_tuples.length
     returnHash[:duplicated_tuple_num] = duplicated_tuple.length
