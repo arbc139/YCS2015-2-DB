@@ -22,7 +22,8 @@ angular.module('dbfrontappApp')
     ApiService.getAdminManageJSON(tableId,
     function(res) {
       $scope.userList = res.data.submitters;
-      console.log(res.data.submitters);
+      $scope.rdtList = res.data.rdts;
+      console.log(res.data);
     }, function() {
       console.log('getAdminManageJSON error');
     });
@@ -38,9 +39,9 @@ angular.module('dbfrontappApp')
       });
     };
 
-    ApiService.getRawDataTypes(function(res) {
-      $scope.rdtList = res.data;
-    }, function() {
-      console.log('getRawDataTypes error');
-    });
+    // ApiService.getRawDataTypes(function(res) {
+    //   $scope.rdtList = res.data;
+    // }, function() {
+    //   console.log('getRawDataTypes error');
+    // });
   });
