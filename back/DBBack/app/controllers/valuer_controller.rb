@@ -52,9 +52,9 @@ class ValuerController < ApplicationController
     @file = ParsingDataSequenceFile.find(params[:pdsf_id])
     @value_score = params[:value_score]
     @is_passed = params[:is_passed]
-
+    
     # update
-    if @file.update_attributes(data_quality_score: @file.data_quality_score+@value_score, is_passed: @is_passed)
+    if @file.update_attributes(data_quality_score: @file.data_quality_score+@value_score, is_passed: @is_passed, is_valued: true)
       # data_blob to TDT
       # FIXIT:-영훈이 함수 호출
       # 1 if @is_passed
