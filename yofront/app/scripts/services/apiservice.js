@@ -162,6 +162,19 @@ angular.module('dbfrontappApp')
           params, config)
         .then(onS, onE);
       },
+      postDataSubmit: function(taskId, rdtId, period, inning, csvStr, onS, onE) {
+        var params = {
+          csv: csvStr,
+          user_id: SessionService.getId(),
+          task_id: taskId,
+          rdt_id: rdtId,
+          period: period,
+          inning: inning
+        };
+
+        $http.post(SERVER_URL + '/submitter/tasks/submit', params, confg)
+        .then(onS, onE);
+      },
       postApplyTask: function(taskId, onS, onE) {
         var uId = SessionService.getId();
 
