@@ -132,12 +132,14 @@ class AdminController < ApplicationController
     @raw_data_types = @task.raw_data_types
     @pdsfs = @task.pds_files
 
-    rdt_pdsfs_count_hash = Hash.new
+    rdt_pdsfs_count_list = []
     @raw_data_types.each do |rdt|
-      rdt_pdsfs_count_hash[rdt.id] = Hash.new
+      rdt_pdsfs_count_hash = Hash.new
       target_pdsfs = @pdsfs.where(raw_data_type_id: rdt.id)
-      rdt_pdsfs_count_hash[rdt.id][:no_of_submitted_files] = target_pdsfs.size
-      rdt_pdsfs_count_hash[rdt.id][:no_of_passed_files] = target_pdsfs.where(is_passed: true).size
+      rdt_pdsfs_count_hash[:rdt_id] = rdt.id
+      rdt_pdsfs_count_hash[:no_of_submitted_files] = target_pdsfs.size
+      rdt_pdsfs_count_hash[:no_of_passed_files] = target_pdsfs.where(is_passed: true).size
+      rdt_pdsfs_count_list << rdt_pdsfs_count_hash
     end
 
     respond_to do |format|
@@ -146,7 +148,7 @@ class AdminController < ApplicationController
       task_hash[:no_of_submitted_files] = @task.no_of_submitted_files
       task_hash[:no_of_passed_files] = @task.no_of_passed_files
       task_hash[:submitters] = @users.as_json(only: [:id, :u_name, :str_id, :sex, :address, :birth, :role, :value_score])
-      task_hash[:rdt_stats] = rdt_pdsfs_count_hash
+      task_hash[:rdt_stats] = rdt_pdsfs_count_list
 
       format.html
       format.json { render :json => task_hash }

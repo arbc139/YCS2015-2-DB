@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 20151121124524) do
     t.string   "address"
     t.date     "birth"
     t.string   "phone_number"
-    t.string   "value_score"
+    t.integer  "value_score"
     t.string   "role"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false

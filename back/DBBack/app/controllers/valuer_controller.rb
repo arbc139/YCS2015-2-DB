@@ -48,16 +48,20 @@ class ValuerController < ApplicationController
     # pdsf id
     # value_score
     # is_passed
-    
+
     @file = ParsingDataSequenceFile.find(params[:pdsf_id])
     @value_score = params[:value_score]
     @is_passed = params[:is_passed]
-    
+
     # update
-    if @file.update_attributes(data_quality_score: @file.data_quality_score+@value_score, is_passed: @is_passed, is_valued: true)
+    if @file.update_attributes(data_quality_score: @value_score, is_passed: @is_passed, is_valued: true)
       # data_blob to TDT
       # FIXIT:-영훈이 함수 호출
       # 1 if @is_passed
+
+      # submitter 평가점수 update
+      # quantity_score = get_quantitiy_score(@file.all_tuple_num, @file.duplicated_tuple_num, @file.null_ratio_cols)
+      # User.find(@file.submitter_id).update_attributes(value_score: quantity_score + @value_score)
       render json: {method_message => 'file update success'}
     else
       render json: {method_message => 'file update failed'}

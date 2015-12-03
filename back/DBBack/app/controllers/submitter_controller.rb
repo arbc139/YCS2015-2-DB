@@ -170,7 +170,6 @@ class SubmitterController < ApplicationController
       inning: inning,
       all_tuple_num: parse_result[:all_tuple_num],
       duplicated_tuple_num: parse_result[:duplicated_tuple_num],
-      #data_quality_score: parse_result[:data_quality_score],
       
       submitter_id: submitter_id,
       valuer_id: valuer_id,
