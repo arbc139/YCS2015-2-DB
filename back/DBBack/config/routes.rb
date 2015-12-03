@@ -82,7 +82,7 @@ Rails.application.routes.draw do
   post '/api/submitter/tasks/submit' => 'submitter#taskSubmitCreate'
 
 
-  #################################### SUBMITTER ####################################
+  #################################### VALUER ####################################
   get '/api/valuer' => 'valuer#index'
   ###########
 

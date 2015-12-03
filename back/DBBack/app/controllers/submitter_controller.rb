@@ -66,7 +66,7 @@ class SubmitterController < ApplicationController
     
     @submitter = User.find(params[:user_id])
     @task = Task.find(params[:task_id])
-    
+
     # submitter가 Task에 제출한 파일 수
     # submitter가 Task에 제출한 파일들 중, pass한 파일 수 (get from TDT)
     # 원본 데이터 타입 별로 자신이 제출한 파일들의 현황 (파싱시퀀스파일 record 보여주고, pass/non-pass 여부 order by 회차)
@@ -83,7 +83,7 @@ class SubmitterController < ApplicationController
       logger.info rdt
       logger.info @pdsfs_info[rdt]
     end
-    
+
     result = {
       no_of_submitted_file: @all_pdsfs_num,
       no_of_passed_file: @passed_pdsfs_num,
@@ -123,6 +123,7 @@ class SubmitterController < ApplicationController
 
   ######################################### CREATE ACTION #########################################
   def taskSubmitCreate
+    logger.info 'Hey, olaf! are you there?'
     method_message = 'SUBMITTER) task submit create'
     
     ### post params 목록
@@ -138,15 +139,15 @@ class SubmitterController < ApplicationController
     @valuer = User.get_random_valuer
     @task = Task.find(params[:task_id])
     @rdt = RawDataType.find(params[:rdt_id])
-    @period = period
-    @inning = inning
-    
+    @period = params[:period]
+    @inning = params[:inning]
+
     parse_result = ParsingDataSequenceFile.parsing_file(params[:csv], rdt.schema, task.task_data_table_schema)
     # parse_result = parsing_file(params[:csv], rdt_schema, tdt_schema) # 영훈이의 파싱 함수 호출
     # return [:all_tuple_num], [:duplicated_tuple_num], [:col_null_ratios], [:parsed_file]
 
     @pdsf = ParsingDataSequenceFile.new(pdsf_params(parse_result, @period, @inning, @submitter_id, @valuer.id, @task.id, @rdt.id))
-    
+
     parse_result[:col_null_ratios].each do |col, null_ratio|
       ParseColumnNullRatio.create(
         column_name: col,
