@@ -152,6 +152,9 @@ class SubmitterController < ApplicationController
 
     @pdsf = ParsingDataSequenceFile.new(pdsf_params(parse_result, @period, @inning, @submitter_id, @valuer.id, @task.id, @rdt.id))
 
+    logger.info 'parse updated'
+    logger.info parse_result
+
     parse_result[:col_null_ratios].each do |col, null_ratio|
       ParseColumnNullRatio.create(
         column_name: col,

@@ -113,10 +113,10 @@ class ParsingDataSequenceFile < ActiveRecord::Base
       col_null_ratios[attribute] /= tdt_tuples.length
     end
     
-    returnHash['all_tuple_num'] = tdt_tuples.length
-    returnHash['duplicated_tuple_num'] = duplicated_tuple.length
-    returnHash['col_null_ratios'] = col_null_ratios
-    returnHash['pared_file'] = parsed_file
+    returnHash[:all_tuple_num] = tdt_tuples.length
+    returnHash[:duplicated_tuple_num] = duplicated_tuple.length
+    returnHash[:col_null_ratios] = col_null_ratios
+    returnHash[:pared_file] = parsed_file
     returnHash
   end # parsing_file
 end
