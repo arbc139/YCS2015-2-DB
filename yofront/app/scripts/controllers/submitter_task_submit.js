@@ -8,14 +8,29 @@
 * Controller of the dbfrontappApp
 */
 angular.module('dbfrontappApp')
-.controller('SubmitterTaskSubmitCtrl', function ($scope, $location, ApiService) {
+.controller('SubmitterTaskSubmitCtrl', function ($scope, $location, $route, ApiService) {
   this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
 
-  $scope.tableId = $location.search().tid;
+  $scope.taskId = $location.search().tid;
+  $scope.period = '';
+  $scope.inning = '';
+  $scope.data = '';
+  $scope.rdtId = -1;
+
+  $scope.selectRdt = function(rdtId) {
+      $scope.rdtId = parseInt(rdtId);
+  };
+
+  ApiService.getRawDataTypes(function(res) {
+    $scope.rdtList = res.data;
+    console.log(res.data);
+  }, function(res) {
+    console.log(res);
+  });
 
   $scope.upload = function() {
     var f = document.getElementById('file').files[0];
@@ -30,11 +45,19 @@ angular.module('dbfrontappApp')
     // r.readAsBinaryString(f);
   };
   $scope.submit = function() {
-    ApiService.postTestSubmit($scope.data,
+    // todo check validation
+    if ($scope.period === '' || $scope.inning === '' || $scope.data === '' || $scope.rdtId === -1) {
+      alertify.error('fill in the blanks<br>or select rdt type')
+      return;
+    }
+
+    // (taskId, rdtId, period, inning, csvStr, onS, onE)
+    ApiService.postDataSubmit($scope.taskId, $scope.rdtId, $scope.period, $scope.inning, $scope.data,
     function() {
-      console.log('success');
+      alertify.success('success');
+      $route.reload();
     }, function() {
-      console.log('error');
+      alertify.error('error');
     });
   };
 });

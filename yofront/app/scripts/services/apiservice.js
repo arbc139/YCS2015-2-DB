@@ -163,16 +163,24 @@ angular.module('dbfrontappApp')
         .then(onS, onE);
       },
       postDataSubmit: function(taskId, rdtId, period, inning, csvStr, onS, onE) {
+        var uId = SessionService.getId();
+
+        if (uId === -1) {
+          alertify.error('user id -1 <br>(you should not use test session)');
+          return;
+        }
+
         var params = {
           csv: csvStr,
-          user_id: SessionService.getId(),
+          user_id: uId,
           task_id: taskId,
           rdt_id: rdtId,
           period: period,
           inning: inning
         };
+        console.log(params);
 
-        $http.post(SERVER_URL + '/submitter/tasks/submit', params, confg)
+        $http.post(SERVER_URL + '/submitter/tasks/submit', params, config)
         .then(onS, onE);
       },
       postApplyTask: function(taskId, onS, onE) {
