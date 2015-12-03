@@ -9,8 +9,23 @@
   <div class="panel-body">
     <!-- 전 체 유 저 목 록 -->
 
-    <p>전체 제출된 파일수: {{ submitted_file_count }}</p>
-    <p>PASS된 파일 수 : {{ passed_file_count }}</p>
+    <h4>전체 제출된 파일수: {{ submitted_file_count }} / PASS된 파일 수 : {{ passed_file_count }}</h4>
+
+    <hr>
+    <table class="table">
+      <thead>
+        <th>RDT ID</th>
+        <th>PASS COUNT</th>
+        <th>TOTAL COUNT</th>
+        <th>---</th>
+      </thead>
+      <tbody ng-repeat="item in rdtStatisticsList">
+        <td>{{ item.rdt_id }}</td>
+        <td>{{ item.no_of_passed_files }}</td>
+        <td>{{ item.no_of_submitted_files }}</td>
+        <td>뀨?</td>
+      </tbody>
+    </table>
   </div>
 </div>
 

@@ -17,7 +17,7 @@ angular.module('dbfrontappApp')
     // check admin!
     SessionService.checkSessionType(SESSION_TYPE.ADMIN);
 
-    this.tableId = $location.search().tid; // todo delete
+    var tableId = $location.search().tid; // todo delete
 
     // ApiService.getUserList(function(res) {
     //   $scope.userList = res.data;
@@ -27,30 +27,19 @@ angular.module('dbfrontappApp')
     //   console.log(res.data);
     // });
 
-    ApiService.getTaskInfo(this.tableId,
+    ApiService.getTaskInfo(tableId,
     function(res) {
+      console.log(res);
       $scope.submitted_file_count = res.data.no_of_submitted_files;
       $scope.passed_file_count = res.data.no_of_passed_files;
+      $scope.rdtStatisticsList = res.data.rdt_stats;
       $scope.userList = res.data.submitters;
 
     }, function(){
       console.log('getTaskInfo error');
     });
 
-    $scope.rdtList = [
-      {
-        id: 1,
-        name: 'lg'
-      },
-      {
-        id: 1,
-        name: 'lg'
-      },
-      {
-        id: 1,
-        name: 'lg'
-      }
-    ];
+
 
 
 
