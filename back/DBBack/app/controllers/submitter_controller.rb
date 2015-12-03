@@ -162,6 +162,8 @@ class SubmitterController < ApplicationController
         parsing_file_id: @pdsf.id
       )
     end
+
+    render json: {method_message => 'completed!'}
   end
 
   private
