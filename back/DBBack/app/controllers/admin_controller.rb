@@ -117,7 +117,7 @@ class AdminController < ApplicationController
 
       task_hash = Hash.new
       task_hash[:submitters] = @users.as_json(only: [:id, :u_name, :str_id, :sex, :address, :birth, :role, :value_score])
-      task_hash[:rdts] = @task.raw_data_types.as_json(only: [:id, :raw_name])
+      task_hash[:rdts] = @task.raw_data_types.as_json(only: [:id, :raw_name, :schema])
 
       format.html
       format.json { render :json => task_hash }
