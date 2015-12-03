@@ -152,18 +152,19 @@ class SubmitterController < ApplicationController
 
     @pdsf = ParsingDataSequenceFile.new(pdsf_params(parse_result, @period, @inning, @submitter_id, @valuer.id, @task.id, @rdt.id))
 
-    logger.info 'parse updated'
-    logger.info parse_result
+    if @pdsf.save
+      parse_result[:col_null_ratios].each do |col, null_ratio|
+        ParseColumnNullRatio.create(
+          column_name: col,
+          null_ratio: null_ratio,
+          parsing_file_id: @pdsf.id
+        )
+      end
+      render json: {method_message => 'save successfully'}
 
-    parse_result[:col_null_ratios].each do |col, null_ratio|
-      ParseColumnNullRatio.create(
-        column_name: col,
-        null_ratio: null_ratio,
-        parsing_file_id: @pdsf.id
-      )
+    else
+      render json: {method_message => 'save failed!'}
     end
-
-    render json: {method_message => 'completed!'}
   end
 
   private
