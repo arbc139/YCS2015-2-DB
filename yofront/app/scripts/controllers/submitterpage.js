@@ -8,7 +8,7 @@
 * Controller of the dbfrontappApp
 */
 angular.module('dbfrontappApp')
-.controller('SubmitterpageCtrl', function ($scope, $location, SessionService, ApiService, SESSION_TYPE) {
+.controller('SubmitterpageCtrl', function ($scope, $location, $route, SessionService, ApiService, SESSION_TYPE) {
   this.awesomeThings = [
     'HTML5 Boilerplate',
     'AngularJS',
@@ -41,6 +41,7 @@ angular.module('dbfrontappApp')
       ApiService.postApplyTask(tableId,
       function() {
         alertify.success('success');
+        $route.reload();
       }, function() {
         alertify.error('error');
       });
