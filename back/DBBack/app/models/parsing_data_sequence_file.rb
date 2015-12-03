@@ -40,7 +40,6 @@ class ParsingDataSequenceFile < ActiveRecord::Base
   # csv_file_tuples -> 원본데이터파일의 tuples
   # raw_schema_tuples -> 원본 데이터 schema에 맞춰 뽑은 tuples
   # tdt_tuples -> 파싱 완료된 tuples
-  
   def self.parsing_file(csv_file_string, raw_data_type_schema, task_data_table_schema)
     #output variables
     col_null_ratios = {}

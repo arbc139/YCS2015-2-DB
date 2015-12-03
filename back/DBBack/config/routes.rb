@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   root 'users#index'
 
   #################################### TEST Place ####################################
-  post '/api/test/csv' => 'test#testCSVCreate'
-  
+  get '/api/test/' => 'test#index'
+
   #################################### LOGIN, SIGN UP (USER) ####################################
   ## 옛날 html 시절의 코드들... 무시해도된디~
   # 전체 user를 뿌려주는 액션
@@ -24,12 +24,9 @@ Rails.application.routes.draw do
   # 유저 id를 받아서 유저를 디비에서 삭제시키는 액션
   delete '/api/users/:id' => 'sessions#userDestroy'
 
-  # resources
-  # get 'users' => 'users#index'
-  # post 'users' => 'users#create'
-  # get 'users/:id' => 'users#show'
-
   #################################### ADMIN ####################################
+  get '/api/admin' => 'admin#index'
+
   ## Admin 페이지에서 전체 리스트 가져오는 액션
   # 전체 테스크 목록 가져오기 액션
   get '/api/admin/tasks' => 'admin#taskIndex'
@@ -65,9 +62,9 @@ Rails.application.routes.draw do
   # "user_id" : 1, "password" : "something"
   post '/api/admin/info' => 'admin#adminInfoUpdate'
 
-
   #################################### SUBMITTER ####################################
   get '/api/submitter' => 'submitter#index'
+  ###########
 
   ## Submitter 페이지에서 테스크 목록을 가져오는 액션
   # submitter가 참가 신청 가능한 테스크 목록 가져오기 액션
@@ -87,6 +84,7 @@ Rails.application.routes.draw do
 
   #################################### SUBMITTER ####################################
   get '/api/valuer' => 'valuer#index'
+  ###########
 
   ## Valuer 페이지에서 정보 가져오기 액션
   # valuer에게 할당된 아직 평가 안된 pdsf를 가져오기 액션

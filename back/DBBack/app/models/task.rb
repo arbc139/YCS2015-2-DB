@@ -41,7 +41,7 @@ class Task < ActiveRecord::Base
   end
   
   # 동적 테이블 생성 튜토리얼 스크립트들
-  def create_tdt(tdt)
+  def self.create_tdt(tdt)
     ## tdt[:name] 이름을 가진 테이블 동적 생성
     unless ActiveRecord::Base.connection.table_exists?(tdt[:table_name])
       logger.info 'gogo?'
@@ -65,7 +65,7 @@ class Task < ActiveRecord::Base
   end
 
   # 동적 테이블 생성할때 기본 FORM
-  def tdt_form
+  def self.tdt_form
     tdt = Hash.new
     # :name 태그는 테스크 데이터 테이블 이름을 의미함.
     tdt[:table_name] = 'TEST'
