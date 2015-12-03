@@ -116,7 +116,7 @@ class ParsingDataSequenceFile < ActiveRecord::Base
     returnHash[:all_tuple_num] = tdt_tuples.length
     returnHash[:duplicated_tuple_num] = duplicated_tuple.length
     returnHash[:col_null_ratios] = col_null_ratios
-    returnHash[:pared_file] = parsed_file
+    returnHash[:parsed_file] = parsed_file
     returnHash
   end # parsing_file
 end
