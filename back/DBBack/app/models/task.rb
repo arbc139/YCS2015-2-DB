@@ -44,17 +44,16 @@ class Task < ActiveRecord::Base
   def self.create_tdt(tdt)
     ## tdt[:name] 이름을 가진 테이블 동적 생성
     unless ActiveRecord::Base.connection.table_exists?(tdt[:table_name])
-      logger.info 'gogo?'
       ActiveRecord::Base.connection.create_table tdt[:table_name] do |t|
         # :id is created automatically
         tdt[:cols].each do |col|
           logger.info 'column created??'
-          t.column col[:attr_name], col[:type]
+          t.column col, 'string'
         end
       end
 
     else
-      ActiveRecord::Base.connection.exec_query('DROP TABLE TEST')
+      logger.info 'TDT already created'
       logger.info ActiveRecord::Base.connection.tables
       
       #logger.info 'nono?'
@@ -72,17 +71,7 @@ class Task < ActiveRecord::Base
     
     # :col 태그는 테스크 데이터 테이블의 컬럼의 리스트를 의미함.
     col_list = []
-
-    col_list << {
-      type: 'string',
-      attr_name: 'test_column1'
-    } << {
-      type: 'string',
-      attr_name: 'test_column2'
-    } << {
-      type: 'integer',
-      attr_name: 'test_column3'
-    }
+    col_list << 'test_column1' << 'test_column2' << 'test_column3'
 
     tdt[:cols] = col_list
 

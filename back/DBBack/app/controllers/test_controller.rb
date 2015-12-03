@@ -10,7 +10,7 @@ class TestController < ApplicationController
     
     render json: {'hey! check the terminal!' => 'ok'}
   end
-
+  
   def testCSVCreate
     @csv_str = params[:csv]
 
