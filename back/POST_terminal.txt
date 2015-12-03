@@ -8,7 +8,7 @@ curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POS
 
 ################################################## ADMIN ##################################################
 ### taskCreate Action
-curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"task":{"t_name":"TASK_NAME_test","description":"TASK_DESCRIPTION_test","minimum_upload_period":"TASK_MIN_test","task_data_table_name":"TASK_DTSNAME_test", "task_data_table_schema":"TASK_DTS_test"}, "raw_data_types": [{"id":"1","schema":"RAW_DATA_TYPE1_schema"},{"id":"2","schema":"RAW_DATA_TYPE2_schema"}]}' http://localhost:3000/api/admin/tasks
+curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"task":{"t_name":"TASK_NAME_test","description":"TASK_DESCRIPTION_test","minimum_upload_period":"TASK_MIN_test","task_data_table_name":"TDT_TEST_NAME", "schema_cols":["tdt_test_col1","tdt_test_col2"]}, "raw_data_types": [{"id":"1"},{"id":"2"}]}' http://localhost:3000/api/admin/tasks
 
 ### rdtCreate Action
 curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"raw_data_type": {"raw_name": "RAW_NAME_test", "schema": "SCHEMA_test"}}' http://localhost:3000/api/admin/rdts

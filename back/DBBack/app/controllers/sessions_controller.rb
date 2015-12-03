@@ -37,12 +37,7 @@ class SessionsController < ApplicationController
     end
   end
 
-  ######################################### UPDATE ACTION #########################################
-  def userUpdate
-    #@user = User.find(params[:])
-
-  end
-
+  
   ######################################### DESTROY ACTION #########################################
   def userDestroy
     method_message = 'SESSION) user destroy'
