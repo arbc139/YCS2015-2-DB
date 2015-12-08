@@ -253,7 +253,7 @@ class AdminController < ApplicationController
     end
   end
 
-  def newRdtUpdate
+  def addRdtUpdate
     method_message = 'ADMIN) taks new rdt update'
     
     @task = Task.find(params[:task_id])

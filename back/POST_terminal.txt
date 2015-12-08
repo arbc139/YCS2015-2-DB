@@ -13,6 +13,8 @@ curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POS
 ### rdtCreate Action
 curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"raw_data_type": {"raw_name": "RAW_NAME_test", "schema": "SCHEMA_test"}}' http://localhost:3000/api/admin/rdts
 
+### newRdtUpdate Action
+curl -v
 
 ### participateUpdate Action
 # true case

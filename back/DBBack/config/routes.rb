@@ -60,7 +60,7 @@ Rails.application.routes.draw do
   post '/api/admin/tasks/manage' => 'admin#participateUpdate'
 
   # Admn 페이지의 task manage에서 테스크에 원본 데이터 타입을 더 추가하고 업데이트하는 액션
-  post '/api/admin/tasks/manage/rdts' => 'admin#newRdtUpdate'
+  post '/api/admin/tasks/manage/rdts' => 'admin#addRdtUpdate'
 
   # Admin의 비밀번호를 업데이트하는 액션
   # parameter
