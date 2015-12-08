@@ -27,8 +27,4 @@ angular.module('dbfrontappApp')
     }, function() {
       alertify.error('error');
     });
-
-  
-
-
   });
