@@ -87,7 +87,7 @@ class ParsingDataSequenceFile < ActiveRecord::Base
     for attribute in tupleStr[0]
       csv_file_col << attribute
     end
-
+    
     #Create csv_file_tuples & raw_schema_tuples 
     #raw_schema_tuples는 schema순서를 따르지 않음
     csv_file_tuples = CSV.parse(csv_file_string).map {|a| Hash[ csv_file_col.zip(a)]}
