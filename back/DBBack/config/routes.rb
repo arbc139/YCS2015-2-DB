@@ -42,6 +42,8 @@ Rails.application.routes.draw do
   get '/api/admin/users/:id' => 'admin#userShow'
   # 특정 테스크의 유저정보, 원본데이터정보 가져오기 액션 #(?task_id=1)
   get '/api/admin/tasks/manage' => 'admin#taskManageShow'
+  # 특정 테스크의 Rdt정보와 모든 Rdt 정보 가져오기 액션 #(?task_id=1)
+  get '/api/admin/tasks/manage/rdts' => 'admin#taskRdtsShow'
   # 특정 테스크의 통계 정보 가져오기 액션 #(?task_id=1)
   get '/api/admin/tasks/stat' => 'admin#taskStatShow'
 
@@ -56,6 +58,9 @@ Rails.application.routes.draw do
   # parameter
   # "task_id": 1, "user_id": 1, "accept": true
   post '/api/admin/tasks/manage' => 'admin#participateUpdate'
+
+  # Admn 페이지의 task manage에서 테스크에 원본 데이터 타입을 더 추가하고 업데이트하는 액션
+  post '/api/admin/tasks/manage/rdts' => 'admin#newRdtUpdate'
 
   # Admin의 비밀번호를 업데이트하는 액션
   # parameter

@@ -124,6 +124,24 @@ class AdminController < ApplicationController
     end
   end
 
+  def taskRdtsShow
+    method_message = 'ADMIN) task rdts show'
+
+    @task = Task.find(params[:task_id])
+    @task_rdts = @task.raw_data_types
+    @all_rdts = RawDataType.all
+
+    result = Hash.new
+    result[:all_rdts] = @all_rdts.as_json(only: [:id, :raw_name, :schema])
+    result[:task_rdts] = @task_rdts.as_json(only: [:id, :raw_name, :schema])
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => result}
+    end
+  end
+
+
   def taskStatShow
     method_message = 'ADMIN) task stat show'
     
@@ -234,6 +252,17 @@ class AdminController < ApplicationController
       end
     end
   end
+
+  def newRdtUpdate
+    method_message = 'ADMIN) participate update'
+    
+    @task = Task.find(params[:task_id])
+    @new_rdts_id_list = params([:rdt_ids])
+
+    logger.info 'Yeah New Rdt Update POST come on!'
+
+  end
+
 
   def adminInfoUpdate
     method_message = 'ADMIN) info update'

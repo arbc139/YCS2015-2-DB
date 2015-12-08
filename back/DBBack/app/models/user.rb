@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   def participate_tasks
     self.tasks.as_json(only: [:id, :t_name])
   end
-
+  """
   def no_of_submitted_files
     self.submit_pds_files.size
   end
@@ -42,6 +42,11 @@ class User < ActiveRecord::Base
   def no_of_passed_files
     # get from TDT (need to implement Task Data Table)
     0
+  end
+  """
+  def update_score(quantity_score, value_score)
+    no_of_past_submitted_files = self.submit_pds_files.size - 1
+    self.value_score = (self.value_score*no_of_past_submitted_files + quantity_score + @value_score) / (no_of_past_submitted_files + 1)
   end
 
   def self.get_random_valuer
