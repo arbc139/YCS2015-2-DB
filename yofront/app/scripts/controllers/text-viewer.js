@@ -15,11 +15,13 @@ angular.module('dbfrontappApp')
       'Karma'
     ];
 
-    $scope.txt = CacheService.getCache();
+    var strFromCache = CacheService.getCache();
     CacheService.clearCache();
+    $scope.txt = strFromCache.replace(/\\n/g, '<br>');
+
 
     $scope.download = function() {
-      FileService.downloadAsCsv($scope.txt);
+      FileService.downloadAsCsv(strFromCache.replace(/\\n/g, '\n'));
     };
 
   });
