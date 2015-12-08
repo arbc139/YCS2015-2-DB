@@ -76,11 +76,12 @@ class SubmitterController < ApplicationController
     pdsfs_by_rdt = submitted_pdsfs.order(:raw_data_type_id).order(:inning).group_by(&:raw_data_type_id)
     
     # parsing only needed informations
-    @pdsfs_info = Hash.new
+    @pdsfs_info = []
     pdsfs_by_rdt.each do |rdt, pdsf|
-      @pdsfs_info[rdt] = pdsf.as_json(only: [:id, :period, :inning, :all_tuple_num, :duplicated_tuple_num, :data_quality_score, :is_valued, :is_passed])
-      logger.info rdt
-      logger.info @pdsfs_info[rdt]
+      rdt_pdsfs = Hash.new
+      rdt_pdsfs[:rdt_id] = rdt
+      rdt_pdsfs[:pdsfs] =pdsf.as_json(only: [:id, :period, :inning, :all_tuple_num, :duplicated_tuple_num, :data_quality_score, :is_valued, :is_passed])
+      @pdsfs_info << rdt_pdsfs
     end
 
     result = {
