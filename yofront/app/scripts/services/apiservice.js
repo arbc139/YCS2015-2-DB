@@ -135,6 +135,16 @@ angular.module('dbfrontappApp')
         $http.post(SERVER_URL + '/admin/tasks/manage/rdts', params, config)
         .then(onS, onE);
       },
+      getTaskCsvString: function(taskid, onS, onE) {
+        var p = {
+          params: {
+            task_id: taskId
+          }
+        };
+
+        $http.get(SERVER_URL + '/admin/export.json', p)
+        .then(onS, onE);
+      },
 
       // signUp
       postSignUp: function(id, password, uName, sex, address, birth, phone, role, onS, onE) {
