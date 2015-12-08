@@ -258,7 +258,10 @@ class AdminController < ApplicationController
     
     @task = Task.find(params[:task_id])
     @new_rdts_id_list = params([:rdt_ids])
+    logger.info @new_rdts_id_list
     @new_rdts = RawDataType.where(id: @new_rdts_id_list)
+    logger.info 'is ok?'
+    logger.info @new_rdts.as_json
 
     @new_rdts.each do |new_rdt|
       @task.raw_data_types << new_rdt
