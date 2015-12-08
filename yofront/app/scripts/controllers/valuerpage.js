@@ -31,6 +31,64 @@ angular.module('dbfrontappApp')
     };
 
     $scope.eval = function(i) {
-      
+      // alertify
+      // .defaultValue('Pass or Non-pass?')
+      // .okBtn('PASS')
+      // .cancelBtn('NON-PASS')
+      // .prompt('Fill the valuer score & select Pass or not', function(){
+      //
+      // }, function() {
+      //
+      // });
+
+      var score;
+      var isPassed;
+
+      var promptValueScore = function() {
+        alertify
+        .defaultValue('value score')
+        .okBtn('SUBMIT')
+        .cancelBtn('CANCEL')
+        .prompt('Fill the valuer score', function(val, ev){
+          ev.preventDefault();
+          score = val;
+          ApiService.postFileEvaluation($scope.pdsfList[i].id, score, isPassed,
+          function() {
+            alertify.success('success');
+          }, function() {
+            alertify.error('error');
+          });
+
+        }, function(val, ev) {
+          ev.preventDefault();
+
+          alertify.error('canceled');
+        });
+      };
+
+      var confirmPassOrNot = function() {
+        alertify
+        .okBtn('PASS')
+        .cancelBtn('NON-PASS')
+        .confirm('Pass or NON-PASS?', function() {
+          // pass
+          isPassed = true;
+          promptValueScore();
+        }, function() {
+          // non psass
+          isPassed = false;
+          promptValueScore();
+        });
+
+      };
+
+      alertify.confirm('평가 하시겠습니까?',
+      function() {
+        confirmPassOrNot();
+      },
+      function() {
+        alertify.error('canceled');
+      });
+
     };
   });

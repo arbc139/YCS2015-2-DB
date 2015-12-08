@@ -312,6 +312,8 @@ angular.module('dbfrontappApp')
           value_score: score,
           is_passed: isPassed
         };
+        console.log('ddd');
+        console.log(params);
 
         $http.post(SERVER_URL + '/valuer/pdsfs/notvalued', params, config)
         .then(onS, onE);
