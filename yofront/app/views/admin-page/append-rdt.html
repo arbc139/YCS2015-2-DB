@@ -1,1 +1,15 @@
-<p>This is the admin-page/append-rdt view.</p>
+<h1>Admin append raw data type</h1>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3>이 태스크에 원본 데이터 타입 추가</h3>
+  </div>
+  <div class="panel-body">
+    <h4>원본 데이터 타입 추가 (복수선택 가능, 이미 등록된 것은 삭제 불가)</h4>
+
+      <div class="checkbox" ng-repeat="item in rdtList">
+        <label><input type="checkbox" value="true" ng-model="item.checked">{{ item.raw_name }}</label>
+      </div>
+
+  </div>
+</div>
