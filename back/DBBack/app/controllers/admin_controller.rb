@@ -254,7 +254,7 @@ class AdminController < ApplicationController
   end
 
   def addRdtUpdate
-    method_message = 'ADMIN) taks new rdt update'
+    method_message = 'ADMIN) taks add rdt update'
     
     @task = Task.find(params[:task_id])
     @new_rdts_id_list = params([:rdt_ids])

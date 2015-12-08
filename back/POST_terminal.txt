@@ -14,7 +14,7 @@ curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POS
 curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"raw_data_type": {"raw_name": "RAW_NAME_test", "schema": "SCHEMA_test"}}' http://localhost:3000/api/admin/rdts
 
 ### newRdtUpdate Action
-curl -v
+curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"task_id": 2, "rdt_ids": ["3", "4", "5"]}' http://db.olaf.kr/api/admin/tasks/manage/rdts
 
 ### participateUpdate Action
 # true case
