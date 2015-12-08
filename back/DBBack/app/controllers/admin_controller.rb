@@ -254,13 +254,18 @@ class AdminController < ApplicationController
   end
 
   def newRdtUpdate
-    method_message = 'ADMIN) participate update'
+    method_message = 'ADMIN) taks new rdt update'
     
     @task = Task.find(params[:task_id])
     @new_rdts_id_list = params([:rdt_ids])
+    @new_rdts = RawDataType.where(id: @new_rdts_id_list)
+
+    @new_rdts.each do |new_rdt|
+      @task.raw_data_types << new_rdt
+    end
 
     logger.info 'Yeah New Rdt Update POST come on!'
-
+    render json: {method_message => 'add rdt to task is successed'}
   end
 
 
