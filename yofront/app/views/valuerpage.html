@@ -14,8 +14,7 @@
         <th>all#</th>
         <th>duplicated#</th>
         <th>data</th>
-        <th>passed</th>
-        <th>valued</th>
+        <th>---</th>
       </thead>
       <tbody ng-repeat="item in pdsfList">
         <td>{{ item.id }}</td>
@@ -25,8 +24,7 @@
 
         <td>{{ item.duplicated_tuple_num }}</td>
         <td><a ng-click=goToTextViewer($index)>more..</a></td>
-        <td>{{ item.is_passed }}</td>
-        <td>{{ item.is_valued }}</td>
+        <td><a ng-click=eval($index)>eval</a></td>
       </tbody>
     </table>
   </div>
