@@ -288,7 +288,19 @@ class AdminController < ApplicationController
     else
       render json: @user.youShallNotPass(method_message)
     end
+  end
 
+
+  ######################################### EXPORT METHOD #########################################
+  def CSVExport
+    method_message = 'ADMIN) csv export'
+    
+    @task = Task.find(params[:task_id])
+    
+    respond_to do |format|
+      format.html
+      format.json { render json: { csv_file: @task.export_CSV } }
+    end
   end
 
 

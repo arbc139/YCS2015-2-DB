@@ -67,6 +67,10 @@ Rails.application.routes.draw do
   # "user_id" : 1, "password" : "something"
   post '/api/admin/info' => 'admin#adminInfoUpdate'
 
+
+  # Admin에서 CSV export 요청하기 (?task_id=1)
+  get '/api/admin/export' => 'admin#CSVExport'
+
   #################################### SUBMITTER ####################################
   get '/api/submitter' => 'submitter#index'
   ###########
