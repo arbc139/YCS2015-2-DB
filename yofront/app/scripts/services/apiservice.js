@@ -135,7 +135,7 @@ angular.module('dbfrontappApp')
         $http.post(SERVER_URL + '/admin/tasks/manage/rdts', params, config)
         .then(onS, onE);
       },
-      getTaskCsvString: function(taskid, onS, onE) {
+      getTaskCsvString: function(taskId, onS, onE) {
         var p = {
           params: {
             task_id: taskId
