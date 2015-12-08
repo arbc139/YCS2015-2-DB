@@ -8,8 +8,10 @@
     <h4>원본 데이터 타입 추가 (복수선택 가능, 이미 등록된 것은 삭제 불가)</h4>
 
       <div class="checkbox" ng-repeat="item in rdtList">
-        <label><input type="checkbox" value="true" ng-model="item.checked">{{ item.raw_name }}</label>
+        <label><input type="checkbox" value="true" ng-model="item.checked" ng-checked="item.already === true" ng-disabled="item.already === true">{{ item.raw_name }}</label>
       </div>
+
+      <button id="btn-submit" class="btn btn-primary btn-lg btn-block" ng-click="submit()" type="submit">Submit</button>
 
   </div>
 </div>

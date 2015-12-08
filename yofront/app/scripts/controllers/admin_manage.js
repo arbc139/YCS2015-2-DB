@@ -17,9 +17,9 @@ angular.module('dbfrontappApp')
     // check admin!
     SessionService.checkSessionType(SESSION_TYPE.ADMIN);
 
-    var tableId = $location.search().tid;
+    $scope.taskId = $location.search().tid;
 
-    ApiService.getAdminManageJSON(tableId,
+    ApiService.getAdminManageJSON($scope.taskId,
     function(res) {
       $scope.userList = res.data.submitters;
       $scope.rdtList = res.data.rdts;
@@ -30,7 +30,7 @@ angular.module('dbfrontappApp')
 
     $scope.decide = function(user, isAccept) {
       // alertify.success('ddd ' + isAccept);
-      ApiService.postTaskApplyDecision(tableId, user.id, isAccept,
+      ApiService.postTaskApplyDecision($scope.taskId, user.id, isAccept,
       function(res) {
         console.log(res);
         $route.reload();
