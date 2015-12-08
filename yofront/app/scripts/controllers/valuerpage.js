@@ -29,4 +29,8 @@ angular.module('dbfrontappApp')
       CacheService.setCache($scope.pdsfList[i].data_blob);
       $location.path('/text-viewer');
     };
+
+    $scope.eval = function(i) {
+      
+    };
   });

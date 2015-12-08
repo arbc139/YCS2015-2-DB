@@ -298,6 +298,23 @@ angular.module('dbfrontappApp')
 
         $http.get(SERVER_URL + '/valuer/pdsfs/notvalued.json', p)
         .then(onS, onE);
+      },
+      postFileEvaluation: function(pdsfId, score, isPassed, onS, onE) {
+        var uId = SessionService.getId();
+
+        if (uId === -1) {
+          alertify.error('user id -1 <br>(you should not use test session)');
+          return;
+        }
+
+        var params = {
+          pdsf_id: pdsfId,
+          value_score: score,
+          is_passed: isPassed
+        };
+
+        $http.post(SERVER_URL + '/valuer/pdsfs/notvalued', params, config)
+        .then(onS, onE);
       }
     };
   });
