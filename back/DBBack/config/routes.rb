@@ -24,6 +24,10 @@ Rails.application.routes.draw do
   # 유저 id를 받아서 유저를 디비에서 삭제시키는 액션
   delete '/api/users/:id' => 'sessions#userDestroy'
 
+  ## 앵제) 회원 정보 수정
+  # 유저 id, 정보들을 받아서 디비에 업데이트하는 액션
+  post '/api/users/update' => 'session#userUpdate'
+
   #################################### ADMIN ####################################
   get '/api/admin' => 'admin#index'
 

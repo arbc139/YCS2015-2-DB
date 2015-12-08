@@ -37,7 +37,20 @@ class SessionsController < ApplicationController
     end
   end
 
-  
+  ######################################### UPDATE ACTION #########################################
+  def userUpdate
+    method_message = 'SESSION) user update'
+    logger.info 'Yeah User Update POST come on!'
+
+    @user = User.find(params[:user_id])
+
+    if @user.update_attributes(password: params[:password], u_name: params[:u_name], sex: params[:sex], address: params[:address], birth: params[:birth], phone_number: params[:phone_number])
+      render json: @user.as_json(only: [:id, :str_id, :role])
+    else
+      render json: {method_message => 'updating user failed'}
+    end
+  end
+
   ######################################### DESTROY ACTION #########################################
   def userDestroy
     method_message = 'SESSION) user destroy'
