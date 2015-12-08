@@ -8,7 +8,7 @@
  * Controller of the dbfrontappApp
  */
 angular.module('dbfrontappApp')
-  .controller('AdminPageAppendRdtCtrl', function ($scope, $location, ApiService) {
+  .controller('AdminPageAppendRdtCtrl', function ($scope, $location, $route, ApiService) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -44,6 +44,23 @@ angular.module('dbfrontappApp')
     });
 
     $scope.submit = function() {
-      
+      var newRdtList = [];
+      var i;
+
+      for (i = 0; i < $scope.rdtList.length; i++) {
+        var rdt = $scope.rdtList[i];
+
+        if (!rdt.hasOwnProperty('already') && rdt.checked === true) {
+          newRdtList.push(rdt.id);
+        }
+      }
+
+
+      ApiService.postTaskRdtAppend(taskId, newRdtList,
+      function(res) {
+        $route.reload();
+      }, function() {
+        alertify.error('error');
+      });
     };
   });
