@@ -295,32 +295,3 @@ ParseColumnNullRatio.create(
   null_ratio: 10.6,
   parsing_file_id: pdsf2.id
   )
-
-
-# PDSF references
-"""
-pdsf1.evaluate_user = valuer
-pdsf1.submit_user = submitter
-pdsf1.task = t1
-pdsf1.raw_data_type = rdt1
-
-pdsf2.evaluate_user = valuer
-pdsf2.submit_user = submitter
-pdsf2.task = t1
-pdsf2.raw_data_type = rdt2
-"""
-
-"""
-# relationship PDSF with task
-t1.pds_files << pdsf1 << pdsf2
-
-# relationship PDSF with submitter
-submitter.submit_pds_files << pdsf1 << pdsf2
-
-# relationship PDSF with valuer
-valuer.evaluate_pds_files << pdsf1 << pdsf2
-
-# relationship PDSF with raw_data_type
-rdt1.pds_files << pdsf1
-rdt2.pds_files << pdsf2
-"""
