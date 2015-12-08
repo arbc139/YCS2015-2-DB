@@ -22,11 +22,13 @@ angular.module('dbfrontappApp')
       var d = res.data;
       $scope.submitted_file_count = d.no_of_submitted_file;
       $scope.passed_file_count = d.no_of_passed_file;
-
+      $scope.pdsfs_by_rdt = d.pdsfs_by_rdt;
 
     }, function() {
       alertify.error('error');
-    }) ;
+    });
+
+  
 
 
   });

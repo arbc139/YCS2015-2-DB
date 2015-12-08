@@ -8,6 +8,43 @@
   <div class="panel-body">
     <h4>전체 제출된 파일수: {{ submitted_file_count }} / PASS된 파일 수 : {{ passed_file_count }}</h4>
     <hr>
-    
+
+    <div ng-repeat="rdt in pdsfs_by_rdt">
+      <h3>RDT ID: {{ rdt.rdt_id }}</h3>
+      <hr>
+      <div>
+        <!-- <table class="table">
+          <thead>
+            <td></td>
+          </thead>
+          <tbody>
+          </tbody>
+        </table> -->
+        <table class="table">
+          <thead>
+            <th>id</th>
+            <th>period</th>
+            <th>inning</th>
+            <th>all#</th>
+            <th>duplicated#</th>
+            <!-- <th>data</th> -->
+            <th>passed</th>
+            <th>valued</th>
+          </thead>
+          <tbody ng-repeat="item in rdt.pdsfs">
+            <td>{{ item.id }}</td>
+            <td>{{ item.period }}</td>
+            <td>{{ item.inning }}</td>
+            <td>{{ item.all_tuple_num }}</td>
+
+            <td>{{ item.duplicated_tuple_num }}</td>
+            <!-- <td><a ng-click=goToTextViewer($index)>more..</a></td> -->
+            <td>{{ item.is_passed }}</td>
+            <td>{{ item.is_valued }}</td>
+          </tbody>
+        </table>
+        <hr>
+      </div>
+    </div>
   </div>
 </div>
