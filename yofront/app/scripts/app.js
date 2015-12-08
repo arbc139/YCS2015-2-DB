@@ -101,6 +101,11 @@ angular
         controller: 'UserInfoCtrl',
         controllerAs: 'userInfo'
       })
+      .when('/admin-page/append-rdt', {
+        templateUrl: 'views/admin-page/append-rdt.html',
+        controller: 'AdminPageAppendRdtCtrl',
+        controllerAs: 'adminPage/appendRdt'
+      })
       .otherwise({
         redirectTo: '/'
       });
