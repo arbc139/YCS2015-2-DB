@@ -77,6 +77,9 @@ t7 = Task.create(t_name: "TASK7_name", description: "TASK7_descript", minimum_up
 t8 = Task.create(t_name: "TASK8_name", description: "TASK8_descript", minimum_upload_period: "TASK8_period", task_data_table_name: "TASK8_schema_name", 
   task_data_table_schema: ["tdt8_col1", "tdt8_cols2"])
 
+sample_task = Task.create(t_name: "Card Log Collecting", description: "Collect card logs", minimum_upload_period: "1 month", task_data_table_name: "CARD_LOG_COLLECT", 
+  task_data_table_schema: ["PRESENTOR", "TIMESTAMP", "CARD_MEM_STORE", "CARD_USE_MONEY"])
+
 # create TDT
 t1.create_tdt
 t2.create_tdt
@@ -86,6 +89,8 @@ t5.create_tdt
 t6.create_tdt
 t7.create_tdt
 t8.create_tdt
+
+sample_task.create_tdt
 
 #################################### R_USER_SUBMIT(SUBMITTER, TASK) ####################################
 # R_USER_SUBMIT columns
@@ -113,6 +118,11 @@ rdt3 = RawDataType.create(raw_name: "RAW_DATA_TYPE3_name",
 rdt4 = RawDataType.create(raw_name: "RAW_DATA_TYPE4_name", 
   schema: ["rdt4_name", "rdt4_job"])
 
+woori_rdt = RawDataType.create(raw_name: "WOORI",
+  schema: ["TIMESTAMP", "PRESENTOR", "CARD_MEM_STORE", "IDONTKNOW2", "CARD_TYPE", "CARD_USE_MONEY", "IDONTKNOW3", "IDONTKNOW4", "IDONTKNOW5", "IDONTKNOW6", "IDONTKNOW7", "IDONTKNOW8", "IDONTKNOW9", "IDONTKNOW10"])
+kookmin_rdt = RawDataType.create(raw_name: "KOOKMIN",
+  schema: ["TIMESTAMP", "PRESENTOR", "CARD_TYPE", "CARD_USE_MONEY", "IDONTKNOW", "IDONTKNOW2", "IDONTKNOW3", "IDONTKNOW4", "IDONTKNOW5", "IDONTKNOW6", "CARD_MEM_STORE"])
+
 
 #################################### R_TASK_RAW_DATA(TASK, RAW_DATA_TYPE) ####################################
 # R_TASK_RAW_DATA columns
@@ -125,6 +135,8 @@ t.belongs_to :raw_data_type, index: true  #FK to raw_data_type
 t1.raw_data_types << rdt1 << rdt2 << rdt3 << rdt4
 t2.raw_data_types << rdt2 << rdt3
 t3.raw_data_types << rdt3 << rdt4
+
+sample_task.raw_data_types << woori_rdt << kookmin_rdt
 
 #################################### PARSING_DATA_SEQUENCE_FILE ####################################
 # PARSING_DATA_SEQUENCE_FILE columns
