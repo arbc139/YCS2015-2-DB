@@ -54,6 +54,8 @@ class ValuerController < ApplicationController
     @value_score = params[:value_score]
     @is_passed = params[:is_passed]
 
+    @task.create_tdt
+
     # update
     if @file.update_attributes(data_quality_score: @value_score, is_passed: @is_passed, is_valued: true)
       # data_blob to TDT

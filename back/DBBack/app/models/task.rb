@@ -55,6 +55,7 @@ class Task < ActiveRecord::Base
         end
         t.column 'submitter_name', 'string'
         t.column 'rdt_id', 'integer'
+        logger.info 'is created?'
       end
     elsif tdt[:table_name] != self.t_name
       logger.info 'TDT already created'

@@ -91,7 +91,7 @@ t6.create_tdt
 t7.create_tdt
 t8.create_tdt
 """
-sample_task.create_tdt
+#sample_task.create_tdt
 
 #################################### R_USER_SUBMIT(SUBMITTER, TASK) ####################################
 # R_USER_SUBMIT columns
