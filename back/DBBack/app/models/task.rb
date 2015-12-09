@@ -100,7 +100,7 @@ class Task < ActiveRecord::Base
     for tuple in tuples
       query_text = "INSERT INTO `#{tdt[:table_name]}` ("
       for col in tdt[:cols]
-        query_text << '`' << col << '`,'
+        query_text << '`' << col << '`, '
       end
       query_text << "`submitter_name`, `rdt_id`\) VALUES \("
       tuple = tuple.split(",")
@@ -111,11 +111,10 @@ class Task < ActiveRecord::Base
         query_text <<'\'' << attribute << '\', '
       end 
       query_text << '\'' << submitter_name << '\', '
-      logger.info 'rdt_id?????????????????????????'
-      logger.info rdt_id
       query_text << rdt_id.to_s
       query_text << "\)"
       ActiveRecord::Base.connection.exec_query(query_text)
+      logger.info 'Iam ok?'
     end
   end
 
