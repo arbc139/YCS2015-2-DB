@@ -59,7 +59,7 @@ class ValuerController < ApplicationController
       # data_blob to TDT
       # FIXIT:-영훈이 함수 호출
       
-      @task.save_file_to_tdt(@file.data_blob, @file.submitter.u_name) if @is_passed
+      @task.save_file_to_tdt(@file.data_blob, @file.submitter.u_name, @file.raw_data_type.id) if @is_passed
       # submitter 평가점수 update
       new_score=User.find(@file.submitter_id).update_score(@file.quantity_score, @value_score)
       User.find(@file.submitter_id).update_attributes(value_score: new_score)

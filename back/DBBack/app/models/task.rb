@@ -54,6 +54,7 @@ class Task < ActiveRecord::Base
           t.column col, 'string'
         end
         t.column 'submitter_name', 'string'
+        t.column 'rdt_id', 'integer'
       end
     elsif tdt[:table_name] != self.t_name
       logger.info 'TDT already created'
@@ -69,12 +70,12 @@ class Task < ActiveRecord::Base
   end
 
   def get_all_tdt
-    query = 'SELECT * FROM ' << self.task_data_table_name
+    query = 'SELECT * FROM ' << '\'' << self.task_data_table_name << '\''
     ActiveRecord::Base.connection.exec_query(query)
   end
 
   def all_tuple_num_of_tdt
-    query = 'SELECT COUNT(*) FROM ' << self.task_data_table_name
+    query = 'SELECT COUNT(*) FROM ' << '\'' << self.task_data_table_name << '\''
     ActiveRecord::Base.connection.exec_query(query)
   end
 
@@ -86,7 +87,7 @@ class Task < ActiveRecord::Base
 
   #tdt는 table_name과 column name의 array를 가진다
   # FIXIT:- submitter name추가하는거 가져와야 됨
-  def save_file_to_tdt(parsed_file, submitter_name)
+  def save_file_to_tdt(parsed_file, submitter_name, rdt_id)
     tdt = {
       table_name: self.task_data_table_name,
       cols: self.task_data_table_schema
@@ -97,7 +98,7 @@ class Task < ActiveRecord::Base
     tuples.shift
     logger.info tuples
     for tuple in tuples
-      query_text = "INSERT INTO #{tdt[:table_name]}\(#{tdt[:cols].join(",")},submitter_name\) VALUES \("
+      query_text = "INSERT INTO #{tdt[:table_name]}\(#{tdt[:cols].join(",")},submitter_name,rdt_id\) VALUES \("
       tuple = tuple.split(",")
       for attribute in tuple
         logger.info attribute
@@ -107,6 +108,7 @@ class Task < ActiveRecord::Base
         query_text <<'\'' << attribute << '\','
       end 
       query_text << '\'' << submitter_name << '\''
+      query_text << '\'' << rdt_id << '\''
       query_text << "\)"
       ActiveRecord::Base.connection.exec_query(query_text)
     end
@@ -115,7 +117,7 @@ class Task < ActiveRecord::Base
   def export_CSV
     tdt_name = self.task_data_table_name
     query = 'SELECT * FROM '
-    query << tdt_name
+    query << '\'' << tdt_name << '\''
     
     tuples = ActiveRecord::Base.connection.exec_query(query).as_json
     resultCSV = ""

@@ -156,10 +156,7 @@ class AdminController < ApplicationController
       target_pdsfs = @pdsfs.where(raw_data_type_id: rdt.id)
       rdt_pdsfs_count_hash[:rdt_id] = rdt.id
       rdt_pdsfs_count_hash[:no_of_submitted_files] = target_pdsfs.size
-      rdt_pdsfs_count_hash[:no_of_passed_files] = @task.all_tuple_num_of_tdt#target_pdsfs.where(is_passed: true).size # TDT 호출
-      logger.info 'hey!! no_of_passed_files_rdt'
-      logger.info rdt_pdsfs_count_hash[:no_of_passed_files].as_json
-      logger.info @task.get_all_tdt.size
+      rdt_pdsfs_count_hash[:no_of_passed_files] = target_pdsfs.where(is_passed: true).size # TDT 호출
       rdt_pdsfs_count_list << rdt_pdsfs_count_hash
     end
 
@@ -167,7 +164,7 @@ class AdminController < ApplicationController
 
       task_hash = Hash.new
       task_hash[:no_of_submitted_files] = @task.no_of_submitted_files
-      task_hash[:no_of_passed_files] = @task.no_of_passed_files
+      task_hash[:no_of_passed_files] = @task.all_tuple_num_tdt#@task.no_of_passed_files
       task_hash[:submitters] = @users.as_json(only: [:id, :u_name, :str_id, :sex, :address, :birth, :role, :value_score])
       task_hash[:rdt_stats] = rdt_pdsfs_count_list
 
