@@ -58,28 +58,28 @@ t.text :description
 t.text :minimum_upload_period
 t.text :task_data_table_schema
 """
-
+"""
 # TASK seeds
-t1 = Task.create(t_name: "TASK1_name", description: "TASK1_descript", minimum_upload_period: "TASK1_period", task_data_table_name: "TASK1_schema_name", 
-  task_data_table_schema: ["tdt1_col1", "tdt1_cols2"])
-t2 = Task.create(t_name: "TASK2_name", description: "TASK2_descript", minimum_upload_period: "TASK2_period", task_data_table_name: "TASK2_schema_name", 
-  task_data_table_schema: ["tdt2_col1", "tdt2_cols2"])
-t3 = Task.create(t_name: "TASK3_name", description: "TASK3_descript", minimum_upload_period: "TASK3_period", task_data_table_name: "TASK3_schema_name", 
-  task_data_table_schema: ["tdt3_col1", "tdt3_cols2"])
-t4 = Task.create(t_name: "TASK4_name", description: "TASK4_descript", minimum_upload_period: "TASK4_period", task_data_table_name: "TASK4_schema_name", 
-  task_data_table_schema: ["tdt4_col1", "tdt4_cols2"])
-t5 = Task.create(t_name: "TASK5_name", description: "TASK5_descript", minimum_upload_period: "TASK5_period", task_data_table_name: "TASK5_schema_name", 
-  task_data_table_schema: ["tdt5_col1", "tdt5_cols2"])
-t6 = Task.create(t_name: "TASK6_name", description: "TASK6_descript", minimum_upload_period: "TASK6_period", task_data_table_name: "TASK6_schema_name", 
-  task_data_table_schema: ["tdt6_col1", "tdt6_cols2"])
-t7 = Task.create(t_name: "TASK7_name", description: "TASK7_descript", minimum_upload_period: "TASK7_period", task_data_table_name: "TASK7_schema_name", 
-  task_data_table_schema: ["tdt7_col1", "tdt7_cols2"])
-t8 = Task.create(t_name: "TASK8_name", description: "TASK8_descript", minimum_upload_period: "TASK8_period", task_data_table_name: "TASK8_schema_name", 
-  task_data_table_schema: ["tdt8_col1", "tdt8_cols2"])
-
-sample_task = Task.create(t_name: "Card Log Collecting", description: "Collect card logs", minimum_upload_period: "1 month", task_data_table_name: "CARD_LOG_COLLECT", 
-  task_data_table_schema: ["PRESENTOR", "TIMESTAMP", "CARD_MEM_STORE", "CARD_USE_MONEY"])
-
+t1 = Task.create(t_name: 'TASK1_name', description: 'TASK1_descript', minimum_upload_period: 'TASK1_period', task_data_table_name: 'TASK1_schema_name', 
+  task_data_table_schema: ['tdt1_col1', 'tdt1_cols2'])
+t2 = Task.create(t_name: 'TASK2_name', description: 'TASK2_descript', minimum_upload_period: 'TASK2_period', task_data_table_name: 'TASK2_schema_name', 
+  task_data_table_schema: ['tdt2_col1', 'tdt2_cols2'])
+t3 = Task.create(t_name: 'TASK3_name', description: 'TASK3_descript', minimum_upload_period: 'TASK3_period', task_data_table_name: 'TASK3_schema_name', 
+  task_data_table_schema: ['tdt3_col1', 'tdt3_cols2'])
+t4 = Task.create(t_name: 'TASK4_name', description: 'TASK4_descript', minimum_upload_period: 'TASK4_period', task_data_table_name: 'TASK4_schema_name', 
+  task_data_table_schema: ['tdt4_col1', 'tdt4_cols2'])
+t5 = Task.create(t_name: 'TASK5_name', description: 'TASK5_descript', minimum_upload_period: 'TASK5_period', task_data_table_name: 'TASK5_schema_name', 
+  task_data_table_schema: ['tdt5_col1', 'tdt5_cols2'])
+t6 = Task.create(t_name: 'TASK6_name', description: 'TASK6_descript', minimum_upload_period: 'TASK6_period', task_data_table_name: 'TASK6_schema_name', 
+  task_data_table_schema: ['tdt6_col1', 'tdt6_cols2'])
+t7 = Task.create(t_name: 'TASK7_name', description: 'TASK7_descript', minimum_upload_period: 'TASK7_period', task_data_table_name: 'TASK7_schema_name', 
+  task_data_table_schema: ['tdt7_col1', 'tdt7_cols2'])
+t8 = Task.create(t_name: 'TASK8_name', description: 'TASK8_descript', minimum_upload_period: 'TASK8_period', task_data_table_name: 'TASK8_schema_name', 
+  task_data_table_schema: ['tdt8_col1', 'tdt8_cols2'])
+"""
+sample_task = Task.create(t_name: 'Card Log Collecting', description: 'Collect card logs', minimum_upload_period: '1 month', task_data_table_name: 'CARD_LOG_COLLECT', 
+  task_data_table_schema: ['PRESENTOR', 'TIMESTAMP', 'CARD_MEM_STORE', 'CARD_USE_MONEY'])
+"""
 # create TDT
 t1.create_tdt
 t2.create_tdt
@@ -89,7 +89,7 @@ t5.create_tdt
 t6.create_tdt
 t7.create_tdt
 t8.create_tdt
-
+"""
 sample_task.create_tdt
 
 #################################### R_USER_SUBMIT(SUBMITTER, TASK) ####################################
@@ -98,30 +98,31 @@ sample_task.create_tdt
 t.belongs_to :task, index: true # FK to task
 t.belongs_to :user, index: true # FK to user
 """
-
+"""
 submitter.tasks << t1 << t2 << t3
 submitter2.tasks << t1 << t2
-
+"""
 #################################### RAW_DATA_TYPE ####################################
 # RAW_DATA_TYPE columns
 """
 t.text :schema
 """
-
+"""
 # RAW_DATA_TYPE seed
-rdt1 = RawDataType.create(raw_name: "RAW_DATA_TYPE1_name", 
-  schema: [{rdt1_name: "test"}, {rdt1_job: "test"}])
-rdt2 = RawDataType.create(raw_name: "RAW_DATA_TYPE2_name", 
-  schema: [{rdt2_name: "test"}, {rdt2_job: "momo"}])
-rdt3 = RawDataType.create(raw_name: "RAW_DATA_TYPE3_name", 
-  schema: [{rdt3_name: "dsl", rdt3_job: "test"}])
-rdt4 = RawDataType.create(raw_name: "RAW_DATA_TYPE4_name", 
-  schema: [rdt4_name: "dsf", rdt4_job: "sdls"])
+rdt1 = RawDataType.create(raw_name: 'RAW_DATA_TYPE1_name', 
+  schema: [{rdt1_name: 'test'}, {rdt1_job: 'test'}])
+rdt2 = RawDataType.create(raw_name: 'RAW_DATA_TYPE2_name', 
+  schema: [{rdt2_name: 'test'}, {rdt2_job: 'momo'}])
+rdt3 = RawDataType.create(raw_name: 'RAW_DATA_TYPE3_name', 
+  schema: [{rdt3_name: 'dsl', rdt3_job: 'test'}])
+rdt4 = RawDataType.create(raw_name: 'RAW_DATA_TYPE4_name', 
+  schema: [rdt4_name: 'dsf', rdt4_job: 'sdls'])
+"""
 
-woori_rdt = RawDataType.create(raw_name: "WOORI",
-  schema: ["TIMESTAMP", "PRESENTOR", "CARD_MEM_STORE", "IDONTKNOW2", "CARD_TYPE", "CARD_USE_MONEY", "IDONTKNOW3", "IDONTKNOW4", "IDONTKNOW5", "IDONTKNOW6", "IDONTKNOW7", "IDONTKNOW8", "IDONTKNOW9", "IDONTKNOW10"])
-kookmin_rdt = RawDataType.create(raw_name: "KOOKMIN",
-  schema: ["TIMESTAMP", "PRESENTOR", "CARD_TYPE", "CARD_USE_MONEY", "IDONTKNOW", "IDONTKNOW2", "IDONTKNOW3", "IDONTKNOW4", "IDONTKNOW5", "IDONTKNOW6", "CARD_MEM_STORE"])
+woori_rdt = RawDataType.create(raw_name: 'WOORI',
+  schema: ['TIMESTAMP', 'PRESENTOR', 'CARD_MEM_STORE', 'IDONTKNOW2', 'CARD_TYPE', 'CARD_USE_MONEY', 'IDONTKNOW3', 'IDONTKNOW4', 'IDONTKNOW5', 'IDONTKNOW6', 'IDONTKNOW7', 'IDONTKNOW8', 'IDONTKNOW9', 'IDONTKNOW10'])
+kookmin_rdt = RawDataType.create(raw_name: 'KOOKMIN',
+  schema: ['TIMESTAMP', 'PRESENTOR', 'CARD_TYPE', 'CARD_USE_MONEY', 'IDONTKNOW', 'IDONTKNOW2', 'IDONTKNOW3', 'IDONTKNOW4', 'IDONTKNOW5', 'IDONTKNOW6', 'CARD_MEM_STORE'])
 
 
 #################################### R_TASK_RAW_DATA(TASK, RAW_DATA_TYPE) ####################################
@@ -132,10 +133,11 @@ t.belongs_to :raw_data_type, index: true  #FK to raw_data_type
 """
 
 # relationship PK FK seeds
+"""
 t1.raw_data_types << rdt1 << rdt2 << rdt3 << rdt4
 t2.raw_data_types << rdt2 << rdt3
 t3.raw_data_types << rdt3 << rdt4
-
+"""
 sample_task.raw_data_types << woori_rdt << kookmin_rdt
 
 #################################### PARSING_DATA_SEQUENCE_FILE ####################################
@@ -158,7 +160,7 @@ t.references :task
 t.references :raw_data_type
 """
 
-
+"""
 pdsf1 = ParsingDataSequenceFile.create(
   # colname1,colname2,colname3\ntuple1_value1,tuple1_value2,tuple1_value3\ntuple2_value1,tuple2_value2,tuple2_value3\n
   data_blob: 'tdt1_col1,tdt1_cols2\n110,120\n',
@@ -249,7 +251,7 @@ pdsf6 = ParsingDataSequenceFile.create(
   task_id: t2.id,
   raw_data_type_id: rdt3.id
   )
-
+"""
 
 #################################### PARSE_COLUMN_NULL_RATIO(linked with PDSF) ####################################
 # Column null ratios
@@ -258,7 +260,7 @@ t.references :parsing_file
 t.text :column_name
 t.float :null_ratio
 """
-
+"""
 ParseColumnNullRatio.create(
   column_name: 'wow1',
   null_ratio: 3.6,
@@ -295,3 +297,4 @@ ParseColumnNullRatio.create(
   null_ratio: 10.6,
   parsing_file_id: pdsf2.id
   )
+"""
