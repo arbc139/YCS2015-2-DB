@@ -83,6 +83,7 @@ class ParsingDataSequenceFile < ActiveRecord::Base
     tdt_schema_col = []
     for col in task_data_table_schema
       tdt_schema_col << col[:col_name]
+    end
 
     #save csv_file_attribute
     tupleStr = CSV.parse(csv_file_string)
