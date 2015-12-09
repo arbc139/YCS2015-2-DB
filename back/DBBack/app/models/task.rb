@@ -92,7 +92,6 @@ class Task < ActiveRecord::Base
       table_name: self.task_data_table_name,
       cols: self.task_data_table_schema
     }
-    logger.info parsed_file
     tuples = parsed_file.split("\\n")
     logger.info tuples
     tuples.shift
@@ -110,6 +109,8 @@ class Task < ActiveRecord::Base
       query_text << '\`' << submitter_name << '\`'
       query_text << '\`' << rdt_id << '\`'
       query_text << "\)"
+      logger.info 'is ok??'
+      logger.info query_text
       ActiveRecord::Base.connection.exec_query(query_text)
     end
   end
