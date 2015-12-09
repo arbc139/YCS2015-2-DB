@@ -1,0 +1,201 @@
+
+---
+users:
+  columns:
+  - id
+  - str_id
+  - password_digest
+  - u_name
+  - sex
+  - address
+  - birth
+  - phone_number
+  - value_score
+  - role
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - admin
+    - "$2a$10$iIcrlUFeHqSYmNTDqW6S7uW/y6h0Uk1uN0dCuotOPhIt8H5dbmfPi"
+    - admin
+    - M
+    - Seoul
+    - '1993-09-20'
+    - '010'
+    - 
+    - admin
+    - '2015-12-09 17:51:28.717853'
+    - '2015-12-09 17:51:28.717853'
+  - - 2
+    - submitter
+    - "$2a$10$1yLvcR28sKvkTpsQXHj1yeWueiAV8FFrE/EFnhL/IxnE4NCdoPjaO"
+    - dy
+    - M
+    - Seoul
+    - '1997-09-20'
+    - '010'
+    - 100
+    - submitter
+    - '2015-12-09 17:51:28.790725'
+    - '2015-12-09 17:51:28.790725'
+  - - 3
+    - submitter2
+    - "$2a$10$ySFFi8SCElv.E1dsdEl0euj7lE1bBD6n.W8oKNRQcxfNBubCBdRPm"
+    - dyd
+    - M
+    - Seoul
+    - '1922-09-20'
+    - '010'
+    - 100
+    - submitter
+    - '2015-12-09 17:51:28.858874'
+    - '2015-12-09 17:51:28.858874'
+  - - 4
+    - submitter3
+    - "$2a$10$HY6SZ5T0VYdOYDtMzAuRvOv2UxSJKJD3Te.k3n2pIqclO0pN.QKwO"
+    - dyd
+    - M
+    - Seoul
+    - '2001-01-01'
+    - '010'
+    - 100
+    - submitter
+    - '2015-12-09 17:51:28.926118'
+    - '2015-12-09 17:51:28.926118'
+  - - 5
+    - valuer
+    - "$2a$10$WnLpaOuI61xLgkWBwrgKeuA5FnSwh2W4EfNpI/Vb1Z.UFUhGkPY6."
+    - dy
+    - M
+    - Seoul
+    - '2001-09-20'
+    - '010'
+    - 
+    - valuer
+    - '2015-12-09 17:51:28.993719'
+    - '2015-12-09 17:51:28.993719'
+
+---
+tasks:
+  columns:
+  - id
+  - t_name
+  - description
+  - minimum_upload_period
+  - task_data_table_name
+  - task_data_table_schema
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - Card Log Collecting
+    - Collect card logs
+    - 1 month
+    - CARD_LOG_COLLECT
+    - |
+      ---
+      - :col_name: TIMESTAMP
+        :mapping:
+        - :rdt_id: 1
+          :rdt_col_name: "이용일자"
+        - :rdt_id: 2
+          :rdt_col_name: "이용일시"
+      - :col_name: CARD_MEM_STORE
+        :mapping:
+        - :rdt_id: 1
+          :rdt_col_name: "이용가맹점"
+        - :rdt_id: 2
+          :rdt_col_name: "이용하신곳"
+      - :col_name: CARD_USE_MONEY
+        :mapping:
+        - :rdt_id: 1
+          :rdt_col_name: "이용금액"
+        - :rdt_id: 2
+          :rdt_col_name: "국내이용금액"
+    - '2015-12-09 17:51:29.012128'
+    - '2015-12-09 17:51:29.012128'
+
+---
+raw_data_types:
+  columns:
+  - id
+  - raw_name
+  - schema
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - WOORI
+    - |
+      ---
+      - "이용일자"
+      - "카드 구분"
+      - "이용 카드"
+      - "매출 구분"
+      - "이용가맹점"
+      - "이용금액"
+      - "할부 개월"
+      - "회차"
+      - "원금"
+      - "혜택금액"
+      - "환율"
+      - "수수료"
+      - "결제 후 잔액"
+      - "할부가격"
+    - '2015-12-09 17:51:29.051936'
+    - '2015-12-09 17:51:29.051936'
+  - - 2
+    - KOOKMIN
+    - |
+      ---
+      - "이용일시"
+      - "이용카드명"
+      - "이용하신곳"
+      - "국내이용금액"
+      - "해외이용금액"
+      - "결제방법"
+      - "가맹점정보"
+      - "적립 포인트리"
+      - "상태"
+      - "결제예정일"
+      - "승인번호"
+    - '2015-12-09 17:51:29.055736'
+    - '2015-12-09 17:51:29.055736'
+
+---
+r_user_submits:
+  columns:
+  - id
+  - task_id
+  - user_id
+  - is_accepted
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - 1
+    - 2
+    - false
+    - '2015-12-09 17:51:29.043217'
+    - '2015-12-09 17:51:29.043217'
+
+---
+r_task_raw_data:
+  columns:
+  - id
+  - task_id
+  - raw_data_type_id
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - 1
+    - 1
+    - '2015-12-09 17:51:29.067461'
+    - '2015-12-09 17:51:29.067461'
+  - - 2
+    - 1
+    - 2
+    - '2015-12-09 17:51:29.070356'
+    - '2015-12-09 17:51:29.070356'

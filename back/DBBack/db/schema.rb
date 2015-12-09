@@ -13,6 +13,15 @@
 
 ActiveRecord::Schema.define(version: 20151121124524) do
 
+  create_table "CARD_LOG_COLLECT", force: :cascade do |t|
+    t.string  "TIMESTAMP"
+    t.string  "CARD_MEM_STORE"
+    t.string  "CARD_USE_MONEY"
+    t.string  "submitter_name"
+    t.integer "submitter_id"
+    t.integer "rdt_id"
+  end
+
   create_table "parse_column_null_ratios", force: :cascade do |t|
     t.integer  "parsing_file_id"
     t.text     "column_name"
