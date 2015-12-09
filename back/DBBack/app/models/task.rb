@@ -144,7 +144,9 @@ class Task < ActiveRecord::Base
     end
 
     task_data_table_schema.each do |tdt_col|
-      tdt_col[:mapping] << parse[tdt_col[:col_name]]
+      parse[tdt_col[:col_name]].each do |new_rdt_mapping_information|
+        tdt_col[:mapping] << new_rdt_mapping_information
+      end
     end
   end
 
