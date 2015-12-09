@@ -92,6 +92,7 @@ class Task < ActiveRecord::Base
       table_name: self.task_data_table_name,
       cols: self.task_data_table_schema
     }
+    logger.info ActiveRecord::Base.connection.tables
     tuples = parsed_file.split("\n")
     logger.info 'is ok?'
     logger.info tuples
