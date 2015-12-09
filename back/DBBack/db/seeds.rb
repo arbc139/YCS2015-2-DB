@@ -110,7 +110,7 @@ t.text :schema
 
 # RAW_DATA_TYPE seed
 rdt1 = RawDataType.create(raw_name: "RAW_DATA_TYPE1_name", 
-  schema: ["rdt1_name", "rdt1_job"])
+  schema: [{rdt1_name: "test"}, {rdt1_job: "test"}])
 rdt2 = RawDataType.create(raw_name: "RAW_DATA_TYPE2_name", 
   schema: ["rdt2_name", "rdt2_job"])
 rdt3 = RawDataType.create(raw_name: "RAW_DATA_TYPE3_name", 
