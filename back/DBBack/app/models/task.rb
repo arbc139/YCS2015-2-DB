@@ -96,17 +96,21 @@ class Task < ActiveRecord::Base
     logger.info 'is ok?'
     logger.info tuples
     for tuple in tuples
-      query_text = "INSERT INTO #{tdt[:table_name]}\(#{tdt[:cols].join(",")},submitter_name,rdt_id\) VALUES \("
+      query_text = "INSERT INTO `#{tdt[:table_name]}` ("
+      for col in tdt[:cols]
+        query_text << '`' << col << '`,'
+      end
+      query_text << "`submitter_name`,`rdt_id`\) VALUES \("
       tuple = tuple.split(",")
       for attribute in tuple
         logger.info attribute
         if attribute.length==0
           attribute = "NULL"
         end
-        query_text <<'`' << attribute << '`,'
+        query_text <<'\'' << attribute << '\','
       end 
-      query_text << '`' << submitter_name << '`'
-      query_text << '`' << rdt_id << '`'
+      query_text << '\'' << submitter_name << '\''
+      query_text << '\'' << rdt_id << '\''
       query_text << "\)"
       ActiveRecord::Base.connection.exec_query(query_text)
     end
