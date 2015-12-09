@@ -93,8 +93,7 @@ class Task < ActiveRecord::Base
       cols: self.task_data_table_schema
     }
     tuples = parsed_file.split("\\n")
-    logger.info tuples
-    tuples.shift
+    logger.info 'is ok?'
     logger.info tuples
     for tuple in tuples
       query_text = "INSERT INTO #{tdt[:table_name]}\(#{tdt[:cols].join(",")},submitter_name,rdt_id\) VALUES \("
@@ -109,8 +108,6 @@ class Task < ActiveRecord::Base
       query_text << '\`' << submitter_name << '\`'
       query_text << '\`' << rdt_id << '\`'
       query_text << "\)"
-      logger.info 'is ok??'
-      logger.info query_text
       ActiveRecord::Base.connection.exec_query(query_text)
     end
   end
