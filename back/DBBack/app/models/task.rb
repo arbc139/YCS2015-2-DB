@@ -76,7 +76,7 @@ class Task < ActiveRecord::Base
   end
 
   def all_tuple_num_tdt
-    query = 'SELECT ' << '\"' << self.task_data_table_name << '\".*' << self.task_data_table_name #<< '`' << self.task_data_table_name << '`'
+    query = 'SELECT ' << '"' << self.task_data_table_name << '".* FROM ' << self.task_data_table_name #<< '`' << self.task_data_table_name << '`'
     ActiveRecord::Base.connection.exec_query(query)
   end
 
