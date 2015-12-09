@@ -95,6 +95,8 @@ class Task < ActiveRecord::Base
     tuples = parsed_file.split("\\n")
     logger.info 'is ok?'
     logger.info tuples
+    tuples.shift
+    logger.info tuples
     for tuple in tuples
       query_text = "INSERT INTO `#{tdt[:table_name]}` ("
       for col in tdt[:cols]
@@ -103,7 +105,6 @@ class Task < ActiveRecord::Base
       query_text << "`submitter_name`,`rdt_id`\) VALUES \("
       tuple = tuple.split(",")
       for attribute in tuple
-        logger.info attribute
         if attribute.length==0
           attribute = "NULL"
         end
