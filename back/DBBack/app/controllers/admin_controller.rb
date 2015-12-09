@@ -185,12 +185,11 @@ class AdminController < ApplicationController
       @task.raw_data_types << RawDataType.find(raw_data_type[:id])
     end
     
-    # TDT schema Columns
-    # FIXIT:- schema_cols update 필요
+    # TDT schema Columns (mapping 포함)
     @task.task_data_table_schema = params[:task][:schema_cols]
     
     # Create Task Data Table
-    # FIXIT:-영훈이 함수 호출
+    # 영훈이 함수 호출
     @task.create_tdt
 
     logger.info 'Save completed?'
