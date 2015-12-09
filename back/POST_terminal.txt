@@ -59,3 +59,22 @@ curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POS
                           {"rdt_id": 4, "rdt_col_name": 이 TDT 컬럼에 맵핑된 RDT 4의 컬럼 이름}, ]
                     }
                   ]
+
+"added_schema_cols":
+                  [
+                      {
+                          <TDT 컬럼 이름>
+                          "col_name": "sex",
+                          <이 TDT 컬럼과 추가된 RDT 컬럼의 맵핑 정보>
+                          "mapping":
+                            [ {"rdt_id":5, "rdt_col_name": 이 이 TDT 컬럼에 맵핑된 RDT 5의 컬럼 이름},
+                              {"rdt_id":6, "rdt_col_name": 이 이 TDT 컬럼에 맵핑된 RDT 6의 컬럼 이름}]
+                      },
+                      {
+                          <TDT 컬럼 이름>
+                          "col_name": "job",
+                          <이 TDT 컬럼과 추가된 RDT 컬럼의 맵핑 정보>
+                          "mapping":
+                            [ {"rdt_id":5, "rdt_col_name": 이 이 TDT 컬럼에 맵핑된 RDT 5의 컬럼 이름} ]
+                      }
+                  ]
