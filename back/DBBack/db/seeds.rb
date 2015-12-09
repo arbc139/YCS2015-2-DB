@@ -112,11 +112,11 @@ t.text :schema
 rdt1 = RawDataType.create(raw_name: "RAW_DATA_TYPE1_name", 
   schema: [{rdt1_name: "test"}, {rdt1_job: "test"}])
 rdt2 = RawDataType.create(raw_name: "RAW_DATA_TYPE2_name", 
-  schema: ["rdt2_name", "rdt2_job"])
+  schema: [{rdt2_name: "test"}, {rdt2_job: "momo"}])
 rdt3 = RawDataType.create(raw_name: "RAW_DATA_TYPE3_name", 
-  schema: ["rdt3_name", "rdt3_job"])
+  schema: [{rdt3_name: "dsl", rdt3_job: "test"}])
 rdt4 = RawDataType.create(raw_name: "RAW_DATA_TYPE4_name", 
-  schema: ["rdt4_name", "rdt4_job"])
+  schema: [rdt4_name: "dsf", rdt4_job: "sdls"])
 
 woori_rdt = RawDataType.create(raw_name: "WOORI",
   schema: ["TIMESTAMP", "PRESENTOR", "CARD_MEM_STORE", "IDONTKNOW2", "CARD_TYPE", "CARD_USE_MONEY", "IDONTKNOW3", "IDONTKNOW4", "IDONTKNOW5", "IDONTKNOW6", "IDONTKNOW7", "IDONTKNOW8", "IDONTKNOW9", "IDONTKNOW10"])
