@@ -19,7 +19,7 @@ angular.module('dbfrontappApp')
 
     $scope.nt = {
       columnList: [{
-        name: undefined,
+        col_name: undefined,
         mapping: [undefined]
       }]
     };
@@ -31,21 +31,34 @@ angular.module('dbfrontappApp')
       console.log(res);
     });
 
-    $scope.plusplus = function() {
+    $scope.plusplus = function(index) {
+      console.log('index');
+      console.log(index);
+      $scope.nt.columnList[index].mapping.push(undefined);
+    };
 
+    $scope.plusplusBig = function() {
+      $scope.nt.columnList.push({
+        name: undefined,
+        mapping: [undefined]
+      });
     };
 
     $scope.submit = function() {
+      // console.log($scope.nt);
+      // return;
 
 
       var i;
-      var selectedRdts = [];
-      for(i = 0; i < $scope.rdtList.length; i++) {
-        var rdt = $scope.rdtList[i];
-        if (rdt.hasOwnProperty('checked')) {
-          if (rdt.checked === true) {
-            selectedRdts.push(rdt);
-          }
+      var j;
+      var resultSet = new Set();
+
+      for(i = 0; i < $scope.nt.columnList.length; i++) {
+        var column = $scope.nt.columnList[i];
+
+        for(j = 0; j < column.mapping.length; j++) {
+          var rdt = column.mapping[j];
+          resultSet.add(parseInt(rdt.rdtId));
         }
       }
 
@@ -69,8 +82,15 @@ angular.module('dbfrontappApp')
       //   return;
       // }
 
+      var selectedRdts = [];
+      resultSet.forEach(function(item) {
+        selectedRdts.push(item);
+      });
 
-      ApiService.postNewTask($scope.nt.t_name, $scope.nt.description, $scope.nt.minimum_upload_period, $scope.nt.task_data_table_schema, selectedRdts,
+      console.log(selectedRdts);
+
+
+      ApiService.postNewTask($scope.nt.t_name, $scope.nt.description, $scope.nt.minimum_upload_period, $scope.nt.task_data_table_name, $scope.nt.columnList, selectedRdts,
       function(res) {
         console.log(res);
         alertify.success('success');

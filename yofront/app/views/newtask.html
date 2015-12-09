@@ -21,10 +21,10 @@
           <input type="text" class="form-control" placeholder="mininum upload period" aria-describedby="mup" ng-model="nt.minimum_upload_period"/>
       </div><br>
 
-      <!-- <div class="input-group">
-          <span class="input-group-addon" id="tdsc">TDSC</span>
-          <input type="text" class="form-control" placeholder="task data table schema" aria-describedby="tdsc" ng-model="nt.task_data_table_schema"/>
-      </div> -->
+      <div class="input-group">
+          <span class="input-group-addon" id="tdsc">TDTN</span>
+          <input type="text" class="form-control" placeholder="task data table name" aria-describedby="tdsc" ng-model="nt.task_data_table_name"/>
+      </div>
 
       <hr>
 
@@ -34,28 +34,28 @@
         <div class="input-group">
             <span class="input-group-addon" id="col{{ $index }}">Col{{ $index }} Name</span>
             <input type="text" class="form-control" placeholder="col{{ $index }}"
-            aria-describedby="col{{ $index }}" ng-model="nt.columnList[$index].name" autofocus/>
+            aria-describedby="col{{ $index }}" ng-model="nt.columnList[$index].col_name" autofocus/>
         </div><br>
 
-        <h5>위의 TDT 컬럼이 맵핑되는 RDT 정의</h5>
+        <h5>--- 위의 TDT 컬럼이 맵핑되는 RDT 정의 ---</h5>
 
-        <div ng-repeat="jtem in nt.columnList[$index].mapping">
+        <div ng-repeat="jtem in nt.columnList[$index].mapping track by $index">
 
           <div class="input-group">
-              <span class="input-group-addon" id="col{{ $index }}">Rdt ID</span>
-              <input type="text" class="form-control" placeholder="rdt id of col{{ $index }}"
-              aria-describedby="col{{ $index }}" ng-model="nt.columnList[$index].mapping.rdtId"/>
+              <span class="input-group-addon" id="col{{ $index }}">Rdt ID {{ $index }}</span>
+              <input type="text" class="form-control" placeholder="rdt id (integer)"
+              aria-describedby="col{{ $index }}" ng-model="nt.columnList[$parent.$index].mapping[$index].rdt_id"/>
           </div>
 
           <div class="input-group">
-              <span class="input-group-addon" id="col{{ $index }}">Rdt Col Name</span>
-              <input type="text" class="form-control" placeholder="rdt col name of col{{ $index }}"
-              aria-describedby="col{{ $index }}" ng-model="columnList[$index].mapping.rdtColName"/>
+              <span class="input-group-addon" id="col{{ $index }}">Rdt Col Name {{ $index }}</span>
+              <input type="text" class="form-control" placeholder="rdt col name"
+              aria-describedby="col{{ $index }}" ng-model="nt.columnList[$parent.$index].mapping[$index].rdt_col_name"/>
           </div><br>
         </div>
 
         <div class="pull-right"> RDT++
-          <button class="btn btn-primary" ng-click="plusplusBig()">
+          <button class="btn btn-primary" ng-click="plusplus($index)">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
           </button>
         </div>
