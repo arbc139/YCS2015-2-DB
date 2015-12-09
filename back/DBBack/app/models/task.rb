@@ -70,12 +70,12 @@ class Task < ActiveRecord::Base
   end
 
   def get_all_tdt
-    query = 'SELECT * FROM ' << '\'' << self.task_data_table_name << '\''
+    query = 'SELECT * FROM ' << '`' << self.task_data_table_name << '`'
     ActiveRecord::Base.connection.exec_query(query)
   end
 
   def all_tuple_num_tdt
-    query = 'SELECT COUNT(*) FROM ' << '\'' << self.task_data_table_name << '\''
+    query = 'SELECT COUNT(*) FROM ' << '`' << self.task_data_table_name << '`'
     ActiveRecord::Base.connection.exec_query(query)
   end
 
@@ -117,7 +117,7 @@ class Task < ActiveRecord::Base
   def export_CSV
     tdt_name = self.task_data_table_name
     query = 'SELECT * FROM '
-    query << '\'' << tdt_name << '\''
+    query << '`' << tdt_name << '`'
     
     tuples = ActiveRecord::Base.connection.exec_query(query).as_json
     resultCSV = ""

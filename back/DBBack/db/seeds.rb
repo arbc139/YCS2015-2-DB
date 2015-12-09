@@ -79,6 +79,7 @@ t8 = Task.create(t_name: 'TASK8_name', description: 'TASK8_descript', minimum_up
 """
 sample_task = Task.create(t_name: 'Card Log Collecting', description: 'Collect card logs', minimum_upload_period: '1 month', task_data_table_name: 'CARD_LOG_COLLECT', 
   task_data_table_schema: ['PRESENTOR', 'TIMESTAMP', 'CARD_MEM_STORE', 'CARD_USE_MONEY'])
+
 """
 # create TDT
 t1.create_tdt
@@ -102,6 +103,7 @@ t.belongs_to :user, index: true # FK to user
 submitter.tasks << t1 << t2 << t3
 submitter2.tasks << t1 << t2
 """
+submitter.tasks << sample_task
 #################################### RAW_DATA_TYPE ####################################
 # RAW_DATA_TYPE columns
 """
