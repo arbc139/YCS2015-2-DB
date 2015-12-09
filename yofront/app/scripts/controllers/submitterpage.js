@@ -18,6 +18,8 @@ angular.module('dbfrontappApp')
   // check submitter!
   SessionService.checkSessionType(SESSION_TYPE.SUBMITTER);
 
+  $scope.score = 100;
+
 
   // begin appliable task
   // ApiService.getTaskList(function(res) { // todo remove
