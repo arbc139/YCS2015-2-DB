@@ -61,7 +61,8 @@ class ValuerController < ApplicationController
       
       @task.save_file_to_tdt(@file.data_blob, @file.submitter.u_name) if @is_passed
       # submitter 평가점수 update
-      User.find(@file.submitter_id).update_score(@file.quantity_score, @value_score)
+      new_score=User.find(@file.submitter_id).update_score(@file.quantity_score, @value_score)
+      User.find(@file.submitter_id).update_attributes(value_score: new_score)
       #update_attributes(value_score: quantity_score + @value_score)
       render json: {method_message => 'file update success'}
     else

@@ -46,11 +46,12 @@ class User < ActiveRecord::Base
   """
   def update_score(quantity_score, value_score)
     no_of_past_submitted_files = self.submit_pds_files.size - 1
-    self.value_score = (self.value_score*no_of_past_submitted_files + quantity_score.to_i + value_score.to_i) / (no_of_past_submitted_files + 1)
+    new_value_score = (self.value_score*no_of_past_submitted_files + quantity_score.to_i + value_score.to_i) / (no_of_past_submitted_files + 1)
     logger.info 'value scores?'
     logger.info quantity_score
     logger.info value_score
-    logger.info self.value_score
+    logger.info new_value_score
+    new_value_score
   end
 
   def self.get_random_valuer
