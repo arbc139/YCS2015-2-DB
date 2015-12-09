@@ -77,7 +77,7 @@ t7 = Task.create(t_name: 'TASK7_name', description: 'TASK7_descript', minimum_up
 t8 = Task.create(t_name: 'TASK8_name', description: 'TASK8_descript', minimum_upload_period: 'TASK8_period', task_data_table_name: 'TASK8_schema_name', 
   task_data_table_schema: ['tdt8_col1', 'tdt8_cols2'])
 """
-sample_task = Task.create(t_name: 'Card Log Collecting', description: 'Collect card logs', minimum_upload_period: '1 month', task_data_table_name: 'CARD_LOG_COLLECT', 
+sample_task = Task.create(t_name: 'CARD LOG COLLECTING', description: 'Collect card logs', minimum_upload_period: '1 month', task_data_table_name: 'CARD_LOG_COLLECT', 
   task_data_table_schema: 
   [
     {
