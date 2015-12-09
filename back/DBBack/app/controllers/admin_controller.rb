@@ -156,7 +156,7 @@ class AdminController < ApplicationController
       target_pdsfs = @pdsfs.where(raw_data_type_id: rdt.id)
       rdt_pdsfs_count_hash[:rdt_id] = rdt.id
       rdt_pdsfs_count_hash[:no_of_submitted_files] = target_pdsfs.size
-      rdt_pdsfs_count_hash[:no_of_passed_files] = @task.rdt_tuple_num_tdt#target_pdsfs.where(is_passed: true).size # TDT 호출
+      rdt_pdsfs_count_hash[:no_of_passed_files] = @task.rdt_tuple_num_tdt(rdt.id)#target_pdsfs.where(is_passed: true).size # TDT 호출
       rdt_pdsfs_count_list << rdt_pdsfs_count_hash
     end
 
