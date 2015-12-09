@@ -141,8 +141,8 @@ class SubmitterController < ApplicationController
     @rdt = RawDataType.find(params[:rdt_id])
     @period = params[:period]
     @inning = params[:inning]
-    
-    parse_result = ParsingDataSequenceFile.parsing_file(params[:csv], @rdt.schema, @task.task_data_table_schema)
+
+    parse_result = ParsingDataSequenceFile.parsing_file(params[:csv], @rdt.schema, @task.task_data_table_schema, @rdt.id)
 
     @pdsf = ParsingDataSequenceFile.new(pdsf_params(parse_result, @period, @inning, @submitter_id, @valuer.id, @task.id, @rdt.id))
 
