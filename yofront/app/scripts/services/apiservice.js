@@ -41,13 +41,14 @@ angular.module('dbfrontappApp')
         })
         .then(onS, onE);
       },
-      postNewTask: function(name, desc, mup, tdts, rdts, onS, onE) {
+      postNewTask: function(name, desc, mup, tdtName, schemaCols, onS, onE) {
         var params = {
           task: {
             t_name: name,
             description: desc,
             minimum_upload_period: mup,
-            task_data_table_schema: tdts,
+            task_data_table_name: tdtname,
+            schema_cols: schemaCols
           },
           raw_data_types: rdts
         };

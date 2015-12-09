@@ -17,7 +17,12 @@ angular.module('dbfrontappApp')
     // check admin!
     SessionService.checkSessionType(SESSION_TYPE.ADMIN);
 
-    $scope.nt = {};
+    $scope.nt = {
+      columnList: [{
+        name: undefined,
+        mapping: [undefined]
+      }]
+    };
 
     ApiService.getRawDataTypes(function(res) {
       $scope.rdtList = res.data;
@@ -25,6 +30,10 @@ angular.module('dbfrontappApp')
     }, function(res) {
       console.log(res);
     });
+
+    $scope.plusplus = function() {
+
+    };
 
     $scope.submit = function() {
 
@@ -55,16 +64,10 @@ angular.module('dbfrontappApp')
         return;
       }
 
-      if ($scope.nt.task_data_table_schema === undefined ||
-      $scope.nt.task_data_table_schema === '') {
-        alertify.error('fill the task data table schema');
-        return;
-      }
-
-      if (selectedRdts.length === 0) {
-        alertify.error('choose rdt at least one');
-        return;
-      }
+      // if (selectedRdts.length === 0) {
+      //   alertify.error('choose rdt at least one');
+      //   return;
+      // }
 
 
       ApiService.postNewTask($scope.nt.t_name, $scope.nt.description, $scope.nt.minimum_upload_period, $scope.nt.task_data_table_schema, selectedRdts,
