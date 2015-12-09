@@ -36,7 +36,7 @@ angular.module('dbfrontappApp')
 
   $scope.apply = function(tableId) {
     console.log(tableId);
-    alertify.confirm('개미를 죽입시다. (개미는 나의 원수) 우리가 2년 동안 달팽이를 키웠는데 어떤 불개미가 달팽이를 죽였습니다. 개미를 죽입시다. 달팽이는 아주 착했습니다. 달팽이는 아직 안 죽었는데, 싸가지 없는 불개미가 물었습니다. 조심하십시오. 싸가지 없는 놈',
+    alertify.confirm('살어리 살어리랏다 쳥산(靑山)에 살어리랏다 멀위랑 ᄃᆞ래랑 먹고 쳥산(靑山)에 살어리랏다 얄리얄리 얄랑셩 얄라리 얄라',
     function(){
       ApiService.postApplyTask(tableId,
       function() {

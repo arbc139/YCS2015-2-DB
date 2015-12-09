@@ -30,6 +30,8 @@ angular.module('dbfrontappApp')
       $location.path('/text-viewer');
     };
 
+    $scope.score = 100;
+
     $scope.eval = function(i) {
       // alertify
       // .defaultValue('Pass or Non-pass?')
