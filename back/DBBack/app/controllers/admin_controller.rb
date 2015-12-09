@@ -258,15 +258,21 @@ class AdminController < ApplicationController
     method_message = 'ADMIN) taks add rdt update'
     
     @task = Task.find(params[:task_id])
+    @new_rdt_mapping = params[:added_schema_cols]
     @new_rdts_id_list = params[:rdt_ids]
     logger.info @new_rdts_id_list
+
     @new_rdts = RawDataType.where(id: @new_rdts_id_list)
+    
     logger.info 'is ok?'
     logger.info @new_rdts.as_json
 
     @new_rdts.each do |new_rdt|
       @task.raw_data_types << new_rdt
     end
+
+    # update TDT schema
+    @task.update_tdt_schema(@new_rdt_mapping)
 
     logger.info 'Yeah New Rdt Update POST come on!'
     render json: {method_message => 'add rdt to task is successed'}

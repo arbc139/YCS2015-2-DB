@@ -137,6 +137,17 @@ class Task < ActiveRecord::Base
     end
   end
 
+  def update_tdt_schema(rdt_mappings)
+    parse = Hash.new
+    rdt_mappings.each do |col|
+      parse[col[:col_name]] = col[:mapping]
+    end
+
+    task_data_table_schema.each do |tdt_col|
+      tdt_col[:mapping] << parse[tdt_col[:col_name]]
+    end
+  end
+
   def export_CSV
     tdt_name = self.task_data_table_name
     query = 'SELECT * FROM '
