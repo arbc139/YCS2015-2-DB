@@ -102,15 +102,15 @@ class Task < ActiveRecord::Base
       for col in tdt[:cols]
         query_text << '`' << col << '`,'
       end
-      query_text << "`submitter_name`,`rdt_id`\) VALUES \("
+      query_text << "`submitter_name`, `rdt_id`\) VALUES \("
       tuple = tuple.split(",")
       for attribute in tuple
         if attribute.length==0
           attribute = "NULL"
         end
-        query_text <<'\'' << attribute << '\','
+        query_text <<'\'' << attribute << '\', '
       end 
-      query_text << '\'' << submitter_name << '\','
+      query_text << '\'' << submitter_name << '\', '
       logger.info 'rdt_id?????????????????????????'
       logger.info rdt_id
       query_text << rdt_id.to_s
