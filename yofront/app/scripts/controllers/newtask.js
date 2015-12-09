@@ -58,7 +58,8 @@ angular.module('dbfrontappApp')
 
         for(j = 0; j < column.mapping.length; j++) {
           var rdt = column.mapping[j];
-          resultSet.add(parseInt(rdt.rdtId));
+          console.log('rdtid :'+rdt.rdt_id);
+          resultSet.add(parseInt(rdt.rdt_id));
         }
       }
 
