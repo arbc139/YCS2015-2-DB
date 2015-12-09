@@ -157,6 +157,8 @@ class AdminController < ApplicationController
       rdt_pdsfs_count_hash[:rdt_id] = rdt.id
       rdt_pdsfs_count_hash[:no_of_submitted_files] = target_pdsfs.size
       rdt_pdsfs_count_hash[:no_of_passed_files] = @task.all_tuple_num_of_tdt#target_pdsfs.where(is_passed: true).size # TDT 호출
+      logger.info 'hey!! no_of_passed_files_rdt'
+      logger.info rdt_pdsfs_count_hash[:no_of_passed_files]
       rdt_pdsfs_count_list << rdt_pdsfs_count_hash
     end
 
