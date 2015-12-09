@@ -111,7 +111,9 @@ class Task < ActiveRecord::Base
         query_text <<'\'' << attribute << '\','
       end 
       query_text << '\'' << submitter_name << '\','
-      query_text << '\'' << rdt_id << '\''
+      logger.info 'rdt_id?????????????????????????'
+      logger.info rdt_id
+      query_text << rdt_id.to_s
       query_text << "\)"
       ActiveRecord::Base.connection.exec_query(query_text)
     end
