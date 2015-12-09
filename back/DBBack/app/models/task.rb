@@ -87,7 +87,7 @@ class Task < ActiveRecord::Base
   end
 
   def submit_tuple_num_tdt(submitter_id)
-    query = 'SELECT COUNT(*) FROM "' << self.task_data_table_name << '"' << ' WHERE "' << self.task_data_table_name << '"."submitter_id" = ' << submitter_id #<< '`' << self.task_data_table_name << '`'
+    query = 'SELECT COUNT(*) FROM "' << self.task_data_table_name << '"' << ' WHERE "' << self.task_data_table_name << '"."submitter_id" = ' << submitter_id.to_s #<< '`' << self.task_data_table_name << '`'
     ActiveRecord::Base.connection.exec_query(query)
   end
 
