@@ -182,7 +182,7 @@ class AdminController < ApplicationController
     @task = Task.new(task_params) # put task informations
     raw_data_type_list = params[:raw_data_types] # put raw_data_type informations
     raw_data_type_list.each do |raw_data_type|
-      @task.raw_data_types << RawDataType.find(raw_data_type[:id])
+      @task.raw_data_types << RawDataType.find(raw_data_type[:id].to_i)
     end
     
     # TDT schema Columns (mapping 포함)
@@ -270,7 +270,7 @@ class AdminController < ApplicationController
     @new_rdts.each do |new_rdt|
       @task.raw_data_types << new_rdt
     end
-    
+
     # update TDT schema
     @task.update_tdt_schema(@new_rdt_mapping)
 
