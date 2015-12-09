@@ -71,12 +71,12 @@ class Task < ActiveRecord::Base
   end
 
   def get_all_tdt
-    query = 'SELECT * FROM ' << '`' << self.task_data_table_name << '`'
+    query = 'SELECT * FROM ' << self.task_data_table_name #<< '`' << self.task_data_table_name << '`'
     ActiveRecord::Base.connection.exec_query(query)
   end
 
   def all_tuple_num_tdt
-    query = 'SELECT COUNT(*) FROM ' << '`' << self.task_data_table_name << '`'
+    query = 'SELECT COUNT(*) FROM ' << self.task_data_table_name #<< '`' << self.task_data_table_name << '`'
     ActiveRecord::Base.connection.exec_query(query)
   end
 
@@ -100,11 +100,14 @@ class Task < ActiveRecord::Base
     tuples.shift
     logger.info tuples
     for tuple in tuples
-      query_text = "INSERT INTO `#{tdt[:table_name]}` ("
+      query_text = "INSERT INTO #{tdt[:table_name]}("
+      #query_text = "INSERT INTO `#{tdt[:table_name]}` ("
       for col in tdt[:cols]
-        query_text << '`' << col << '`, '
+        query_text << col
+       #query_text << '`' << col << '`, '
       end
-      query_text << "`submitter_name`, `rdt_id`\) VALUES \("
+      query_text << "submitter_name, rdt_id\) VALUES \("
+      #query_text << "`submitter_name`, `rdt_id`\) VALUES \("
       tuple = tuple.split(",")
       for attribute in tuple
         if attribute.length==0
@@ -125,7 +128,8 @@ class Task < ActiveRecord::Base
   def export_CSV
     tdt_name = self.task_data_table_name
     query = 'SELECT * FROM '
-    query << '`' << tdt_name << '`'
+    query << tdt_name
+    #query << '`' << tdt_name << '`'
     
     tuples = ActiveRecord::Base.connection.exec_query(query).as_json
     resultCSV = ""
