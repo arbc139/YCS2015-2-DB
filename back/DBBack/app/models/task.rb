@@ -85,6 +85,11 @@ class Task < ActiveRecord::Base
     ActiveRecord::Base.connection.exec_query(query)
   end
 
+  def submit_tuple_num_tdt(submitter_name)
+    query = 'SELECT COUNT(*) FROM "' << self.task_data_table_name << '"' << ' WHERE "' << self.task_data_table_name << '"."submitter_name" = ' << submitter_name #<< '`' << self.task_data_table_name << '`'
+    ActiveRecord::Base.connection.exec_query(query)
+  end
+
   def drop_tdt
     tdt_name = self.task_data_table_name
     query = 'DROP TABLE ' << tdt_name
