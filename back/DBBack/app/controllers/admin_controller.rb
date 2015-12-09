@@ -164,7 +164,9 @@ class AdminController < ApplicationController
 
       task_hash = Hash.new
       task_hash[:no_of_submitted_files] = @task.no_of_submitted_files
-      task_hash[:no_of_passed_files] = @task.all_tuple_num_tdt["count\(*\)"]#@task.no_of_passed_files
+      logger.info 'What?!?!?!?!?!'
+      logger.info @task.all_tuple_num_tdt
+      task_hash[:no_of_passed_files] = @task.all_tuple_num_tdt#@task.no_of_passed_files
       logger.info @task.get_all_tdt.as_json
       task_hash[:submitters] = @users.as_json(only: [:id, :u_name, :str_id, :sex, :address, :birth, :role, :value_score])
       task_hash[:rdt_stats] = rdt_pdsfs_count_list
