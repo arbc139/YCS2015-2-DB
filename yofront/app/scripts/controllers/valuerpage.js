@@ -22,7 +22,7 @@ angular.module('dbfrontappApp')
       console.log(res);
       $scope.pdsfList = res.data;
     }, function() {
-      alertify.error('error');
+      alertify.errorv('error');
     });
 
     $scope.goToTextViewer = function(i) {

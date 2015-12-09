@@ -29,3 +29,36 @@
     </table>
   </div>
 </div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3>평가 완료한 목록</h3>
+  </div>
+  <div class="panel-body">
+        <table class="table">
+          <thead>
+            <th>id</th>
+            <th>period</th>
+            <th>inning</th>
+            <th>all#</th>
+            <th>duplicated#</th>
+
+            <th>passed</th>
+            <th>data</th>
+            <!-- <th>valued</th> -->
+          </thead>
+          <tbody ng-repeat="item in rdt.pdsfs">
+            <td>{{ item.id }}</td>
+            <td>{{ item.period }}</td>
+            <td>{{ item.inning }}</td>
+            <td>{{ item.all_tuple_num }}</td>
+
+            <td>{{ item.duplicated_tuple_num }}</td>
+
+            <td>{{ item.is_passed }}</td>
+            <td><a ng-click=goToTextViewer($index)>more..</a></td>
+            <!-- <td>{{ item.is_valued }}</td> -->
+          </tbody>
+        </table>
+  </div>
+</div>
