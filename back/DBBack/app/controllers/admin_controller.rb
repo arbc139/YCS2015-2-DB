@@ -270,7 +270,7 @@ class AdminController < ApplicationController
     @new_rdts.each do |new_rdt|
       @task.raw_data_types << new_rdt
     end
-
+    
     # update TDT schema
     @task.update_tdt_schema(@new_rdt_mapping)
 
