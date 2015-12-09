@@ -74,7 +74,7 @@ class Task < ActiveRecord::Base
     ActiveRecord::Base.connection.exec_query(query)
   end
 
-  def all_tuple_num_of_tdt
+  def all_tuple_num_tdt
     query = 'SELECT COUNT(*) FROM ' << '\'' << self.task_data_table_name << '\''
     ActiveRecord::Base.connection.exec_query(query)
   end
