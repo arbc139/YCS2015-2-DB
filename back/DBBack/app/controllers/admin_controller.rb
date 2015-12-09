@@ -186,6 +186,7 @@ class AdminController < ApplicationController
     end
     
     # TDT schema Columns
+    # FIXIT:- schema_cols update 필요
     @task.task_data_table_schema = params[:task][:schema_cols]
     
     # Create Task Data Table

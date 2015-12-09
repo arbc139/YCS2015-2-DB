@@ -33,3 +33,29 @@ curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POS
 
 ### taskSubmitCreate Action
 curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"csv":"", "task_id":3, "user_id":3, "rdt_id":1, "period":5, "inning":10}' http://localhost:3000/api/submitter/tasks/apply
+
+
+
+
+"schema_cols":  
+                [
+                    {
+                      <TDT 컬럼 이름>
+                      "col_name": "sex",
+                      <이 컬럼과 RDT의 컬럼의 맵핑 정보>
+                      "mapping": 
+                        [ {"rdt_id": 1, "rdt_col_name": 이 TDT 컬럼에 맵핑된 RDT 1의 컬럼 이름},
+                          {"rdt_id": 2, "rdt_col_name": 이 TDT 컬럼에 맵핑된 RDT 2의 컬럼 이름},
+                          {"rdt_id": 3, "rdt_col_name": 이 TDT 컬럼에 맵핑된 RDT 3의 컬럼 이름} ]
+                    },
+                    {
+                      <TDT 컬럼 이름>
+                      "col_name": "job",
+                      <이 컬럼과 RDT의 컬럼의 맵핑 정보>
+                      "mapping":
+                        [ {"rdt_id": 1, "rdt_col_name": 이 TDT 컬럼에 맵핑된 RDT 1의 컬럼 이름},
+                          {"rdt_id": 2, "rdt_col_name": 이 TDT 컬럼에 맵핑된 RDT 2의 컬럼 이름},
+                          {"rdt_id": 3, "rdt_col_name": 이 TDT 컬럼에 맵핑된 RDT 3의 컬럼 이름},
+                          {"rdt_id": 4, "rdt_col_name": 이 TDT 컬럼에 맵핑된 RDT 4의 컬럼 이름}, ]
+                    }
+                  ]
