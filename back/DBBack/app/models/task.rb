@@ -103,7 +103,7 @@ class Task < ActiveRecord::Base
       query_text = "INSERT INTO #{tdt[:table_name]}("
       #query_text = "INSERT INTO `#{tdt[:table_name]}` ("
       for col in tdt[:cols]
-        query_text << col
+        query_text << col << ', '
        #query_text << '`' << col << '`, '
       end
       query_text << "submitter_name, rdt_id\) VALUES \("
