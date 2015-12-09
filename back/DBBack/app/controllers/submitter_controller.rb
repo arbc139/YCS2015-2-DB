@@ -72,7 +72,7 @@ class SubmitterController < ApplicationController
     # 원본 데이터 타입 별로 자신이 제출한 파일들의 현황 (파싱시퀀스파일 record 보여주고, pass/non-pass 여부 order by 회차)
     submitted_pdsfs = @submitter.submit_pds_files.where(task: @task)
     @all_pdsfs_num = submitted_pdsfs.size
-    @passed_pdsfs_num = @task.submit_tuple_num_tdt(@submitter.u_name)#submitted_pdsfs.where(is_passed: true).size
+    @passed_pdsfs_num = @task.submit_tuple_num_tdt(@submitter.id)#submitted_pdsfs.where(is_passed: true).size
     pdsfs_by_rdt = submitted_pdsfs.order(:raw_data_type_id).order(:inning).group_by(&:raw_data_type_id)
     
     # parsing only needed informations

@@ -54,6 +54,7 @@ class Task < ActiveRecord::Base
           t.column col, 'string'
         end
         t.column 'submitter_name', 'string'
+        t.column 'submitter_id', 'integer'
         t.column 'rdt_id', 'integer'
         logger.info 'is created?'
       end
@@ -85,8 +86,8 @@ class Task < ActiveRecord::Base
     ActiveRecord::Base.connection.exec_query(query)
   end
 
-  def submit_tuple_num_tdt(submitter_name)
-    query = 'SELECT COUNT(*) FROM "' << self.task_data_table_name << '"' << ' WHERE "' << self.task_data_table_name << '"."submitter_name" = ' << submitter_name #<< '`' << self.task_data_table_name << '`'
+  def submit_tuple_num_tdt(submitter_id)
+    query = 'SELECT COUNT(*) FROM "' << self.task_data_table_name << '"' << ' WHERE "' << self.task_data_table_name << '"."submitter_id" = ' << submitter_id #<< '`' << self.task_data_table_name << '`'
     ActiveRecord::Base.connection.exec_query(query)
   end
 
@@ -98,7 +99,7 @@ class Task < ActiveRecord::Base
 
   #tdt는 table_name과 column name의 array를 가진다
   # FIXIT:- submitter name추가하는거 가져와야 됨
-  def save_file_to_tdt(parsed_file, submitter_name, rdt_id)
+  def save_file_to_tdt(parsed_file, submitter_name, rdt_id, submitter_id)
     tdt = {
       table_name: self.task_data_table_name,
       cols: self.task_data_table_schema
@@ -118,7 +119,7 @@ class Task < ActiveRecord::Base
           query_text << col << ', '
          #query_text << '`' << col << '`, '
         end
-        query_text << "submitter_name, rdt_id\) VALUES \("
+        query_text << "submitter_name, rdt_id, submitter_id\) VALUES \("
         #query_text << "`submitter_name`, `rdt_id`\) VALUES \("
         tuple = tuple.split(",")
         for attribute in tuple
@@ -128,7 +129,8 @@ class Task < ActiveRecord::Base
           query_text <<'\'' << attribute << '\', '
         end 
         query_text << '\'' << submitter_name << '\', '
-        query_text << rdt_id.to_s
+        query_text << rdt_id.to_s << ', '
+        query_text << submitter_id.to_s
         query_text << "\)"
         ActiveRecord::Base.connection.exec_query(query_text)
         logger.info 'Iam ok?'
