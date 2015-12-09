@@ -81,9 +81,7 @@ class Task < ActiveRecord::Base
   end
 
   def rdt_tuple_num_tdt(rdt_id)
-    logger.info 'rdt!!!!!!'
-    logger.info rdt_id
-    query = 'SELECT COUNT(*) FROM "' << self.task_data_table_name << '"' << ' WHERE "' << self.task_data_table_name << '"."' << rdt_id << '"' #<< '`' << self.task_data_table_name << '`'
+    query = 'SELECT COUNT(*) FROM "' << self.task_data_table_name << '"' << ' WHERE "' << self.task_data_table_name << '"."' << rdt_id.to_s << '"' #<< '`' << self.task_data_table_name << '`'
     ActiveRecord::Base.connection.exec_query(query)
   end
 
