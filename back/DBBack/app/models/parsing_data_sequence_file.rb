@@ -66,7 +66,7 @@ class ParsingDataSequenceFile < ActiveRecord::Base
   # csv_file_tuples -> 원본데이터파일의 tuples
   # raw_schema_tuples -> 원본 데이터 schema에 맞춰 뽑은 tuples
   # tdt_tuples -> 파싱 완료된 tuples
-  def self.parsing_file(csv_file_string, raw_data_type_schema, task_data_table_schema)
+  def self.parsing_file(csv_file_string, raw_data_type_schema, task_data_table_schema, rdt_id)
     #output variables
     col_null_ratios = {}
     parsed_file = ""
@@ -80,7 +80,9 @@ class ParsingDataSequenceFile < ActiveRecord::Base
     # input에서 attribute 이름만 뽑은 array
     csv_file_col = []
     raw_schema_col = raw_data_type_schema
-    tdt_schema_col = task_data_table_schema
+    tdt_schema_col = []
+    for col in task_data_table_schema
+      tdt_schema_col << col[:col_name]
 
     #save csv_file_attribute
     tupleStr = CSV.parse(csv_file_string)
@@ -94,18 +96,33 @@ class ParsingDataSequenceFile < ActiveRecord::Base
     #Create csv_file_tuples & raw_schema_tuples 
     #raw_schema_tuples는 schema순서를 따르지 않음
     csv_file_tuples = CSV.parse(csv_file_string).map {|a| Hash[ csv_file_col.zip(a)]}
-    csv_file_tuples.shift # Delete attribute tuple
+    #csv_file_tuples.shift # Delete attribute tuple
     for tuple in csv_file_tuples
       raw_schema_tuples << tuple.select{|k,v| raw_schema_col.include?(k)}
     end
     
     #Create tdt_tuples except type
-    for tuple in raw_schema_tuples
+    for rdt_tuple in raw_schema_tuples
       temp = {}
+      for mapped_col in task_data_table_schema
+        target_col_name = ''
+        for rdt_cols in mapped_col[:mapping]
+          if rdt_cols[:rdt_id] == rdt_id
+            target_col_name = rdt_cols[:rdt_col_name]
+            break
+          end
+        end
+        logger.info 'target col name'
+        logger.info target_col_name
+        temp[mapped_col[:col_name]] = rdt_tuple[target_col_name]
+        col_null_ratios[mapped_col[:col_name]] = 0.0
+      end
+      """
       for attribute in tdt_schema_col
         temp[attribute] = tuple[attribute]
         col_null_ratios[attribute] = 0.0
       end
+      """
       tdt_tuples << temp
     end
     

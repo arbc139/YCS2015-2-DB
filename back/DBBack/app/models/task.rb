@@ -51,7 +51,7 @@ class Task < ActiveRecord::Base
       ActiveRecord::Base.connection.create_table tdt[:table_name] do |t|
         # :id is created automatically
         tdt[:cols].each do |col|
-          t.column col, 'string'
+          t.column col[:col_name], 'string'
         end
         t.column 'submitter_name', 'string'
         t.column 'submitter_id', 'integer'

@@ -78,7 +78,28 @@ t8 = Task.create(t_name: 'TASK8_name', description: 'TASK8_descript', minimum_up
   task_data_table_schema: ['tdt8_col1', 'tdt8_cols2'])
 """
 sample_task = Task.create(t_name: 'Card Log Collecting', description: 'Collect card logs', minimum_upload_period: '1 month', task_data_table_name: 'CARD_LOG_COLLECT', 
-  task_data_table_schema: ['PRESENTOR', 'TIMESTAMP', 'CARD_MEM_STORE', 'CARD_USE_MONEY'])
+  task_data_table_schema: 
+  [
+    {
+      "col_name": "TIMESTAMP",
+      "mapping": 
+        [ {"rdt_id": 1, "rdt_col_name": "이용일자"},
+          {"rdt_id": 2, "rdt_col_name": "이용일시"} ]
+    },
+    {
+      "col_name": "CARD_MEM_STORE",
+      "mapping":
+        [ {"rdt_id": 1, "rdt_col_name": "이용가맹점"},
+          {"rdt_id": 2, "rdt_col_name": "이용하신곳"} ]
+    },
+    {
+      "col_name": "CARD_USE_MONEY",
+      "mapping":
+        [ {"rdt_id": 1, "rdt_col_name": "이용금액"},
+          {"rdt_id": 2, "rdt_col_name": "국내이용금액"} ]
+    }
+  ])
+  #['PRESENTOR', 'TIMESTAMP', 'CARD_MEM_STORE', 'CARD_USE_MONEY'])
 
 """
 # create TDT
@@ -122,9 +143,9 @@ rdt4 = RawDataType.create(raw_name: 'RAW_DATA_TYPE4_name',
 """
 
 woori_rdt = RawDataType.create(raw_name: 'WOORI',
-  schema: ['TIMESTAMP', 'PRESENTOR', 'CARD_MEM_STORE', 'IDONTKNOW2', 'CARD_TYPE', 'CARD_USE_MONEY', 'IDONTKNOW3', 'IDONTKNOW4', 'IDONTKNOW5', 'IDONTKNOW6', 'IDONTKNOW7', 'IDONTKNOW8', 'IDONTKNOW9', 'IDONTKNOW10'])
+  schema: ['이용일자', '카드 구분', '이용 카드', '매출 구분', '이용가맹점', '이용금액', '할부 개월', '회차', '원금', '혜택금액', '환율', '수수료', '결제 후 잔액', '할부가격'])
 kookmin_rdt = RawDataType.create(raw_name: 'KOOKMIN',
-  schema: ['TIMESTAMP', 'PRESENTOR', 'CARD_TYPE', 'CARD_USE_MONEY', 'IDONTKNOW', 'IDONTKNOW2', 'IDONTKNOW3', 'IDONTKNOW4', 'IDONTKNOW5', 'IDONTKNOW6', 'CARD_MEM_STORE'])
+  schema: ['이용일시', '이용카드명', '이용하신곳', '국내이용금액', '해외이용금액', '결제방법', '가맹점정보', '적립 포인트리', '상태', '결제예정일', '승인번호'])
 
 
 #################################### R_TASK_RAW_DATA(TASK, RAW_DATA_TYPE) ####################################
