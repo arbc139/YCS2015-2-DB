@@ -113,8 +113,6 @@ class ParsingDataSequenceFile < ActiveRecord::Base
             break
           end
         end
-        logger.info 'target col name'
-        logger.info target_col_name
         temp[mapped_col[:col_name]] = rdt_tuple[target_col_name]
         col_null_ratios[mapped_col[:col_name]] = 0.0
       end

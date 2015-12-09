@@ -98,7 +98,6 @@ class Task < ActiveRecord::Base
   end
 
   #tdt는 table_name과 column name의 array를 가진다
-  # FIXIT:- submitter name추가하는거 가져와야 됨
   def save_file_to_tdt(parsed_file, submitter_name, rdt_id, submitter_id)
     tdt = {
       table_name: self.task_data_table_name,
@@ -116,7 +115,7 @@ class Task < ActiveRecord::Base
         query_text = "INSERT INTO #{tdt[:table_name]}("
         #query_text = "INSERT INTO `#{tdt[:table_name]}` ("
         for col in tdt[:cols]
-          query_text << col << ', '
+          query_text << col[:col_name] << ', '
          #query_text << '`' << col << '`, '
         end
         query_text << "submitter_name, rdt_id, submitter_id\) VALUES \("
