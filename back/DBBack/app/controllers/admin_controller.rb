@@ -272,8 +272,8 @@ class AdminController < ApplicationController
     end
 
     # update TDT schema
-    @task.update_tdt_schema(@new_rdt_mapping)
-    
+    @task.update_attributes(task_data_table_schema: @task.update_tdt_schema(@new_rdt_mapping))
+
     logger.info 'Yeah New Rdt Update POST come on!'
     render json: {method_message => 'add rdt to task is successed'}
   end

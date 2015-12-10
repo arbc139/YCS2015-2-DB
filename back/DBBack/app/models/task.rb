@@ -136,18 +136,22 @@ class Task < ActiveRecord::Base
       end
     end
   end
-  
+
   def update_tdt_schema(rdt_mappings)
     parse = Hash.new
     rdt_mappings.each do |col|
       parse[col[:col_name]] = col[:mapping]
     end
 
+    task_data_table_schema = self.task_data_table_schema
+
     task_data_table_schema.each do |tdt_col|
       parse[tdt_col[:col_name]].each do |new_rdt_mapping_information|
         tdt_col[:mapping] << new_rdt_mapping_information
       end
     end
+
+    task_data_table_schema
   end
 
   def export_CSV
