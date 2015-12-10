@@ -41,6 +41,20 @@ angular.module('dbfrontappApp')
         })
         .then(onS, onE);
       },
+      postModifyUserInfo: function(newId, newPW, newName, newSex, newAddress, newBirth, newPhone, onS, onE) {
+        var params = {
+          user_id : newId,
+        	password : newPW,
+        	u_name : newName,
+        	sex : newSex,
+        	address : newAddress,
+        	birth : newBirth,
+        	phone_number : newPhone
+        };
+
+        $http.post(SERVER_URL + '/users/update', params, config)
+        .then(onS, onE);
+      },
       postNewTask: function(name, desc, mup, tdtName, schemaCols, rdts, onS, onE) {
         var params = {
           task: {
