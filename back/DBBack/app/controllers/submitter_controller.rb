@@ -8,6 +8,16 @@ class SubmitterController < ApplicationController
     render json: {'hello' => hello}
   end
 
+  # 제출자의 점수
+  def getScore
+    @submitter = User.find(params[:user_id])
+
+    respond_to do |format|
+      format.html
+      format.json {render json: @submitter.as_json(only: [:value_score])}
+    end
+  end
+
   # 참여 신청 가능한 테스크 목록
   def taskApplyIndex
     logger.info 'Yeah GET taskApplyIndex come on!'

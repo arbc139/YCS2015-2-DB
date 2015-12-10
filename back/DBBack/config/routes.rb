@@ -80,6 +80,8 @@ Rails.application.routes.draw do
   ###########
 
   ## Submitter 페이지에서 테스크 목록을 가져오는 액션
+  # submitter의 value_score 가져오기 액션
+  get '/api/submitter/score' => 'submitter#getScore'
   # submitter가 참가 신청 가능한 테스크 목록 가져오기 액션
   get '/api/submitter/tasks/apply' => 'submitter#taskApplyIndex'
   # submitter가 참가하고 있는 테스크 목록 가져오기 액션
