@@ -53,7 +53,7 @@ class Task < ActiveRecord::Base
         tdt[:cols].each do |col|
           t.column col[:col_name], 'string'
         end
-        t.column 'submitter_name', 'string'
+        t.column 'PRESENTOR', 'string'
         t.column 'submitter_id', 'integer'
         t.column 'rdt_id', 'integer'
         logger.info 'is created?'
@@ -118,8 +118,8 @@ class Task < ActiveRecord::Base
           query_text << col[:col_name] << ', '
          #query_text << '`' << col << '`, '
         end
-        query_text << "submitter_name, rdt_id, submitter_id\) VALUES \("
-        #query_text << "`submitter_name`, `rdt_id`\) VALUES \("
+        query_text << "PRESENTOR, rdt_id, submitter_id\) VALUES \("
+        #query_text << "`PRESENTOR`, `rdt_id`\) VALUES \("
         tuple = tuple.split(",")
         for attribute in tuple
           if attribute.length==0
