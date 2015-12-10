@@ -32,7 +32,7 @@ angular.module('dbfrontappApp')
         ApiService.postNewRawDataType($scope.rdtName, $scope.columnList,
         function() {
           alertify.success('success');
-          $location.path('/admin-page/rdt-list');
+          $location.path('/admin-page');
         }, function() {
           alertify.error('error');
         });
