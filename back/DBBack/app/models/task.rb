@@ -136,7 +136,7 @@ class Task < ActiveRecord::Base
       end
     end
   end
-
+  
   def update_tdt_schema(rdt_mappings)
     parse = Hash.new
     rdt_mappings.each do |col|
