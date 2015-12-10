@@ -96,6 +96,9 @@ class ParsingDataSequenceFile < ActiveRecord::Base
     
     #Create csv_file_tuples & raw_schema_tuples 
     #raw_schema_tuples는 schema순서를 따르지 않음
+    #csv_file_tuples는 raw_data_type_schema로 파싱시킨 놈
+    #raw_schema_tuples는 raw_data_type_schema로 파싱된 놈의 튜플들
+    #걔를 한줄 한줄 뽑아내면 rdt_tuple이 리스트로 한줄 한줄 한줄 뽑아나오는
     csv_file_tuples = CSV.parse(csv_file_string).map {|a| Hash[ csv_file_col.zip(a)]}
     #csv_file_tuples.shift # Delete attribute tuple
     for tuple in csv_file_tuples
@@ -105,16 +108,16 @@ class ParsingDataSequenceFile < ActiveRecord::Base
     #Create tdt_tuples except type
     for rdt_tuple in raw_schema_tuples
       temp = {}
-      for mapped_col in task_data_table_schema
-        target_col_name = ''
-        for rdt_cols in mapped_col[:mapping]
-          if rdt_cols[:rdt_id] == rdt_id
-            target_col_name = rdt_cols[:rdt_col_name]
+      for col in task_data_table_schema
+        target_col_name = '' # 해당 tdt column에 맵핑되어있는 rdt_id의 컬럼 이름
+        for mapped_rdt_cols in col[:mapping]
+          if mapped_rdt_cols[:rdt_id] == rdt_id
+            target_col_name = mapped_rdt_cols[:rdt_col_name]
             break
           end
         end
-        temp[mapped_col[:col_name]] = rdt_tuple[target_col_name]
-        col_null_ratios[mapped_col[:col_name]] = 0.0
+        temp[col[:col_name]] = rdt_tuple[target_col_name]
+        col_null_ratios[col[:col_name]] = 0.0
       end
       """
       for attribute in tdt_schema_col
@@ -124,6 +127,9 @@ class ParsingDataSequenceFile < ActiveRecord::Base
       """
       tdt_tuples << temp
     end
+
+    logger.info 'siblabialbiadljdslijsli tdt_tuple!!!!!!!!!!!'
+    logger.info tdt_tuples
     
     # count duplicated_tuple_num
     duplicated_tuple = tdt_tuples.group_by {|tuple| tuple[tdt_schema_col[1]]}.values.select{|tdt_tuples| tdt_tuples.size>1}.flatten
