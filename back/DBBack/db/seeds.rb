@@ -21,7 +21,7 @@ admin = User.create(
   )
 
 submitter = User.create(
-  str_id: 'submitter', password: 's', u_name: 'dy', sex: 'M', address: 'Seoul', birth: Date.parse('1997/09/20'), phone_number: '010', value_score: 100,
+  str_id: 'submitter', password: 's', u_name: 'dy', sex: 'M', address: 'Seoul', birth: Date.parse('1997/09/20'), phone_number: '010', value_score: 50,
   role: 'submitter'
   )
 
