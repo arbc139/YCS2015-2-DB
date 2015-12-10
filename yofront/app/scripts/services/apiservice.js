@@ -196,6 +196,16 @@ angular.module('dbfrontappApp')
         $http.post(SERVER_URL + '/users', params, config)
         .then(onS, onE);
       },
+      deleteUser: function(onS, onE) {
+        var userId = SessionService.getId();
+
+        var params = {
+          user_id: userId
+        };
+
+        $http.delete(SERVER_URL + '/users/' + userId, params)
+        .then(onS, onE);
+      },
 
       // submitter
       postTestSubmit: function(csvStr, onS, onE) {
