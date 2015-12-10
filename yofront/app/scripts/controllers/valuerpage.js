@@ -60,7 +60,7 @@ angular.module('dbfrontappApp')
             alertify.error('error');
           });
 
-        }, function(val, ev) {
+        }, function() {
 
           alertify.error('canceled');
         });
