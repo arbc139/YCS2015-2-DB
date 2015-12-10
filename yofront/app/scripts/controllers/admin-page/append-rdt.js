@@ -15,7 +15,7 @@ angular.module('dbfrontappApp')
       'Karma'
     ];
 
-    var taskId = $location.search().tid;
+    $scope.taskId = $location.search().tid;
     console.log('dddd');
 
     $scope.nt = {
@@ -64,23 +64,32 @@ angular.module('dbfrontappApp')
     };
 
     $scope.submit = function() {
-      var newRdtList = [];
       var i;
+      var j;
+      var resultSet = new Set();
 
-      for (i = 0; i < $scope.rdtList.length; i++) {
-        var rdt = $scope.rdtList[i];
+      for(i = 0; i < $scope.nt.columnList.length; i++) {
+        var column = $scope.nt.columnList[i];
 
-        if (!rdt.hasOwnProperty('already') && rdt.checked === true) {
-          newRdtList.push(rdt.id);
+        for(j = 0; j < column.mapping.length; j++) {
+          var rdt = column.mapping[j];
+          resultSet.add(parseInt(rdt.rdt_id));
         }
       }
 
+      var selectedRdts = [];
+      resultSet.forEach(function(item) {
+        selectedRdts.push(item);
+      });
 
-      // ApiService.postTaskRdtAppend(taskId, newRdtList,
-      // function(res) {
-      //   $route.reload();
-      // }, function() {
-      //   alertify.error('error');
-      // });
+      console.log($scope.nt);
+      ApiService.postTaskRdtAppend($scope.taskId, selectedRdts, $scope.nt.columnList,
+      function() {
+        alertify.success('success');
+        $location.path('admin-page/manage?tid=' + $scope.taskId);
+      }, function() {
+        alertify.error('error');
+      });
+
     };
   });

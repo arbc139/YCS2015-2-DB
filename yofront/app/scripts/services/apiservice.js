@@ -118,14 +118,16 @@ angular.module('dbfrontappApp')
         $http.get(SERVER_URL + '/admin/tasks/manage/rdts.json', p)
         .then(onS, onE);
       },
-      postTaskRdtAppend: function(taskId, newRdtList, onS, onE) {
+      postTaskRdtAppend: function(taskId, rdtIds, schemaCols, onS, onE) {
         var params = {
           task_id: taskId,
-          rdt_ids: newRdtList
+          rdt_ids: rdtIds,
+          added_schema_cols: schemaCols
         };
 
-        $http.post(SERVER_URL + '/admin/tasks/manage/rdts', params, config)
-        .then(onS, onE);
+          $http
+          .post(SERVER_URL + '/admin/tasks/manage/rdts', params, config)
+          .then(onS, onE);
       },
       getTaskCsvString: function(taskId, onS, onE) {
         var p = {
