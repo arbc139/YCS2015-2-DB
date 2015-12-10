@@ -253,6 +253,23 @@ angular.module('dbfrontappApp')
         $http.post(SERVER_URL + '/submitter/tasks/apply', params, config)
         .then(onS, onE);
       },
+      getSubmitterScore: function(onS, onE) {
+        var uId = SessionService.getId();
+
+        if (uId === -1) {
+          alertify.error('user id -1 <br>(you should not use test session)');
+          return;
+        }
+
+        var p = {
+          params: {
+            user_id: uId
+          }
+        };
+
+        $http.get(SERVER_URL + '/submitter/score.json', p)
+        .then(onS, onE);
+      },
       getAppliableTaskList: function(onS, onE) {
         var uId = SessionService.getId();
 
