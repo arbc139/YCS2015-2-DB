@@ -26,4 +26,9 @@ angular.module('dbfrontappApp')
           alertify.error('error');
         });
     };
+
+    // 탈퇴
+    $scope.signOut = function() {
+      
+    };
   });

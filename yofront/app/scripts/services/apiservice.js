@@ -32,29 +32,6 @@ angular.module('dbfrontappApp')
         $http.get(SERVER_URL + '/admin/users.json')
         .then(onS, onE);
       },
-      login: function(id, pw, onS, onE) {
-        $http.get(SERVER_URL + '/login.json', {
-          params: {
-            str_id: id,
-            password: pw
-          }
-        })
-        .then(onS, onE);
-      },
-      postModifyUserInfo: function(currentId, newPW, newName, newSex, newAddress, newBirth, newPhone, onS, onE) {
-        var params = {
-          user_id : currentId,
-        	password : newPW,
-        	u_name : newName,
-        	sex : newSex,
-        	address : newAddress,
-        	birth : newBirth,
-        	phone_number : newPhone
-        };
-
-        $http.post(SERVER_URL + '/users/update', params, config)
-        .then(onS, onE);
-      },
       postNewTask: function(name, desc, mup, tdtName, schemaCols, rdts, onS, onE) {
         var params = {
           task: {
@@ -162,6 +139,29 @@ angular.module('dbfrontappApp')
       },
 
       // signUp
+      login: function(id, pw, onS, onE) {
+        $http.get(SERVER_URL + '/login.json', {
+          params: {
+            str_id: id,
+            password: pw
+          }
+        })
+        .then(onS, onE);
+      },
+      postModifyUserInfo: function(currentId, newPW, newName, newSex, newAddress, newBirth, newPhone, onS, onE) {
+        var params = {
+          user_id : currentId,
+        	password : newPW,
+        	u_name : newName,
+        	sex : newSex,
+        	address : newAddress,
+        	birth : newBirth,
+        	phone_number : newPhone
+        };
+
+        $http.post(SERVER_URL + '/users/update', params, config)
+        .then(onS, onE);
+      },
       postSignUp: function(id, password, uName, sex, address, birth, phone, role, onS, onE) {
         var params;
         if (role === 'submitter') {
