@@ -109,6 +109,9 @@ class ParsingDataSequenceFile < ActiveRecord::Base
     logger.info 'RAW SCHEMA TUPLES'
     logger.info raw_schema_tuples
 
+    logger.info 'What is the TDT SCHMEA'
+    logger.info task_data_table_schema
+
     for rdt_tuple in raw_schema_tuples
       temp = {}
       for col in task_data_table_schema
