@@ -343,6 +343,23 @@ angular.module('dbfrontappApp')
         $http.get(SERVER_URL + '/valuer/pdsfs/notvalued.json', p)
         .then(onS, onE);
       },
+      getValuedParsingDataSequenceFileList: function(onS, onE) {
+        var uId = SessionService.getId();
+
+        if (uId === -1) {
+          alertify.error('user id -1 <br>(you should not use test session)');
+          return;
+        }
+
+        var p = {
+          params: {
+            user_id: uId
+          }
+        };
+
+        $http.get(SERVER_URL + '/valuer/pdsfs/valued.json', p)
+        .then(onS, onE);
+      },
       postFileEvaluation: function(pdsfId, score, isPassed, onS, onE) {
         var uId = SessionService.getId();
 
