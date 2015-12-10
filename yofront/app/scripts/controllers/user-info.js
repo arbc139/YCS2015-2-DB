@@ -42,7 +42,7 @@ angular.module('dbfrontappApp')
         SessionService.setCurrentSessionType(SESSION_TYPE.WRONG);
         SessionService.setId(undefined);
         SessionService.setStrId(undefined);
-        $location.path('/')
+        $location.path('/');
       };
 
       // run
