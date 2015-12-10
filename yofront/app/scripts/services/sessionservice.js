@@ -25,7 +25,7 @@ angular.module('dbfrontappApp')
   ];
 
   var currentSession = {
-    id: 5,
+    id: -1,
     str_id: 'olaf_tester',
     // type: SESSION_TYPE.WRONG
     // type: SESSION_TYPE.ADMIN

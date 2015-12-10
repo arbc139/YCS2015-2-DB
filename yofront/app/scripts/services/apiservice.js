@@ -41,9 +41,9 @@ angular.module('dbfrontappApp')
         })
         .then(onS, onE);
       },
-      postModifyUserInfo: function(newId, newPW, newName, newSex, newAddress, newBirth, newPhone, onS, onE) {
+      postModifyUserInfo: function(currentId, newPW, newName, newSex, newAddress, newBirth, newPhone, onS, onE) {
         var params = {
-          user_id : newId,
+          user_id : currentId,
         	password : newPW,
         	u_name : newName,
         	sex : newSex,
