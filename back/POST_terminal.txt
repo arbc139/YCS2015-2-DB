@@ -78,3 +78,30 @@ curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POS
                             [ {"rdt_id":5, "rdt_col_name": 이 이 TDT 컬럼에 맵핑된 RDT 5의 컬럼 이름} ]
                       }
                   ]
+
+
+
+
+
+
+원래 TDT 스키마
+[
+    {
+      "col_name": "TIMESTAMP",
+      "mapping": 
+        [ {"rdt_id": 1, "rdt_col_name": "이용일자"},
+          {"rdt_id": 2, "rdt_col_name": "이용일시"} ]
+    },
+    {
+      "col_name": "CARD_MEM_STORE",
+      "mapping":
+        [ {"rdt_id": 1, "rdt_col_name": "이용가맹점"},
+          {"rdt_id": 2, "rdt_col_name": "이용하신곳"} ]
+    },
+    {
+      "col_name": "CARD_USE_MONEY",
+      "mapping":
+        [ {"rdt_id": 1, "rdt_col_name": "이용금액"},
+          {"rdt_id": 2, "rdt_col_name": "국내이용금액"} ]
+    }
+  ])

@@ -83,20 +83,17 @@ sample_task = Task.create(t_name: 'CARD LOG COLLECTING', description: 'Collect c
     {
       "col_name": "TIMESTAMP",
       "mapping": 
-        [ {"rdt_id": 1, "rdt_col_name": "이용일자"},
-          {"rdt_id": 2, "rdt_col_name": "이용일시"} ]
+        [ {"rdt_id": 1, "rdt_col_name": "이용일자"} ]
     },
     {
       "col_name": "CARD_MEM_STORE",
       "mapping":
-        [ {"rdt_id": 1, "rdt_col_name": "이용가맹점"},
-          {"rdt_id": 2, "rdt_col_name": "이용하신곳"} ]
+        [ {"rdt_id": 1, "rdt_col_name": "이용가맹점"} ]
     },
     {
       "col_name": "CARD_USE_MONEY",
       "mapping":
-        [ {"rdt_id": 1, "rdt_col_name": "이용금액"},
-          {"rdt_id": 2, "rdt_col_name": "국내이용금액"} ]
+        [ {"rdt_id": 1, "rdt_col_name": "이용금액"} ]
     }
   ])
   #['PRESENTOR', 'TIMESTAMP', 'CARD_MEM_STORE', 'CARD_USE_MONEY'])
