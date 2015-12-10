@@ -18,9 +18,6 @@ angular.module('dbfrontappApp')
   // check submitter!
   SessionService.checkSessionType(SESSION_TYPE.SUBMITTER);
 
-  $scope.score = 100;
-
-
   // begin appliable task
   // ApiService.getTaskList(function(res) { // todo remove
   //   $scope.appliableTaskList = res.data;
@@ -28,6 +25,13 @@ angular.module('dbfrontappApp')
   //   console.log('getTaskList error');
   //   console.log(res.data);
   // });
+
+  ApiService.getSubmitterScore(function(res) {
+    console.log(res);
+    $scope.score = res.data.value_score;
+  }, function() {
+    alertify.error('error getting submitter\'s score');
+  });
 
   ApiService.getAppliableTaskList(function(res) {
     console.log(res);
