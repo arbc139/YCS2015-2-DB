@@ -117,7 +117,7 @@ class ParsingDataSequenceFile < ActiveRecord::Base
       for col in task_data_table_schema
         target_col_name = '' # 해당 tdt column에 맵핑되어있는 rdt_id의 컬럼 이름
         for mapped_rdt_cols in col[:mapping]
-          if mapped_rdt_cols[:rdt_id] == rdt_id
+          if mapped_rdt_cols[:rdt_id].to_i == rdt_id
             target_col_name = mapped_rdt_cols[:rdt_col_name]
             break
           end
