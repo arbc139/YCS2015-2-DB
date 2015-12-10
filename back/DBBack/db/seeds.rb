@@ -77,26 +77,40 @@ t7 = Task.create(t_name: 'TASK7_name', description: 'TASK7_descript', minimum_up
 t8 = Task.create(t_name: 'TASK8_name', description: 'TASK8_descript', minimum_upload_period: 'TASK8_period', task_data_table_name: 'TASK8_schema_name', 
   task_data_table_schema: ['tdt8_col1', 'tdt8_cols2'])
 """
-sample_task = Task.create(t_name: 'CARD LOG COLLECTING', description: 'Collect card logs', minimum_upload_period: '1 month', task_data_table_name: 'CARD_LOG_COLLECT', 
+sample_task = Task.create(t_name: '은행거래내역수집', description: '국내 은행 사용자의 거래내역 로그를 수집합니다.', minimum_upload_period: '1달', task_data_table_name: 'BACK_LOG_COLLECTION', 
   task_data_table_schema: 
   [
     {
       "col_name": "TIMESTAMP",
       "mapping": 
-        [ {"rdt_id": 1, "rdt_col_name": "이용일자"} ]
+        [ {"rdt_id": 1, "rdt_col_name": '거래일시'},
+          {"rdt_id": 2, "rdt_col_name": '거래일시'} ]
     },
     {
-      "col_name": "CARD_MEM_STORE",
+      "col_name": "ABSTRACT",
       "mapping":
-        [ {"rdt_id": 1, "rdt_col_name": "이용가맹점"} ]
+        [ {"rdt_id": 1, "rdt_col_name": '적요'},
+          {"rdt_id": 2, "rdt_col_name": '적요'} ]
     },
     {
-      "col_name": "CARD_USE_MONEY",
+      "col_name": "STATEMENT_CONTENT",
       "mapping":
-        [ {"rdt_id": 1, "rdt_col_name": "이용금액"} ]
+        [ {"rdt_id": 1, "rdt_col_name": '보낸분/받는분'},
+          {"rdt_id": 2, "rdt_col_name": '기재내용'} ]
+    },
+    {
+      "col_name": "DEPOSIT_MONEY",
+      "mapping":
+        [ {"rdt_id": 1, "rdt_col_name": '출금액'},
+          {"rdt_id": 2, "rdt_col_name": '찾으신금액(원)'} ]
+    },
+    {
+      "col_name": "WITHDRAWAL_MONEY",
+      "mapping":
+        [ {"rdt_id": 1, "rdt_col_name": '입금액'},
+          {"rdt_id": 2, "rdt_col_name": '맡기신금액(원)'} ]
     }
   ])
-  #['PRESENTOR', 'TIMESTAMP', 'CARD_MEM_STORE', 'CARD_USE_MONEY'])
 
 """
 # create TDT
@@ -121,7 +135,7 @@ t.belongs_to :user, index: true # FK to user
 submitter.tasks << t1 << t2 << t3
 submitter2.tasks << t1 << t2
 """
-submitter.tasks << sample_task
+#submitter.tasks << sample_task
 #################################### RAW_DATA_TYPE ####################################
 # RAW_DATA_TYPE columns
 """
@@ -139,10 +153,11 @@ rdt4 = RawDataType.create(raw_name: 'RAW_DATA_TYPE4_name',
   schema: [rdt4_name: 'dsf', rdt4_job: 'sdls'])
 """
 
-woori_rdt = RawDataType.create(raw_name: 'WOORI',
-  schema: ['이용일자', '카드 구분', '이용 카드', '매출 구분', '이용가맹점', '이용금액', '할부 개월', '회차', '원금', '혜택금액', '환율', '수수료', '결제 후 잔액', '할부가격'])
-kookmin_rdt = RawDataType.create(raw_name: 'KOOKMIN',
-  schema: ['이용일시', '이용카드명', '이용하신곳', '국내이용금액', '해외이용금액', '결제방법', '가맹점정보', '적립 포인트리', '상태', '결제예정일', '승인번호'])
+kookmin_rdt = RawDataType.create(raw_name: '국민은행',
+  schema: ['거래일시', '적요', '보낸분/받는분', '송금메모', '출금액', '입금액', '잔액', '거래점', '구분'])
+
+woori_rdt = RawDataType.create(raw_name: '우리은행',
+  schema: ['거래일시', '적요', '기재내용', '찾으신금액(원)', '맡기신금액(원)', '거래후잔액(원)', '취급점'])
 
 
 #################################### R_TASK_RAW_DATA(TASK, RAW_DATA_TYPE) ####################################
@@ -158,7 +173,7 @@ t1.raw_data_types << rdt1 << rdt2 << rdt3 << rdt4
 t2.raw_data_types << rdt2 << rdt3
 t3.raw_data_types << rdt3 << rdt4
 """
-sample_task.raw_data_types << woori_rdt# << kookmin_rdt
+sample_task.raw_data_types << kookmin_rdt << woori_rdt
 
 #################################### PARSING_DATA_SEQUENCE_FILE ####################################
 # PARSING_DATA_SEQUENCE_FILE columns
