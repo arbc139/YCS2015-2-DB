@@ -85,7 +85,7 @@ angular.module('dbfrontappApp')
 
       var selectedRdts = [];
       resultSet.forEach(function(item) {
-        selectedRdts.push(item);
+        selectedRdts.push({id: item});
       });
 
       console.log(selectedRdts);
@@ -95,8 +95,9 @@ angular.module('dbfrontappApp')
       function(res) {
         console.log(res);
         alertify.success('success');
-        // $location.path('/admin-page');
-        $route.reload();
+        $location.path('/admin-page');
+        // $route.reload();
+
 
       }, function(res) {
         console.log(res);
