@@ -12,7 +12,7 @@ angular.module('dbfrontappApp')
     // Service logic
     // ...
 
-    var cache = undefined;
+    var cache;
 
     // Public API here
     return {
