@@ -44,8 +44,8 @@ angular.module('dbfrontappApp')
   $scope.alertSchema = function(schemaStr) {
     alertify
     .okBtn('닫기')
-    .alert(JSON.stringify(schemaStr))
-    ;
+    .alert(JSON.stringify(schemaStr));
+    alertify.reset();
   };
 
   $scope.selectSearch = function(s) {
