@@ -47,7 +47,7 @@ angular.module('dbfrontappApp')
   $scope.submit = function() {
     // todo check validation
     if ($scope.period === '' || $scope.inning === '' || $scope.data === '' || $scope.rdtId === -1) {
-      alertify.error('fill in the blanks<br>or select rdt type')
+      alertify.error('fill in the blanks<br>or select rdt type');
       return;
     }
 
