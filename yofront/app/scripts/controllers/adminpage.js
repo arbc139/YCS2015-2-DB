@@ -40,6 +40,14 @@ angular.module('dbfrontappApp')
   $scope.searchCategories = ["id", "role", "age", "sex", "task name"];
   $scope.selectedSearch = $scope.searchCategories[0];
 
+
+  $scope.alertSchema = function(schemaStr) {
+    alertify
+    .okBtn('닫기')
+    .alert(JSON.stringify(schemaStr))
+    ;
+  };
+
   $scope.selectSearch = function(s) {
     $scope.selectedSearch = s;
   };

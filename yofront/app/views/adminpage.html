@@ -29,7 +29,7 @@
         <td>{{ item.minimum_upload_period }}</td>
 
         <td>{{ item.task_data_table_name }}</td>
-        <td>{{ item.task_data_table_schema }}</td>
+        <td><a href="" ng-click="alertSchema(item.task_data_table_schema)">more..</a></td>
         <td>
           <a href="#/admin-page/statistics?tid={{item.id}}">stat</a>&nbsp;<a href="#/admin-page/manage?tid={{item.id}}">manage</a>
         </td>
