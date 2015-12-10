@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
   ## 앵제) 회원 정보 수정
   # 유저 id, 정보들을 받아서 디비에 업데이트하는 액션
-  post '/api/users/update' => 'session#userUpdate'
+  post '/api/users/update' => 'sessions#userUpdate'
 
   #################################### ADMIN ####################################
   get '/api/admin' => 'admin#index'
