@@ -138,7 +138,7 @@ class ParsingDataSequenceFile < ActiveRecord::Base
     logger.info tdt_tuples
     
     # count duplicated_tuple_num
-    duplicated_tuple = tdt_tuples.group_by {|tuple| tuple[tdt_schema_col[1]]}.values.select{|tdt_tuples| tdt_tuples.size>1}.flatten
+    duplicated_tuple = tdt_tuples.group_by {|tuple| tuple[tdt_schema_col[0]]}.values.select{|tdt_tuples| tdt_tuples.size>1}.flatten
     
     # Delete duplicated tuples
     tdt_tuples = tdt_tuples.uniq
