@@ -99,7 +99,12 @@ angular.module('dbfrontappApp')
     // end of 평가 해야할 목록
 
     // begin of 평가 완료한 목록
+
     $scope.goToTextViewer = function(i) {
++      CacheService.setCache($scope.valuedPdsfList[i].data_blob);
++      $location.path('/text-viewer');
++    };
+    $scope.goToTextViewer2 = function(i) {
       CacheService.setCache($scope.valuedPdsfList[i].data_blob);
       $location.path('/text-viewer');
     };
