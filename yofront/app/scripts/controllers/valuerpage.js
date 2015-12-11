@@ -19,14 +19,12 @@ angular.module('dbfrontappApp')
     SessionService.checkSessionType(SESSION_TYPE.VALUER);
 
     ApiService.getNotYetValuedParsingDataSequenceFileList(function(res) {
-      console.log(JSON.stringify(res.data));
       $scope.pdsfList = res.data;
     }, function() {
       alertify.error('error');
     });
 
     ApiService.getValuedParsingDataSequenceFileList(function(res) {
-      console.log(JSON.stringify(res.data));
       $scope.valuedPdsfList = res.data;
     }, function() {
       alertify.error('error');
@@ -101,6 +99,10 @@ angular.module('dbfrontappApp')
     // end of 평가 해야할 목록
 
     // begin of 평가 완료한 목록
+    $scope.goToTextViewer = function(i) {
+      CacheService.setCache($scope.valuedPdsfList[i].data_blob);
+      $location.path('/text-viewer');
+    };
 
 
 
