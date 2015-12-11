@@ -101,8 +101,8 @@ angular.module('dbfrontappApp')
     // begin of 평가 완료한 목록
 
     $scope.goToTextViewer = function(i) {
-+      CacheService.setCache($scope.valuedPdsfList[i].data_blob);
-+      $location.path('/text-viewer');
++      CacheService.setCache($scope.pdsfList[i].data_blob);
+       $location.path('/text-viewer');
 +    };
     $scope.goToTextViewer2 = function(i) {
       CacheService.setCache($scope.valuedPdsfList[i].data_blob);
