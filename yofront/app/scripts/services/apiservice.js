@@ -8,7 +8,7 @@
  * Factory in the dbfrontappApp.
  */
 angular.module('dbfrontappApp')
-  .factory('ApiService', function ($http) {
+  .factory('ApiService', function ($http, SessionService) {
     // Service logic
     // ...
     var config = {
@@ -32,22 +32,14 @@ angular.module('dbfrontappApp')
         $http.get(SERVER_URL + '/admin/users.json')
         .then(onS, onE);
       },
-      login: function(id, pw, onS, onE) {
-        $http.get(SERVER_URL + '/login.json', {
-          params: {
-            str_id: id,
-            password: pw
-          }
-        })
-        .then(onS, onE);
-      },
-      postNewTask: function(name, desc, mup, tdts, rdts, onS, onE) {
+      postNewTask: function(name, desc, mup, tdtName, schemaCols, rdts, onS, onE) {
         var params = {
           task: {
             t_name: name,
             description: desc,
             minimum_upload_period: mup,
-            task_data_table_schema: tdts,
+            task_data_table_name: tdtName,
+            schema_cols: schemaCols
           },
           raw_data_types: rdts
         };
@@ -63,11 +55,7 @@ angular.module('dbfrontappApp')
           // column의 리스트?
       },
       getUserInfo: function(userId, onS, onE) {
-        $http.get(SERVER_URL + '/admin/users.json/', {
-          params: {
-            id: userId
-          }
-        })
+        $http.get(SERVER_URL + '/admin/users/' + userId + '.json/')
         .then(onS, onE);
       },
       getTaskInfo: function(taskId, onS, onE) {
@@ -97,11 +85,85 @@ angular.module('dbfrontappApp')
           accept: isAccepted
         };
 
-        $http.post(SERVER_URL + "/admin/tasks/manage", params, config)
+        $http.post(SERVER_URL + '/admin/tasks/manage', params, config)
+        .then(onS, onE);
+      },
+      postModifyAdminPassword: function(newPassword, onS, onE) {
+        var params = {
+          user_id: 1,
+          password: newPassword
+        };
+
+        $http.post(SERVER_URL + '/admin/info', params, config)
+        .then(onS, onE);
+      },
+      postNewRawDataType: function(rdtName, colList, onS, onE) {
+        var params = {
+          raw_data_type: {
+            raw_name: rdtName,
+            schema_cols: colList
+          }
+        };
+
+        $http.post(SERVER_URL + '/admin/rdts', params, config)
+        .then(onS, onE);
+      },
+      getTaskRdtAppendInfo: function(taskId, onS, onE) {
+        var p = {
+          params: {
+            task_id: taskId
+          }
+        };
+
+        $http.get(SERVER_URL + '/admin/tasks/manage/rdts.json', p)
+        .then(onS, onE);
+      },
+      postTaskRdtAppend: function(taskId, rdtIds, schemaCols, onS, onE) {
+        var params = {
+          task_id: taskId,
+          rdt_ids: rdtIds,
+          added_schema_cols: schemaCols
+        };
+
+          $http
+          .post(SERVER_URL + '/admin/tasks/manage/rdts', params, config)
+          .then(onS, onE);
+      },
+      getTaskCsvString: function(taskId, onS, onE) {
+        var p = {
+          params: {
+            task_id: taskId
+          }
+        };
+
+        $http.get(SERVER_URL + '/admin/export.json', p)
         .then(onS, onE);
       },
 
       // signUp
+      login: function(id, pw, onS, onE) {
+        $http.get(SERVER_URL + '/login.json', {
+          params: {
+            str_id: id,
+            password: pw
+          }
+        })
+        .then(onS, onE);
+      },
+      postModifyUserInfo: function(currentId, newPW, newName, newSex, newAddress, newBirth, newPhone, onS, onE) {
+        var params = {
+          user_id : currentId,
+        	password : newPW,
+        	u_name : newName,
+        	sex : newSex,
+        	address : newAddress,
+        	birth : newBirth,
+        	phone_number : newPhone
+        };
+
+        $http.post(SERVER_URL + '/users/update', params, config)
+        .then(onS, onE);
+      },
       postSignUp: function(id, password, uName, sex, address, birth, phone, role, onS, onE) {
         var params;
         if (role === 'submitter') {
@@ -136,6 +198,16 @@ angular.module('dbfrontappApp')
         $http.post(SERVER_URL + '/users', params, config)
         .then(onS, onE);
       },
+      deleteUser: function(onS, onE) {
+        var userId = SessionService.getId();
+
+        var params = {
+          user_id: userId
+        };
+
+        $http.delete(SERVER_URL + '/users/' + userId, params)
+        .then(onS, onE);
+      },
 
       // submitter
       postTestSubmit: function(csvStr, onS, onE) {
@@ -144,6 +216,167 @@ angular.module('dbfrontappApp')
         };
         $http.post(SERVER_URL + '/test/csv',
           params, config)
+        .then(onS, onE);
+      },
+      postDataSubmit: function(taskId, rdtId, period, inning, csvStr, onS, onE) {
+        var uId = SessionService.getId();
+
+        if (uId === -1) {
+          alertify.error('user id -1 <br>(you should not use test session)');
+          return;
+        }
+
+        var params = {
+          csv: csvStr,
+          user_id: uId,
+          task_id: taskId,
+          rdt_id: rdtId,
+          period: period,
+          inning: inning
+        };
+        console.log(params);
+
+        $http.post(SERVER_URL + '/submitter/tasks/submit', params, config)
+        .then(onS, onE);
+      },
+      postApplyTask: function(taskId, onS, onE) {
+        var uId = SessionService.getId();
+
+        if (uId === -1) {
+          alertify.error('user id -1 <br>(you should not use test session)');
+          return;
+        }
+
+        var params = {
+          task_id: taskId,
+          user_id: uId
+        };
+
+        $http.post(SERVER_URL + '/submitter/tasks/apply', params, config)
+        .then(onS, onE);
+      },
+      getSubmitterScore: function(onS, onE) {
+        var uId = SessionService.getId();
+
+        if (uId === -1) {
+          alertify.error('user id -1 <br>(you should not use test session)');
+          return;
+        }
+
+        var p = {
+          params: {
+            user_id: uId
+          }
+        };
+
+        $http.get(SERVER_URL + '/submitter/score.json', p)
+        .then(onS, onE);
+      },
+      getAppliableTaskList: function(onS, onE) {
+        var uId = SessionService.getId();
+
+        if (uId === -1) {
+          alertify.error('user id -1 <br>(you should not use test session)');
+          return;
+        }
+
+        var p = {
+          params: {
+            user_id: uId
+          }
+        };
+
+        $http.get(SERVER_URL + '/submitter/tasks/apply.json', p)
+        .then(onS, onE);
+      },
+      getSubmittableTaskList: function(onS, onE) {
+        var uId = SessionService.getId();
+
+        if (uId === -1) {
+          alertify.error('user id -1 <br>(you should not use test session)');
+          return;
+        }
+
+        var p = {
+          params: {
+            user_id: uId
+          }
+        };
+
+        $http.get(SERVER_URL + '/submitter/tasks/participate.json', p)
+        .then(onS, onE);
+      },
+      getSubmitterTaskInfo: function(taskId, onS, onE) {
+        var uId = SessionService.getId();
+
+        if (uId === -1) {
+          alertify.error('user id -1 <br>(you should not use test session)');
+          return;
+        }
+
+        var p = {
+          params: {
+            user_id: uId,
+            task_id: taskId
+          }
+        };
+
+        $http.get(SERVER_URL + '/submitter/tasks/info.json', p)
+        .then(onS, onE);
+      },
+
+      // valuer
+      getNotYetValuedParsingDataSequenceFileList: function(onS, onE) {
+        var uId = SessionService.getId();
+
+        if (uId === -1) {
+          alertify.error('user id -1 <br>(you should not use test session)');
+          return;
+        }
+
+        var p = {
+          params: {
+            user_id: uId
+          }
+        };
+
+        $http.get(SERVER_URL + '/valuer/pdsfs/notvalued.json', p)
+        .then(onS, onE);
+      },
+      getValuedParsingDataSequenceFileList: function(onS, onE) {
+        var uId = SessionService.getId();
+
+        if (uId === -1) {
+          alertify.error('user id -1 <br>(you should not use test session)');
+          return;
+        }
+
+        var p = {
+          params: {
+            user_id: uId
+          }
+        };
+
+        $http.get(SERVER_URL + '/valuer/pdsfs/valued.json', p)
+        .then(onS, onE);
+      },
+      postFileEvaluation: function(pdsfId, score, isPassed, onS, onE) {
+        var uId = SessionService.getId();
+
+        if (uId === -1) {
+          alertify.error('user id -1 <br>(you should not use test session)');
+          return;
+        }
+
+        var params = {
+          pdsf_id: pdsfId,
+          value_score: score,
+          is_passed: isPassed
+        };
+        console.log('ddd');
+        console.log(params);
+
+        $http.post(SERVER_URL + '/valuer/pdsfs/notvalued', params, config)
         .then(onS, onE);
       }
     };

@@ -1,0 +1,31 @@
+<h1>Admin new raw data type</h1>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3>새 원본 데이터 타입 생성</h3>
+  </div>
+  <div class="panel-body">
+    <div class="input-group">
+        <span class="input-group-addon" id="rdtn">RDTN</span>
+        <input type="text" class="form-control" placeholder="raw data type name"
+        aria-describedby="rdtn" ng-model="rdtName" autofocus/>
+    </div><br>
+    <div ng-repeat="item in columnList track by $index">
+      <div class="input-group">
+          <span class="input-group-addon" id="col{{ $index }}">Col{{ $index }}</span>
+          <input type="text" class="form-control" placeholder="col{{ $index }}"
+          aria-describedby="col{{ $index }}" ng-model="columnList[$index]" autofocus/>
+      </div><br>
+    </div>
+
+    <div class="pull-right">
+      <button class="btn btn-primary btn-lg" ng-click="plusplus()">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+      </button>
+
+      <button class="btn btn-primary btn-lg" ng-click="send()">
+        <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+</div>

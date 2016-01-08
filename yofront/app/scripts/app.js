@@ -69,14 +69,6 @@ angular
         templateUrl: 'views/admininfo.html',
         controller: 'AdmininfoCtrl'
       })
-      .when('/valuer-info', {
-        templateUrl: 'views/valuerinfo.html',
-        controller: 'ValuerinfoCtrl'
-      })
-      .when('/submitter-info', {
-        templateUrl: 'views/submitterinfo.html',
-        controller: 'SubmitterinfoCtrl'
-      })
       .when('/my-info-redirect', {
         templateUrl: 'views/myinforedirect.html',
         controller: 'MyInfoRedirectCtrl'
@@ -93,6 +85,26 @@ angular
       .when('/admin/new-task', {
         templateUrl: 'views/newtask.html',
         controller: 'NewtaskCtrl'
+      })
+      .when('/admin-page/new-rdt', {
+        templateUrl: 'views/admin-page/new-rdt.html',
+        controller: 'AdminPageNewRdtCtrl',
+        controllerAs: 'adminPage/newRdt'
+      })
+      .when('/text-viewer', {
+        templateUrl: 'views/text-viewer.html',
+        controller: 'TextViewerCtrl',
+        controllerAs: 'textViewer'
+      })
+      .when('/user-info', {
+        templateUrl: 'views/user-info.html',
+        controller: 'UserInfoCtrl',
+        controllerAs: 'userInfo'
+      })
+      .when('/admin-page/append-rdt', {
+        templateUrl: 'views/admin-page/append-rdt.html',
+        controller: 'AdminPageAppendRdtCtrl',
+        controllerAs: 'adminPage/appendRdt'
       })
       .otherwise({
         redirectTo: '/'

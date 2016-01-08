@@ -4,13 +4,36 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
+    <h3>이 태스크 CSV로 내려받기</h3>
+  </div>
+  <div class="panel-body">
+    <button class="btn" ng-click="download()">Export</button>
+  </div>
+</div>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
     <h4>이 태스크 통계 정보</h4>
   </div>
   <div class="panel-body">
     <!-- 전 체 유 저 목 록 -->
 
-    <p>전체 제출된 파일수: {{ submitted_file_count }}</p>
-    <p>PASS된 파일 수 : {{ passed_file_count }}</p>
+    <h4>전체 제출된 파일수: {{ submitted_file_count }} / TDT 튜플 수 : {{ passed_file_count }}</h4>
+
+    <hr>
+    <table class="table">
+      <thead>
+        <th>RDT ID</th>
+        <th>PASS COUNT</th>
+        <th>TOTAL COUNT</th>
+      </thead>
+      <tbody ng-repeat="item in rdtStatisticsList">
+        <td>{{ item.rdt_id }}</td>
+        <td>{{ item.no_of_passed_files }}</td>
+        <td>{{ item.no_of_submitted_files }}</td>
+      </tbody>
+    </table>
   </div>
 </div>
 

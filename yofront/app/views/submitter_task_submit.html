@@ -1,11 +1,38 @@
 <h1>Submitter Task Submit (table id: {{ tableId }})</h1>
 
-<div class="panel panel-default">
-  <div class="panel-heading"style="padding-right: 25%; padding-left: 25%;">
+<div class="panel panel-primary">
+  <div class="panel-heading">
     <h4>File Upload</h4>
   </div>
-  <div class="panel-body" style="padding-right: 25%; padding-left: 25%;">
+  <div class="panel-body">
+    <!-- var params = {
+      csv: csvStr,
+      user_id: SessionService.getId(),
+      task_id: taskId,
+      rdt_id: rdtId,
+      period: period,
+      inning: inning
+    }; -->
+    <br>
+    <div class="input-group">
+        <span class="input-group-addon" id="period">기간</span>
+        <input type="text" class="form-control" placeholder="period (integer)"
+        aria-describedby="period" ng-model="period"/>
+    </div><br>
+    <div class="input-group">
+        <span class="input-group-addon" id="inning">회차</span>
+        <input type="text" class="form-control" placeholder="inning (integer)"
+        aria-describedby="inning" ng-model="inning"/>
+    </div><br>
+    <hr>
+    <h3>Choose a raw data type from the list</h3>
+    <div class="radio" ng-repeat="item in rdtList">
+      <label><input type="radio" value="true" name="radio" ng-click="selectRdt(item.id)">{{ item.raw_name }}</label>
+    </div>
+    <hr>
+    <h3>Choose a file to upload</h3>
     <input class="btn btn-default" type="file" id="file" name="file"/>
+    <hr>
     <br>
     <button id="btn-upload" class="btn btn-default btn-lg btn-block" ng-click="upload()">Upload</button>
     <br>

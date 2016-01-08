@@ -9,8 +9,54 @@
   <div class="panel-body">
     <!-- 전 체 유 저 목 록 -->
 
-    <p>제출자라면 어쩌구</p>
-    <p>평가자라면 어쩌구</p>
+    <h3>id: {{ result.id }}</h3>
+    <h3>role: {{ result.role }}</h3>
+    <hr>
+
+    <!-- submitter partial view -->
+    <div ng-show="result.role === 'submitter'">
+      <h2>참여 중인 태스크 목록</h2>
+      <table class="table">
+        <thead>
+          <th>ID</th>
+          <th>Task Name</th>
+        </thead>
+        <tbody ng-repeat="item in result.taskList">
+          <td>{{ item.id }}</td>
+          <td>{{ item.t_name }}</td>
+        </tbody>
+      </table>
+    </div> <!-- submitter partial view -->
+
+
+
+    <!-- valuer partial view -->
+    <div ng-hide="result.role === 'submitter'">
+      <h2>평가 목록</h2>
+      <table class="table">
+        <thead>
+          <th>id</th>
+          <th>period</th>
+          <th>inning</th>
+          <th>all#</th>
+          <th>duplicated#</th>
+          <th>data</th>
+          <th>passed</th>
+          <th>valued</th>
+        </thead>
+        <tbody ng-repeat="item in result.fileList">
+          <td>{{ item.id }}</td>
+          <td>{{ item.period }}</td>
+          <td>{{ item.inning }}</td>
+          <td>{{ item.all_tuple_num }}</td>
+
+          <td>{{ item.duplicated_tuple_num }}</td>
+          <td><a ng-click=goToTextViewer($index)>more..</a></td>
+          <td>{{ item.is_passed }}</td>
+          <td>{{ item.is_valued }}</td>
+        </tbody>
+      </table>
+    </div> <!-- valuer partial view -->
 
   </div>
 </div>

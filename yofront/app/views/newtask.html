@@ -22,15 +22,64 @@
       </div><br>
 
       <div class="input-group">
-          <span class="input-group-addon" id="tdsc">TDSC</span>
-          <input type="text" class="form-control" placeholder="task data table schema" aria-describedby="tdsc" ng-model="nt.task_data_table_schema"/>
+          <span class="input-group-addon" id="tdsc">TDTN</span>
+          <input type="text" class="form-control" placeholder="task data table name" aria-describedby="tdsc" ng-model="nt.task_data_table_name"/>
       </div>
 
-      <h4><br>원본 데이터 타입 선택 (복수선택 가능)</h4>
+      <hr>
 
-      <div class="checkbox" ng-repeat="item in rdtList">
+      <h4>TDT 스키마 정의</h4>
+
+      <div ng-repeat="item in nt.columnList track by $index">
+        <div class="input-group">
+            <span class="input-group-addon" id="col{{ $index }}">Col{{ $index }} Name</span>
+            <input type="text" class="form-control" placeholder="col{{ $index }}"
+            aria-describedby="col{{ $index }}" ng-model="nt.columnList[$index].col_name" autofocus/>
+        </div><br>
+
+        <h5>--- 위의 TDT 컬럼이 맵핑되는 RDT 정의 ---</h5>
+
+        <div ng-repeat="jtem in nt.columnList[$index].mapping track by $index">
+
+          <div class="input-group">
+              <span class="input-group-addon" id="col{{ $index }}">Rdt ID {{ $index }}</span>
+              <input type="text" class="form-control" placeholder="rdt id (integer)"
+              aria-describedby="col{{ $index }}" ng-model="nt.columnList[$parent.$index].mapping[$index].rdt_id"/>
+          </div>
+
+          <div class="input-group">
+              <span class="input-group-addon" id="col{{ $index }}">Rdt Col Name {{ $index }}</span>
+              <input type="text" class="form-control" placeholder="rdt col name"
+              aria-describedby="col{{ $index }}" ng-model="nt.columnList[$parent.$index].mapping[$index].rdt_col_name"/>
+          </div><br>
+        </div>
+
+        <div class="pull-right"> RDT++
+          <button class="btn btn-primary" ng-click="plusplus($index)">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          </button>
+        </div>
+        <br><br>
+
+      </div>
+
+      <div class="pull-right"> SCHEMA_COL++
+        <button class="btn btn-primary btn-lg" ng-click="plusplusBig()">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </button>
+      </div>
+
+
+
+
+      <br><br>
+      <hr>
+      <!-- <h4><br><br><br>원본 데이터 타입 선택 (복수선택 가능)</h4> -->
+
+
+      <!-- <div class="checkbox" ng-repeat="item in rdtList">
         <label><input type="checkbox" value="true" ng-model="item.checked">{{ item.raw_name }}</label>
-      </div>
+      </div> -->
 
       <button id="btn-submit" class="btn btn-primary btn-lg btn-block" ng-click="submit()" type="submit">Submit</button>
     </div>

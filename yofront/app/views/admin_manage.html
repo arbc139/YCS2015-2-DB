@@ -10,30 +10,30 @@
     <!-- 전 체 유 저 목 록 -->
     <table class="table">
       <thead>
-      <tr>
-        <th>UserID</th>
-        <th>Name</th>
-        <th>Sex</th>
-        <th>Adrress</th>
-        <th>BDate</th>
-        <th>Role</th>
-        <th>Score</th>
-        <th>---</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="item in userList">
-        <td>{{ item.str_id }}</td>
-        <td>{{ item.name }}</td>
-        <td>{{ item.sex }}</td>
+        <tr>
+          <th>UserID</th>
+          <th>Name</th>
+          <th>Sex</th>
+          <th>Adrress</th>
+          <th>BDate</th>
+          <th>Role</th>
+          <th>Score</th>
+          <th>---</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in userList">
+          <td>{{ item.str_id }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.sex }}</td>
 
-        <td>{{ item.address }}</td>
-        <td>{{ item.birth }}</td>
-        <td>{{ item.role }}</td>
-        <td>{{ item.score }}</td>
-        <td><a ng-click="decide(item, true)">Accept</a>&nbsp;/&nbsp;<a ng-click="decide(item, false)">Reject</a></td>
-      </tr>
-    </tbody>
+          <td>{{ item.address }}</td>
+          <td>{{ item.birth }}</td>
+          <td>{{ item.role }}</td>
+          <td>{{ item.score }}</td>
+          <td><a ng-click="decide(item, true)">Accept</a>&nbsp;/&nbsp;<a ng-click="decide(item, false)">Reject</a></td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </div>
@@ -44,8 +44,9 @@
   </div>
 
   <div class="panel-body">
-    <!-- 전 체 유 저 목 록 -->
-    <a class="btn btn-primary" href="#/admin/new-page">원본 데이터 타입 추가</a><br><br>
+
+    <a class="btn btn-primary" href="#/admin-page/append-rdt?tid={{taskId}}">이 태스크에 원본 데이터 타입 추가</a><br><br>
+
     <table class="table">
       <thead>
 

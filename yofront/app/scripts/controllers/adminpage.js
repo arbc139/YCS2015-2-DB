@@ -27,6 +27,7 @@ angular.module('dbfrontappApp')
 
   ApiService.getUserList(function(res) {
     $scope.userList = res.data;
+    $scope.userList.splice(0, 1);
     $scope.originalUserList = res.data;
   }, function(res) {
     console.log('getUserList error');
@@ -38,6 +39,14 @@ angular.module('dbfrontappApp')
 
   $scope.searchCategories = ["id", "role", "age", "sex", "task name"];
   $scope.selectedSearch = $scope.searchCategories[0];
+
+
+  $scope.alertSchema = function(schemaStr) {
+    alertify
+    .okBtn('닫기')
+    .alert(JSON.stringify(schemaStr));
+    alertify.reset();
+  };
 
   $scope.selectSearch = function(s) {
     $scope.selectedSearch = s;

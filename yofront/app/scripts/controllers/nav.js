@@ -95,9 +95,9 @@ angular.module('dbfrontappApp')
     var sessionType = SessionService.getCurrentSessionType();
 
     if (sessionType === SESSION_TYPE.SUBMITTER) {
-      $location.path('submitter-info');
+      $location.path('user-info');
     } else if (sessionType === SESSION_TYPE.VALUER) {
-      $location.path('valuer-info');
+      $location.path('user-info');
     } else if (sessionType === SESSION_TYPE.ADMIN) {
       $location.path('admin-info');
     } else if (sessionType === SESSION_TYPE.WRONG) {
