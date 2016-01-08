@@ -1,0 +1,52 @@
+<h1>Admin Statistics</h1>
+
+<!-- <h2>Get parameter, table id : {{ tableId }}</h2> -->
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>이 태스크 통계 정보</h4>
+  </div>
+  <div class="panel-body">
+    <!-- 전 체 유 저 목 록 -->
+
+    <p>전체 제출된 파일수: {{ submitted_file_count }}</p>
+    <p>PASS된 파일 수 : {{ passed_file_count }}</p>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>이 태스크에 참여중인 제출자 유저 목록</h4>
+  </div>
+
+  <div class="panel-body">
+    <!-- 전 체 유 저 목 록 -->
+    <table class="table">
+      <thead>
+      <tr>
+        <th>UserID</th>
+        <th>Name</th>
+        <th>Sex</th>
+        <th>Adrress</th>
+        <th>BDate</th>
+        <th>Role</th>
+        <th>Score</th>
+        <th>---</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in userList">
+        <td>{{ item.str_id }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.sex }}</td>
+
+        <td>{{ item.address }}</td>
+        <td>{{ item.birth }}</td>
+        <td>{{ item.role }}</td>
+        <td>{{ item.score }}</td>
+        <td><a href="#/admin-page/user-detail?uid={{item.id}}">Detail</a></td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+</div>
